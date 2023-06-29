@@ -1,0 +1,15 @@
+<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M17.1 15.718a.448.448 0 0 0 0 .564l2.026 2.534c.283.354.874.163.874-.281v-5.07c0-.444-.591-.635-.874-.281L17.1 15.718Z"
+      fill="currentColor"
+    />
+    <rect
+      x="8.75"
+      y="8.75"
+      width="14.5"
+      height="14.5"
+      rx="1.25"
+      stroke="currentColor"
+      stroke-width="1.5"
+    />
+</svg>

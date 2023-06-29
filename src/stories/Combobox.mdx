@@ -1,0 +1,317 @@
+import { Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ACombobox } from '../components'
+
+# Combobox
+
+```html
+<a-combobox v-model="value" :options="options" />
+<ACombobox v-model="value" :options="options" />
+```
+
+<ArgsTable of={ACombobox} />
+
+## Basic Usage
+
+The `a-combobox`component is a wrapper around the [Headless UI's Combobox](https://headlessui.dev/vue/combobox).
+
+The simplest usage of Combobox only needs a [v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model) and a list of `options`.
+An option is an object with `label` and `value` as strings, and an optional `disabled` property.
+
+```html
+<!-- in your script:
+ const value = ref('') -->
+<a-combobox
+  v-model="value"
+  :options="[
+    { value: 'center', label: 'Center' },
+    { value: 'left', label: 'Left' },
+    { value: 'right', label: 'Right' }
+  ]" />
+```
+
+<Canvas>
+  <Story id="components-combobox--basic" />
+</Canvas>
+
+## Selecting multiple values
+
+If `model-value` is an array (type `string[]`) the combobox will allow
+selecting multiple values. The options panel will **not** be closed after selection.
+
+```html
+<!-- in your script:
+ const values = ref([]) -->
+<a-combobox v-model="values" :options="options" />
+```
+
+<Canvas>
+  <Story id="components-combobox--multiselect" />
+</Canvas>
+
+## Combobox Input
+
+Clicking on the combobox input, as well as pressing `Arrow Down` when it's focused, will open the options panel.
+
+### Disabling the combobox
+
+To disable the combobox, just add a `disabled` prop:
+
+```html
+<a-combobox v-model="position" :options="options" disabled />
+```
+
+<Canvas>
+  <Story id="components-combobox--size-sm-selected-disabled" />
+</Canvas>
+
+### Customizing the placeholder
+
+```html
+<a-combobox placeholder="Pick a position" v-model="position" :options="options" />
+```
+
+When the current value is empty, a placeholder is displayed.
+To overwrite the default placeholder (`Type to search...`), use the `placeholder` prop.
+
+<Canvas>
+  <Story id="components-combobox--custom-placeholder" />
+</Canvas>
+
+### Subtle variant
+
+Recommended to use with `a-combobox` size `sm` in dense UIs combining value display and editing.
+
+```html
+<a-combobox variant="subtle" … />
+```
+
+<Canvas columns={2}>
+  <Story id="components-combobox--subtle" />
+  <Story id="components-combobox--subtle-selected" />
+  <Story id="components-combobox--multiselect-subtle" />
+  <Story id="components-combobox--multiselect-subtle-selected" />
+</Canvas>
+
+### Displaying a color indicator
+
+If the selected option(s) have the `color` property set, a color indicator (`a-color-circle` component) will be displayed.
+
+Examples:
+
+<Canvas>
+  <Story id="components-combobox--options-with-color-selected" />
+  <Story id="components-combobox--multiselect-options-with-color-selected" />
+</Canvas>
+
+### Displaying a custom 'selected' state
+
+In some cases you might want to display a state as currently selected,
+even though it does not appear in the list of options.
+
+Such `v-model` value will be displayed in the combobox input until
+cleared by the user or another option is selected.
+
+Example:
+
+<Canvas>
+  <Story id="components-combobox--custom-model-value" />
+  <Story id="components-combobox--multiselect-custom-model-value" />
+</Canvas>
+
+## Options
+
+### Displaying a color indicator
+
+If options have the `color` property set on them, they will be displayed with a color indicator (`a-color-circle` component).
+
+Examples:
+
+<Canvas>
+  <Story id="components-combobox--options-with-color" />
+  <Story id="components-combobox--multiselect-options-with-color" />
+</Canvas>
+
+### Custom filtering and displaying of options
+
+It is possible to apply a custom filtering function
+as well as to manually display `a-option`s inside combobox's default slot.
+
+You can combine these customizations or use them separately:
+
+- for custom filtering provide a `filterCallback` prop that accepts 2 params, `option` and `query`,
+- for custom styling and/or markup use the `filteredOptions` slot prop.
+
+In this example, combobox allows searching the colors by hex values,
+and options have an additional color circle.
+
+```html
+<a-combobox v-model="selectedValue" :options="options" :filter-callback="customFilter">
+  <template #default="{filteredOptions}">
+    <a-option
+      v-for="option in filteredOptions"
+      :key="option.value"
+      component="combobox"
+      :option="option">
+      <template #extra>
+        <a-color-circle :color="option.value"></a-color-circle>
+      </template>
+      <span>{{ option.label }}</span>
+      <span class="mx-2 text-warsaw">({{option.value}})</span>
+    </a-option>
+  </template>
+</a-combobox>
+```
+
+<Canvas>
+  <Story id="components-combobox--custom-options" />
+  <Story id="components-combobox--multiselect-custom-options" />
+</Canvas>
+
+### Server-side filtering of results
+
+The combobox component can also be used when option filtering for a given query happens on the backend.
+
+For this to work, make sure the options array is reactive,
+and provide the `filterCallback` prop to overwrite the default filtering.
+In our example it always returns true for the options coming from the backend search.
+
+<Canvas>
+  <Story id="components-combobox--backend-options" />
+  <Story id="components-combobox--multiselect-backend-options" />
+</Canvas>
+
+### Displaying a dynamic option
+
+The `#custom-option` slot provides the ability to render an extra option -
+visible when there are no options found for a given query.
+By default, it shows a `no options` element (non-interactive).
+
+To customize this element, it's recommended to use a simple styled div.
+
+For an interactive option (e.g. to create a new item) use the `a-option` component.
+You may find useful the slot prop `query` that exposes the current user query
+(see example below).
+
+In the case of using `a-option` in this slot, be sure to pass it a unique value,
+as it will be used to update combobox's v-model.
+Then you need to listen to `@update:model-value` on the combobox
+to detect this new value and handle any click/keydown events from there.
+
+**Do not rely on adding a click handler to the new option**.
+While it will work for pointer interactions, a click event handler won't be invoked by keyboard selection
+(because technically the focus always stays on the combobox input).
+
+<Canvas>
+  <Story id="components-combobox--dynamic-option" />
+  <Story id="components-combobox--multiselect-dynamic-option" />
+</Canvas>
+
+### Displaying a disabled option
+
+To display an option as disabled, add a `disabled` property to the option object.
+The option will be styled appropriately and ignored by keyboard navigation and pointer events.
+
+<Canvas>
+  <Story id="components-combobox--disabled-option" />
+  <Story id="components-combobox--multiselect-disabled-option" />
+</Canvas>
+
+### Grouped options
+
+If you want the options to be grouped, provide an `options` list of the following type:
+`[{ title: string, options: [{ value: string, label: string, disabled?: boolean }] }]`
+
+Additionally, `a-combobox-option-group` component can be used in `a-combobox`s default slot if custom markup is needed.
+
+<Canvas>
+  <Story id="components-combobox--grouped-options" />
+  <Story id="components-combobox--multiselect-grouped-options" />
+</Canvas>
+
+### Long option labels
+
+Long option labels will be truncated by default, both in the options dropdown and selected state:
+
+<Canvas>
+  <Story id="components-combobox--long-label-options-selected" />
+  <Story id="components-combobox--multiselect-long-label-options-selected-open" />
+</Canvas>
+
+## Opening direction
+
+`ACombobox` can open upwards instead of downwards.
+
+```html
+<a-combobox direction="up" … />
+```
+
+<Canvas>
+  <Story id="components-combobox--direction-up" />
+  <Story id="components-combobox--multiselect-direction-up" />
+</Canvas>
+
+### Rendering options inline
+
+`ACombobox` can render options inline and always visible instead of the absolutely positioned dropdown panel.
+
+In a multiselect combobox the "selected pills" won't be shown, since the selected options are always visible as checked options.
+
+For an example use case of inline options, see [`<a-popup-combobox>` component](/story/components-popup--combobox-popup).
+
+```html
+<a-combobox inline … />
+```
+
+<Canvas>
+  <Story id="components-combobox--inline" />
+  <Story id="components-combobox--multiselect-inline" />
+</Canvas>
+
+## Combobox size
+
+### Size prop
+
+Combobox component follows the same sizing as `a-text-input` and `a-listbox`.
+
+The default size (`sm`) is suitable for denser layouts, like sidebars.
+Size `md` is appropriate for most form fields.
+
+```html
+<!-- 'sm' is the default and can be omitted -->
+<a-combobox size="sm" … />
+<a-combobox size="md" … />
+```
+
+<Canvas columns={2}>
+  <Story id="components-combobox--size-sm" />
+  <Story id="components-combobox--multiselect-size-sm" />
+  <Story id="components-combobox--size-md" />
+  <Story id="components-combobox--multiselect-size-md" />
+</Canvas>
+
+### Dimensions of the combobox container
+
+By default the combobox takes full width of the parent container.
+You can adjust the width of the combobox container by adding an appropriate class to it.
+The options dropdown panel will be the same width as the combobox button.
+
+```html
+<a-combobox class="w-1/2" … />
+```
+
+<Canvas>
+  <Story id="components-combobox--half-width" />
+</Canvas>
+
+### Dimensions of the options panel
+
+If you need to display a long list of options, the option panel's height can be limited
+via `panelClasses` prop. Remember to add `overflow-auto` along with your height class.
+
+```html
+<a-combobox panel-classes="max-h-[100px] overflow-auto" … />
+```
+
+<Canvas>
+  <Story id="components-combobox--panel-classes" />
+</Canvas>

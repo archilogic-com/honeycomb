@@ -1,0 +1,196 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ALink } from '../components'
+
+<Meta
+  title="Components/Link"
+  component={ALink}
+  argTypes={{
+    size: {
+      options: ['md', 'sm'],
+      control: 'radio'
+    },
+    variant: {
+      options: ['primary', 'standard'],
+      control: 'radio'
+    },
+    content: {
+      control: 'text'
+    },
+    href: { control: 'text' }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ALink },
+  setup() {
+    return { args }
+  },
+  template: `<ALink v-bind="args">${args.default || ''}</ALink>`
+})
+
+# Links
+
+## Usage
+
+```html
+<a-link href="/somewhere">Hyperlink</a-link>
+<ALink href="/somewhere">Hyperlink</ALink>
+```
+
+<ArgsTable of={ALink} />
+
+## HTML attributes
+
+Any additional HTML attributes will be passed down to the original `<a>` element.
+Example:
+
+```html
+<a-link href="/" target="_blank">Home</a-link>
+```
+
+<Canvas>
+  <Story
+    name="provide href"
+    args={{
+      default: 'Home',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Usage with Vue Router
+
+To use `<a-link>` with a `<router-link>` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-link :href="href" @click="navigate">{{ route.fullPath }}</a-link>
+</router-link>
+```
+
+## Link variants and sizes
+
+Links come in **2 stylistic variants**:
+`standard` and `primary`
+and **2 size options**:
+`md` and `sm` (default)
+
+```html
+<!-- variant="standard" is the default and can be omitted -->
+<a-link variant="standard">click here</a-link>
+<a-link variant="primary">click here</a-link>
+
+<!-- size="sm" is the default and can be omitted -->
+<a-link size="sm">click here</a-link>
+<a-link size="md">click here</a-link>
+```
+
+<Canvas>
+  <Story
+    name="standard sm"
+    args={{
+      default: 'Standard sm',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary sm"
+    args={{
+      variant: 'primary',
+      default: 'Primary sm',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard md"
+    args={{
+      default: 'Standard md',
+      size: 'md',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary md"
+    args={{
+      variant: 'primary',
+      size: 'md',
+      default: 'Primary md',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Using the content prop
+
+```html
+<a-link content="Link here"></a-link>
+```
+
+An alternative way to set the link text, is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are provided, the slot children take precedence.
+
+The following links are rendered with the `content` prop instead of slot content.
+
+<Canvas>
+  <Story
+    name="standard w/ content prop"
+    args={{
+      content: 'Standard',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary w/ content prop"
+    args={{
+      variant: 'primary',
+      content: 'Primary',
+      href: '/'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Inline example
+
+Example of `<a-link>` within a paragraph of text.
+
+```html
+Structural editing is a
+<a-link href="somewhere">beta feature</a-link>
+.
+```
+
+<Canvas>
+  <Story name="inline example">
+    {() => ({
+      components: { ALink },
+      template: `
+         <p>Structural editing is a <a-link href="/">beta feature</a-link>.</p>
+        `
+    })}
+  </Story>
+</Canvas>
+
+## Rendering a button
+
+If `href` attribute is omitted, the component will render an HTML `button`.
+
+```html
+<a-link @click="yourClickHandler">I'm a button that looks like a link.</a-link>
+```
+
+<Canvas>
+  <Story
+    name="as a button"
+    args={{
+      default: "I'm a button that looks like a link."
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

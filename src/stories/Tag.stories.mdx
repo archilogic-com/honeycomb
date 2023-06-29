@@ -1,0 +1,165 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ATag, AColorCircle } from '../components'
+
+<Meta title="Components/Tag" component={ATag} />
+
+export const Template = args => ({
+  components: { ATag, AColorCircle },
+  setup() {
+    return { args }
+  },
+  template: `
+  <ATag v-bind="args">${args.default || ''}</ATag>`
+})
+
+# Tag
+
+```html
+<a-tag href="/my-project">My project</a-tag>
+<a-tag @click="doStuff">My project</a-tag>
+<a-tag removable>My project</a-tag>
+```
+
+`ATag` is meant to visually label objects in the UI for quick recognition and, optionally, navigation.
+It can be rendered as an HTML button (if `onClick` is provided) or anchor element (if `href` is provided),
+or as a generic non-interactive div (otherwise).
+It can also be removable.
+
+<ArgsTable of={ATag} />
+
+## Removable tag
+
+If the `removable` prop is set on the component, it will render a button that emits
+a `remove` event. The parent of `a-tag` can listen and react to this event.
+`a-tag` itself does not hold any state about whether it should be shown on the page.
+
+```html
+<a-tag removable>Nonsense</a-tag>
+```
+
+<Canvas>
+  <Story
+    name="round tag removable"
+    args={{
+      default: 'Nonsense',
+      removable: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+**Note on the disabled state:**
+
+Disabling this `X` ("Remove") button is not supported. Instead, omit the `removable` prop (or set it to `undefined`),
+and the button will not get rendered.
+
+## Color indicator
+
+If a `color` prop is provided, the `<a-tag>` component will include an `<a-color-circle>` indicator.
+
+<Canvas>
+  <Story
+    name="color"
+    args={{
+      color: 'pink',
+      default: 'Pink tag'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Rendering as various HTML elements
+
+### Rendering a button (HTMLButtonElement)
+
+If an `onClick` listener is added to the component, it will render as a `button` element.
+
+```html
+<a-tag @click="doStuff()">Click me</a-tag>
+```
+
+<Canvas>
+  <Story
+    name="tag with onClick"
+    args={{
+      content: 'Click me',
+      onClick: () => console.log('click event')
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tag removable with onClick"
+    args={{
+      content: 'Click me',
+      removable: true,
+      onClick: () => console.log('click event'),
+      onRemove: () => console.log('remove event')
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+**Note on the disabled state:**
+
+Setting a disabled state on `a-tag` when rendered as a button is not supported.
+Instead, don't attach the `onClick` handler, and the component will render as a `div` and will not be clickable.
+
+### Rendering a link (HTMLAnchorElement)
+
+If the `href` attribute is set, the component will render as an `a` element.
+
+<Canvas>
+  <Story
+    name="tag with href"
+    args={{
+      content: 'Tag link',
+      href: '#'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tag removable with href"
+    args={{
+      content: 'Tag link',
+      removable: true,
+      href: '#',
+      onRemove: () => console.log('remove event')
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+**Usage with Vue Router**
+
+To use `a-tag` as a link with a `router-link` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-tag :href="href" @click="navigate">...</a-tag>
+</router-link>
+```
+
+**Note on the disabled state:**
+
+As any other `<a>` element, `<a-tag>` with `href` does not accept a `disabled` attribute. 
+
+## Custom content via slot
+
+`a-tag`'s default slot can be used for adding custom markup.
+
+```html
+<a-tag>
+  <a-color-circle color="sanfran" />
+  Green label
+</a-tag>
+```
+
+<Canvas>
+  <Story
+    name="tag default slot"
+    args={{
+      default: `Green label <a-color-circle color="sanfran" class="ml-1" />`
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

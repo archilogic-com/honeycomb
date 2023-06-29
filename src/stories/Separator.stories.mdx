@@ -1,0 +1,133 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ASeparator } from '../components'
+
+<Meta title="Components/Separator" component={ASeparator} />
+
+# Separator
+
+A simple separator component, rendering a horizontal or vertical line to section content on the page.
+
+## Usage
+
+```html
+<a-separator />
+<ASeparator />
+```
+
+<ArgsTable of={ASeparator} />
+
+## Separator orientation
+
+The separator can be `horizontal` (default) or `vertical`.
+
+```html
+<!-- "horizontal" is the default and can be omitted -->
+<a-separator orientation="horizontal" />
+<a-separator orientation="vertical" />
+```
+
+<Canvas isColumn="true">
+  <Story name="horizontal">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <div>
+        <p>Hello</p>
+        <a-separator class="my-2"/>
+        <p>Bye!</p>
+      </div>`
+    })}
+  </Story>
+  <Story name="vertical">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <div class="flex">
+        <p>Hello</p>
+        <a-separator orientation="vertical" class="mx-2"/>
+        <p>Bye!</p>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+## Styling the separator
+
+The separator stretches the full width (horizontal) or height (vertical) of the parent container.
+To create a gap, add some padding to the parent container, or margin to the separator as appropriate.
+
+**Note**: The vertical separator is designed to be used inside flex containers with "flex-row" layout.
+
+<Canvas isColumn="true">
+  <Story name="with padding vertical">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <div class="flex border border-warsaw py-2">
+        <p>Hello</p>
+        <a-separator orientation="vertical" class="mx-2"/>
+        <p>Bye!</p>
+      </div>`
+    })}
+  </Story>
+  <Story name="with margins vertical">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <div class="flex border border-warsaw">
+        <p>Hello</p>
+        <a-separator orientation="vertical" class="m-2"/>
+        <p>Bye!</p>
+      </div>`
+    })}
+  </Story>
+  <Story name="with padding horizontal">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <div class="border border-warsaw px-2">
+        <p>Hello</p>
+        <a-separator class="my-2"/>
+        <p>Bye!</p>
+      </div>`
+    })}
+  </Story>
+  <Story name="with margins horizontal">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <div class="border border-warsaw">
+        <p>Hello</p>
+        <a-separator class="m-2"/>
+        <p>Bye!</p>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+## Rendering a different HTML element
+
+```html
+<a-separator as="li" />
+```
+
+The horizontal separator renders an `<hr>` element, and vertical separator renders a `<div>` element.
+To render `<a-separator>` as a different HTML element use the `as` prop.
+A typical use case is grouping items within a list (`<ul>` or `<ol>` elements) where the only valid child is `<li>`.
+
+<Canvas>
+  <Story name="as prop">
+    {() => ({
+      components: { ASeparator },
+      template: `
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <a-separator as="li" class="my-2"/>
+        <li>Item 4</li>
+        <li>Item 5</li>
+      </ul>`
+    })}
+  </Story>
+</Canvas>

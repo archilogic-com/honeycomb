@@ -1,0 +1,78 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ASpinner } from '../components'
+
+<Meta
+  title="Components/Spinner"
+  component={ASpinner}
+  argTypes={{
+    size: {
+      options: ['sm', 'md', 'lg']
+    },
+    variant: {
+      control: ['default', 'prominent']
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ASpinner },
+  setup() {
+    return { args }
+  },
+  template: `
+  <ASpinner v-bind="args">
+  </ASpinner>`
+})
+
+# Spinner
+
+```html
+<a-spinner />
+<ASpinner />
+```
+
+<ArgsTable of={ASpinner} />
+
+**This component renders an `svg` element with CSS animations applied. It doesn't include any wrapper elements or positioning styles, nor page overlays.**
+
+## Default
+
+The default spinner has color `warsaw` from our [dark neutrals palette](http://localhost:6006/?path=/docs/primitives-colors--warsaw#dark-neutrals).
+
+```html
+<a-spinner size="sm" />
+<a-spinner size="md" />
+<a-spinner size="lg" />
+```
+
+<Canvas>
+  <Story name="spinner default sm" args={{ size: 'sm' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="spinner default md" args={{ size: 'md' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="spinner default lg" args={{ size: 'lg' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Prominent
+
+The prominent spinner is in our [primary color](http://localhost:6006/?path=/docs/primitives-colors--mediumblue#primary-pallette), `mediumblue`.
+
+```html
+<a-spinner variant="prominent" />
+```
+
+<Canvas>
+  <Story name="spinner prominent sm" args={{ variant: 'prominent', size: 'sm' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="spinner prominent md" args={{ variant: 'prominent', size: 'md' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="spinner prominent lg" args={{ variant: 'prominent', size: 'lg' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

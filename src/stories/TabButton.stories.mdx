@@ -1,0 +1,50 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ATabButton, ASeparator } from '../components'
+import { TabGroup, TabList, TabPanels, TabPanel, Tab } from '@headlessui/vue'
+
+<Meta title="Components/TabButton" component={ATabButton} />
+
+# Tab Button
+
+```html
+<a-tab-button />
+<ATabButton />
+```
+
+## Full Documentation
+
+This component returns a [Headless UI's](https://headlessui.dev/) Tab component with our custom styling added.
+You can find full documentation [here](https://headlessui.dev/vue/tabs).
+
+<ArgsTable of={ATabButton} />
+
+<Canvas>
+  <Story name="tabs example">
+    {() => ({
+      components: { ATabButton, TabGroup, TabList, TabPanels, TabPanel, Tab, ASeparator },
+      setup() {
+        const tabs = [
+          { title: 'First tab', panel: 'First panel' },
+          { title: 'Second tab', panel: 'Second panel' }
+        ]
+        return { tabs }
+      },
+      template: `
+        <TabGroup>
+          <TabList>
+            <Tab v-slot="{ selected }" as="template" v-for="tab in tabs" :key="tab.title">
+              <a-tab-button :selected="selected">
+                {{ tab.title }}
+              </a-tab-button>
+            </Tab>
+          </TabList>
+          <a-separator />
+          <TabPanels class="p-2">
+            <TabPanel v-for="tab in tabs">
+              {{ tab.panel}}
+            </TabPanel>
+          </TabPanels>
+        </TabGroup>`
+    })}
+  </Story>
+</Canvas>

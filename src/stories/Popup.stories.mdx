@@ -1,0 +1,208 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { nextTick } from 'vue'
+import { within } from '@storybook/testing-library'
+
+import {
+  APopup,
+  APopupButton,
+  APopupCombobox,
+  APanelCombobox,
+  AButton,
+  APanel
+} from '../components'
+import PopupComboboxExample from '../examples/PopupComboboxExample.vue'
+
+<Meta
+  title="Components/Popup"
+  component={APopup}
+  subcomponents={{ APopupButton, APopupCombobox, APanelCombobox }}
+  parameters={{ layout: 'fullscreen', chromatic: { delay: 1000 } }}
+  decorators={[
+    () => ({
+      template: `
+      <div class="overflow-hidden w-full h-screen p-4">
+        <div style="width: 300px; height: 300px; display: flex; justify-content: flex-start;">
+          <story/>
+        </div>
+      </div>`
+    })
+  ]}
+/>
+
+export const Template = args => ({
+  components: { APopup, APopupButton, APanel, AButton },
+  setup() {
+    return { args }
+  },
+  template: `
+  <APopup v-bind="args">
+    <template #button="{open, aria}">
+      <APopupButton :open="open" v-bind="aria">Filters</APopupButton>
+    </template>
+    <template #default="{close}">
+      <APanel title="Update name" class="w-[300px]">
+        <template #body>Some content inside</template>
+        <template #actions>
+          <AButton variant="primary" @click="close">Ok</AButton>
+          <AButton @click="close">Cancel</AButton>
+        </template>
+      </APanel>
+    </template>
+  </APopup>`
+})
+
+export const openPopup = async ({ canvasElement }) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('button').click()
+}
+
+export const openAndClosePopup = async ({ canvasElement }) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('button').click()
+  await nextTick()
+  await canvas.getByRole('button', { name: 'Ok' }).click()
+}
+
+# Popup
+
+`<a-popup>` is a component for arbitrary content to be displayed in a floating panel.
+It manages its own open state, and has a slot for `<a-popup-button>` component that serves
+as the trigger and the visual anchor of the popup.
+
+<ArgsTable of={APopup} />
+
+## Basic example
+
+<Canvas>
+  <Story name="basic" play={openPopup}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Closing the popup
+
+By default, the popup panel will not close when elements inside of it are clicked.
+To close the popup, use the `close` slot prop from the default slot.
+The popup can also be closed by pressing the `Esc` key, by clicking anywhere outside the popup,
+or pressing the popup button again.
+
+```html
+<a-popup>
+  <template #button="{open, aria}">
+    <APopupButton :open="open" v-bind="aria">Filters</APopupButton>
+  </template>
+  <template #default="{close}">
+    <div>
+      ...
+      <button @click="close">Close</button>
+    </div>
+  </template>
+</a-popup>
+```
+
+<Canvas>
+  <Story name="close" play={openAndClosePopup}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Open by default
+
+The popup component will be open on render if the `open` prop is set to `true`.
+
+```html
+<a-popup open>…</a-popup>
+```
+
+<Canvas>
+  <Story name="open by default" args={{ open: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Vertical direction and horizontal alignment
+
+The popup can open upwards instead of downwards (default).
+
+```html
+<a-popup direction="up">…</a-popup>
+```
+
+<Canvas>
+  <Story
+    name="opening upwards"
+    args={{ direction: 'up' }}
+    play={openPopup}
+    decorators={[
+      () => ({
+        template: `
+        <div class="mt-auto">
+          <story/>
+        </div>
+      `
+      })
+    ]}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Its floating panel is normally aligned with the left edge of the trigger button,
+but it can be configured to be right-aligned with the `align` prop.
+
+```html
+<a-app-menu align="right">…</a-app-menu>
+```
+
+<Canvas>
+  <Story
+    name="right-aligned"
+    args={{ align: 'right' }}
+    play={openPopup}
+    decorators={[
+      () => ({
+        template: `
+        <div class="ml-auto">
+          <story/>
+        </div>
+      `
+      })
+    ]}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Combobox inside Popup panel
+
+Use a special `<a-popup-combobox>` component for rendering a combobox inside the popup panel.
+It renders `<a-popup>` (and accepts the same props) with the `<a-panel-combobox>` component as the popup panel.
+The default slot expects a `<a-combobox>` component to which the slot props should be bound.
+
+```html
+<APopupCombobox>
+  <template #button="{ open, aria }">
+    <APopupButton :open="open" v-bind="aria">Add team members</APopupButton>
+  </template>
+  <template #default="{close, comboboxProps}">
+    <!-- optional: use the `close()` method to close the popup programmatically-->
+    <ACombobox
+      v-bind="comboboxProps"
+      v-model="selectedMembers"
+      placeholder="Search members"
+      :options="users" />
+  </template>
+</APopupCombobox>
+```
+
+See the full example code
+[here](https://github.com/archilogic-com/ui-components/blob/main/src/examples/PopupComboboxExample.vue).
+
+<Canvas>
+  <Story name="combobox-popup" play={openPopup}>
+    {() => ({
+      components: { PopupComboboxExample },
+      template: `
+    <PopupComboboxExample></PopupComboboxExample>
+    `
+    })}
+  </Story>
+</Canvas>

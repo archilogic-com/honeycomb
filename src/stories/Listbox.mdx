@@ -1,0 +1,232 @@
+import { Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { AListbox } from '../components'
+
+# Listbox
+
+```html
+<a-listbox v-model="value" :options="options" />
+<AListbox v-model="value" :options="options" />
+```
+
+<ArgsTable of={AListbox} />
+
+## Basic usage
+
+The `<a-listbox>` component is a wrapper around the [Headless UI's Listbox](https://headlessui.dev/vue/listbox).
+
+The simplest usage of AListbox only needs a [v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model)
+and a list of `options`.
+An option is an object with `label` and `value` as strings, and an optional `disabled` property.
+
+```html
+<a-listbox
+  v-model="value"
+  :options="[
+    { value: 'center', label: 'Center' },
+    { value: 'left', label: 'Left' },
+    { value: 'right', label: 'Right' }
+  ]" />
+```
+
+<Canvas>
+  <Story id="components-listbox--basic" />
+</Canvas>
+
+## Listbox Button
+
+Clicking on the listbox button, as well as pressing `Arrow Down` when it's focused, will open the options panel.
+
+### Disabling the listbox
+
+To disable the listbox, just add a `disabled` prop:
+
+```html
+<a-listbox v-model="value" :options="options" disabled />
+```
+
+<Canvas>
+  <Story id="components-listbox--size-sm-selected-disabled" />
+</Canvas>
+
+### Customizing the placeholder
+
+When the current value is empty, a placeholder is displayed.
+To override the default placeholder (`Select...`), provide a `placeholder` prop:
+
+```html
+<a-listbox placeholder="Pick a position" v-model="value" :options="options" />
+```
+
+<Canvas>
+  <Story id="components-listbox--custom-placeholder" />
+</Canvas>
+
+### Subtle variant
+
+Recommended to use with `<a-listbox>` size `sm` in dense UIs combining value display and editing.
+
+```html
+<a-listbox variant="subtle" … />
+```
+
+<Canvas columns={2}>
+  <Story id="components-listbox--subtle" />
+  <Story id="components-listbox--subtle-selected" />
+</Canvas>
+
+### Displaying a color indicator
+
+If the selected option has the `color` property set, it will be displayed with a color indicator (`<a-color-circle>` component).
+
+Examples:
+
+<Canvas>
+  <Story id="components-listbox--options-with-color-selected" />
+</Canvas>
+
+### Displaying a custom 'selected' state via v-model
+
+As the example above shows, in some specific cases you might want to display a state
+that does not appear in the list of options as currently selected.
+
+This is also possible to do via `v-model` if the value does not match any value in the provided options list.
+When a new option is selected, `v-model` will be updated as usual.
+Example:
+
+<Canvas>
+  <Story id="components-listbox--custom-model-value" />
+</Canvas>
+
+## Options
+
+### Displaying a color indicator
+
+If options have the `color` property set on them, they will be displayed with a color indicator (`<a-color-circle>` component).
+
+Examples:
+
+<Canvas>
+  <Story id="components-listbox--options-with-color" />
+</Canvas>
+
+### Customizing options and selected value
+
+It is possible to render custom options which allows to adjust styles or add markup.
+
+In this example, options display an additional color circle in the options panel
+as well as the listbox button.
+
+```html
+<a-listbox v-model="selectedValue" :options="options" …>
+  <a-option v-for="{ label, value } in options" :key="value" :value="value">
+    <template #extra>
+      <a-color-circle :color="option.value"></a-color-circle>
+    </template>
+    <span>{{ option.label }}</span>
+    <span class="mx-2 text-warsaw">({{option.value}})</span>
+  </a-option>
+</a-listbox>
+```
+
+<Canvas>
+  <Story id="components-listbox--custom-options-selected" />
+</Canvas>
+
+### Disabled options
+
+To display an option as disabled, add a `disabled` property to the option object.
+The option will be styled appropriately and ignored by keyboard navigation and pointer events.
+
+<Canvas>
+  <Story id="components-listbox--disabled-option" />
+</Canvas>
+
+### Grouped options
+
+If you want the options to be grouped, provide `options` list of the following type:
+`[{ title: string, options: [{ value: string, label: string, disabled?: boolean }] }]`
+
+Additionally, `<a-option-group>` component can be used in `<a-listbox>`s default slot if custom markup is needed.
+
+<Canvas>
+  <Story id="components-listbox--grouped-options" />
+</Canvas>
+
+### Long option labels
+
+The option labels will be truncated by default, both in the options dropdown and the selected value:
+
+<Canvas>
+  <Story id="components-listbox--long-label-options" />
+</Canvas>
+
+### Opening direction
+
+`AListbox` can open upwards instead of downwards.
+
+```html
+<a-listbox direction="up" … />
+```
+
+<Canvas>
+  <Story id="components-listbox--direction-up" />
+</Canvas>
+
+### Rendering options inline
+
+`AListbox` can render options inline and always visible instead of the absolutely positioned dropdown panel.
+
+```html
+<a-listbox inline … />
+```
+
+<Canvas>
+  <Story id="components-listbox--inline" />
+</Canvas>
+
+## Listbox size
+
+### Size prop
+
+Listbox component follows the same sizing as `<a-text-input>` and `<a-combobox>`.
+
+The default size (`sm`) is suitable for denser layouts, like sidebars.
+Size `md` is appropriate for most form fields.
+
+```html
+<!-- 'sm' is the default and can be omitted -->
+<a-listbox size="sm" … />
+<a-listbox size="md" … />
+```
+
+<Canvas columns={2}>
+  <Story id="components-listbox--size-sm" />
+  <Story id="components-listbox--size-md" />
+</Canvas>
+
+### Dimensions of the listbox container
+
+By default the listbox takes full width of the parent container.
+You can adjust the width of the listbox container by adding an appropriate class to it.
+The options dropdown panel will be the same width as the listbox button.
+
+```html
+<a-listbox class="w-1/2" … />
+```
+
+<Canvas>
+  <Story id="components-listbox--half-width" />
+</Canvas>
+
+### Dimensions of the options panel
+
+If you need to display a long list of options, its height can be limited
+via `panelClasses` prop. Remember to add `overflow-auto` along with your height class.
+
+```html
+<a-listbox panel-classes="max-h-[100px] overflow-auto" … />
+```
+
+<Canvas>
+  <Story id="components-listbox--panel-classes" />
+</Canvas>

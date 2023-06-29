@@ -1,0 +1,91 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ASkeleton } from '../components'
+
+<Meta
+  title="Components/Skeleton"
+  component={ASkeleton}
+  argTypes={{
+    variant: {
+      control: ['line', 'block']
+    },
+    class: {
+      control: 'text'
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ASkeleton },
+  setup() {
+    return { args }
+  },
+  template: `
+  <ASkeleton v-bind="args">
+  </ASkeleton>`
+})
+
+# Skeleton
+
+```html
+<a-skeleton />
+<ASkeleton />
+```
+
+<ArgsTable of={ASkeleton} />
+
+## Line variant (default)
+
+The line skeleton loader will take the full width of its container, but its height stays the same, `0.5rem`/`8px`.
+You can provide the required width and height class to the component.
+There are 4 allowed height values for the skeleton line corresponding to our spacing scale:
+
+- `4` 16px/1rem
+- `6` 24px/1.5rem
+- `8` 32px/2rem
+- `10` 40px/2.5rem
+
+```html
+<a-skeleton class="h-4" />
+<a-skeleton class="h-6" />
+<a-skeleton class="h-8" />
+<a-skeleton class="h-10" />
+```
+
+The width of the element can be controlled the same way:
+
+```html
+<a-skeleton class="w-full" />
+<a-skeleton class="w-3/4" />
+<a-skeleton class="w-1/2" />
+<a-skeleton class="w-1/4" />
+```
+
+<Canvas isColumn={true}>
+  <Story name="skeleton line sm" args={{ class: 'h-4 w-full' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="skeleton line md" args={{ class: 'h-6 w-3/4' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="skeleton line lg" args={{ class: 'h-8 w-1/2' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="skeleton line xl" args={{ class: 'h-10 w-1/4' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Block variant
+
+The block skeleton loader will take the full width and height of its container.
+Just provide the required width and height class to the component.
+
+```html
+<a-skeleton variant="block" class="h-[140px] w-[300px]" />
+```
+
+<Canvas>
+  <Story name="skeleton block " args={{ variant: 'block', class: 'w-[300px] h-[140px]' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

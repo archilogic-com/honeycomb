@@ -1,0 +1,71 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref, computed } from 'vue'
+import { ARadioInput } from '../components'
+
+# RadioInput
+
+```html
+<a-radio-input v-model="yourValue" value="value" label="Label" />
+```
+
+`ARadioInput` renders a native HTML `<input type="radio"/>` wrapped in a `<label>`.
+
+The attributes passed to this component are bound to the `<input/>` element.
+
+You can use the `label` prop or the `#default` slot to add the labelling text.
+
+<ArgsTable of={ARadioInput} />
+
+## Data binding
+
+### Using with v-model (recommended)
+
+This component is designed as a **controlled** component, meaning that it does not hold its own state,
+but relies on the value provided by `v-model` instead.
+For more information about using `v-model` with components, refer to the [Vue documentation](https://vuejs.org/guide/components/events.html#usage-with-v-model).
+
+```html
+<a-radio-input v-model="yourValue" value="this">This</a-radio-input>
+<a-radio-input v-model="yourValue" value="that">That</a-radio-input>
+```
+
+Any extra HTML attributes, e.g. `disabled` will be passed down to the `<input/>` element.
+
+<Canvas columns={3}>
+  <Story id="components-radioinput--default"></Story>
+  <Story id="components-radioinput--disabled"></Story>
+</Canvas>
+
+## Labelling the radio input
+
+As all other inputs and controls, `<a-radio-input>` component should always have a label.
+You can provide one via the `label` prop or the `#default` slot.
+
+Use the default slot for custom styling or extra markup in the label.
+
+```html
+<a-radio-input label="My RadioInput" v-model="yourValue" />
+<a-radio-input v-model="yourValue"><p class="body-sm-600">My RadioInput</p></a-radio-input>
+```
+
+<Canvas>
+  <Story id="components-radioinput--label-slot"></Story>
+</Canvas>
+
+### Hidden Label
+
+In rare cases you don't want to render a text label,
+but the radio input still needs to be labelled for assistive technologies
+(also useful for testing).
+The recommended way to do that is with the `aria-label` or `aria-labelledby` attributes.
+
+```html
+<a-radio-input v-model="yourValue" aria-label="My invisible label" />
+<!-- OR -->
+<a-radio-input v-model="yourValue" aria-labelledby="my-label-id" />
+<label id="my-label-id">....</label>
+```
+
+<Canvas>
+  <Story id="components-radioinput--hidden-label"></Story>
+</Canvas>

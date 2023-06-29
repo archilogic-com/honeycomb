@@ -1,0 +1,245 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref } from 'vue'
+import isChromatic from 'chromatic/isChromatic'
+
+import { AToast, AToastContainer, AButton } from '../components'
+
+<Meta
+  title="Components/Toast"
+  component={AToast}
+  subcomponents={{ AToastContainer }}
+  argTypes={{
+    variant: {
+      options: ['default', 'warning', 'error'],
+      control: 'radio'
+    },
+    timeout: { control: 'text' },
+    dismissible: { control: 'boolean' },
+    message: { control: 'text' }
+  }}
+/>
+
+export const Template = args => ({
+  components: { AToast, AButton },
+  setup() {
+    return { args }
+  },
+  template: `
+    <AToast v-bind="args" :timeout="0">
+    ${args.default || ''}
+    </AToast>`
+})
+
+export const toastStories = {
+  default: {
+    label: 'Default',
+    default: '23 Hudson Square renamed to Hudson Square'
+  },
+  warning: {
+    label: 'Warning',
+    default: 'Connection lost',
+    variant: 'warning'
+  },
+  error: {
+    label: 'Error',
+    default: 'Failed to archive 3 items',
+    variant: 'error'
+  },
+  dismiss: {
+    label: 'Without a close button',
+    default: 'Copied to clipboard',
+    dismissible: false
+  },
+  longer: {
+    label: 'Custom duration',
+    default: 'I will stay a bit longer',
+    timeout: 10000
+  },
+  sticky: {
+    label: 'Disabled auto-closing',
+    default: "I'm not going anywhere!",
+    timeout: 0
+  }
+}
+
+# Toast
+
+## Usage
+
+There are 2 components available: `<a-toast>` and `<a-toast-container>`.
+
+The toast is positioned by the `AToastContainer` wrapper near the bottom of the screen.
+
+You are free to create your own toast container component if a different positioning is required.
+
+```html
+<a-toast-container><a-toast>…</a-toast></a-toast-container>
+<AToastContainer><AToast>…</AToast></AToastContainer>
+```
+
+<ArgsTable of={AToast} />
+
+`AToast`'s width and height are dependent on its the content sizing.
+
+The toast will be closed automatically after 5 seconds by default.
+Its markup will still be in the DOM, and the cleanup needs needs to be taken care of by the caller.
+
+Listen to the `@dismiss` event to remove the toast from the DOM after the fade-away transition is finished.
+
+## All examples in AToastContainer
+
+This is an interactive example with all toast stories inside `<a-toast-container>`.
+Click a button to trigger a corresponding toast.
+
+<Canvas>
+  <Story name="toast-container">
+    {() => ({
+      components: { AToastContainer, AToast, AButton },
+      setup() {
+        const toasts = ref([])
+        const showToast = toast => {
+          toast.id = Math.random()
+          toasts.value.push(toast)
+        }
+        const removeToast = toast => {
+          toasts.value = toasts.value.filter(({ id }) => id !== toast.id)
+        }
+        if (isChromatic()) {
+          Object.values(toastStories).forEach(toast => {
+            showToast(toast)
+          })
+        }
+        return {
+          toastStories,
+          toasts,
+          removeToast,
+          showToast
+        }
+      },
+      template: `
+      <div>
+        <div class="flex flex-wrap" v-if="${!isChromatic()}">
+          <a-button
+            v-for="(toast, key) in toastStories"
+            :key="key"
+            variant="primary"
+            class="m-1"
+            @click="showToast(toast)">
+            {{ toast.label }}
+          </a-button>
+        </div>
+        <AToastContainer>
+          <AToast
+            v-for="(toast, key) in toasts"
+            :key="toast.id"
+            :variant="toast.variant || 'default'"
+            :timeout="toast.timeout"
+            :dismissible="toast.dismissible"
+            @dismiss="removeToast(toast)"
+            class="mx-auto my-2">
+            {{ toast.default }}
+          </AToast>
+        </AToastContainer>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+## Variants
+
+Toast come in 3 stylistic variants: `default` (neutral), `warning`, and `error`.
+
+```html
+<!-- `default` is the default and can be omitted -->
+<a-toast variant="default">23 Hudson Square renamed to Hudson Square</a-toast>
+<a-toast variant="warning">Connection lost</a-toast>
+<a-toast variant="error">Request failed</a-toast>
+```
+
+<Canvas isColumn={true}>
+  <Story name="default" args={toastStories.default}>
+    {Template.bind({})}
+  </Story>
+  <Story name="warning" args={toastStories.warning}>
+    {Template.bind({})}
+  </Story>
+  <Story name="error" args={toastStories.error}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Changing the toast timeout (duration)
+
+The toast will be closed automatically in 5 seconds by default.
+To change that behavior, provide a `timeout` prop in milliseconds.
+
+```html
+<a-toast :timeout="10000">I will be visible for 10 seconds</a-toast>
+```
+
+## Sticky toast
+
+If you do not want the toast to disappear on its own, set `timeout` to `0`.
+Make sure the toast is still dismissible by the user or closed programmatically.
+
+```html
+<a-toast :timeout="0">I will be visible forever</a-toast>
+```
+
+## Removing the close button
+
+A close button is rendered by default for all toasts.
+If the user shouldn't be able to dismiss a toast, set `dismissible` to `false`.
+
+If using this option, make sure the toast is auto-dismissed or closed programmatically.
+
+```html
+<a-toast :dismissible="false">Just FYI</a-toast>
+```
+
+<Canvas>
+  <Story name="hide close button" args={toastStories.dismiss}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Closing the toast programmatically
+
+To keep the fade-away toast transition when closing the toast programmatically,
+set the `open` prop to `false`.
+Then listen to the `@dismiss` event as usual to remove it from DOM when the transition is finished.
+
+Note: after the toast was dismissed, it cannot be toggled back to be visible again.
+
+<Canvas>
+  <Story name="external dismiss">
+    {() => ({
+      components: { AToast, AButton },
+      setup() {
+        const isOpen = ref(true)
+        const hideToast = toast => {
+          isOpen.value = false
+        }
+        return {
+          isOpen,
+          hideToast
+        }
+      },
+      template: `
+      <div>
+        <a-button
+          variant="primary"
+          class="m-1"
+          @click="hideToast">
+          Hide toast
+        </a-button>
+        <AToast
+          :open="isOpen"
+          :timeout="0"
+          :dismissible="false">
+          The button above will dismiss me
+        </AToast>
+      </div>`
+    })}
+  </Story>
+</Canvas>

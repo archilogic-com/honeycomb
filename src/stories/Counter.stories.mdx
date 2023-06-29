@@ -1,0 +1,101 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ACounter } from '../components'
+
+<Meta
+  title="Components/Counter"
+  component={ACounter}
+  argTypes={{
+    content: { control: 'text' },
+    variant: {
+      options: ['default', 'highlight'],
+      control: 'radio'
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ACounter },
+  setup() {
+    return { args }
+  },
+  template: `
+  <div class="p-1 flex items-center" :class="args.wrapperStyles">
+    <ACounter v-bind="args">${args.default || '312'}
+    </ACounter>
+  </div>`
+})
+
+# Counter
+
+```html
+<a-counter>312</a-counter>
+<ACounter>312</ACounter>
+```
+
+The Counter component is usually placed before or after the label it's quantifying.
+It accepts strings that represent a number, e.g. `0`,`2359`,`200+`, `1k+`.
+
+<ArgsTable of={ACounter} />
+
+## Counter variants
+
+Counters come in **4 stylistic variants**:
+`default`, `primary`, `highlight` and `subtle`.
+
+The `subtle` variant has a transparent background.
+
+```html
+<!-- variant="default" is the default and can be omitted -->
+<a-counter>312</a-counter>
+<a-counter variant="default">312</a-counter>
+<a-counter variant="primary">312</a-counter>
+<a-counter variant="highlight">312</a-counter>
+<a-counter variant="subtle">312</a-counter>
+```
+
+<Canvas>
+  <Story name="default">{Template.bind({})}</Story>
+  <Story
+    name="primary"
+    args={{
+      variant: 'primary'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="highlight"
+    args={{
+      variant: 'highlight',
+      wrapperStyles: 'bg-newyork'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle"
+    args={{
+      variant: 'subtle'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Using the content prop
+
+```html
+<a-counter content="312"></a-counter>
+```
+
+An alternative way to set the content text is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are used, the slot content takes precedence.
+
+The following Counter is rendered with the `content` prop instead of slot content.
+
+<Canvas>
+  <Story
+    name="w/ content prop"
+    args={{
+      content: '312'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

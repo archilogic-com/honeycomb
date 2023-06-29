@@ -1,0 +1,112 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { AColorCircle } from '../components'
+
+<Meta
+  title="Components/ColorCircle"
+  component={AColorCircle}
+  argTypes={{
+    class: {
+      control: null
+    },
+    color: {
+      control: 'text'
+    },
+    size: {
+      control: ['md', 'lg']
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { AColorCircle },
+  setup() {
+    return { args }
+  },
+  template: `
+  <AColorCircle v-bind="args"></AColorCircle>`
+})
+
+# ColorCircle
+
+```html
+<a-color-circle color="..." />
+```
+
+`AColorCircle` is a simple decorative component that shows a small color circle for quick visual distinction of elements.
+
+<ArgsTable of={AColorCircle} />
+
+## Setting the color
+
+To set the color of the component, just pass a `color` prop.
+[Archilogic colors](path=/docs/primitives-colors--mediumblue) work without any prefixes.
+Any string that is a valid color in normal CSS will work too, i.e. hex and rgb values,
+as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names)
+
+```html
+<!-- Archilogic colors -->
+<a-color-circle color="mediumblue" />
+<!-- valid HTML colors -->
+<a-color-circle color="#ffc400" />
+<a-color-circle color="rgb(255, 20, 147)" />
+<a-color-circle color="mediumSlateBlue" />
+```
+
+**Note**: adding a tailwind class background-color class still works, but it's not recommended anymore:
+
+```html
+<!-- not recommended -->
+<a-color-circle class="bg-mediumblue" />
+```
+
+<Canvas>
+  <Story
+    name="archilogic color"
+    args={{
+      color: 'sanfran'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="hex"
+    args={{
+      color: '#ffc400'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="rgb"
+    args={{
+      color: 'rgb(255, 20, 147)'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="html"
+    args={{
+      color: 'mediumSlateBlue'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Size
+
+The element comes in two sizes, `md` (default) and `lg`.
+
+```html
+<a-color-circle size="lg" color="mediumblue" />
+```
+
+<Canvas>
+  <Story
+    name="size md"
+    args={{
+      color: 'mediumblue'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="size lg" args={{ size: 'lg', color: 'mediumblue' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

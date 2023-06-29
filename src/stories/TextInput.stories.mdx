@@ -1,0 +1,585 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref, computed } from 'vue'
+import { within } from '@storybook/testing-library'
+import { ATextInput, AHelperText } from '../components'
+
+<Meta title="Components/TextInput" component={ATextInput} />
+
+export const Template = args => ({
+  components: { ATextInput },
+  setup() {
+    const inputValue = ref(args.initValue)
+    return { args, inputValue }
+  },
+  template: `
+    <div class="p-2">
+      <ATextInput v-bind="args" v-model="inputValue"/>
+    </div>`
+})
+
+# Text Input
+
+```html
+<a-text-input />
+<ATextInput />
+```
+
+<ArgsTable of={ATextInput} />
+
+## Input types
+
+`ATextInput` renders a native HTML `<input />` of type `text` (default), `email`, `password`, or `url`
+(to be specified via props).
+
+**Note**: for type `checkbox` use the `<a-checkbox>` component, for type `number` use `<a-number-input>`, and for type 'button' or 'submit', use the `<a-button>` component.
+Other input types (e.g. file, color, date, etc) are not supported by the component library at the moment.
+
+Any extra attributes not specified as this component props
+will be passed down to the input element unmodified. E.g.:
+
+```html
+<a-text-input type="email" placeholder="example@xyz.com" autofocus />
+```
+
+<Canvas columns={3}>
+  <Story name="input type text" args={{ size: 'md', placeholder: 'type anything', type: 'text' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input type email"
+    args={{ size: 'md', placeholder: 'example@example.com', type: 'email' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="input type url" args={{ size: 'md', placeholder: 'archilogic.com', type: 'url' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input type password"
+    args={{ size: 'md', placeholder: 'password123', type: 'password' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="input type number" args={{ size: 'md', placeholder: '12345', type: 'number' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="input type search" args={{ size: 'md', placeholder: 'Floor 123', type: 'search' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Data binding
+
+### Using with v-model (recommended)
+
+This component is designed as a **controlled** component, meaning that it does not hold its own state,
+but relies on the value provided by `v-model` instead.
+See [Vue docs on v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model).
+
+```html
+<!-- in your template -->
+<a-text-input v-model="inputState" />
+```
+
+```js
+// in your component's setup
+const inputState = ref(true)
+```
+
+<Canvas>
+  <Story name="input v-model" args={{ size: 'md' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Using with the event listener
+
+For more granular control over input value updates use the `modelValue` prop and the `update:modelValue` event.
+
+```html
+<!-- in your template -->
+<a-text-input :model-value="inputState" @update:model-value="handleChange" />
+```
+
+```js
+// in your component's setup
+const inputState = ref('')
+const handleChange = newValue => {
+  inputState.value = newValue
+}
+```
+
+<Canvas>
+  <Story name="input event listener">
+    {() => ({
+      components: { ATextInput },
+      setup() {
+        const inputValue = ref('')
+        const handleChange = value => {
+          inputValue.value = value
+        }
+        return { handleChange, inputValue }
+      },
+      template: `<ATextInput size="md" :model-value="inputValue" @update:model-value="handleChange" />`
+    })}
+  </Story>
+</Canvas>
+
+## Accessing input ref
+
+ATextInput component exposes a ref to the input element for low-level manipulation,
+e.g. setting manual focus, etc.
+It's accessed under the `inputRef` property of the component reference.
+E.g.:
+
+```js
+// in your `setup()`:
+const textInputRef = ref(null)
+const focusInput = () => {
+  textInputRef.value.inputRef.focus()
+}
+return { textInputRef, focusInput }
+```
+
+```html
+<!-- in your template: -->
+<a-text-input ref="textInputRef" value="someValue" … />
+<a-button @click="focusInput">Focus input</a-button>
+```
+
+## Visual variants
+
+Each set of examples shows the following input variations:
+input with value, without value showing the placeholder, and with invalid value,
+as well as the disabled state for each of the above.
+
+### Medium size (`md`)
+
+```html
+<a-text-input size="md" />
+```
+
+Appropriate for most form fields.
+
+<Canvas columns={3}>
+  <Story
+    name="input md with value"
+    args={{ size: 'md', initValue: 'hello@gmail.com', placeholder: 'example@example.com' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input md empty"
+    args={{ size: 'md', initValue: '', placeholder: 'example@example.com' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input md invalid"
+    args={{ size: 'md', initValue: 'hello', valid: false, placeholder: 'example@example.com' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input md with value disabled"
+    args={{
+      size: 'md',
+      initValue: 'hello@gmail.com',
+      placeholder: 'example@example.com',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input md empty disabled"
+    args={{ size: 'md', initValue: '', placeholder: 'example@example.com', disabled: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input md invalid disabled"
+    args={{
+      size: 'md',
+      initValue: 'hello',
+      valid: false,
+      placeholder: 'example@example.com',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Small size (`sm`) _default_
+
+Suitable for denser layouts, like sidebars.
+
+```html
+<!-- size="sm" is the default and can be omitted -->
+<a-text-input size="sm" />
+```
+
+<Canvas columns={3}>
+  <Story
+    name="input sm with value"
+    args={{ size: 'sm', initValue: 'hello@gmail.com', placeholder: 'example@example.com' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input sm empty"
+    args={{ size: 'sm', initValue: '', placeholder: 'example@example.com' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input sm invalid"
+    args={{ size: 'sm', initValue: 'hello', valid: false, placeholder: 'example@example.com' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input sm with value disabled"
+    args={{
+      size: 'sm',
+      initValue: 'hello@gmail.com',
+      placeholder: 'example@example.com',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input sm empty disabled"
+    args={{ size: 'sm', initValue: '', placeholder: 'example@example.com', disabled: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input sm invalid disabled"
+    args={{
+      size: 'sm',
+      initValue: 'hello',
+      valid: false,
+      placeholder: 'example@example.com',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Subtle variant
+
+Recommended to use with input size `sm` in dense UIs combining value display and editing.
+
+```html
+<a-text-input size="sm" variant="subtle" />
+```
+
+<Canvas columns={3}>
+  <Story
+    name="input subtle sm with value"
+    args={{
+      variant: 'subtle',
+      size: 'sm',
+      initValue: 'hello@gmail.com'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="input subtle sm empty" args={{ variant: 'subtle', size: 'sm', initValue: '' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input subtle sm invalid"
+    args={{
+      variant: 'subtle',
+      size: 'sm',
+      initValue: 'hello',
+      valid: false
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input subtle sm with value disabled"
+    args={{
+      variant: 'subtle',
+      size: 'sm',
+      initValue: 'hello@gmail.com',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input subtle sm empty disabled"
+    args={{
+      variant: 'subtle',
+      size: 'sm',
+      initValue: '',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="input subtle sm invalid disabled"
+    args={{
+      size: 'sm',
+      initValue: 'hello',
+      variant: 'subtle',
+      valid: false,
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Multiline input (textarea)
+
+An additional special type is `multiline`, and it renders a `textarea` element.
+It is different from a regular textarea because it grows with its contents.
+For this to work correctly, manual resizing is disabled.
+
+<Canvas isColumn={true}>
+  <Story
+    name="multiline md"
+    args={{
+      size: 'md',
+      type: 'multiline'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="multiline sm"
+    args={{
+      type: 'multiline',
+      size: 'sm'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="multiline md subtle"
+    args={{
+      size: 'md',
+      type: 'multiline',
+      variant: 'subtle'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="multiline sm subtle"
+    args={{
+      type: 'multiline',
+      size: 'sm',
+      variant: 'subtle'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Overflow-wrap
+
+The text value of the multiline input will wrap even without spaces,
+but not until it takes the full available width of the parent container.
+For most predictable results, set a `width` or `max-width` class on the component.
+
+<Canvas isColumn={true}>
+  <Story
+    name="multiline wrapping"
+    args={{
+      size: 'md',
+      type: 'multiline',
+      class: 'w-[300px]',
+      initValue:
+        'averyveryverylongstringwithoutanyspaceswatsoevertheremightbesomecommasthough,butitdoesnotmatterreally'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Input validation
+
+The component does not run any input validation, only provides the necessary styling.
+The consumer should run any validation on the input value and set `valid` prop to `false`
+when appropriate.
+
+### Showing a validation message (hint or error)
+
+It is recommended to use `<a-helper-text>` component in combination with `<a-text-input>`
+to show any input validation or error messages.
+
+export const TemplateWithMessage = args => ({
+  components: { ATextInput, AHelperText },
+  setup() {
+    const inputValue = ref(args.initValue)
+    return { args, inputValue }
+  },
+  template: `
+  <div>
+    <ATextInput v-bind="args" v-model="inputValue" />
+    <AHelperText :variant="args.messageType">
+      Please use only letters and numbers.
+    </AHelperText>
+  </div>`
+})
+
+<Canvas columns={2}>
+  <Story
+    name="hint message sm"
+    args={{
+      size: 'sm',
+      initValue: 'hint sm',
+      messageType: 'hint'
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="hint message md"
+    args={{
+      size: 'md',
+      initValue: 'hint default',
+      messageType: 'hint'
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="hint message sm multiline"
+    args={{
+      type: 'multiline',
+      size: 'sm',
+      initValue: 'hint sm multiline',
+      messageType: 'hint'
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="hint message md multiline"
+    args={{
+      type: 'multiline',
+      size: 'md',
+      initValue: 'hint default multiline',
+      messageType: 'hint'
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="error message sm"
+    args={{
+      size: 'sm',
+      initValue: 'error sm',
+      valid: false,
+      messageType: 'error'
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="error message md"
+    args={{
+      size: 'md',
+      initValue: 'error default',
+      messageType: 'error',
+      valid: false
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="error message sm multiline"
+    args={{
+      type: 'multiline',
+      size: 'sm',
+      initValue: 'error sm multiline',
+      valid: false,
+      messageType: 'error'
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+  <Story
+    name="error message md multiline"
+    args={{
+      size: 'md',
+      type: 'multiline',
+      initValue: 'error default multiline',
+      messageType: 'error',
+      valid: false
+    }}>
+    {TemplateWithMessage.bind({})}
+  </Story>
+</Canvas>
+
+### Showing character limit
+
+If the `maxlength` attribute is set on `<a-text-input>`,
+the allowed number of remaining characters will be shown above the input's top right corner
+when the input is focused.
+
+export const focusInput = async ({ canvasElement }) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('textbox').focus()
+}
+
+<Canvas isColumn={true}>
+  <Story
+    name="maxlength sm"
+    args={{
+      size: 'sm',
+      initValue: '',
+      maxlength: 30
+    }}
+    play={focusInput}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="maxlength sm multiline"
+    args={{
+      type: 'multiline',
+      size: 'sm',
+      initValue: '',
+      maxlength: 300
+    }}
+    play={focusInput}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="maxlength value md"
+    args={{
+      size: 'md',
+      initValue: 'test',
+      maxlength: 30
+    }}
+    play={focusInput}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="maxlength md value multiline"
+    args={{
+      type: 'multiline',
+      size: 'md',
+      initValue: 'test',
+      maxlength: 300
+    }}
+    play={focusInput}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Labelling the input
+
+It is always advised for the sake of ALL USERS to provide a **text label** instead of relying on placeholder text.
+
+```html
+<label for="name-input">Your name</label>
+<a-text-input id="name-input" v-model="inputState" />
+<!-- OR -->
+<label>
+  Your name
+  <a-text-input v-model="inputState" />
+</label>
+```
+
+The recommended way of labelling the text input is with the `<a-input-group>` component.
+For more details, follow the [InputGroup documentation](path=/docs/components-inputgroup--label).
+
+### Using a hidden label
+
+If, however, in some unique situations you absolutely don't want to render a text label, remember that
+the input still needs to be labelled for assistive technologies (also useful for testing).
+In such a case it is recommended to add a '.sr-only' class to your label,
+or to use 'aria-label' property.
+
+```html
+<label>
+  <span class="sr-only">Your name</span>
+  <a-text-input v-model="inputState" />
+</label>
+<!-- OR -->
+<label for="name-input" class="sr-only">Your name</label>
+<a-text-input id="name-input" v-model="inputState" />
+<!-- OR -->
+<a-text-input v-model="inputState" aria-label="Your name" />
+```

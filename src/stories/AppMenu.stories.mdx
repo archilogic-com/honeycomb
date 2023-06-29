@@ -1,0 +1,942 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+import { ref } from 'vue'
+import isChromatic from 'chromatic/isChromatic'
+import {
+  AAppMenu,
+  AAppMenuItem,
+  AAppMenuButton,
+  AAppMenuMultiButton,
+  AAppMenuSeparator,
+  AAppMenuGroupTitle,
+  AIcon,
+  AColorCircle,
+  AStatus
+} from '../components'
+
+<Meta
+  title="Components/AppMenu"
+  component={AAppMenu}
+  subcomponents={{
+    AAppMenuButton,
+    AAppMenuItem,
+    AAppMenuMultiButton,
+    AAppMenuGroupTitle,
+    AAppMenuSeparator
+  }}
+  parameters={{ layout: 'fullscreen', chromatic: { delay: 1000 } }}
+  decorators={[
+    () => ({
+      template: `
+      <div class="overflow-hidden w-full h-screen p-4">
+        <div style="width: 300px; height: 300px; display: flex; justify-content: flex-start;">
+          <story/>
+        </div>
+      </div>`
+    })
+  ]}
+/>
+
+# AppMenu
+
+```html
+<a-app-menu>
+  <template #menu-button="{open}">
+    <a-app-menu-button :open="open">…</a-app-menu-button>
+  </template>
+  <template v-for="item in menuItems" :key="item.id">
+    <a-app-menu-item @select="item.action">{item.title}</a-app-menu-item>
+  </template>
+</a-app-menu>
+```
+
+AppMenu is a component for application menus that closely resemble desktop application menus.
+It implements all the [behaviors and semantics conventional for such menus](https://www.w3.org/TR/wai-aria-practices/#menu).
+
+## AppMenu options
+
+### Basic example
+
+A simple menu button as a trigger, and text-only menu items.
+
+```html
+<a-app-menu>
+  <template #menu-button="{open}">
+    <a-app-menu-button :open="open">Edit</a-app-menu-button>
+  </template>
+  <a-app-menu-item @select="cut">Cut</a-app-menu-item>
+  <a-app-menu-item @select="copy">Copy</a-app-menu-item>
+  <a-app-menu-item @select="paste">Paste</a-app-menu-item>
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="basic">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{ open}">
+            <AAppMenuButton :open="open">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>Copy</AAppMenuItem>
+          <AAppMenuItem>Paste</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Open by default
+
+A menu that is open by default.
+
+```html
+<a-app-menu open>…</a-app-menu>
+```
+
+<Canvas>
+  <Story name="open by default">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu open>
+          <template #menu-button="{open, toggleMenu}">
+            <AAppMenuButton :open="open">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>Copy</AAppMenuItem>
+          <AAppMenuItem>Paste</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Right-aligned
+
+This menu is right-aligned, meaning the right edge of the dropdown is aligned to the right edge of the trigger button.
+
+```html
+<a-app-menu align="right">…</a-app-menu>
+```
+
+<Canvas>
+  <Story name="right-aligned">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}" align="right" class="ml-auto">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>Copy</AAppMenuItem>
+          <AAppMenuItem>Paste</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Opening upwards
+
+This menu opens upwards instead of downwards.
+
+```html
+<a-app-menu direction="up">…</a-app-menu>
+```
+
+<Canvas>
+  <Story name="opening upwards">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}" direction="up" class="mt-auto">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>Copy</AAppMenuItem>
+          <AAppMenuItem>Paste</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## AppMenuButton options
+
+### AppMenuButton as an icon button
+
+<Canvas>
+  <Story name="icon menu button">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton variant="subtle" :open="open" icon="More" label="Actions" size="lg">
+            </AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>Copy</AAppMenuItem>
+          <AAppMenuItem>Paste</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuButton with icon
+
+AppMenuButton with text and an icon.
+
+```html
+<a-app-menu>
+  <template #menu-button="{open}">
+    <a-app-menu-button variant="subtle" :open="open">
+      Edit
+      <a-icon name="ChevronDown" size="other" />
+    </a-app-menu-button>
+  </template>
+  <a-app-menu-item @select="cut">Cut</a-app-menu-item>
+  <a-app-menu-item @select="copy">Copy</a-app-menu-item>
+  <a-app-menu-item @select="paste">Paste</a-app-menu-item>
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu button with chevrondown icon">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AIcon },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton variant="subtle" :open="open">
+              Edit
+              <AIcon name="ChevronDown" size="other" />
+            </AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>Copy</AAppMenuItem>
+          <AAppMenuItem>Paste</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### MenuButton without pressed state
+
+The trigger button stays pressed by default while the menu is open.
+To turn that behavior off, pass `:pressed="false"`
+
+```html
+<a-app-menu>
+  <template #menu-button>
+    <a-app-menu-button … :pressed="false">…</a-app-menu-button>
+  </template>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="trigger button not pressed">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu open>
+          <template #menu-button="{ open }">
+            <AAppMenuButton icon="Burger" label="Menu" variant="subtle" size="lg" :pressed="false" :open="open">
+            </AAppMenuButton>
+          </template>
+          <AAppMenuItem>File</AAppMenuItem>
+          <AAppMenuItem>Edit</AAppMenuItem>
+          <AAppMenuItem>View</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### MenuButton disabled
+
+<Canvas>
+  <Story name="trigger button disabled">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu>
+          <template #menu-button="{ open }">
+            <AAppMenuButton icon="Burger" label="Menu" variant="subtle" size="lg" :open="open" disabled>
+            </AAppMenuButton>
+          </template>
+          <AAppMenuItem>File</AAppMenuItem>
+          <AAppMenuItem>Edit</AAppMenuItem>
+          <AAppMenuItem>View</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuMultiButton
+
+<Canvas>
+  <Story name="trigger button 2 sections">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuMultiButton },
+      setup() {
+        const isSpecialPressed = ref(false)
+        const clickSpecial = () => {
+          isSpecialPressed.value = !isSpecialPressed.value
+        }
+        return {
+          isSpecialPressed,
+          clickSpecial
+        }
+      },
+      template: `
+        <AAppMenu>
+          <template #menu-button="{ open }">
+            <AAppMenuMultiButton size="lg" variant="subtle" :open="open" :pressed="isSpecialPressed" @click="clickSpecial">
+              <span class="-ml-1">Wall</span>
+            </AAppMenuMultiButton>
+          </template>
+          <AAppMenuItem>Wall</AAppMenuItem>
+          <AAppMenuItem>Window</AAppMenuItem>
+          <AAppMenuItem>Door</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuMultiButton disabled
+
+<Canvas>
+  <Story name="trigger button 2 sections disabled">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuMultiButton },
+      template: `
+        <AAppMenu>
+          <template #menu-button="{ open }">
+            <AAppMenuMultiButton :disabled="true" size="lg" variant="subtle" :open="open">
+              <span class="-ml-1">Wall</span>
+            </AAppMenuMultiButton>
+          </template>
+          <AAppMenuItem>Wall</AAppMenuItem>
+          <AAppMenuItem>Window</AAppMenuItem>
+          <AAppMenuItem>Door</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## AppMenuItem options
+
+### AppMenuItem with role `menuitemcheckbox` or `menuitemradio`
+
+You can specify the role of the menu item to be 'checkbox' or 'radio',
+which will set the appropriate aria role on the item.
+If `selected` prop is set to "true", a "Check" icon will be displayed by default.
+
+It is recommended to use `a-app-menu-separator` with groups of `radio` and `checkbox` menu items.
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-item selected role="checkbox">Show furniture</a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu item checkbox">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      setup() {
+        const items = ref([
+          { label: 'Show floor plan image', value: true },
+          { label: 'Show assets', value: true },
+          { label: 'Show ceiling lights', value: false }
+        ])
+        const toggleOption = item => {
+          item.value = !item.value
+        }
+        return {
+          items,
+          toggleOption
+        }
+      },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Options</AAppMenuButton>
+          </template>
+          <AAppMenuItem
+            v-for="item in items"
+            :key="item.label"
+            :selected="item.value"
+            role="checkbox"
+            @select="toggleOption(item)"
+          >
+           {{item.label}}
+          </AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+**Note**: Do not store the state of the `selected` value of the menu item or any other state within AppMenuItem wrapper components.
+When the menu or submenu is closed, all menu items get unmounted and their state is reset to the initial values.
+
+### AppMenuItem with a custom icon
+
+Menu items may have a small icon or another small indicator (e.g. `<a-color-circle>`) to their left.
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-item @select="sortByDate">
+    <template #icon>
+      <a-icon name="ArrowUp" size="sm" />
+    </template>
+    Date
+  </a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu item with icon">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AIcon, AColorCircle },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Sort by</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Name</AAppMenuItem>
+          <AAppMenuItem>
+            <template #icon>
+              <AIcon name="ArrowUp" size="sm" />
+            </template>
+            Date
+          </AAppMenuItem>
+          <AAppMenuItem>
+            <template #icon>
+              <AColorCircle color="sanfran"></AColorCircle>
+            </template>
+            Status
+          </AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuItem with extra slot
+
+Menu items have an `#extra` slot on the right side, e.g. for `<a-status>` badges.
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-item @select="copyItem">
+    <template #extra>
+      <a-status variant="primary">Beta</a-status>
+    </template>
+    Copy
+  </a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu item with extra info">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AStatus },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem>
+            <template #extra>
+              <AStatus variant="primary">Beta</AStatus>
+            </template>
+            Copy
+          </AAppMenuItem>
+          <AAppMenuItem>Status</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuItem with a keyboard shortcut
+
+You can provide a `shortcut` prop for displaying a keyboard shortcut
+corresponding to the menu item's `@select` action.
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-item @select="copyItem" shortcut="Ctrl C">Copy</a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu item with shortcut">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem shortcut="Ctrl C">
+            Copy
+          </AAppMenuItem>
+          <AAppMenuItem>Status</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuItem as a link
+
+If you provide an `href` prop, the menu item will be rendered as a link,
+with appropriate aria roles assigned.
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-item :href="resourcesLink">Resources</a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu item link">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Resources</AAppMenuButton>
+          </template>
+          <AAppMenuItem target="_blank" href="https://help.archilogic.com/">Knowledge base</AAppMenuItem>
+          <AAppMenuItem target="_blank" href="http://testing-developers.archilogic.com/space-api/v2">Developer Docs</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### AppMenuItem disabled
+
+Menu items can be disabled.
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-item disabled>Date</a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu item disabled">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Sort by</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Name</AAppMenuItem>
+          <AAppMenuItem disabled>Date</AAppMenuItem>
+          <AAppMenuItem>Status</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Menu with submenu
+
+<Canvas>
+  <Story name="menu with submenu">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
+      setup() {
+        const items = ref([
+          { label: 'Show floor plan image', value: true },
+          { label: 'Show assets', value: true },
+          { label: 'Show ceiling lights', value: false }
+        ])
+        const toggleOption = item => {
+          item.value = !item.value
+        }
+        return {
+          items,
+          toggleOption
+        }
+      },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+          </template>
+          <AAppMenuItem>Go to dashboard</AAppMenuItem>
+          <AAppMenuItem>
+            Floor
+            <template #submenu>
+              <AAppMenuItem>New</AAppMenuItem>
+              <AAppMenuItem>Duplicate</AAppMenuItem>
+              <AAppMenuSeparator />
+              <AAppMenuItem>Archive</AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+          <AAppMenuItem :open="${isChromatic()}">
+            View
+            <template #submenu>
+              <AAppMenuItem
+                v-for="item in items"
+                :key="item.label"
+                :selected="item.value"
+                role="checkbox"
+                @select="toggleOption.bind(null,item)"
+              >
+              {{item.label}}
+              </AAppMenuItem>
+              <AAppMenuSeparator />
+              <AAppMenuItem disabled>X-Ray mode</AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Menu with long submenu (scrolling)
+
+<Canvas>
+  <Story name="menu with long submenu">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+          </template>
+          <AAppMenuItem :open="${isChromatic()}">
+            Labels
+            <template #submenu>
+               <AAppMenuItem>Label 1</AAppMenuItem>
+               <AAppMenuItem>Label 2
+                <template #submenu>
+                  <AAppMenuItem>Label Option 1</AAppMenuItem>
+                  <AAppMenuItem>Label Option 2</AAppMenuItem>
+                </template>
+               </AAppMenuItem>
+              <AAppMenuItem v-for="item in 45">Label {{item + 2}}</AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+          <AAppMenuItem>Go to dashboard</AAppMenuItem>
+          <AAppMenuItem>Floor</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Menu with submenu disabled
+
+<Canvas>
+  <Story name="menu with submenu disabled">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+          </template>
+          <AAppMenuItem>Go to dashboard</AAppMenuItem>
+          <AAppMenuItem disabled>
+            Floor
+            <template #submenu>
+              <AAppMenuItem>New</AAppMenuItem>
+              <AAppMenuItem>Duplicate</AAppMenuItem>
+              <AAppMenuItem>Archive</AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+          <AAppMenuItem>Your account</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Menu 3 levels
+
+<Canvas>
+  <Story name="menu with 3 levels">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+          </template>
+          <AAppMenuItem>Go to dashboard</AAppMenuItem>
+          <AAppMenuItem :open="${isChromatic()}">
+            Floor
+            <template #submenu>
+              <AAppMenuItem>Recent</AAppMenuItem>
+              <AAppMenuItem>Duplicate</AAppMenuItem>
+              <AAppMenuItem :open="${isChromatic()}">Archive <template #submenu>
+                  <AAppMenuItem>
+                    Floor 1
+                  </AAppMenuItem>
+                  <AAppMenuItem>
+                    Floor 2
+                  </AAppMenuItem>
+                </template></AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+          <AAppMenuItem>Your account</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Menu with submenu repositioning (see canvas tab)
+
+<Canvas>
+  <Story
+    name="menu repositioning"
+    decorators={[
+      () => ({
+        template: '<div class="absolute flex inset-0 p-16"><story /></div>'
+      })
+    ]}>
+    >
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+      template: `
+        <AAppMenu :open="${isChromatic()}"  align="right" class="ml-auto" >
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+          </template>
+          <AAppMenuItem>Go to dashboard</AAppMenuItem>
+          <AAppMenuItem :open="${isChromatic()}">
+            Floor
+            <template #submenu>
+              <AAppMenuItem>Recent</AAppMenuItem>
+              <AAppMenuItem>Duplicate</AAppMenuItem>
+              <AAppMenuItem :open="${isChromatic()}">Archive <template #submenu>
+                  <AAppMenuItem v-for="n in 30">
+                    Floor {{n}}
+                  </AAppMenuItem>
+                </template></AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+          <AAppMenuItem>Your account</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Grouping menu items
+
+Menu items can be grouped by placing a separator (horizontal line) between groups.
+In addition, groups can have a title element (`<a-app-menu-group-title>` component).
+
+```html
+<a-app-menu>
+  …
+  <a-app-menu-group-title>My group</a-app-menu-group-title>
+  <a-app-menu-item>option X</a-app-menu-item>
+  <a-app-menu-item>option Y</a-app-menu-item>
+  <a-app-menu-item>option Z</a-app-menu-item>
+  <a-app-menu-separator />
+  <a-app-menu-item>menuitem A</a-app-menu-item>
+  <a-app-menu-item>menuitem B</a-app-menu-item>
+  …
+</a-app-menu>
+```
+
+<Canvas>
+  <Story name="menu separator">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">Floor</AAppMenuButton>
+          </template>
+          <AAppMenuItem>New</AAppMenuItem>
+          <AAppMenuItem>Duplicate</AAppMenuItem>
+          <AAppMenuSeparator />
+          <AAppMenuItem>Archive</AAppMenuItem>
+          <AAppMenuItem>Delete</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+  <Story name="menu group title">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator, AAppMenuGroupTitle },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open">My menu</AAppMenuButton>
+          </template>
+          <AAppMenuGroupTitle>My group</AAppMenuGroupTitle>
+          <AAppMenuItem>Option X</AAppMenuItem>
+          <AAppMenuItem>Option Y</AAppMenuItem>
+          <AAppMenuItem>Option Z</AAppMenuItem>
+          <AAppMenuSeparator />
+          <AAppMenuItem>Help</AAppMenuItem>
+          <AAppMenuItem>Account</AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Multiple menus
+
+```html
+<a-app-menu>…</a-app-menu>
+<a-app-menu>…</a-app-menu>
+```
+
+<Canvas>
+  <Story name="multiple menus">
+    {() => ({
+      components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
+      template: `
+        <div class="flex flex-col gap-2">
+          <AAppMenu>
+            <template #menu-button="{open}">
+              <AAppMenuButton :open="open">Floor</AAppMenuButton>
+            </template>
+            <AAppMenuItem>File</AAppMenuItem>
+          </AAppMenu>
+          <AAppMenu>
+            <template #menu-button="{open}">
+              <AAppMenuButton :open="open">Floor</AAppMenuButton>
+            </template>
+            <AAppMenuItem>File</AAppMenuItem>
+          </AAppMenu>
+        </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Putting it all together
+
+Application menus can be complex components with multiple branches of submenus,
+containing various types of menu items, having different states (selected, disabled),
+grouped by separators, and displaying various extra items like icons, keyboard shortcuts and badges.
+
+The following example shows how all these options can fit together.
+
+<Canvas>
+  <Story name="menu with all the things">
+    {() => ({
+      components: {
+        AAppMenu,
+        AAppMenuItem,
+        AAppMenuButton,
+        AAppMenuSeparator,
+        AStatus,
+        AColorCircle
+      },
+      setup() {
+        const items = ref([
+          { label: 'Show floor plan image', value: true, disabled: true },
+          { label: 'Show assets', value: false },
+          { label: 'Show ceiling lights', value: true, shortcut: '⌘ L' }
+        ])
+        const toggleOption = item => {
+          item.value = !item.value
+        }
+        const labels = [
+          { color: 'sanfran', text: 'Demo' },
+          { color: 'flamingo', text: 'nice project' },
+          { color: 'warning', text: 'annoying client' }
+        ]
+        return {
+          items,
+          toggleOption,
+          labels
+        }
+      },
+      template: `
+        <AAppMenu :open="${isChromatic()}">
+          <template #menu-button="{open}">
+            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+          </template>
+          <AAppMenuItem href="https://testing-app.archilogic.com" target="dashboard">Go to dashboard</AAppMenuItem>
+          <AAppMenuItem>
+            Floor
+            <template #extra><AStatus variant="primary">new</AStatus></template>
+            <template #submenu>
+              <AAppMenuItem>New</AAppMenuItem>
+              <AAppMenuItem disabled shortcut="⌘ D">Duplicate
+              </AAppMenuItem>
+              <AAppMenuItem>Archive</AAppMenuItem>
+              <AAppMenuItem>Label
+                <template #submenu>
+                  <AAppMenuItem v-for="label in labels">
+                    <template #icon>
+                      <a-color-circle :color="label.color"/>
+                    </template>
+                    {{label.text}}
+                  </AAppMenuItem>
+                </template>
+              </AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+          <AAppMenuItem :open="${isChromatic()}">
+            View
+            <template #submenu>
+              <AAppMenuItem
+                v-for="item in items"
+                :key="item.label"
+                :selected="item.value"
+                :shortcut="item.shortcut"
+                :disabled="item.disabled"
+                role="checkbox"
+                @select="toggleOption(item)"
+              >
+              {{item.label}}
+              </AAppMenuItem>
+              <AAppMenuSeparator />
+              <AAppMenuItem shortcut="^ %">
+                <template #extra><AStatus variant="danger">beta</AStatus></template>
+                X-Ray mode
+              </AAppMenuItem>
+            </template>
+          </AAppMenuItem>
+        </AAppMenu>
+      `
+    })}
+  </Story>
+</Canvas>

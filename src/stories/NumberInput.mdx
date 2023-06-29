@@ -1,0 +1,92 @@
+import { Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref } from 'vue'
+import { ANumberInput } from '../components'
+import AInput from '../components/internal/Input.vue'
+
+# Number Input
+
+```html
+<a-number-input v-model="value" />
+```
+
+`ANumberInput` is a wrapper around the HTML `<input>` element with all the native functionality.
+Its props and styles are consistent with other inputs in our design system.
+
+<ArgsTable of={AInput} />
+
+## Labelling the input
+
+All inputs should be accessibly labelled.
+It is important for the users who rely on assistive technologies,
+and it can be very helpful for testing your code.
+
+Our recommended way of associating a label with the input is with the `<a-input-group>` component,
+and all the following stories use it.
+
+```html
+<a-input-group :label="story" size="sm" helper="Some message" :invalid="!isValid">
+  <template #input="{labelledby, describedby}">
+    <ANumberInput
+      v-model="inputValue"
+      :aria-labelledby="labelledby"
+      :aria-describedby="describedby" />
+  </template>
+</a-input-group>
+```
+
+For more details, follow the [InputGroup documentation](path=/docs/components-inputgroup--label).
+
+## Size and variants
+
+```html
+<a-number-input v-model="value" size="md" />
+<a-number-input v-model="value" variant="subtle" />
+```
+
+`<a-input-group>` follows the same sizing scale and variant options as our other input components.
+
+<Canvas columns={2}>
+  <Story id="components-numberinput--size-sm"></Story>
+  <Story id="components-numberinput--size-md"></Story>
+  <Story id="components-numberinput--subtle"></Story>
+</Canvas>
+
+## Invalid state
+
+```html
+<a-number-input v-model="value" :invalid="!isInputValid" />
+```
+
+When the input is in an invalid state, set the `invalid` prop to `true`.
+It is recommended to also display an error message.
+
+<Canvas isColumn={true}>
+  <Story id="components-numberinput--invalid"></Story>
+</Canvas>
+
+## Custom placeholder
+
+```html
+<a-number-input v-model="value" placeholder="custom placeholder" />
+```
+
+No placeholder is shown by default, except for the `subtle` variant.
+To provide a custom placeholder, use the `placeholder` prop.
+
+<Canvas isColumn={true}>
+  <Story id="components-numberinput--subtle"></Story>
+  <Story id="components-numberinput--custom-placeholder"></Story>
+</Canvas>
+
+## Input Steppers
+
+While the appearance of the input steppers is customized, the functionality remains the same.
+To change the input's step value, provide the `step` attribute.
+
+```html
+<a-number-input v-model="value" step="0.5" />
+```
+
+<Canvas isColumn={true}>
+  <Story id="components-numberinput--step-up"></Story>
+</Canvas>

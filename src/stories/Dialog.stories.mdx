@@ -1,0 +1,276 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref } from 'vue'
+import isChromatic from 'chromatic/isChromatic'
+import { ADialog, AButton, AListbox, APanel, ALogo } from '../components'
+
+<Meta
+  title="Components/Dialog"
+  component={ADialog}
+  subcomponents={{ APanel }}
+  argTypes={{
+    class: {
+      control: null
+    },
+    slots: {
+      control: null
+    },
+    overlay: {
+      control: 'boolean'
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ADialog, AButton, AListbox, ALogo },
+  setup() {
+    let isOpen = ref(false)
+    const toggleDialog = value => {
+      isOpen.value = value
+    }
+    return {
+      args,
+      isOpen,
+      toggleDialog,
+      isChromatic
+    }
+  },
+  template: `
+		<div style="${isChromatic() ? 'width: 1200px; height: 800px' : ''}">
+        <a-button variant="primary" @click="toggleDialog(true)">Open dialog</a-button>
+        <ADialog v-bind="args" :open="isChromatic() ? true : isOpen" @close="toggleDialog(false)">
+            ${args.slots}
+        </ADialog>
+		</div>`
+})
+
+export const defaultArgs = {
+  title: 'Do you want to proceed?',
+  slots: ` 
+    <template #body>
+      <p>This cannot be undone</p>	
+    </template>
+    <template #actions>
+      <a-button variant="primary" size="lg" @click="toggleDialog(false)">Confirm</a-button>
+      <a-button variant="subtle" size="lg" @click="toggleDialog(false)">Cancel</a-button>
+    </template>
+  `
+}
+
+# Dialog
+
+This is a wrapper around the [Headless UI Dialog](https://headlessui.dev/vue/dialog) component with our custom styling and positioning logic.
+
+```html
+<a-dialog :open="isDialogOpen" @close="handleCloseDialog" title="My title">
+  <template #body>
+    <p>My dialog body</p>
+  </template>
+  <template #actions>
+    <a-button @click="doStuff">OK</a-button>
+  </template>
+</a-dialog>
+```
+
+<ArgsTable of={ADialog} />
+
+## Dialog position and size
+
+Dialog size is dependent on its content, but default margins and minimum width are applied.
+The dialog is always centered horizontally.
+
+### Vertical positioning
+
+By default, the dialog is positioned near the top of the screen.
+
+<Canvas>
+  <Story name="top vertical alignment" args={defaultArgs}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="center vertical alignment"
+    args={{
+      ...defaultArgs,
+      position: 'center'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="bottom vertical alignment"
+    args={{
+      ...defaultArgs,
+      position: 'bottom'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Dialog overlay
+
+By default, `<a-dialog>` renders a semi-transparent overlay.
+Setting `:overlay="false"` will make the overlay fully transparent.
+
+<Canvas>
+  <Story
+    name="no overlay"
+    args={{
+      ...defaultArgs,
+      overlay: false
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Dialog with a styled panel
+
+For dialogs with a title, and/or body content, and/or actions a panel layout is used.
+It applies consistent spacing and other styles for these sections, as well as adds a "close" button in the top right corner.
+Hitting "Esc" key or clicking anywhere outside the panel closes the dialog as well.
+
+<Canvas>
+  <Story name="title and actions" args={defaultArgs}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Without actions
+
+Informational dialogs do not necessarily need the actions section.
+
+<Canvas>
+  <Story
+    name="no actions"
+    args={{
+      title: 'Build version',
+      slots: `<template #body>220420-112919-be89a7</template>`
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Dialog with a blank panel
+
+`ADialog` has a `#default` slot for arbitrary content.
+It has no padding or typography styles, just a clean white panel with round(-er) corners.
+Hitting "Esc" key or clicking anywhere outside the panel closes the dialog.
+
+**Note:** make sure to add at least one focusable element inside the modal
+to ensure the focus is correctly trapped inside the modal.
+
+<Canvas>
+  <Story
+    name="default slot"
+    args={{
+      slots: `
+      <template #default>
+        <div class="flex flex-col">
+          <a-logo/>
+          <div class="p-4 body-sm">
+            <p>You might want to put search in here or display some other helpful info.</p>
+            <p>Don't forget to add a focusable element and appropriate padding, ok?</p>
+          </div>
+          <a-button class="w-full my-4 rounded-none" @click="toggleDialog(false)">Ok</a-button>
+        </div>
+      </template>`
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Special examples
+
+### Scrollable dialog
+
+<Canvas>
+  <Story
+    name="scrollable panel body"
+    args={{
+      slots: `
+      <template #body>
+        <p 
+          class="bg-athens h-screen flex flex-col items-center justify-center">
+          Dialog body
+        </p>	
+      </template>
+      <template #actions>
+        <a-button variant="primary" size="lg" @click="toggleDialog(false)">Confirm</a-button>
+        <a-button variant="subtle" size="lg" @click="toggleDialog(false)">Cancel</a-button>
+      </template>
+    `
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="scrollable default slot"
+    args={{
+      slots: `
+      <template #default>
+        <p 
+          class="h-screen flex flex-col items-center justify-center">
+          Dialog body
+        </p>	
+      </template>
+    `
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Long title
+
+An example with a long title that wraps onto the next line.
+
+<Canvas>
+  <Story
+    name="long title"
+    args={{
+      ...defaultArgs,
+      title:
+        'This is the longest dialog title I have ever seen but I am still struggling to make it wrap onto the next line in chromatic snapshots\nso I added a newline character and whitespace-pre-line class'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Listbox inside dialog
+
+<Canvas>
+  <Story
+    name="listbox inside dialog"
+    args={{
+      title: '3D drawing style',
+      slots: `<template #body><AListbox model-value="" :options="[{ value: 0, label: 'Graphic' }, { value: 1, label: 'Rendered' }, { value: 2, label: 'Black and white' }]" /></template>`
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Left-aligned action
+
+Example of an extra action that is aligned to the left and is not a button.
+
+<Canvas>
+  <Story
+    name="left-aligned action"
+    args={{
+      title: 'Export data',
+      slots: `
+      <template #body>
+        Please choose a format.
+      </template>
+      <template #actions>
+        <a-button variant="primary" size="lg">Export</a-button>
+        <a-button variant="subtle" size="lg" @click="toggleDialog(false)">Cancel</a-button>
+        <AListbox
+          size="md"
+          class="ml-auto"
+          placeholder="Export as…"
+          :options="[{ value: 'csv', label: '.csv' }, { value: 'xls', label: '.xls' }]"
+          direction="up" />
+      </template>`
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

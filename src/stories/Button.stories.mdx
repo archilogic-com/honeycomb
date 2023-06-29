@@ -1,0 +1,1001 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+
+import AButton from '../components/Button.vue'
+import AIcon from '../components/Icon.vue'
+
+<Meta
+  title="Components/Button"
+  component={AButton}
+  argTypes={{
+    size: {
+      options: ['md', 'lg'],
+      control: 'radio'
+    },
+    variant: {
+      options: ['primary', 'standard', 'subtle'],
+      control: 'radio'
+    },
+    loading: { control: 'boolean' },
+    onClick: {},
+    disabled: { control: 'boolean' },
+    href: { control: 'text' },
+    title: { control: 'text' },
+    default: {
+      control: 'text'
+    },
+    pressed: { control: 'boolean' }
+  }}
+/>
+
+export const Template = args => ({
+  components: { AButton, AIcon },
+  setup() {
+    return { args }
+  },
+  template: `
+  <AButton v-bind="args">${args.default || ''}
+  </AButton>`
+})
+
+# Buttons
+
+```html
+<a-button>Button</a-button>
+<AButton>Button</AButton>
+```
+
+<ArgsTable of={AButton} />
+
+## Event handlers
+
+You can attach any event handlers to this component.
+
+```html
+<a-button @click="yourClickHandler">Button</a-button>
+```
+
+## HTML attributes
+
+All additional html attributes will be passed to the original `<button>` element.
+Example:
+
+```html
+<a-button type="submit" disabled>Button</a-button>
+```
+
+## Button variants
+
+Buttons come in **3 stylistic variants**:
+`standard`, `primary`, and `subtle`.
+
+```html
+<!-- variant="standard" is the default and can be omitted -->
+<a-button>Button</a-button>
+<a-button variant="primary">Button</a-button>
+<a-button variant="subtle">Button</a-button>
+```
+
+## Button size
+
+### Size "md" (default)
+
+All button variants in size `md` (default): default state, pressed, disabled and loading.
+
+```html
+<!-- size="md" is the default and can be omitted -->
+<a-button>Button</a-button>
+```
+
+<Canvas columns={6}>
+  <Story
+    name="standard"
+    args={{
+      default: 'Standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary"
+    args={{
+      variant: 'primary',
+      default: 'Primary'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard w/ icon"
+    args={{
+      default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary w/ icon"
+    args={{
+      variant: 'primary',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle w/ icon"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard pressed"
+    args={{
+      pressed: true,
+      default: 'Standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary pressed"
+    args={{
+      variant: 'primary',
+      pressed: true,
+      default: 'Primary'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle pressed"
+    args={{
+      variant: 'subtle',
+      pressed: true,
+      default: 'Subtle'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard pressed w/ icon"
+    args={{
+      pressed: true,
+      default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary pressed w/ icon"
+    args={{
+      variant: 'primary',
+      pressed: true,
+      default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle pressed w/ icon"
+    args={{
+      variant: 'subtle',
+      pressed: true,
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard disabled"
+    args={{
+      default: 'Standard',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary disabled"
+    args={{
+      variant: 'primary',
+      default: 'Primary',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle disabled"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard disabled w/ icon"
+    args={{
+      default: 'Standard <a-icon name="ChevronDown" size="other" />',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary disabled w/ icon"
+    args={{
+      variant: 'primary',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle disabled w/ icon"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard loading"
+    args={{
+      default: 'Standard',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary loading"
+    args={{
+      variant: 'primary',
+      default: 'Primary',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle loading"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard loading w/ icon"
+    args={{
+      default: 'Standard <a-icon name="ChevronDown" size="other" />',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary loading w/ icon"
+    args={{
+      variant: 'primary',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle loading w/ icon"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Size "lg"
+
+All button variants in size `lg`: default state, pressed, disabled and loading.
+
+```html
+<a-button size="lg">Button</a-button>
+```
+
+<Canvas columns={6}>
+  <Story
+    name="standard large"
+    args={{
+      variant: 'standard',
+      default: 'Standard',
+      size: 'lg'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large"
+    args={{
+      variant: 'primary',
+      default: 'Primary',
+      size: 'lg'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle',
+      size: 'lg'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large w/ icon"
+    args={{
+      size: 'lg',
+      default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large w/ icon"
+    args={{
+      variant: 'primary',
+      size: 'lg',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large w/ icon"
+    args={{
+      variant: 'subtle',
+      size: 'lg',
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large pressed"
+    args={{
+      variant: 'standard',
+      default: 'Standard',
+      size: 'lg',
+      pressed: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large pressed"
+    args={{
+      variant: 'primary',
+      default: 'Primary',
+      size: 'lg',
+      pressed: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large pressed"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle',
+      size: 'lg',
+      pressed: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large pressed w/ icon"
+    args={{
+      size: 'lg',
+      pressed: true,
+      default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large pressed w/ icon"
+    args={{
+      variant: 'primary',
+      size: 'lg',
+      pressed: true,
+      default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large pressed w/ icon"
+    args={{
+      variant: 'subtle',
+      size: 'lg',
+      pressed: true,
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large disabled"
+    args={{
+      size: 'lg',
+      default: 'Standard',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large disabled"
+    args={{
+      variant: 'primary',
+      size: 'lg',
+      default: 'Primary',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large disabled"
+    args={{
+      variant: 'subtle',
+      size: 'lg',
+      default: 'Subtle',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large disabled w/ icon"
+    args={{
+      size: 'lg',
+      default: 'Standard <a-icon name="ChevronDown" size="other" />',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large disabled w/ icon"
+    args={{
+      variant: 'primary',
+      size: 'lg',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large disabled w/ icon"
+    args={{
+      variant: 'subtle',
+      size: 'lg',
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+      disabled: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large loading"
+    args={{
+      size: 'lg',
+      default: 'Standard',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large loading"
+    args={{
+      variant: 'primary',
+      size: 'lg',
+      default: 'Primary',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large loading"
+    args={{
+      variant: 'subtle',
+      size: 'lg',
+      default: 'Subtle',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="standard large loading w/ icon"
+    args={{
+      size: 'lg',
+      default: 'Standard <a-icon name="ChevronDown" size="other" />',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary large loading w/ icon"
+    args={{
+      variant: 'primary',
+      size: 'lg',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle large loading w/ icon"
+    args={{
+      variant: 'subtle',
+      size: 'lg',
+      default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+      loading: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Size "auto"
+
+For flexible button sizing, set the `size` prop to `auto`.
+The button will assume the dimensions of its contents.
+Useful for clickable images, complex clickable components like cards, or custom sized icon buttons.
+
+**Note**: You might want to handle the loading state (if required) without relying on the `loading` prop,
+depending on the button's slot content.
+
+<Canvas>
+  <Story
+    name="button size auto"
+    args={{
+      size: 'auto',
+      label: 'Style One',
+      default: `
+        <div class="flex flex-col w-[160px] p-2">
+          <div class="h-16 border border-gray flex items-center justify-center body-md-600">
+            Preview
+          </div>
+          <div class="h-4">
+            Choose style
+          </div>
+        </div>`
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Icon Buttons
+
+Recommended usage:
+
+```html
+<a-button size="md" label="Settings" icon="Menu"></a-button>
+```
+
+The icon size will be the same as the value of the button's `size` prop.
+It is highly recommended to provide a `label` prop for accessible labelling of the icon button.
+
+<Canvas columns={6}>
+  <Story
+    name="icon"
+    args={{
+      icon: 'Burger',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon primary"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon subtle"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg"
+    args={{
+      icon: 'Burger',
+      label: 'Menu',
+      size: 'lg'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg primary"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      size: 'lg',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg subtle"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      size: 'lg',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon pressed"
+    args={{
+      icon: 'Burger',
+      pressed: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon primary pressed"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      pressed: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon subtle pressed"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      pressed: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg pressed"
+    args={{
+      icon: 'Burger',
+      size: 'lg',
+      pressed: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg primary pressed"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      size: 'lg',
+      pressed: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg subtle pressed"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      size: 'lg',
+      pressed: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon disabled"
+    args={{
+      icon: 'Burger',
+      disabled: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon primary disabled"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      disabled: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon subtle disabled"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      disabled: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg disabled"
+    args={{
+      icon: 'Burger',
+      disabled: true,
+      size: 'lg',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg primary disabled"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      size: 'lg',
+      disabled: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg subtle disabled"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      size: 'lg',
+      disabled: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon loading"
+    args={{
+      icon: 'Burger',
+      loading: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon primary loading"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      loading: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon subtle loading"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      loading: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg loading"
+    args={{
+      icon: 'Burger',
+      loading: true,
+      size: 'lg',
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg primary loading"
+    args={{
+      variant: 'primary',
+      icon: 'Burger',
+      size: 'lg',
+      loading: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon lg subtle loading"
+    args={{
+      variant: 'subtle',
+      icon: 'Burger',
+      size: 'lg',
+      loading: true,
+      label: 'Menu'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Alternative pattern for non-standard icon sizes
+(use at your own risk, some prop combinations might produce unexpected results):
+
+```html
+<a-button size="auto" label="Settings"><your-icon /></a-button>
+```
+
+<Canvas>
+  <Story
+    name="icon auto"
+    args={{
+      label: 'Close',
+      size: 'auto',
+      default: '<a-icon name="Close" size="sm" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon auto subtle"
+    args={{
+      variant: 'subtle',
+      label: 'Close',
+      size: 'auto',
+      default: '<a-icon name="Close" size="sm" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon auto primary"
+    args={{
+      variant: 'primary',
+      label: 'Close',
+      size: 'auto',
+      default: '<a-icon name="Close" size="sm" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon auto disabled"
+    args={{
+      disabled: true,
+      label: 'Close',
+      size: 'auto',
+      default: '<a-icon name="Close" size="sm" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon auto pressed"
+    args={{
+      pressed: true,
+      label: 'Close',
+      size: 'auto',
+      default: '<a-icon name="Close" size="sm" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Using the label prop
+
+```html
+<a-button label="Button"></a-button>
+```
+
+An alternative way to set the label text, is to use the `label` prop.
+Keep in mind that if both the label prop and the default slot are used, the slot content will be displayed to the user,
+and the `label` prop will be used as the accessible label (i.e. as the value of `aria-label` attribute).
+**Note**: if you use a descriptive text label for the button in its default slot,
+there's no need to add the `label` prop. Use it for icon buttons or other buttons that lack a descriptive text label.
+
+The following buttons are rendered with the `label` prop instead of slot content.
+
+<Canvas>
+  <Story
+    name="standard w/ label prop"
+    args={{
+      label: 'Standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary w/ label prop"
+    args={{
+      variant: 'primary',
+      label: 'Primary'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle w/ label prop"
+    args={{
+      variant: 'subtle',
+      label: 'Subtle'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary w/ label prop and slot content "
+    args={{
+      variant: 'primary',
+      label: 'Primary Menu',
+      default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Rendering a link
+
+You can render an anchor tag that looks like a button by passing an `href` to it.
+
+**Important!** Anchor tags [do not accept a `disabled` attribute](https://stackoverflow.com/a/13955695).
+If you need to provide a disabled state to an anchor tag, remove the `href` and add a `disabled`.
+This will render a disabled button.
+Example:
+
+```html
+<!-- active link -->
+<a-button variant="primary" href="/">Button</a-button>
+
+<!-- disabled link-->
+<a-button variant="primary" disabled>Button</a-button>
+```
+
+<Canvas columns="6">
+  <Story
+    name="standard w/ href"
+    args={{
+      default: 'Standard Link',
+      href: '/?path=/story/components-button--standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary w/ href"
+    args={{
+      variant: 'primary',
+      default: 'Primary Link',
+      href: '/?path=/story/components-button--standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle w/ href"
+    args={{
+      variant: 'subtle',
+      default: 'Subtle Link',
+      href: '/?path=/story/components-button--standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="large w/ href"
+    args={{
+      size: 'lg',
+      default: 'Large Link',
+      href: '/?path=/story/components-button--standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon w/ href"
+    args={{
+      icon: 'Burger',
+      title: 'Menu',
+      size: 'lg',
+      href: '/?path=/story/components-button--standard'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Usage with Vue Router
+
+To use `a-button` as a link with a `router-link` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-button :href="href" @click="navigate">{{ route.fullPath }}</a-button>
+</router-link>
+```
+
+## Pressed state
+
+`a-button` has a `pressed` prop to show the button as "pressed" (e.g. for an open menu or a button that switches some state on and off).
+Behind the scenes, it sets the [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed)
+attribute with values `true`, `false` and `undefined` (default).

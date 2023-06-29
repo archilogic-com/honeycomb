@@ -1,0 +1,115 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ALogo, ALogoButton } from '../components'
+
+<Meta
+  title="Components/Logo"
+  component={ALogo}
+  subcomponents={{ ALogoButton }}
+  argTypes={{
+    size: {
+      options: ['sm', 'md', 'lg', '']
+    },
+    type: {
+      control: ['mark', 'default']
+    },
+    color: {
+      control: ['newyork', 'white']
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ALogo },
+  setup() {
+    return { args }
+  },
+  template: `
+  <ALogo v-bind="args">
+  </ALogo>`
+})
+
+# Logo
+
+```html
+<a-logo />
+<ALogo />
+```
+
+<ArgsTable of={ALogo} />
+
+## Using as a button or link
+
+When the Archilogic logo is meant to be clickable, use `<a-logo-button>`.
+If it should behave like a link, provide an `href` attribute.
+
+```html
+<a-logo-button href="/" />
+<!-- OR -->
+<a-logo-button @click="doSomething" />
+```
+
+<Canvas>
+  <Story name="logo button">
+    {() => ({
+      components: { ALogoButton },
+      template: `<a-logo-button></a-logo-button>`
+    })}
+  </Story>
+</Canvas>
+
+## Using as an svg image
+
+### Default
+
+At the moment, the `default` variant comes in one size only. You do not need to specify any props for it.
+
+```html
+<a-logo />
+```
+
+<Canvas>
+  <Story name="logo default">{Template.bind({})}</Story>
+</Canvas>
+
+### Mark
+
+The `mark` variant comes in 3 sizes. Providing a size prop for it is required.
+
+```html
+<a-logo variant="mark" size="md" />
+```
+
+<Canvas isColumn={true}>
+  <Story name="logo mark sm" args={{ variant: 'mark', size: 'sm' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="logo mark md" args={{ variant: 'mark', size: 'md' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="logo mark lg" args={{ variant: 'mark', size: 'lg' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Color
+
+The logo's default color is our [New York color](?path=/docs/primitives-colors--newyork).
+
+For dark backgrounds, it's possible to change the color to `white`:
+
+```html
+<a-logo color="light" />
+```
+
+<Canvas>
+  <Story
+    name="logo light"
+    args={{ color: 'light' }}
+    decorators={[
+      () => ({
+        template: '<div class="bg-newyork"><story /></div>'
+      })
+    ]}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

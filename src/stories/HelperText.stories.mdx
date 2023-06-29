@@ -1,0 +1,129 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { AHelperText, AIcon } from '../components'
+
+<Meta
+  title="Components/HelperText"
+  component={AHelperText}
+  argTypes={{
+    content: { control: 'text' },
+    variant: {
+      options: ['hint', 'error'],
+      control: 'radio'
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { AHelperText, AIcon },
+  setup() {
+    return { args }
+  },
+  template: `
+  <AHelperText v-bind="args">${args.default || ''}
+  </AHelperText>`
+})
+
+# HelperText
+
+```html
+<a-helper-text>completed</a-helper-text>
+<AHelperText>completed</AHelperText>
+```
+
+HelperText is meant to display inline helper messages to the user.
+It's primarily (but not exclusively) used in conjunction with various inputs
+to show hints or error messages related to input validation.
+
+<ArgsTable of={AHelperText} />
+
+## HelperText variants
+
+HelperText comes in **2 stylistic variants**:
+`hint` (default) and `error`.
+
+```html
+<!-- variant="hint" is the default and can be omitted -->
+<a-helper-text>Please only use numbers, letters, and underscores</a-helper-text>
+<a-helper-text variant="error">Please only use numbers, letters, and underscores</a-helper-text>
+```
+
+<Canvas isColumn="true">
+  <Story
+    name="hint"
+    args={{
+      default: 'Please only use numbers, letters, and underscores'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="error"
+    args={{ variant: 'error', default: 'Please only use numbers, letters, and underscores' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Using the content prop
+
+```html
+<a-helper-text content="Please only use numbers, letters, and underscores"></a-helper-text>
+```
+
+An alternative way to set the content text is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are used, the slot content takes precedence.
+
+The following HelperText component is rendered with the `content` prop instead of slot content.
+
+<Canvas>
+  <Story
+    name="w/ content prop"
+    args={{
+      content: 'Please only use numbers, letters, and underscores'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Adding custom markup
+
+```html
+<a-helper-text>
+  <a-icon size="sm" name="check" />
+  This is a message with a checkmark
+</a-helper-text>
+```
+
+The `<a-helper-text>` component allows for the addition of custom markup inside its default slot.
+In the example below, we are showing a custom icon with the default variant (`hint`).
+Note that in this case the component does not control the spacing around the icon or its size/line-height value.
+
+<Canvas>
+  <Story
+    name="w/ custom markup"
+    args={{
+      default: '<a-icon size="sm" name="check" class=" mr-1"/>This is a message with a checkmark',
+      class: 'w-[10rem]'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Multiline
+
+HelperText will wrap text content and grow vertically if its width is limited.
+
+<Canvas isColumn="true">
+  <Story
+    name="hint multiline"
+    args={{ default: 'Please only use numbers, letters, and underscores', class: 'w-[10rem]' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="error multiline"
+    args={{
+      variant: 'error',
+      default: 'Please only use numbers, letters, and underscores',
+      class: 'w-[10rem]'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

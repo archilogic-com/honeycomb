@@ -1,0 +1,238 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+import { within } from '@storybook/testing-library'
+import { ref } from 'vue'
+import { ADisclosure, AButton } from '../components'
+
+<Meta title="Components/Disclosure" component={ADisclosure} />
+
+# Disclosure
+
+```html
+<a-disclosure title="Title">
+  <section>Contents</section>
+</a-disclosure>
+<ADisclosure title="Title">
+  <section>Contents</section>
+</ADisclosure>
+```
+
+The Disclosure component renders a stylized HTML [details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) element.
+
+For this component to render properly, you need to import the stylesheet:
+
+```js
+import '@archilogic/honeycomb/dist/style.css'
+```
+
+## Examples
+
+### Closed by default, title prop
+
+```html
+<a-disclosure title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas>
+  <Story name="closed by default">
+    {() => ({
+      components: { ADisclosure },
+      template: `
+      <div style="width: 200px">
+        <ADisclosure title="Options">
+          <ul>
+            <li>option A</li>
+            <li>option B</li>
+            <li>option C</li>
+          </ul>
+        </ADisclosure>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Opened by default
+
+```html
+<a-disclosure :open="true" title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas>
+  <Story name="opened by default">
+    {() => ({
+      components: { ADisclosure },
+      template: `
+      <div style="width: 200px">
+        <ADisclosure :open="true" title="Options">
+          <ul>
+            <li>option A</li>
+            <li>option B</li>
+            <li>option C</li>
+          </ul>
+        </ADisclosure>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Title slot
+
+```html
+<a-disclosure>
+  <template #title><span class="underline">Options</span></template>
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas>
+  <Story name="title slot">
+    {() => ({
+      components: { ADisclosure },
+      template: `
+      <div style="width: 200px">
+        <ADisclosure>
+          <template #title><span class="underline">Options</span></template>
+          <ul>
+            <li>option A</li>
+            <li>option B</li>
+            <li>option C</li>
+          </ul>
+        </ADisclosure>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Listening to state changes
+
+Using the HTML [details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
+element's `toggle` event, the state can be found in `event.target.open`.
+
+```html
+<a-disclosure @toggle="onToggle" title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas>
+  <Story name="state changes">
+    {() => ({
+      components: { ADisclosure },
+      setup() {
+        return {
+          isOpen: ref(false)
+        }
+      },
+      template: `
+      <span>👇 this section is currently {{ isOpen ? '😳 opened' : '😑 closed' }}</span>
+      <div style="width: 200px">
+        <ADisclosure @toggle="event => isOpen = event.target.open" title="Options">
+          <ul>
+            <li>option A</li>
+            <li>option B</li>
+            <li>option C</li>
+          </ul>
+        </ADisclosure>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Truncated title
+
+The title gets truncated if the text does not fit.
+
+```html
+<a-disclosure>
+  <template #title>It's supercalifragilisticexpialidocious</template>
+  <ul>
+    <li>Even though the sound of it</li>
+    <li>Is something quite atrocious</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas>
+  <Story name="truncated title">
+    {() => ({
+      components: { ADisclosure },
+      template: `
+      <div style="width: 200px">
+        <ADisclosure>
+          <template #title>It's supercalifragilisticexpialidocious</template>
+          <ul>
+            <li>Even though the sound of it</li>
+            <li>Is something quite atrocious</li>
+          </ul>
+        </ADisclosure>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Toggling the disclosure programmatically
+
+```html
+<a-button @click="isOpen = !isOpen">Toggle</a-button>
+<a-disclosure :open="isOpen" title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+export const clickButton = async ({ canvasElement }) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('button').click()
+}
+
+<Canvas>
+  <Story name="external trigger" play={clickButton}>
+    {() => ({
+      components: { ADisclosure, AButton },
+      setup() {
+        return {
+          isOpen: ref(false)
+        }
+      },
+      template: `
+      <AButton @click="isOpen = !isOpen">Toggle</AButton>
+      <div style="width: 200px">
+        <ADisclosure :open="isOpen" title="Options">
+          <ul>
+            <li>option A</li>
+            <li>option B</li>
+            <li>option C</li>
+          </ul>
+        </ADisclosure>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>

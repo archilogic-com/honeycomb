@@ -1,0 +1,195 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs'
+import ASidebar from '../components/Sidebar.vue'
+
+<Meta
+  title="Components/Sidebar"
+  component={ASidebar}
+  argTypes={{
+    side: {
+      options: ['left', 'right'],
+      control: 'radio'
+    },
+    class: { control: null },
+    resizable: { control: 'boolean' }
+  }}
+/>
+
+export const Template = args => ({
+  components: { ASidebar },
+  inheritAttrs: false,
+  setup() {
+    return { args }
+  },
+  template: `
+  <div class="h-[500px]">
+    <main class="h-full w-full flex overflow-auto">
+        <a-sidebar v-bind="args" v-if="args.side === 'left'">
+          <p class="heading-sm p-2">
+            Sidebar content
+          </p>
+        </a-sidebar>
+        <section class="p-4 flex-grow ">
+          <h3 class="heading-md">Main content</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec auctor orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris accumsan in odio sollicitudin aliquam. Donec at laoreet lorem, vel mollis lorem. Vestibulum diam risus, pretium vitae consequat pharetra, vestibulum gravida est. Mauris sit amet vulputate dui, quis interdum eros. Maecenas ornare ultrices arcu. Nulla facilisi. Mauris sed enim ex. 
+          </p>
+          <p>
+            In non porttitor nisl, at dictum purus. Quisque faucibus nibh in magna sollicitudin blandit. Fusce nibh sem, fringilla non convallis non, ullamcorper et ligula. Nam sit amet velit neque. Vivamus lacus tellus, dictum et arcu non, venenatis dignissim sapien. Cras ut odio sodales, dictum mi non, faucibus lectus. Pellentesque quis quam vel eros fermentum porttitor eu vel tellus. Suspendisse potenti. Donec in rhoncus dolor. Praesent sit amet efficitur augue. Maecenas sodales ultricies fermentum.
+          </p>
+          <p>
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur nec tellus euismod, rutrum turpis at, sodales elit. Nulla ultricies lorem sed interdum gravida. Phasellus malesuada quis augue ac feugiat. Nulla tincidunt orci non odio faucibus pellentesque. Suspendisse mi ipsum, dignissim ac risus blandit, fringilla sodales lectus. Integer fermentum libero at neque interdum dapibus. Phasellus molestie et sapien nec egestas. 
+          </p>
+        </section> 
+        <a-sidebar v-bind="args" v-if="args.side === 'right'">
+          <p class=" heading-sm p-2">
+            Sidebar content
+          </p>
+          <div v-if="args.scroll" class="overflow-auto">
+            <div class="h-12 ml-2" v-for="n in 30">test</div>
+          </div>
+        </a-sidebar>
+      </main>
+    </div>
+  `
+})
+
+# Sidebar
+
+## Usage
+
+```html
+<a-sidebar>…</a-sidebar>
+<ASidebar>…</ASidebar>
+```
+
+`ASidebar` has one default slot for all its children.
+
+<ArgsTable of={ASidebar} />
+
+## Position
+
+### Left Sidebar (default)
+
+```html
+<a-sidebar side="left">…</a-sidebar>
+```
+
+<Canvas>
+  <Story
+    name="left"
+    parameters={{ layout: 'fullscreen' }}
+    args={{
+      side: 'left'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Right Sidebar
+
+```html
+<a-sidebar side="right">…</a-sidebar>
+```
+
+<Canvas>
+  <Story
+    name="right"
+    parameters={{ layout: 'fullscreen' }}
+    args={{
+      side: 'right'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Size
+
+### Height
+
+The sidebar will take the full height of the parent container.
+Remember to adjust the display property of the parent container to `flex` or grid,
+otherwise the sidebar and the main content might be stacked vertically.
+
+```html
+<main class="flex">
+  <a-sidebar side="left">…</a-sidebar>
+  <section>…</section>
+</main>
+```
+
+### Width
+
+The default (minimum) width of the sidebar is determined by its contents.
+To override it, just add a width class:
+
+```html
+<a-sidebar class="w-[17rem]">…</a-sidebar>
+```
+
+<Canvas>
+  <Story
+    name="custom width"
+    parameters={{ layout: 'fullscreen' }}
+    args={{
+      side: 'left',
+      class: 'w-[17rem]'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Resizable sidebar
+
+```html
+<a-sidebar resizable>…</a-sidebar>
+```
+
+<Canvas>
+  <Story
+    name="resizable left"
+    parameters={{ layout: 'fullscreen' }}
+    args={{
+      side: 'left',
+      resizable: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="resizable right"
+    parameters={{ layout: 'fullscreen' }}
+    args={{
+      side: 'right',
+      resizable: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+The minimum width of the sidebar is `max-content`, and the maximum width defaults to `50%`.
+You can override these values with inline styles.
+
+### With long scrollable content
+
+<Canvas>
+  <Story
+    name="resizable right scroll"
+    parameters={{ layout: 'fullscreen' }}
+    args={{
+      side: 'right',
+      resizable: true,
+      scroll: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Semantic HTML
+
+This element returns an `<aside>` tag by default. You can change this by setting the `as` prop.
+
+```html
+<a-sidebar as="div">…</a-sidebar>
+```

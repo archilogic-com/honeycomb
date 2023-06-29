@@ -1,0 +1,297 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref, computed } from 'vue'
+import { ACheckbox, ACheckboxSelectAll, AButton } from '../components'
+
+<Meta title="Components/Checkbox" component={ACheckbox} />
+
+export const Template = args => ({
+  components: { ACheckbox },
+  setup() {
+    const checkedState = ref(args.checked)
+    return { args, checkedState }
+  },
+  template: `<ACheckbox v-bind="args" v-model="checkedState">${args.default || ''}</ACheckbox>`
+})
+
+# Checkbox
+
+```html
+<a-checkbox v-model="yourValue">Send me the spam</a-checkbox>
+<ACheckbox v-model="yourValue">Send me the spam</ACheckbox>
+```
+
+For this component to render properly, you need to import the stylesheet:
+
+```js
+import '@archilogic/honeycomb/css'
+```
+
+`ACheckbox` renders a native HTML `<input type="checkbox"/>` wrapped in a `<label>`.
+All the attributes will be bound to the input element.
+You can use the `label` prop or the `#default` slot to add the labelling text.
+
+<ArgsTable of={ACheckbox} />
+
+## Data binding
+
+### Using with v-model (recommended)
+
+This component is designed as a **controlled** component, meaning that it does not hold its own state,
+but relies on the value provided by `v-model` instead.
+See [Vue docs on v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model).
+
+```html
+<a-checkbox label="My Checkbox" v-model="yourValue" />
+<a-checkbox label="My Checkbox" v-model="yourValue" mixed />
+<a-checkbox label="My Checkbox" v-model="yourValue" disabled />
+```
+
+Any extra attributes (e.g. `disabled`) will be passed down to the `<input/>` element.
+
+<Canvas columns={3}>
+  <Story name="checkbox on" args={{ checked: true, label: 'on' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="checkbox off" args={{ checked: false, label: 'off' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="checkbox mixed" args={{ checked: true, mixed: true, label: 'mixed' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="checkbox on disabled" args={{ checked: true, disabled: true, label: 'on' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="checkbox off disabled" args={{ checked: false, disabled: true, label: 'off' }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="checkbox mixed disabled"
+    args={{ checked: true, disabled: true, mixed: true, label: 'mixed' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Using an array for multiple checkboxes
+
+Just like with regular HTML input, you can have multiple checkboxes, bound to the same array.
+In this case, remember to set the `value` attribute on each checkbox.
+
+<Canvas>
+  <Story name="multiple checkboxes">
+    {() => ({
+      components: { ACheckbox },
+      setup() {
+        const options = ['coffee', 'tea', 'schoggi']
+        const selected = ref([])
+        const a = ref(false)
+        return { selected, options, a }
+      },
+      template: `
+      <div>
+        <fieldset>
+          <legend>Choose your drinks:</legend>
+          <a-checkbox v-for="option in options" v-model="selected" :label="option" :value="option"/>
+        </fieldset>
+        <p class="body-md">Selected: {{selected.join(', ')}}</p>
+      </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Using with the event listener
+
+If using `v-model` doesn't fit your needs, pass a `modelValue` prop and update it accordingly on `update:modelValue` event.
+
+```html
+<!-- in your template -->
+<a-checkbox :model-value="checkboxState" @update:model-value="handleChange" />
+```
+
+```js
+// in your component's setup
+const checkboxState = ref(true)
+const handleChange = newValue => {
+  checkboxState.value = newValue
+}
+```
+
+## Labelling the checkbox
+
+There are several way to go about providing the label for this component.
+Bare in mind, that you **must** provide a label in one of the following ways:
+
+### Setting the `label` prop
+
+Simply pass a string that will be the label. Default styles will be applied to it automatically.
+
+```html
+<a-checkbox label="My Checkbox" v-model="yourValue" />
+```
+
+<Canvas>
+  <Story name="checkbox with label prop" args={{ checked: true, label: 'Label Prop' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="checkbox with long label prop">
+    {() => ({
+      components: { ACheckbox },
+      setup() {
+        return { state: true }
+      },
+      template: `
+      <div class="max-w-[300px]">
+        <a-checkbox v-model="state" label="Yes, Archilogic can contact me on a one-to-one basis and send me quarter product updates and relevant notifications."/>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+### Using the default slot
+
+This is useful if you need custom styling or extra markup in the label.
+
+```html
+<a-checkbox v-model="yourValue"><p class="body-sm-600">My Checkbox</p></a-checkbox>
+```
+
+<Canvas>
+  <Story
+    name="checkbox with default slot"
+    args={{ checked: true, default: '<p class="body-sm-600">Bold Label in Slot</p>' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Using a hidden label
+
+Sometimes you don't want to render a text label, but the checkbox still needs to be labelled
+for assistive technologies (also useful for testing). A good example of this use case
+are "select all" checkboxes in a table.
+
+```html
+<a-checkbox v-model="checkboxState" label="Select all" hide-label />
+```
+
+<Canvas>
+  <Story
+    name="checkbox with hidden label"
+    args={{ checked: true, label: 'select all', hideLabel: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## `indeterminate` state
+
+Sometimes a checkbox is in an [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes),
+(e.g. "select all" functionality).
+In this case, you can set the `mixed` prop to `true`.
+Note that it overrides the `v-model` value and you'll need
+a custom event listener to handle these state updates correctly.
+
+<Canvas>
+  <Story name="checkbox with mixed state">
+    {() => ({
+      components: { ACheckbox },
+      setup() {
+        const options = ['coffee', 'tea', 'schoggi']
+        const selected = ref(['coffee', 'tea'])
+        const selectAllState = computed(() => {
+          if (selected.value.length === 3) {
+            return true
+          }
+          return false
+        })
+        const mixedState = computed(() => {
+          if (selected.value.length > 0 && selected.value.length < 3) {
+            return true
+          }
+          return false
+        })
+        const handleChange = newValue => {
+          if (newValue) {
+            selected.value = [...options]
+          } else {
+            selected.value = []
+          }
+        }
+        return { handleChange, selected, selectAllState, mixedState, options }
+      },
+      template: `
+      <div>
+        <fieldset class="ml-2">
+          <legend>Choose your drinks:</legend>
+          <a-checkbox :model-value="selectAllState" @update:model-value="handleChange" label="Select All" :mixed="mixedState" />
+          <a-checkbox class="ml-2" v-for="option in options" v-model="selected" :label="option" :value="option"/>
+        </fieldset>
+        <p class="body-md">Selected: {{selected.join(', ')}}</p>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+Below is the same example implemented with a handy `<a-checkbox-select-all>` component.
+
+<ArgsTable of={ACheckboxSelectAll} />
+
+<Canvas>
+  <Story name="select all checkbox">
+    {() => ({
+      components: { ACheckbox, ACheckboxSelectAll },
+      setup() {
+        const options = ['coffee', 'tea', 'schoggi']
+        const selected = ref(['coffee', 'tea'])
+        return { selected, options }
+      },
+      template: `
+      <div>
+        <fieldset class="ml-2">
+          <legend>Choose your drinks:</legend>
+          <a-checkbox-select-all
+            :selected-size="selected.length"
+            :items-size="options.length"
+            @select="selected = [...options]"
+            @clear="selected = []">
+          </a-checkbox-select-all>
+          <a-checkbox class="ml-2" v-for="option in options" v-model="selected" :label="option" :value="option"/>
+        </fieldset>
+        <p class="body-md">Selected: {{selected.join(', ')}}</p>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+## Readonly (controlled) checkbox
+
+If you want your checkbox to be readonly, that is not to update its own model value
+but instead only display some current state, perhaps controlled by another component
+(parent or sibling), set `readonly` prop to `true`.
+
+It makes the checkbox unreachable via keyboard navigation or pointer events.
+
+```html
+<a-checkbox :model-value="someState" label="Controlled checkbox" readonly />
+```
+
+<Canvas>
+  <Story name="readonly checkbox">
+    {() => ({
+      components: { ACheckbox, AButton },
+      setup() {
+        const state = ref(false)
+        const handleChange = () => {
+          state.value = !state.value
+        }
+        return {
+          state,
+          handleChange
+        }
+      },
+      template: `
+      <div>
+        <a-checkbox :model-value="state" label="Readonly checkbox" readonly />
+        <a-button @click="handleChange">Toggle checkbox</a-button>
+      </div>`
+    })}
+  </Story>
+</Canvas>

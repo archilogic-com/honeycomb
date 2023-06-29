@@ -1,0 +1,110 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+import { ref } from 'vue'
+import { APanel, AButton } from '../components'
+
+<Meta title="Components/Panel" component={APanel} />
+
+export const titleSlot = `
+  <template #title>
+    My fancy panel
+  </template>
+`
+
+export const bodySlot = `
+  <template #body>
+    <p>Some panel content</p>	
+  </template>  
+`
+
+export const actionsSlot = `
+  <template #actions>
+    <a-button variant="primary" size="lg" @click="() => {}">OK</a-button>
+  </template>
+`
+
+export const Template = args => ({
+  components: { APanel, AButton },
+  setup() {
+    const { slots, ...props } = args
+    return {
+      slots,
+      props
+    }
+  },
+  template: `
+  <div class="w-[600px]">
+    <APanel v-bind="props">${args.slots.join('')}
+    </APanel>
+  </div>`
+})
+
+# Panel
+
+APanel has a box shadow that works well with floating components like popups and dialogs.
+It has 3 sections (slots): title, body, and actions; all optional.
+
+```html
+<a-panel title="My Panel">
+  <template #body>Body content</template>
+  <template #actions>
+    <a-button @click="doStuff">OK</a-button>
+  </template>
+</a-panel>
+```
+
+## Panel with all slots
+
+<Canvas>
+  <Story
+    name="all"
+    args={{
+      slots: [titleSlot, bodySlot, actionsSlot]
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Panel without title
+
+<Canvas>
+  <Story
+    name="no title"
+    args={{
+      slots: [bodySlot, actionsSlot]
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Panel without actions
+
+<Canvas>
+  <Story
+    name="no actions"
+    args={{
+      slots: [titleSlot, bodySlot]
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Panel with scrollable body
+
+<Canvas>
+  <Story
+    name="scrollable body"
+    args={{
+      slots: [
+        titleSlot,
+        `
+          <template #body>
+            <p class="bg-palegreen h-[800px]">Some panel content</p>	
+          </template>  
+        `,
+        actionsSlot
+      ],
+      class: 'h-[400px]'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -1,0 +1,92 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import AAvatar from '../components/Avatar.vue'
+
+<Meta
+  title="Components/Avatar"
+  component={AAvatar}
+  argTypes={{
+    size: 'md',
+    label: 'Ro'
+  }}
+/>
+
+export const Template = args => ({
+  components: { AAvatar },
+  setup() {
+    return { args }
+  },
+  template: `
+  <AAvatar v-bind="args">${args.default || ''}
+  </AAvatar>`
+})
+
+# Avatars
+
+<ArgsTable of={AAvatar} />
+
+## Size
+
+Avatar come in **2 sizes**:
+`md` and `lg`.
+
+```html
+<!-- size="md" is the default and can be omitted -->
+<a-avatar></a-avatar>
+<a-avatar size="md"></a-avatar>
+<a-avatar size="lg"></a-avatar>
+```
+
+<Canvas>
+  <Story name="md size">
+    {() => ({
+      components: { AAvatar },
+      template: '<a-avatar size="md"></a-avatar>'
+    })}
+  </Story>
+  <Story name="lg size">
+    {() => ({
+      components: { AAvatar },
+      template: '<a-avatar size="lg"></a-avatar>'
+    })}
+  </Story>
+</Canvas>
+
+## Rendering the avatar
+
+The user icon is the default user avatar, and gets overwritten by the label prop or the `#default` slot children.
+
+## Using the label prop
+
+```html
+<a-avatar label="Ro"></a-avatar>
+```
+
+Use the label prop for the text representation of an avatar, e.g `JS`.
+
+<Canvas>
+  <Story
+    name="w/ label prop"
+    args={{
+      label: 'Ro'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+For avatars with images, custom icons or other styled elements, use the `#default` slot.
+
+**Note:** make sure the provided content fits within the component borders, otherwise the content might be cut off.
+
+```html
+<a-avatar>Ro</a-avatar>
+```
+
+<Canvas>
+  <Story
+    name="content slot"
+    args={{
+      default: 'Ro'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

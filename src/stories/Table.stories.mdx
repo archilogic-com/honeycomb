@@ -1,0 +1,706 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs'
+import { ATable, ATableRow, ATableCell, ATableHeader, ALink, AListbox } from '../components'
+import MultiSelectTableExample from '../examples/MultiSelectTableExample.vue'
+import SortingTableExample from '../examples/SortingTableExample.vue'
+
+<Meta
+  title="Components/Table"
+  component={ATable}
+  subcomponents={{ ATableHeader, ATableRow, ATableCell }}
+/>
+
+# Table
+
+## Components
+
+There are several table-related components intended to be used together:
+`a-table`, `a-table-header`, `a-table-row`, and `a-table-cell`.
+
+<ArgsTable of={ATable} />
+
+```html
+<a-table>
+  <!-- header slot -->
+  <template #header>
+    <a-table-header>
+      <!-- default slot -->
+      …
+    </a-table-header>
+  </template>
+
+  <!-- default slot -->
+  <a-table-row>
+    <!-- default slot -->
+    <a-table-cell>
+      <!-- default slot -->
+      …
+    </a-table-cell>
+  </a-table-row>
+</a-table>
+```
+
+<Canvas>
+  <Story name="simple" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table>
+            <template #header>
+                <a-table-header>Name</a-table-header>
+                <a-table-header>Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Styling the table
+
+### Scrolling behavior
+
+By default, the table has a sticky header, scrolls vertically, and takes full width of its parent container.
+
+<Canvas>
+  <Story name="vertical scrolling" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow, ALink, AListbox },
+      template: `
+        <a-table class="h-[120px]">
+            <template #header>
+                <a-table-header class="w-1/2">Name</a-table-header>
+                <a-table-header class="w-1/5">Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+To enable horizontal scrolling, set `min-width` on the table, and `overflow-x: auto` on the parent container.
+
+```html
+<a-table class="min-w-[2000px]">…</a-table>
+```
+
+<Canvas>
+  <Story name="horizontal scrolling" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+      <div class="w-1/2 overflow-x-auto">
+        <a-table class="min-w-[1000px] w-full">
+            <template #header>
+                <a-table-header class="w-1/2">Name</a-table-header>
+                <a-table-header class="w-1/5">Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+        </a-table>
+        </div>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Cell content
+
+Usually the cell content is simple text that will be truncated if it does not fit within the cell.
+
+If desired, the `truncate` prop on each table cell can be set to `false`.
+This is especially useful when the cell content is not a string, but another component.
+
+<Canvas>
+  <Story name="ellipsis and components" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow, ALink, AListbox },
+      template: `
+        <a-table class="h-[150px] w-[400px]">
+            <template #header>
+                <a-table-header>Truncate true</a-table-header>
+                <a-table-header>Truncate false</a-table-header>
+            </template>
+            <a-table-row>
+              <a-table-cell>
+                <a-listbox
+                  model-value=""
+                  size="md"
+                  placeholder="Options are hidden"
+                  :options="[
+                    { value: '#ff0000', label: 'Red' },
+                    { value: '#00ff00', label: 'Green' },
+                    { value: '#0000ff', label: 'Blue' }
+                  ]"></a-listbox>
+                </a-table-cell>
+                <a-table-cell :truncate="false">
+                  <a-listbox
+                    model-value=""
+                    size="md"
+                    placeholder="Options are visible"
+                    :options="[
+                      { value: '#ff0000', label: 'Red' },
+                      { value: '#00ff00', label: 'Green' },
+                      { value: '#0000ff', label: 'Blue' }
+                  ]"></a-listbox>
+                </a-table-cell>
+            </a-table-row>
+            <a-table-row>
+              <a-table-cell>A very long name that has been truncated with ellipsis</a-table-cell>
+               <a-table-cell :truncate="false">A very long name that has  not been truncated with ellipsis</a-table-cell>
+            </a-table-row>
+            <a-table-row>
+              <a-table-cell><a-link>This very long link text has been cut off</a-link></a-table-cell>
+              <a-table-cell :truncate="false"><a-link>This link text has been wrapped</a-link></a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Column width
+
+The column widths can be adjusted in 2 ways:
+
+- by setting width on `a-table-header` elements
+
+```html
+<a-table>
+  <!-- header slot -->
+  <template #header>
+    <a-table-header class="w-1/2">
+      <!-- default slot -->
+      …
+    </a-table-header>
+  </template>
+
+  <!-- default slot -->
+  …
+</a-table>
+```
+
+<Canvas>
+  <Story name="width in header" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table>
+            <template #header>
+                <a-table-header class="w-1/2">Name</a-table-header>
+                <a-table-header class="w-1/5">Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+- by providing `<col>` elements inside the `colgroup` slot and setting their widths.
+  **Note**: This will override any widths set on the header cells.
+
+```html
+<a-table>
+  <!-- colgroup slot -->
+  <template #colgroup>
+    <colgroup>
+      <col />
+      <col class="w-2/6" />
+      <col class="w-1/6" />
+    </colgroup>
+  </template>
+
+  <!-- header slot -->
+  <template #header>…</template>
+
+  <!-- default slot -->
+  …
+</a-table>
+```
+
+<Canvas>
+  <Story name="width in colgroup" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table>
+          <template #colgroup>
+            <colgroup>
+              <col>
+              <col class="w-2/6">
+              <col class="w-1/6">
+            </colgroup>
+          </template>
+          <template #header>
+              <a-table-header>Name</a-table-header>
+              <a-table-header>Last update</a-table-header>
+              <a-table-header class="w-2/6">Floor area</a-table-header>
+          </template>
+          <a-table-row>
+              <a-table-cell>Some test floor name</a-table-cell>
+              <a-table-cell>Today, 3:21 PM</a-table-cell>
+              <a-table-cell>2,431</a-table-cell>
+          </a-table-row>
+            <a-table-row>
+              <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+              <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+              <a-table-cell>9,999924</a-table-cell>
+          </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Background color
+
+By default the table renders with a white background.
+Another allowed background is `whisper`.
+This prop is important when the table should be vertically scrollable:
+unless explicitly set, the background is transparent and scrolled content is seen through the header.
+
+```html
+<a-table background="whisper">…</a-table>
+```
+
+<Canvas>
+  <Story name="background" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table background="whisper">
+            <template #header>
+                <a-table-header>Name</a-table-header>
+                <a-table-header>Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Font size
+
+By default the table's body has `body-md` typography class. For denser tables, you can pass a `size="sm"` prop.
+
+```html
+<a-table size="sm">…</a-table>
+```
+
+<Canvas>
+  <Story name="body sm" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table size="sm">
+            <template #header>
+                <a-table-header>Name</a-table-header>
+                <a-table-header>Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+            <a-table-row>
+                <a-table-cell>Some test floor name</a-table-cell>
+                <a-table-cell>Today, 3:21 PM</a-table-cell>
+                <a-table-cell>2,431</a-table-cell>
+            </a-table-row>
+             <a-table-row>
+                <a-table-cell>Another floor with a much much much much longer name</a-table-cell>
+                <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                <a-table-cell>9,999924</a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+You can further customize the font size and weight by adding a desired typography class to a specific row:
+
+```html
+<a-table>
+  …
+  <a-table-row class="body-md-500">…</a-table-row>
+</a-table>
+```
+
+<Canvas>
+  <Story name="body custom" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table size="sm">
+            <template #header>
+                <a-table-header>Space</a-table-header>
+                <a-table-header>Floor Area</a-table-header>
+                <a-table-header>Seats</a-table-header>
+            </template>
+            <a-table-row class="body-md-500">
+              <a-table-cell 
+                >Total (2)</a-table-cell>
+              <a-table-cell>500</a-table-cell>
+              <a-table-cell>5</a-table-cell>
+            </a-table-row>
+            <a-table-row>
+              <a-table-cell 
+              >Office</a-table-cell>
+              <a-table-cell>450</a-table-cell>
+              <a-table-cell>4</a-table-cell>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+## Table sorting
+
+Table headers are rendered as buttons by default to indicate that the table can be sorted.
+However, the table itself does not handle the sorting, as it does not hold any internal state.
+
+See the simplified example sorting code in the [examples](https://github.com/archilogic-com/ui-components/blob/main/src/examples/MultiSelectTableExample.vue).
+
+<Canvas>
+  <Story name="sorting rows" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { SortingTableExample },
+      template: `<SortingTableExample></SortingTableExample>`
+    })}
+  </Story>
+</Canvas>
+
+If a table is not supposed to be sortable by one or any columns, pass `sortable="false"`
+to each relevant `a-table-header`.
+
+```html
+<template>
+  <a-table>
+    <template #header>
+      <a-table-header :sortable="false">Label</a-table-header>
+      …
+    </template>
+    …
+  </a-table>
+</template>
+```
+
+It is possible to display multiple sortedBy icons if the table is sorted by multiple criteria.
+
+## Selecting single and multiple rows
+
+To simply add a selected style to a row, use the `selected` prop:
+
+```html
+<a-table>
+  <!-- default slot -->
+  <a-table-row selected></a-table-row>
+</a-table>
+```
+
+This might be useful when you need to control the selected state yourself.
+
+<Canvas>
+  <Story name="selected row" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table>
+            <template #header>
+                <a-table-header>Name</a-table-header>
+                <a-table-header>Last update</a-table-header>
+                <a-table-header>Floor area</a-table-header>
+            </template>
+              <a-table-row>
+                  <a-table-cell>Some test floor name</a-table-cell>
+                  <a-table-cell>Today, 3:21 PM</a-table-cell>
+                  <a-table-cell>2,431</a-table-cell>
+              </a-table-row>
+              <a-table-row selected>
+                  <a-table-cell>Another floor with a much much longer name</a-table-cell>
+                  <a-table-cell>Yesterday, 11:05 AM</a-table-cell>
+                  <a-table-cell>9,999924</a-table-cell>
+              </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+To use full multi-selection feature, use the `useMultiSelect` composable.
+
+To initialise, provide it with an array of row ids **in the order they are rendered**
+(The `shift + click` selection relies on the correct order of the elements).
+You can also provide an optional second array for the items that are supposed to be selected on render.
+
+```js
+import { composables } from '@archilogic/honeycomb'
+
+const { selectedItems, selectItem, clearSelection, selectAll } = composables.useMultiSelect(
+  rowIds,
+  checkboxMode,
+  preSelectedRows
+)
+```
+
+Then provide each (selectable) row with the following props:
+
+- `selectId` to identify each row
+- `select-row-callback` to handle selecting and un-selecting rows (use `selectItem` method from `useMultiSelect` composable)
+- `selected` to highlight selected rows (use `selectedItems` from `useMultiSelect` composable);
+
+Multi-selection is supported when holding a <kbd>ctrl/cmd</kbd> or <kbd>shift</kbd> key.
+
+When both `selectId` and `select-row-callback` are provided, a `@click` event handler gets attached to the row.
+
+Additionally, the `useMultiSelect` composable returns 2 helper methods: `clearSelection` and `selectAll`.
+They do not take any arguments and do not have a return value.
+
+```html
+<a-table>
+  <!-- default slot -->
+  <template #default="{selectedRows, selectRow}">
+    <a-table-row
+      selectId="row-123"
+      :select-row-callback="selectRow"
+      :selected="selectedRows.has('row-123')">
+      <!-- default slot -->
+      <a-table-cell>…</a-table-cell>
+    </a-table-row>
+  </template>
+</a-table>
+```
+
+This interactive example story shows full-featured multi-selection with `rowIds` being a `computed ref`.
+When the input changes, the selection state is cleared.
+
+<Canvas>
+  <Story name="selecting rows" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { MultiSelectTableExample },
+      template: `<MultiSelectTableExample></MultiSelectTableExample>`
+    })}
+  </Story>
+</Canvas>
+
+### Multiselection with checkboxes
+
+This composable supports multiselection mode for checkboxes.
+Initialize it with the second argument set to `true`.
+
+See the code in the [examples](https://github.com/archilogic-com/ui-components/blob/main/src/examples/MultiSelectTableExample.vue) for more details on how to use our checkbox and table components together in this mode.
+
+## Arrow Key Navigation
+
+The table component is relying on `ArrowKeyFocusable` helper component internally to handle keyboard navigation.
+Table body is just a single tab stop (unless cells include focusable elements), and you can navigate to a specific row by pressing arrow down/up keys.
+Row selection works similarly as with the mouse navigation, e.g. pressing the space bar when the desired row is focused will select it.
+
+## Expandable rows
+
+If you want to display some nested data, `<a-table-row>` has a `#nested` slot and exposes special scoped slot properties on both of its slots.
+The `#nested` slot expects regular table rows, i.e. `<a-table-row>` elements.
+To control when they are collapsed and expanded, use `toggleRow` method.
+If you pass this method along with `expanded` prop to `<a-table-cell>` component, a button with a chevron icon will be rendered.
+Use it like this:
+
+```html
+<a-table>
+  <!-- default slot -->
+  <a-table-row>
+    <!-- default slot -->
+    <template #default="{ expanded, toggleRow }">
+      <a-table-cell :expanded="expanded" :toggle-callback="toggleRow">
+        <!-- default slot -->
+        …
+      </a-table-cell>
+    </template>
+    <!-- nested slot -->
+    <template #nested>
+      <a-table-row>…</a-table-row>
+    </template>
+  </a-table-row>
+</a-table>
+```
+
+If you're using `v-for`, but do not wish to show a toggle button for some of the rendered rows, pass `undefined` instead:
+
+```html
+<a-table-row v-for="row in rows">
+  <template #default="{ expanded, toggleRow }">
+    <a-table-cell
+      :expanded="row.nestedItems.length ? expanded : undefined"
+      :toggle-callback="toggleRow">
+      …
+    </a-table-cell>
+  </template>
+  <template #nested>
+    <a-table-row v-for="item in row.nestedItems">…</a-table-row>
+  </template>
+</a-table-row>
+```
+
+<Canvas>
+  <Story name="expandable" parameters={{ layout: 'fullscreen' }}>
+    {() => ({
+      components: { ATable, ATableHeader, ATableCell, ATableRow },
+      template: `
+        <a-table>
+            <template #header>
+                <a-table-header>Space</a-table-header>
+                <a-table-header>Floor Area</a-table-header>
+                <a-table-header>Seats</a-table-header>
+            </template>
+            <a-table-row>
+                <template #default="{ expanded, toggleRow }">
+                    <a-table-cell 
+                      :expanded="expanded"
+                      :toggle-callback="toggleRow"
+                    >Storage</a-table-cell>
+                    <a-table-cell>235</a-table-cell>
+                    <a-table-cell>0</a-table-cell>
+                </template>
+                <template #nested>
+                  <a-table-row>
+                      <a-table-cell colspan="3" class="pl-10">Plastic chair</a-table-cell>
+                  </a-table-row>
+                  <a-table-row>
+                      <a-table-cell colspan="3" class="pl-10">Plastic chair</a-table-cell>
+                  </a-table-row>
+                </template>
+            </a-table-row>
+            <a-table-row>
+                <template #default="{ expanded, toggleRow }">
+                    <a-table-cell 
+                      :expanded="expanded"
+                      :toggle-callback="toggleRow"
+                    >Office</a-table-cell>
+                    <a-table-cell>450</a-table-cell>
+                    <a-table-cell>4</a-table-cell>
+                </template>
+                <template #nested>
+                  <a-table-row>
+                      <a-table-cell colspan="3" class="pl-10">Desk 160x80</a-table-cell>
+                  </a-table-row>
+                  <a-table-row>
+                      <a-table-cell colspan="3" class="pl-10">Macbook Air</a-table-cell>
+                  </a-table-row>
+                </template>
+            </a-table-row>
+        </a-table>
+      `
+    })}
+  </Story>
+</Canvas>
+
+### Toggling the row programmatically
+
+You can expand and collapse each expandable row programmatically by calling the `toggleRow` method on the element itself, and passing a boolean argument.
+
+```js
+// in your component's code
+const rowRef = ref(null)
+
+rowRef.toggleRow(true) // expand
+rowRef.toggleRow(false) // collapse
+```
+
+```html
+<!-- in your template: -->
+<a-table-row ref="rowRef" />
+```
+
+## Accessing `<tr>` ref
+
+ATableRow component exposes a ref to the `<tr>` element for low-level DOM manipulation.
+It's accessed under the `trRef` property of the component reference.
+E.g.:
+
+```js
+const rowRef = ref(null)
+const doMagic = () => {
+  doMagicWithDomElements(rowRef.value.trRef)
+}
+return { doMagic, rowRef }
+```
+
+```html
+<!-- in your template: -->
+<a-table-row ref="rowRef" />
+<a-button @click="doMagic">Magic</a-button>
+```

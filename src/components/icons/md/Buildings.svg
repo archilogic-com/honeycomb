@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22 10H23V9H10V10H11V22H10V23H15V20H18V23H23V22H22V10Z" fill="currentColor" />
+    <path d="M17 23V21H16V23H17Z" fill="currentColor" />
+    <path d="M15 11H13V13H15V11Z" fill="white" />
+    <path d="M15 14H13V16H15V14Z" fill="white" />
+    <path d="M15 17H13V19H15V17Z" fill="white" />
+    <path d="M20 11H18V13H20V11Z" fill="white" />
+    <path d="M20 14H18V16H20V14Z" fill="white" />
+    <path d="M20 17H18V19H20V17Z" fill="white" />
+</svg>

@@ -1,0 +1,118 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ACard, ALogo } from '../components'
+import floorplanUrl from './assets/floorplan_thumbnail.jpeg'
+
+<Meta title="Components/Card" component={ACard} />
+
+export const Template = args => ({
+  components: { ACard, ALogo },
+  setup() {
+    return { args, floorplanUrl }
+  },
+  template: `
+  <ACard v-bind="args" :class="args.classes || 'w-[200px] p-4 flex-col items-center'">${
+    args.default || '<img :src="floorplanUrl" />Demo Floor'
+  }
+  </ACard>`
+})
+
+# Card
+
+```html
+<a-card href="/somewhere">...</a-card>
+<ACard @click="handleClick">...</ACard>
+```
+
+<ArgsTable of={ACard} />
+
+## Rendering a button (HTMLButtonElement)
+
+If you attach a click handler to the Card component
+it will render as a `button` and will have interactive styles applied to it.
+
+<Canvas>
+  <Story
+    name="button"
+    args={{
+      onClick: () => {
+        console.log('clicked')
+      }
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Rendering a link (HTMLAnchorElement)
+
+If the `href` attribute is set, the component will render as an `a` tag and will have interactive styles applied to it.
+
+<Canvas>
+  <Story
+    name="link"
+    args={{
+      href: '#'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Usage with Vue Router
+
+To use `a-link` as a link with a `router-link` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-card :href="href" @click="navigate">...</a-card>
+</router-link>
+```
+
+## Rendering a generic non-interactive element (HTMLDivElement)
+
+Without an `href` attribute nor a click handler, the Card component renders as a generic `div` element without interactive styles.
+
+<Canvas>
+  <Story name="div">{Template.bind({})}</Story>
+</Canvas>
+
+## Active (selected) state
+
+To indicate the card is in an active (selected) state, set an `active` prop.
+
+<Canvas>
+  <Story
+    name="active"
+    args={{
+      onClick: () => {
+        console.log('clicked')
+      },
+      active: true
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Custom styles and card content
+
+The Card component has only the minimal necessary styles applied to it.
+This means you have to add sizing styles and have freedom in adding card content.
+
+<Canvas isColumn="true">
+  <Story
+    name="styling"
+    args={{
+      onClick: () => {},
+      classes: 'w-[400px] flex-col-reverse items-center overflow-hidden'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="content"
+    args={{
+      onClick: () => {},
+      classes: 'flex',
+      default:
+        '<div class="flex bg-white p-4"><div class="heading-sm">I can be anything</div><a-logo></a-logo></div>'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

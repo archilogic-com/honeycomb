@@ -1,0 +1,156 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { ref } from 'vue'
+import { AToggle } from '../components'
+
+<Meta title="Components/Toggle" component={AToggle} argTypes={{}} />
+
+export const Template = args => ({
+  components: { AToggle },
+  setup() {
+    const pressedState = ref(args.value)
+    return { args, pressedState }
+  },
+  template: `<AToggle v-bind="args" v-model="pressedState">${args.default || ''}</AToggle>`
+})
+
+# Toggle (Switch)
+
+## Usage
+
+```html
+<a-toggle v-model="yourValue" labelId="example-id" />
+<AToggle v-model="yourValue" labelId="example-id" />
+```
+
+`AToggle` renders an HTML button element with an `aria-pressed` attribute, which makes it
+a [toggle button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#toggle_buttons).
+
+<ArgsTable of={AToggle} />
+
+### Using with v-model (recommended)
+
+```html
+<a-toggle v-model="yourValue" labelId="example-id" />
+```
+
+<Canvas columns={2}>
+  <Story name="toggle on" args={{ value: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="toggle off" args={{ value: false }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+This component is designed as a **controlled** component, meaning that it does not update its own state,
+but relies on the value provided by `v-model` instead. The `v-model` value is automatically updated on click events
+(including those triggered by `space` and `enter` keys).
+See [Vue docs on v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model).
+
+### Using with event listener
+
+For more granular control over model value state changes,
+use the `modelValue` prop and the `update:modelValue` event.
+
+```html
+<!-- in your template -->
+<a-toggle :model-value="toggleState" @update:model-value="handleChange" labelId="example-id" />
+```
+
+```js
+// in your component's setup
+const toggleState = ref(true)
+const handleChange = newValue => {
+  toggleState.value = newValue
+}
+```
+
+## Disabling the toggle
+
+To disable the toggle, just add a `disabled` attribute.
+
+<Canvas>
+  <Story name="toggle on disabled" args={{ value: true, disabled: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="toggle off disabled" args={{ value: false, disabled: true }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Labelling the toggle
+
+`<a-toggle>` can be used inside the `<a-input-group>` component to create consistently styled
+labelled inputs. For more details, follow the [InputGroup documentation](path=/docs/components-inputgroup--label).
+
+However, a toggle switch component can be used in a variety of UIs, with variously designed labels.
+Please make sure to provide your text label element with a unique `id` and pass it as the `labelId` prop to `<a-toggle>`.
+E.g.:
+
+```html
+<div>
+  <p id="email-notifications-toggle">Email Notifications</p>
+  <a-toggle v-model="toggleState" labelId="email-notifications-toggle" />
+</div>
+```
+
+<Canvas>
+  <Story name="toggle with label">
+    {() => ({
+      components: { AToggle },
+      setup() {
+        const toggleState = ref(true)
+        return { toggleState }
+      },
+      template: `
+      <div class="flex items-center">
+        <p id="email-notifications" class="body-lg-500 pr-1">Email notifications</p>
+        <a-toggle v-model="toggleState" labelId="email-notifications" />
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+If appropriate, add a click event listener to the labelling element to update to toggle state as well.
+
+```html
+<div>
+  <p id="clickable-label" @click="handleChange">
+    Clicking on this label will also switch the toggle.
+  </p>
+  <a-toggle v-model="toggleState" labelId="clickable-label" />
+</div>
+```
+
+<Canvas>
+  <Story name="toggle with clickable label">
+    {() => ({
+      components: { AToggle },
+      setup() {
+        const toggleState = ref(true)
+        const handleChange = newValue => {
+          toggleState.value = !toggleState.value
+        }
+        return { handleChange, toggleState }
+      },
+      template: `
+      <div class="flex items-center">
+        <p id="clickable-label"  class="body-lg-500 pr-1 cursor-pointer" @click="handleChange">Clicking on this label will also switch the toggle</p>
+        <a-toggle v-model="toggleState" labelId="clickable-label" />
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
+### Screen reader only label
+
+In some case the toggle may not have a visible labelling element (e.g. in a table layout).
+In that case it is advised to provide an invisible labelling element with a tailwind class `sr-only`:
+
+```html
+<div>
+  <!-- this label will not be visible -->
+  <p id="my-toggle" class="sr-only">My Toggle</p>
+  <a-toggle v-model="toggleState" labelId="my-toggle" />
+</div>
+```

@@ -1,0 +1,110 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { AIcon } from '../components'
+import icons, { DEPRECATED_ICONS } from '../components/icons'
+
+<Meta
+  title="Components/Icons"
+  component={AIcon}
+  argTypes={{
+    size: {
+      options: ['sm', 'md', 'lg', 'other'],
+      control: 'radio'
+    }
+  }}
+/>
+
+export const Template = args => ({
+  components: { AIcon },
+  setup() {
+    return { args, icons, DEPRECATED_ICONS }
+  },
+  template: `
+  <div class="grid grid-cols-5">
+    <div class="m-4 flex items-center text-navy w-max" v-for="(icon, name) in icons.${args.size}">
+      <a-icon :size="args.size" :name="name" />
+      <span class="ml-3 body-md">{{name}}</span>
+      <span v-if="DEPRECATED_ICONS[args.size].includes(name)" class="text-error body-xs-600 mx-1">(deprecated)</span>
+    </div>
+  </div>
+  `
+})
+
+# Icons
+
+<ArgsTable of={AIcon} />
+
+## Icons sm (16x16px)
+
+```html
+<a-icon size="sm" name="Folder" />
+```
+
+<Canvas>
+  <Story name="small" args={{ size: 'sm' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Icons md (32x32px)
+
+```html
+<a-icon name="Folder" />
+```
+
+<Canvas>
+  <Story name="medium" args={{ size: 'md' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Icons lg (40x40px)
+
+```html
+<a-icon size="lg" name="Burger" />
+```
+
+<Canvas>
+  <Story name="large" args={{ size: 'lg' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Icons other (various sizes)
+
+```html
+<a-icon size="other" name="Add" />
+```
+
+<Canvas>
+  <Story name="other" args={{ size: 'other' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Icon colors
+
+The icons' `fill` or `stroke` attribute is set to `currentColor` so they will match the parent container's text color.
+
+```html
+<div class="text-error">
+  <a-icon name="Info" />
+  This is a red error message.
+</div>
+```
+
+<Canvas>
+  <Story name="change color">
+    {() => ({
+      components: { AIcon },
+      template: `<div class="flex items-center text-error"><a-icon size="other" name="warning"/>This is a red error message.</div>`
+    })}
+  </Story>
+</Canvas>
+
+## Troubleshooting
+
+If you don't see the correct icon, please double check the provided `size` and `name` props:
+together they form the path, from which the requested icon component is loaded.
+
+If the icon does not exist, an error will be printed to the console
+along with the list of all available icons in each size.

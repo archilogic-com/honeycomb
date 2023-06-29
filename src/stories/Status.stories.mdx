@@ -1,0 +1,94 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { AStatus } from '../components'
+
+<Meta title="Components/Status" component={AStatus} />
+
+export const Template = args => ({
+  components: { AStatus },
+  setup() {
+    return { args }
+  },
+  template: `
+  <AStatus v-bind="args">${args.default || ''}
+  </AStatus>`
+})
+
+# Status
+
+```html
+<a-status>completed</a-status>
+<AStatus>completed</AStatus>
+```
+
+`AStatus` should be used as a visual indicator of an item's status/stage/phase for quick recognition.
+
+<ArgsTable of={AStatus} />
+
+## Status variants
+
+Status comes in **4 stylistic variants**:
+`primary`, `success`, `neutral` and `danger`.
+
+```html
+<!-- variant="neutral" is the default and can be omitted -->
+<a-status>pending</a-status>
+<a-status variant="primary">pro</a-status>
+<a-status variant="success">completed</a-status>
+<a-status variant="neutral">pending</a-status>
+<a-status variant="danger">rejected</a-status>
+```
+
+<Canvas>
+  <Story
+    name="neutral"
+    args={{
+      default: 'pending'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="primary"
+    args={{
+      variant: 'primary',
+      default: 'pro'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success"
+    args={{
+      default: 'completed',
+      variant: 'success'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="danger"
+    args={{
+      default: 'rejected',
+      variant: 'danger'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Using the content prop
+
+```html
+<a-status content="in progress"></a-status>
+```
+
+An alternative way to set the content text is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are used, the slot content takes precedence.
+
+The following Status component is rendered with the `content` prop instead of slot content.
+
+<Canvas>
+  <Story
+    name="w/ content prop"
+    args={{
+      content: 'in progress'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
