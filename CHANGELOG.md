@@ -1,5 +1,18 @@
 # Changelog
 
+# [3.0.0-beta.3](https://github.com/archilogic-com/ui-components/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2023-06-29)
+
+
+### Bug Fixes
+
+* **dialog, panel:** fix vertical overflow ([#330](https://github.com/archilogic-com/ui-components/issues/330)) ([a535a4b](https://github.com/archilogic-com/ui-components/commit/a535a4b46b30cd8f794eee2bf40492a68baaccba))
+* **textinput:** only pass css attrs to hidden div ([#331](https://github.com/archilogic-com/ui-components/issues/331)) ([81dea60](https://github.com/archilogic-com/ui-components/commit/81dea60a3e732326464c224f3533397019c9b527))
+
+
+### Features
+
+* **popup, combobox:** combobox popup  Al 4431 ([#329](https://github.com/archilogic-com/ui-components/issues/329)) ([46d7891](https://github.com/archilogic-com/ui-components/commit/46d78917bd0ef0eee0506c8982911deba9564e1f))
+
 ## [2.1.2](https://github.com/archilogic-com/ui-components/compare/v2.1.1...v2.1.2) (2023-06-29)
 
 
@@ -20,6 +33,32 @@
 ### Features
 
 * **popup, combobox:** combobox popup  Al 4431 ([#329](https://github.com/archilogic-com/ui-components/issues/329)) ([46d7891](https://github.com/archilogic-com/ui-components/commit/46d78917bd0ef0eee0506c8982911deba9564e1f))
+
+
+
+# [3.0.0-beta.2](https://github.com/archilogic-com/ui-components/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2023-06-22)
+
+
+### Features
+
+* **button:** remove Boolean type for icon prop ([#323](https://github.com/archilogic-com/ui-components/issues/323)) ([409a080](https://github.com/archilogic-com/ui-components/commit/409a080d98005f6802f01c83295efc2c391a6ea3))
+
+### BREAKING CHANGES
+
+* removed deprecated Boolean type for icon prop in Button component
+
+# [3.0.0-beta.1](https://github.com/archilogic-com/ui-components/compare/v2.0.6...v3.0.0-beta.1) (2023-06-20)
+
+
+### Features
+
+* remove useSorting function ([#279](https://github.com/archilogic-com/ui-components/issues/279)) ([ae01228](https://github.com/archilogic-com/ui-components/commit/ae012288646f5b43db1f0fc2d83b313d61aede68))
+
+
+### BREAKING CHANGES
+
+* removed useSorting composable
+(now available via the private @archilogic/app-kit package)
 
 ## [2.0.6](https://github.com/archilogic-com/ui-components/compare/v2.0.5...v2.0.6) (2023-06-07)
 

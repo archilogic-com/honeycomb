@@ -40,15 +40,12 @@ export default defineComponent({
       default: 'md'
     },
     /**
-     * deprecated usage: Boolean
-     * removes horizontal padding, use size `auto` instead
-     *
      * recommended usage: icon name as a String
      * the icon size will be inferred from the button size prop
      */
     icon: {
-      type: [Boolean, String],
-      default: false
+      type: String,
+      default: ''
     },
     /**
      * whether the button is in a loading state
@@ -81,15 +78,6 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots }) {
-    if (props.icon === true) {
-      console.warn(
-        `Deprecation notice: The recommended usage of the prop "icon" has changed.
-        Provide a string icon name along with size "sm" or "lg" for icon buttons
-        (instead of the icon markup in the default slot).
-        For flexible dimensions with no extra padding use the size "auto" instead.`
-      )
-    }
-
     const tagName = computed(() => {
       return attrs.href ? 'a' : 'button'
     })
@@ -97,12 +85,7 @@ export default defineComponent({
       return tagName.value === 'button' && (props.disabled || props.loading)
     })
 
-    const iconName = computed(() => {
-      if (typeof props.icon === 'string' && props.icon.length) {
-        return props.icon
-      }
-      return undefined
-    })
+    const iconName = computed(() => (props.icon.length ? props.icon : undefined))
 
     const iconSize = computed(() => {
       if (props.size !== 'auto') {
