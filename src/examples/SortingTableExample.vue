@@ -1,7 +1,24 @@
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useSorting } from '../composables/sorting'
+import { defineComponent, Ref, ref, computed } from 'vue'
 import { ATable, ATableRow, ATableCell, ATableHeader } from '../components'
+
+type Row = {
+  id: string
+  name: string
+  lastUpdate: string
+  area: number
+  label: string
+}
+
+function getRow(index: number): Row {
+  return {
+    id: '' + index,
+    name: 'Floor ' + index,
+    lastUpdate: `Today, 3:2${index - 1} PM`,
+    area: 2430 + index + 2,
+    label: 'Label ' + index
+  }
+}
 
 export default defineComponent({
   name: 'SortingTableExample',
@@ -13,27 +30,46 @@ export default defineComponent({
   },
 
   setup() {
-    let lastKey = 0
-    function getRow() {
-      lastKey++
+    const rows: Row[] = [...Array(3)].map((x, i) => getRow(i + 1))
+    const sortedBy: Ref<keyof Row> = ref('name')
+    const sortDirection: Ref<'asc' | 'desc'> = ref('asc')
+    const sortedRows = computed(() => {
+      const rowsCopy = rows.map(r => r)
+      // sorting the mapped array containing the reduced values
+      return rowsCopy.sort((a, b) => {
+        let first
+        let last
+        if (sortDirection.value === 'asc') {
+          first = a[sortedBy.value]
+          last = b[sortedBy.value]
+        } else {
+          last = a[sortedBy.value]
+          first = b[sortedBy.value]
+        }
 
-      return {
-        id: '' + lastKey,
-        name: 'Floor ' + lastKey,
-        lastUpdate: `Today, 3:2${lastKey} PM`,
-        area: 2430 + lastKey,
-        label: 'Label ' + lastKey
+        if (first > last) {
+          return 1
+        }
+        if (first < last) {
+          return -1
+        }
+        return 0
+      })
+    })
+
+    const updateSort = (key: keyof Row) => {
+      if (sortedBy.value === key) {
+        sortDirection.value = sortDirection.value === 'desc' ? 'asc' : 'desc'
+      } else {
+        sortedBy.value = key
       }
     }
-    const rows = [getRow(), getRow(), getRow()]
-
-    const { getSortIndicator, updateSortType, sortData } = useSorting({ sortInitial: 'name' })
-    const sortedRows = computed(() => sortData(rows))
 
     return {
-      getSortIndicator,
-      updateSortType,
-      sortedRows
+      sortedRows,
+      sortedBy,
+      sortDirection,
+      updateSort
     }
   }
 })
@@ -41,15 +77,19 @@ export default defineComponent({
 <template>
   <a-table>
     <template #header>
-      <a-table-header :sorted-by="getSortIndicator('name')" @click="updateSortType('name')">
+      <a-table-header
+        :sorted-by="sortedBy === 'name' ? sortDirection : ''"
+        @click="updateSort('name')">
         Name
       </a-table-header>
       <a-table-header
-        :sorted-by="getSortIndicator('lastUpdate')"
-        @click="updateSortType('lastUpdate')">
+        :sorted-by="sortedBy === 'lastUpdate' ? sortDirection : ''"
+        @click="updateSort('lastUpdate')">
         Last Update
       </a-table-header>
-      <a-table-header :sorted-by="getSortIndicator('area')" @click="updateSortType('area')">
+      <a-table-header
+        :sorted-by="sortedBy === 'area' ? sortDirection : ''"
+        @click="updateSort('area')">
         Area
       </a-table-header>
       <a-table-header :sortable="false">Label</a-table-header>

@@ -434,7 +434,23 @@ You can further customize the font size and weight by adding a desired typograph
 Table headers are rendered as buttons by default to indicate that the table can be sorted.
 However, the table itself does not handle the sorting, as it does not hold any internal state.
 
-See the simplified example sorting code in the [examples](https://github.com/archilogic-com/ui-components/blob/main/src/examples/MultiSelectTableExample.vue).
+```html
+<template>
+  <a-table>
+    <template #header>
+      <a-table-header sortedBy="desc">Name</a-table-header>
+      …
+    </template>
+    <a-table-row v-for="row in rows" :key="row.id">
+      <a-table-cell>{{ row.name }}</a-table-cell>
+      …
+    </a-table-row>
+  </a-table>
+</template>
+```
+
+Below is a simple example of the table component with added sorting functionality.
+Example [source code](https://github.com/archilogic-com/ui-components/blob/main/src/examples/SortingTableExample.vue)
 
 <Canvas>
   <Story name="sorting rows" parameters={{ layout: 'fullscreen' }}>
