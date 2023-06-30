@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/archilogic-com/honeycomb/compare/v2.1.2...v2.1.3) (2023-06-30)
+
+
+### Bug Fixes
+
+* **dialog:**  click inside panel not close dialog ([007e2e9](https://github.com/archilogic-com/honeycomb/commit/007e2e9da59785dc5a4fa86667a7e822a1cb1ebb))
+
 ## [2.1.2](https://github.com/archilogic-com/ui-components/compare/v2.1.1...v2.1.2) (2023-06-29)
 
 
