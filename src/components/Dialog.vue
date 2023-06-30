@@ -69,7 +69,7 @@ export default defineComponent({
           -->
         <slot></slot>
       </HlDialogPanel>
-      <HlDialogPanel v-else as="template">
+      <HlDialogPanel v-else class="contents">
         <APanel class="m-[5rem] min-w-[20rem] overflow-auto">
           <!-- this snippet passes up all the wrapper component's slots -->
           <template v-for="(_, slot) in $slots" #[slot]="scope">
