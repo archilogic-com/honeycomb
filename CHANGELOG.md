@@ -1,5 +1,17 @@
 # Changelog
 
+# [3.0.0](https://github.com/archilogic-com/honeycomb/compare/v2.1.2...v3.0.0) (2023-06-30)
+
+
+### Features
+
+* remove sorting composable and deprecated prop type in button component ([fcf6de7](https://github.com/archilogic-com/honeycomb/commit/fcf6de7dc685ed8ae6cef86b2fe26dfc6ccc40c7)), closes [#279](https://github.com/archilogic-com/honeycomb/issues/279) [#323](https://github.com/archilogic-com/honeycomb/issues/323)
+
+
+### BREAKING CHANGES
+
+*
+
 # [3.0.0-beta.3](https://github.com/archilogic-com/ui-components/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2023-06-29)
 
 
