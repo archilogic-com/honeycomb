@@ -8,8 +8,4 @@ jobs:
     uses: 'archilogic-com/actions/.github/workflows/backup-repo.yml@main'
     with:
       TARGET_REPO_URL: 'honeycomb'
-    secrets:
-      CODECOMMIT_SSH_PRIVATE_KEY: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
-      CODECOMMIT_SSH_PRIVATE_KEY_ID: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.BACKUP_AWS_ACCES_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.BACKUP_AWS_SECRET_ACCESS_KEY }}
+    secrets: inherit
