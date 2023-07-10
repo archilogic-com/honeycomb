@@ -55,7 +55,7 @@
     "vue": "^3.2.27"
   },
   "dependencies": {
-    "@vueuse/core": "^10.2.0",
+    "@vueuse/core": "^10.2.1",
     "tabbable": "^6.2.0"
   },
   "devDependencies": {
