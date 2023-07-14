@@ -82,11 +82,11 @@
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-vue": "^4.2.3",
-    "@vitest/ui": "^0.32.4",
+    "@vitest/ui": "^0.33.0",
     "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "autoprefixer": "^10.4.13",
-    "chromatic": "^6.19.8",
+    "chromatic": "^6.19.9",
     "eslint": "^8.43.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.15.1",
@@ -96,11 +96,11 @@
     "prettier-plugin-tailwindcss": "^0.2.2",
     "semantic-release": "^19.0.2",
     "typescript": "^5.1.6",
-    "vite": "^4.3.9",
+    "vite": "^4.4.2",
     "vite-plugin-dts": "3.0.3",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.32.2",
-    "vue-tsc": "^1.8.3"
+    "vue-tsc": "^1.8.4"
   },
   "prettier": "@archilogic/prettier"
 }
