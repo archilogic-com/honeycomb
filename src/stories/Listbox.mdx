@@ -230,3 +230,16 @@ via `panelClasses` prop. Remember to add `overflow-auto` along with your height 
 <Canvas>
   <Story id="components-listbox--panel-classes" />
 </Canvas>
+
+### Inside a container with overflow-auto
+
+Set the `escapeOverflow` prop to `true` to render the options panel outside the flow of the container.
+A typical use case would be a Listbox inside a Dialog.
+
+```html
+<a-listbox escape-overflow … />
+```
+
+<Canvas>
+  <Story id="components-listbox--overflow-container" />
+</Canvas>

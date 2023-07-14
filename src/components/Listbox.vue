@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref, computed } from 'vue'
 import { Listbox, ListboxButton } from '@headlessui/vue'
 
 import type { Option } from './Option.vue'
@@ -79,10 +79,20 @@ export default defineComponent({
     inline: {
       type: Boolean,
       default: false
+    },
+    /**
+     * allow the options panel to be rendered outside the flow of a container that has content that needs scrolling
+     */
+    escapeOverflow: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue'],
   setup() {
+    const listboxButton = ref()
+    const optionsPanelWidth = computed(() => listboxButton.value?.el.offsetWidth)
+
     // hack together a tab-out behavior for the listbox
     const handleTab = (event: KeyboardEvent) => {
       if (event.key === 'Tab') {
@@ -91,7 +101,7 @@ export default defineComponent({
       }
     }
 
-    return { handleTab }
+    return { handleTab, listboxButton, optionsPanelWidth }
   },
   computed: {
     flatOptions() {
@@ -117,8 +127,9 @@ export default defineComponent({
 })
 </script>
 <template>
-  <Listbox v-model="model" as="div" class="group relative">
+  <Listbox v-model="model" as="div" class="group" :class="{ 'relative': !escapeOverflow }">
     <ListboxButton
+      ref="listboxButton"
       class="a-text-input flex items-center group-focus-within:a-text-input-focus"
       :class="[
         size === 'md' ? 'a-text-input--md' : 'a-text-input--sm',
@@ -152,6 +163,8 @@ export default defineComponent({
       :class="panelClasses"
       :direction="direction"
       :inline="inline"
+      :escape-overflow="escapeOverflow"
+      :width="optionsPanelWidth"
       @keyup="handleTab">
       <slot></slot>
     </OptionsPanel>

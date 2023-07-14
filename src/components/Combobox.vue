@@ -99,6 +99,13 @@ export default defineComponent({
     inline: {
       type: Boolean,
       default: false
+    },
+    /**
+     * allow the options panel to be rendered outside the flow of a container that has content that needs scrolling
+     */
+    escapeOverflow: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'update:query'],
@@ -110,6 +117,9 @@ export default defineComponent({
     const query = ref('')
 
     const inputRef = ref()
+
+    const comboboxButton = ref()
+    const optionsPanelWidth = computed(() => comboboxButton.value?.el.offsetWidth)
 
     const selectInputValue = () => {
       if (inputRef.value) {
@@ -224,16 +234,19 @@ export default defineComponent({
       singleModelValueColor,
       isInputFocused,
       placeholderString,
-      handleDelete
+      handleDelete,
+      comboboxButton,
+      optionsPanelWidth
     }
   }
 })
 </script>
 <template>
-  <Combobox v-model="model" as="div" class="relative" :multiple="isMultiSelect">
+  <Combobox v-model="model" as="div" :class="{ 'relative': !escapeOverflow }" :multiple="isMultiSelect">
     <!-- @slot  named `#input` slot. Requires ComboboxInput component from headless-ui to work, and optionally ComboboxButton. Slot props: `query<string>`, calculated `displayValue<string>`, and `updateQuery<(value:string)=>void>` callback to be used with text input v-model update event-->
     <slot name="input" :query="query" :display-value="displayValue" :update-query="updateQuery">
       <ComboboxButton
+        ref="comboboxButton"
         as="div"
         class="group a-text-input-base relative flex items-center py-0"
         :class="[
@@ -298,7 +311,9 @@ export default defineComponent({
       :class="panelClasses"
       :direction="direction"
       :multi="isMultiSelect"
-      :inline="inline">
+      :inline="inline"
+      :escape-overflow="escapeOverflow"
+      :width="optionsPanelWidth">
       <template #default>
         <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
         <slot :filtered-options="filteredOptions"></slot>
