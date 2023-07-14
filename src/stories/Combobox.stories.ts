@@ -822,3 +822,18 @@ MultiselectOptionsWithColorSelected.args = {
   initValue: []
 }
 MultiselectOptionsWithColorSelected.play = selectOption
+
+const TemplateOverflow: StoryFn = () => ({
+  components: { ACombobox },
+  template: `
+    <div class="relative h-[15rem]">
+      <div class="border border-sanfran h-16 overflow-auto w-[20rem] flex flex-col px-2">
+        <div class="text-sanfran">Overflow container</div>
+        <ACombobox escape-overflow class="flex-1" model-value="" :options="[{ value: 0, label: 'Graphic' }, { value: 1, label: 'Rendered' }, { value: 2, label: 'Black and white' }]" />
+      </div>
+    </div>`
+})
+
+export const OverflowContainer = TemplateOverflow.bind({})
+OverflowContainer.play = openCombobox
+

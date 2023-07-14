@@ -377,3 +377,17 @@ OptionsWithColorSelected.args = {
   initValue: 'test'
 }
 OptionsWithColorSelected.play = openListbox
+
+const TemplateOverflow: StoryFn = () => ({
+  components: { AListbox },
+  template: `
+    <div class="relative h-[15rem]">
+      <div class="border border-sanfran h-16 overflow-auto w-[20rem] flex flex-col px-2">
+        <div class="text-sanfran">Overflow container</div>
+        <AListbox escape-overflow class="flex-1" :options="[{ value: 0, label: 'Graphic' }, { value: 1, label: 'Rendered' }, { value: 2, label: 'Black and white' }]" />
+      </div>
+    </div>`
+})
+
+export const OverflowContainer = TemplateOverflow.bind({})
+OverflowContainer.play = openListbox

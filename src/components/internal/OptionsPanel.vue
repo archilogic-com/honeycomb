@@ -58,6 +58,20 @@ export default defineComponent({
     inline: {
       type: Boolean,
       default: false
+    },
+    /**
+     * allow the options panel to be rendered outside the flow of a container that has content that needs scrolling
+     */
+    escapeOverflow: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * width of the panel in pixels, to be provided when escapeOverflow is true
+     */
+    width: {
+      type: Number,
+      default: 0
     }
   },
   setup() {
@@ -75,11 +89,15 @@ export default defineComponent({
       {
         'bottom-full': direction === 'up',
         'my-1': size === 'md' && !inline,
-        'mt-[3px] mb-1': size === 'sm' && !inline
-      },
-      size === 'sm' ? 'body-sm' : 'body-md',
-      inline ? 'mt-2 w-unset' : ' a-panel-sm absolute left-0 z-10 min-w-full max-w-full py-2'
-    ]">
+        'mt-[3px] mb-1': size === 'sm' && !inline,
+        'body-sm': size === 'sm',
+        'body-md': size === 'md',
+        'mt-2 w-unset': inline && !escapeOverflow,
+        'a-panel-sm absolute z-10 py-2': !inline && escapeOverflow,
+        'a-panel-sm absolute left-0 z-10 min-w-full max-w-full py-2': !inline && !escapeOverflow
+      }
+    ]"
+    :style="escapeOverflow && width && `width: ${width}px`">
     <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
     <slot>
       <template v-if="areOptionsGrouped(options)">
