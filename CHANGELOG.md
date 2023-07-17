@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.2.0](https://github.com/archilogic-com/honeycomb/compare/v2.1.3...v2.2.0) (2023-07-17)
+
+
+### Bug Fixes
+
+* **listbox+combobox:** render options panel outside of scrollable container AL-4547 ([654675e](https://github.com/archilogic-com/honeycomb/commit/654675ea31e820862372b74d73b2204e210b0376))
+
+
+### Features
+
+* **infra:** Switch to using AWS CodeCommit for repository backup ([#15](https://github.com/archilogic-com/honeycomb/issues/15)) ([cc7c560](https://github.com/archilogic-com/honeycomb/commit/cc7c560285bd7317bc6d2ac509ef35cffefe9552))
+
 ## [2.1.3](https://github.com/archilogic-com/honeycomb/compare/v2.1.2...v2.1.3) (2023-06-30)
 
 
