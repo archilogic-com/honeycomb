@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.3.0](https://github.com/archilogic-com/honeycomb/compare/v2.2.0...v2.3.0) (2023-07-19)
+
+
+### Features
+
+* **icons:** team icon ([#32](https://github.com/archilogic-com/honeycomb/issues/32)) ([9bb5bf9](https://github.com/archilogic-com/honeycomb/commit/9bb5bf95fddd781f40806b7877d55ab1f0fff9a2))
+
 # [2.2.0](https://github.com/archilogic-com/honeycomb/compare/v2.1.3...v2.2.0) (2023-07-17)
 
 
