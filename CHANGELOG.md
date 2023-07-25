@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/archilogic-com/honeycomb/compare/v2.3.0...v2.3.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* **infra:** Use local workflow for CodeCommit backup ([#35](https://github.com/archilogic-com/honeycomb/issues/35)) ([9b7e036](https://github.com/archilogic-com/honeycomb/commit/9b7e036aaffa34544f7b7532b857b72f67d91971))
+
 # [2.3.0](https://github.com/archilogic-com/honeycomb/compare/v2.2.0...v2.3.0) (2023-07-19)
 
 
