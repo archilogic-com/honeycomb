@@ -14,6 +14,10 @@ export default defineComponent({
       type: String as PropType<Colors>,
       default: ''
     },
+    borderColor: {
+      type: String as PropType<Colors>,
+      default: ''
+    },
     /**
      * size of the circle
      * 'md' | 'lg'
@@ -25,11 +29,16 @@ export default defineComponent({
   },
   setup(props) {
     const backgroundColor = computed(() =>
-      props.color ? `background-color: ${colors[props.color] || props.color}` : ''
+      props.color ? `${colors[props.color] || props.color}` : ''
     )
+    const borderColor = computed(() => props.borderColor || backgroundColor.value)
+    const styles = computed(() => ({
+      backgroundColor: backgroundColor.value,
+      border: `1px solid ${borderColor.value}`
+    }))
     return {
       colors,
-      backgroundColor
+      styles
     }
   }
 })
@@ -38,5 +47,5 @@ export default defineComponent({
   <span
     class="inline-block shrink-0 rounded-full"
     :class="size === 'md' ? 'h-2 w-2' : 'h-3 w-3'"
-    :style="backgroundColor"></span>
+    :style="styles"></span>
 </template>
