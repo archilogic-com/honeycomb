@@ -11,6 +11,9 @@ import { AColorCircle } from '../components'
     color: {
       control: 'text'
     },
+    borderColor: {
+      control: 'text'
+    },
     size: {
       control: ['md', 'lg']
     }
@@ -85,6 +88,14 @@ as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_colo
     name="html"
     args={{
       color: 'mediumSlateBlue'
+    }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="with border"
+    args={{
+      color: 'white',
+      borderColor: 'mediumblue'
     }}>
     {Template.bind({})}
   </Story>
