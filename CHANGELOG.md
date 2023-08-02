@@ -1,5 +1,19 @@
 # Changelog
 
+# [2.4.0](https://github.com/archilogic-com/honeycomb/compare/v2.3.1...v2.4.0) (2023-07-27)
+
+
+### Features
+
+* **color-circle:** add support for a border color ([#47](https://github.com/archilogic-com/honeycomb/issues/47)) ([fdb4844](https://github.com/archilogic-com/honeycomb/commit/fdb4844f2bdff3872d3ff54597ae96a4bd3d1933))
+
+## [2.3.1](https://github.com/archilogic-com/honeycomb/compare/v2.3.0...v2.3.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* **infra:** Use local workflow for CodeCommit backup ([#35](https://github.com/archilogic-com/honeycomb/issues/35)) ([9b7e036](https://github.com/archilogic-com/honeycomb/commit/9b7e036aaffa34544f7b7532b857b72f67d91971))
+
 # [2.3.0](https://github.com/archilogic-com/honeycomb/compare/v2.2.0...v2.3.0) (2023-07-19)
 
 
