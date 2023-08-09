@@ -1,7 +1,7 @@
-const { mergeConfig } = require('vite')
-const svgLoader = require('vite-svg-loader')
+import { mergeConfig } from 'vite'
+import svgLoader from 'vite-svg-loader'
 
-module.exports = {
+export default {
   async viteFinal(config) {
     // return the customized config
     return mergeConfig(config, {
@@ -16,16 +16,19 @@ module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     {
-      name: '@storybook/addon-postcss',
+      name: '@storybook/addon-styling',
       options: {
-        postcssLoaderOptions: {
-          implementation: require('postcss')
-        }
+        postCss: true
       }
     },
     '@storybook/addon-links',
     '@storybook/addon-essentials'
   ],
-  core: { builder: '@storybook/builder-vite' },
-  framework: '@storybook/vue3'
+  framework: {
+    name: '@storybook/vue3-vite',
+    options: {}
+  },
+  docs: {
+    autodocs: true
+  }
 }
