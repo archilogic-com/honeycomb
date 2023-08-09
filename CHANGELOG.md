@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.2](https://github.com/archilogic-com/honeycomb/compare/v2.4.1...v2.4.2) (2023-08-09)
+
+
+### Bug Fixes
+
+* **table:** paddings for headers ([#65](https://github.com/archilogic-com/honeycomb/issues/65)) ([9393abd](https://github.com/archilogic-com/honeycomb/commit/9393abd2c40053ee3833087dbdf981508a3043ad))
+
 ## [2.4.1](https://github.com/archilogic-com/honeycomb/compare/v2.4.0...v2.4.1) (2023-08-09)
 
 
