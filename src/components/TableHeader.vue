@@ -39,6 +39,15 @@ export default defineComponent({
     sortable: {
       type: Boolean,
       default: true
+    },
+    /**
+     * optional
+     *
+     * set slimmer padding on the table cell
+     */
+    padding: {
+      type: String as PropType<'sm' | 'md'>,
+      default: 'md'
     }
   },
   computed: {
@@ -49,7 +58,10 @@ export default defineComponent({
 })
 </script>
 <template>
-  <th class="border-b border-gray py-1 pl-2" :aria-sort="ariaSort">
+  <th
+    class="border-b border-gray py-1"
+    :class="padding === 'md' ? 'pl-2' : 'px-1'"
+    :aria-sort="ariaSort">
     <template v-if="!$slots.component">
       <button
         v-if="sortable"

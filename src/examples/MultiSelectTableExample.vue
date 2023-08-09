@@ -42,7 +42,7 @@ export default defineComponent({
 
     const rowIds = computed(() => rows.value.map(row => row.id))
 
-    const showCheckboxes = ref(false)
+    const showCheckboxes = ref(true)
 
     const { selectItem, selectedItems, selectAll, clearSelection } = useMultiSelect(
       rowIds,
@@ -78,7 +78,7 @@ export default defineComponent({
   <div>
     <a-table>
       <template #header>
-        <a-table-header v-if="showCheckboxes" class="w-10">
+        <a-table-header v-if="showCheckboxes" class="w-10" padding="sm">
           <template #component>
             <a-checkbox-select-all
               :selected-size="selectedItems.size"
