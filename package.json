@@ -57,7 +57,6 @@
   "dependencies": {
     "@vueuse/core": "^10.3.0",
     "eslint-config-prettier": "^9.0.0",
-    "storybook": "^7.2.1",
     "tabbable": "^6.2.0"
   },
   "devDependencies": {
@@ -102,6 +101,7 @@
     "react-dom": "^18.2.0",
     "react-inspector": "^6.0.2",
     "semantic-release": "^21.0.7",
+    "storybook": "^7.2.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.7",
     "vite-plugin-dts": "3.5.1",
