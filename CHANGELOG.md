@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/archilogic-com/honeycomb/compare/v2.4.0...v2.4.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **table:** checkbox padding ([#62](https://github.com/archilogic-com/honeycomb/issues/62)) ([d2cdcc1](https://github.com/archilogic-com/honeycomb/commit/d2cdcc1ca194ef9a95309edd4ac5610bd095546c))
+
 # [2.4.0](https://github.com/archilogic-com/honeycomb/compare/v2.3.1...v2.4.0) (2023-07-27)
 
 

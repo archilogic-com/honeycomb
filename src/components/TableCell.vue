@@ -65,7 +65,7 @@ export default defineComponent({
 })
 </script>
 <template>
-  <td class="h-12 max-h-12 border-b border-gray" :class="padding === 'md' ? 'pl-6' : 'pl-2'">
+  <td class="h-12 max-h-12 border-b border-gray" :class="padding === 'md' ? 'pl-6' : 'px-1'">
     <div class="flex items-center justify-start">
       <template v-if="expanded !== undefined">
         <button
