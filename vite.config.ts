@@ -37,7 +37,7 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      tsConfigFilePath: './tsconfig.build.json'
+      tsconfigPath: './tsconfig.build.json'
     }),
     svgLoader({
       svgo: false
