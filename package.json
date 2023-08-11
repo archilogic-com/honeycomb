@@ -35,8 +35,7 @@
       "require": "./dist/colors/index.cjs"
     },
     "./dist/*": "./dist/*",
-    "./tailwind/*": "./tailwind/*",
-    "./tailwind": "./tailwind/index.css",
+    "./tailwind/*": "./dist/tailwind/*",
     "./css": "./dist/style.css"
   },
   "main": "./dist/main.cjs",

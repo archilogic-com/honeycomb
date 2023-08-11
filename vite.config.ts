@@ -13,12 +13,17 @@ export default defineConfig({
     }
   },
   build: {
+    cssCodeSplit: true,
     lib: {
       entry: {
         main: path.resolve(__dirname, './src/index.ts'),
         'components/index': path.resolve(__dirname, './src/components/index.ts'),
         'composables/index': path.resolve(__dirname, './src/composables/index.ts'),
-        'colors/index': path.resolve(__dirname, './src/colors/index.ts')
+        'colors/index': path.resolve(__dirname, './src/colors/index.ts'),
+        'tailwind/tailwind-preset': path.resolve(__dirname, './tailwind/tailwind-preset.cjs'),
+        'tailwind/base': path.resolve(__dirname, './tailwind/base.cjs'),
+        'tailwind/typography': path.resolve(__dirname, './tailwind/typography.cjs'),
+        'tailwind/style': path.resolve(__dirname, './tailwind/tailwind.ts')
       }
     },
     rollupOptions: {
@@ -27,7 +32,16 @@ export default defineConfig({
         globals: {
           vue: 'Vue'
         },
-        exports: 'named'
+        assetFileNames: chunkInfo => {
+          switch (chunkInfo.name) {
+            case 'index.css':
+              return 'style.css'
+            case 'tailwind.css':
+              return 'tailwind/tailwind.css'
+            default:
+              return chunkInfo.name!
+          }
+        }
       }
     }
   },
