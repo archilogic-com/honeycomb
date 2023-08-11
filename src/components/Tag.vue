@@ -2,7 +2,7 @@
 import { defineComponent, computed, PropType } from 'vue'
 import AIcon from './Icon.vue'
 import AColorCircle from './ColorCircle.vue'
-import type { Colors } from './ColorCircle.vue'
+import type { Colors } from '../colors'
 
 export default defineComponent({
   name: 'ATag',
