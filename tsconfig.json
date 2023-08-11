@@ -13,6 +13,6 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "strictBindCallApply": true // needed for type inheritance of storybook templates
+    "strictBindCallApply": true // needed for type inheritance of storybook templates,
   }
 }
