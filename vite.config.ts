@@ -16,8 +16,9 @@ export default defineConfig({
     lib: {
       entry: {
         main: path.resolve(__dirname, './src/index.ts'),
-        components: path.resolve(__dirname, './src/components/index.ts'),
-        composables: path.resolve(__dirname, './src/composables/index.ts')
+        'components/index': path.resolve(__dirname, './src/components/index.ts'),
+        'composables/index': path.resolve(__dirname, './src/composables/index.ts'),
+        'colors/index': path.resolve(__dirname, './src/colors/index.ts')
       }
     },
     rollupOptions: {
@@ -25,7 +26,8 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue'
-        }
+        },
+        exports: 'named'
       }
     }
   },
