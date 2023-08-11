@@ -1,5 +1,19 @@
 # Changelog
 
+# [2.5.0](https://github.com/archilogic-com/honeycomb/compare/v2.4.2...v2.5.0) (2023-08-11)
+
+
+### Bug Fixes
+
+* **types:** use correct tsconfig path option for dts plugin ([c647d03](https://github.com/archilogic-com/honeycomb/commit/c647d0316c61d47583eea3bd8d7e00ef267a36e3))
+* **types:** use rootDir when generating declaration ([ba10766](https://github.com/archilogic-com/honeycomb/commit/ba10766f9783af7090a880d2c06901eb5dd084c6))
+
+
+### Features
+
+* **colors:** expose @archilogic/honeycomb/colors entrypoint ([dbbe6cf](https://github.com/archilogic-com/honeycomb/commit/dbbe6cf75833f6e63ba1fdf0811a34763b48ef6d))
+* **types:** emit component types with vue-tsc ([e6499c4](https://github.com/archilogic-com/honeycomb/commit/e6499c4e6469d2510f4f282267ded57fb3b70120))
+
 ## [2.4.2](https://github.com/archilogic-com/honeycomb/compare/v2.4.1...v2.4.2) (2023-08-09)
 
 
