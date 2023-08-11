@@ -5,7 +5,7 @@
     // this enables stricter inference for data properties on `this`
     "strict": true,
     "jsx": "preserve",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "types": ["vite/client", "vitest/globals", "mdx"],
     "baseUrl": ".",
