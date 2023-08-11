@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1-test-preset-fix.1](https://github.com/archilogic-com/honeycomb/compare/v2.5.0...v2.5.1-test-preset-fix.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* **tailwind:** include colorMap.json in tailwind folder ([3589503](https://github.com/archilogic-com/honeycomb/commit/3589503b00bd3775ff1161de60469f00ec86dbc1))
+
 # [2.5.0](https://github.com/archilogic-com/honeycomb/compare/v2.4.2...v2.5.0) (2023-08-11)
 
 
