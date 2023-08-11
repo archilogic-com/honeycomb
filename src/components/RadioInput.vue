@@ -44,7 +44,7 @@ export default defineComponent({
   <label
     class="relative flex min-h-8 min-w-8 cursor-pointer"
     :class="classAttribute"
-    :style="(style as string)">
+    :style="style as string">
     <input
       v-model="model"
       type="radio"

@@ -836,4 +836,3 @@ const TemplateOverflow: StoryFn = () => ({
 
 export const OverflowContainer = TemplateOverflow.bind({})
 OverflowContainer.play = openCombobox
-

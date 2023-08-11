@@ -242,7 +242,11 @@ export default defineComponent({
 })
 </script>
 <template>
-  <Combobox v-model="model" as="div" :class="{ 'relative': !escapeOverflow }" :multiple="isMultiSelect">
+  <Combobox
+    v-model="model"
+    as="div"
+    :class="{ relative: !escapeOverflow }"
+    :multiple="isMultiSelect">
     <!-- @slot  named `#input` slot. Requires ComboboxInput component from headless-ui to work, and optionally ComboboxButton. Slot props: `query<string>`, calculated `displayValue<string>`, and `updateQuery<(value:string)=>void>` callback to be used with text input v-model update event-->
     <slot name="input" :query="query" :display-value="displayValue" :update-query="updateQuery">
       <ComboboxButton
@@ -291,7 +295,7 @@ export default defineComponent({
             ref="inputRef"
             class="truncate bg-transparent focus:focus-none disabled:a-text-input-disabled"
             :style="`width: ${inputSize + 1}ch`"
-            :display-value="(value) => displayValue(value as string | string[])"
+            :display-value="value => displayValue(value as string | string[])"
             :placeholder="placeholderString"
             :disabled="$attrs.disabled"
             @focus="isInputFocused = true"

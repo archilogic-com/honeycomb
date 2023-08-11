@@ -69,7 +69,7 @@ export default defineComponent({
   <label
     class="relative flex min-h-8 min-w-8 cursor-pointer p-2"
     :class="[{ 'pointer-events-none': readonly }, className]"
-    :style="(style as string)">
+    :style="style as string">
     <input
       v-model="model"
       type="checkbox"
