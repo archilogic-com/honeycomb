@@ -34,6 +34,7 @@
       "import": "./dist/colors/index.js",
       "require": "./dist/colors/index.cjs"
     },
+    "./dist/*": "./dist/*",
     "./tailwind/*": "./tailwind/*",
     "./tailwind": "./tailwind/index.css",
     "./css": "./dist/style.css"
