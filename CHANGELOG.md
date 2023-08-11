@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1-test-bundle-presets.1](https://github.com/archilogic-com/honeycomb/compare/v2.5.0...v2.5.1-test-bundle-presets.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* **tailwind:** bundle tailwind files in dist ([54d694e](https://github.com/archilogic-com/honeycomb/commit/54d694e051fd93ee6b475107c319a722861a693e))
+
 # [2.5.0](https://github.com/archilogic-com/honeycomb/compare/v2.4.2...v2.5.0) (2023-08-11)
 
 
