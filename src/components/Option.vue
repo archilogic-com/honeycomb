@@ -2,7 +2,8 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { ListboxOption, ComboboxOption } from '@headlessui/vue'
 import ACheckbox from './Checkbox.vue'
-import AColorCircle, { Colors } from './ColorCircle.vue'
+import AColorCircle from './ColorCircle.vue'
+import { type Colors } from '../colors'
 
 export type Option = {
   value: string

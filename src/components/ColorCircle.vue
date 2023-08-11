@@ -1,8 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import colors from '../../tailwind/colorMap.json'
-
-export type Colors = keyof typeof colors
+import { type Colors, colorMap } from '../colors'
 
 export default defineComponent({
   name: 'AColorCircle',
@@ -29,7 +27,7 @@ export default defineComponent({
   },
   setup(props) {
     const backgroundColor = computed(() =>
-      props.color ? `${colors[props.color] || props.color}` : ''
+      props.color ? `${colorMap[props.color] || props.color}` : ''
     )
     const borderColor = computed(() => props.borderColor || backgroundColor.value)
     const styles = computed(() => ({
@@ -37,7 +35,7 @@ export default defineComponent({
       border: `1px solid ${borderColor.value}`
     }))
     return {
-      colors,
+      colorMap,
       styles
     }
   }

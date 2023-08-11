@@ -21,13 +21,18 @@
     },
     "./components": {
       "types": "./dist/components/index.d.ts",
-      "import": "./dist/components.js",
-      "require": "./dist/components.cjs"
+      "import": "./dist/components/index.js",
+      "require": "./dist/components/index.cjs"
     },
     "./composables": {
       "types": "./dist/composables/index.d.ts",
-      "import": "./dist/composables.js",
-      "require": "./dist/composables.cjs"
+      "import": "./dist/composables/index.js",
+      "require": "./dist/composables/index.cjs"
+    },
+    "./colors": {
+      "types": "./dist/colors/index.d.ts",
+      "import": "./dist/colors/index.js",
+      "require": "./dist/colors/index.cjs"
     },
     "./tailwind/*": "./tailwind/*",
     "./tailwind": "./tailwind/index.css",

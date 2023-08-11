@@ -10,3 +10,5 @@ export function registerAllComponents(app: App): void {
 export * from '@/components'
 
 export * from '@/composables'
+
+export * from '@/colors'
