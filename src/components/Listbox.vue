@@ -127,7 +127,7 @@ export default defineComponent({
 })
 </script>
 <template>
-  <Listbox v-model="model" as="div" class="group" :class="{ 'relative': !escapeOverflow }">
+  <Listbox v-model="model" as="div" class="group" :class="{ relative: !escapeOverflow }">
     <ListboxButton
       ref="listboxButton"
       class="a-text-input flex items-center group-focus-within:a-text-input-focus"
