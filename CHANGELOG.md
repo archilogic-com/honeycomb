@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/archilogic-com/honeycomb/compare/v2.5.0...v2.5.1) (2023-08-14)
+
+
+### Bug Fixes
+
+* **tailwind:** include colorMap.json in tailwind folder ([#71](https://github.com/archilogic-com/honeycomb/issues/71)) ([6e23ea1](https://github.com/archilogic-com/honeycomb/commit/6e23ea10e08166a72a975f1dffc76e1b9b1f6cd0))
+
 # [2.5.0](https://github.com/archilogic-com/honeycomb/compare/v2.4.2...v2.5.0) (2023-08-11)
 
 
