@@ -1,5 +1,5 @@
 const plugin = require('tailwindcss/plugin')
-const colors = require('../src/colors/colorMap.json')
+const colors = require('./colorMap.json')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
