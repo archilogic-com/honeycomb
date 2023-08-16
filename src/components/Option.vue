@@ -3,13 +3,13 @@ import { computed, defineComponent, PropType } from 'vue'
 import { ListboxOption, ComboboxOption } from '@headlessui/vue'
 import ACheckbox from './Checkbox.vue'
 import AColorCircle from './ColorCircle.vue'
-import { type Colors } from '../colors'
+import { type Color } from '../colors'
 
 export type Option = {
   value: string
   label: string
   disabled?: boolean
-  color?: Colors
+  color?: Color
 }
 
 export default defineComponent({
