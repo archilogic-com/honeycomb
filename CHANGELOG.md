@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.3](https://github.com/archilogic-com/honeycomb/compare/v2.5.2...v2.5.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* **types:** broaden ColorCircle's color prop type ([#80](https://github.com/archilogic-com/honeycomb/issues/80)) ([1c6bbf6](https://github.com/archilogic-com/honeycomb/commit/1c6bbf66c1c3a60ac9a81c0aa5b9e16e762cbfc4))
+
 ## [2.5.2](https://github.com/archilogic-com/honeycomb/compare/v2.5.1...v2.5.2) (2023-08-17)
 
 
