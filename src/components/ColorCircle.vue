@@ -9,11 +9,11 @@ export default defineComponent({
      * fill color of the circle
      */
     color: {
-      type: String as PropType<Color>,
+      type: String as PropType<Color | string>,
       default: ''
     },
     borderColor: {
-      type: String as PropType<Color>,
+      type: String as PropType<string>,
       default: ''
     },
     /**
@@ -27,7 +27,7 @@ export default defineComponent({
   },
   setup(props) {
     const backgroundColor = computed(() =>
-      props.color ? `${colorMap[props.color] || props.color}` : ''
+      props.color ? `${colorMap[props.color as Color] || props.color}` : ''
     )
     const borderColor = computed(() => props.borderColor || backgroundColor.value)
     const styles = computed(() => ({
