@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.2](https://github.com/archilogic-com/honeycomb/compare/v2.5.1...v2.5.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **types:** include json files in declaration + rename color type ([#79](https://github.com/archilogic-com/honeycomb/issues/79)) ([6877d81](https://github.com/archilogic-com/honeycomb/commit/6877d81f4132b0cbefbdf3fa9260b15025de6301))
+
 ## [2.5.1](https://github.com/archilogic-com/honeycomb/compare/v2.5.0...v2.5.1) (2023-08-14)
 
 
