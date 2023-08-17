@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { type Colors, colorMap } from '../colors'
+import { type Color, colorMap } from '../colors'
 
 export default defineComponent({
   name: 'AColorCircle',
@@ -9,11 +9,11 @@ export default defineComponent({
      * fill color of the circle
      */
     color: {
-      type: String as PropType<Colors>,
+      type: String as PropType<Color>,
       default: ''
     },
     borderColor: {
-      type: String as PropType<Colors>,
+      type: String as PropType<Color>,
       default: ''
     },
     /**

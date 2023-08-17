@@ -2,7 +2,7 @@
 import { defineComponent, computed, PropType } from 'vue'
 import AIcon from './Icon.vue'
 import AColorCircle from './ColorCircle.vue'
-import type { Colors } from '../colors'
+import type { Color } from '../colors'
 
 export default defineComponent({
   name: 'ATag',
@@ -27,7 +27,7 @@ export default defineComponent({
      * produces an optional color circle
      */
     color: {
-      type: String as PropType<Colors>,
+      type: String as PropType<Color>,
       default: ''
     },
     /**
