@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.6.0](https://github.com/archilogic-com/honeycomb/compare/v2.5.4...v2.6.0) (2023-08-23)
+
+
+### Features
+
+* **icons:** ai search ([#85](https://github.com/archilogic-com/honeycomb/issues/85)) ([cc0290e](https://github.com/archilogic-com/honeycomb/commit/cc0290ef94015f7e793c1b90b01ac1ca1bc4f13f))
+
 ## [2.5.4](https://github.com/archilogic-com/honeycomb/compare/v2.5.3...v2.5.4) (2023-08-23)
 
 
