@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.4](https://github.com/archilogic-com/honeycomb/compare/v2.5.3...v2.5.4) (2023-08-23)
+
+
+### Bug Fixes
+
+* **ui-tests:** checkboxes ([#84](https://github.com/archilogic-com/honeycomb/issues/84)) ([6c2aa6f](https://github.com/archilogic-com/honeycomb/commit/6c2aa6fd78a475246e9f72eeebe88c9b66243566))
+
 ## [2.5.3](https://github.com/archilogic-com/honeycomb/compare/v2.5.2...v2.5.3) (2023-08-17)
 
 
