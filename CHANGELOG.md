@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.1](https://github.com/archilogic-com/honeycomb/compare/v2.6.0...v2.6.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* **icons:** search icon properties ([#86](https://github.com/archilogic-com/honeycomb/issues/86)) ([a563ceb](https://github.com/archilogic-com/honeycomb/commit/a563ceb9a53f8ad275500629c03ec28928e91d46))
+
 # [2.6.0](https://github.com/archilogic-com/honeycomb/compare/v2.5.4...v2.6.0) (2023-08-23)
 
 
