@@ -42,7 +42,7 @@ export default defineComponent({
 
     const rowIds = computed(() => rows.value.map(row => row.id))
 
-    const showCheckboxes = ref(true)
+    const showCheckboxes = ref(false)
 
     const { selectItem, selectedItems, selectAll, clearSelection } = useMultiSelect(
       rowIds,
