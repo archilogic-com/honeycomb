@@ -1,4 +1,4 @@
-import * as Components from '@/components'
+import * as Components from './components'
 import type { App } from 'vue'
 
 export function registerAllComponents(app: App): void {
@@ -7,8 +7,8 @@ export function registerAllComponents(app: App): void {
   })
 }
 
-export * from '@/components'
+export * from './components'
 
-export * from '@/composables'
+export * from './composables'
 
-export * from '@/colors'
+export * from './colors'
