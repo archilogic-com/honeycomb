@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.2](https://github.com/archilogic-com/honeycomb/compare/v2.6.1...v2.6.2) (2023-08-28)
+
+
+### Bug Fixes
+
+* **types:** don't rely on tsconfig.json#paths in declaration ([#87](https://github.com/archilogic-com/honeycomb/issues/87)) ([8b4881a](https://github.com/archilogic-com/honeycomb/commit/8b4881a5e95e585760e1823c9d1567f3db945d0d))
+
 ## [2.6.1](https://github.com/archilogic-com/honeycomb/compare/v2.6.0...v2.6.1) (2023-08-23)
 
 
