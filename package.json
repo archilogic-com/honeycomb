@@ -94,7 +94,7 @@
     "@vue/eslint-config-typescript": "^11.0.3",
     "autoprefixer": "^10.4.14",
     "chromatic": "^6.20.0",
-    "eslint": "^8.46.0",
+    "eslint": "^8.48.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.16.1",
     "husky": "^8.0.3",
