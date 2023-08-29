@@ -92,7 +92,7 @@
     "@vitest/ui": "^0.34.1",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^11.0.3",
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.15",
     "chromatic": "^6.24.1",
     "eslint": "^8.48.0",
     "eslint-plugin-prettier": "^5.0.0",
