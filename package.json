@@ -104,7 +104,7 @@
     "prettier-plugin-tailwindcss": "^0.4.1",
     "semantic-release": "^19.0.2",
     "typescript": "^5.1.6",
-    "vite": "^4.4.7",
+    "vite": "^4.4.9",
     "vite-plugin-dts": "3.5.2",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.34.1",
