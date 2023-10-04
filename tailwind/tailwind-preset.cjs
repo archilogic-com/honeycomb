@@ -114,15 +114,17 @@ module.exports = {
         '.a-text-input-base': {
           '@apply w-full rounded-sm border p-2 text-newyork': {}
         },
+        '.a-text-input-hover': {
+          '&:not(:disabled):not(:focus-within)': {
+            '@apply bg-athens': {}
+          }
+        },
         '.a-text-input-focus': {
-          '@apply border-blueribbon bg-white shadow-border shadow-blueribbon outline-none': {}
+          '@apply border-blueribbon bg-white shadow-border shadow-blueribbon outline-none hover:bg-white': {}
         },
         '.a-text-input-placeholder': {
           '@apply text-warsaw': {},
           '-webkit-text-fill-color': theme('colors.warsaw')
-        },
-        '.a-text-input-hover': {
-          '@apply bg-athens': {}
         },
         '.a-text-input-disabled': {
           '@apply text-stone cursor-not-allowed': {},
@@ -136,7 +138,7 @@ module.exports = {
           '&::placeholder': {
             '@apply a-text-input-placeholder': {}
           },
-          '&:hover:not(:disabled)': {
+          '&:hover': {
             '@apply a-text-input-hover': {}
           },
           '&:focus': {
@@ -156,7 +158,7 @@ module.exports = {
         '.a-text-input--default': {
           '@apply border-gray bg-whisper': {},
           '&:disabled': {
-            '@apply border-athens hover:bg-whisper': {}
+            '@apply border-athens': {}
           }
         },
         '.a-text-input--subtle': {

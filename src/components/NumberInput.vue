@@ -48,7 +48,7 @@ export default defineComponent({
       v-bind="$attrs"
       ref="inputRef"
       type="number"
-      class="a-number-input enabled:group-hover:a-text-input-hover"
+      class="a-number-input group-hover:a-text-input-hover"
       @update:model-value="updateValue" />
     <div
       class="invisible absolute bottom-0 right-0 top-0 flex flex-col justify-center text-warsaw"
