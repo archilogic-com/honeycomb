@@ -177,7 +177,6 @@ export default defineComponent({
         ? query.value
         : getOption(modelValue)?.label || query.value || modelValue
     }
-    const isInputFocused = ref(false)
 
     const placeholderString = computed(() =>
       isMultiSelect(model.value) && model.value.length && !props.inline ? '' : props.placeholder
@@ -197,6 +196,11 @@ export default defineComponent({
         query.value = value || ''
         emit('update:query', query.value)
       }
+    }
+
+    const clearQuery = () => {
+      query.value = ''
+      emit('update:query', query.value)
     }
 
     const removeValue = (value: string, event: Event) => {
@@ -232,11 +236,11 @@ export default defineComponent({
       inputRef,
       selectInputValue,
       singleModelValueColor,
-      isInputFocused,
       placeholderString,
       handleDelete,
       comboboxButton,
-      optionsPanelWidth
+      optionsPanelWidth,
+      clearQuery
     }
   }
 })
@@ -298,8 +302,7 @@ export default defineComponent({
             :display-value="value => displayValue(value as string | string[])"
             :placeholder="placeholderString"
             :disabled="$attrs.disabled"
-            @focus="isInputFocused = true"
-            @blur="isInputFocused = false"
+            @blur="clearQuery"
             @change.stop="updateQuery($event.target.value)" />
         </div>
         <FloatingArrow
