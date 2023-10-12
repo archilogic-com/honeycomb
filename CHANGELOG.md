@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.3](https://github.com/archilogic-com/honeycomb/compare/v2.6.2...v2.6.3) (2023-10-04)
+
+
+### Bug Fixes
+
+* **inputs:** remove hover styles in focused state ([#122](https://github.com/archilogic-com/honeycomb/issues/122)) ([6dd82c1](https://github.com/archilogic-com/honeycomb/commit/6dd82c161273d3572b1722e4cb2ec461f6ac1dfd))
+
 ## [2.6.2](https://github.com/archilogic-com/honeycomb/compare/v2.6.1...v2.6.2) (2023-08-28)
 
 
