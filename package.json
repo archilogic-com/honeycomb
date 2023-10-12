@@ -93,7 +93,7 @@
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^11.0.3",
     "autoprefixer": "^10.4.15",
-    "chromatic": "^6.24.1",
+    "chromatic": "^7.2.3",
     "eslint": "^8.48.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.17.0",
