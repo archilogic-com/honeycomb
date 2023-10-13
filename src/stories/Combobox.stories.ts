@@ -42,6 +42,15 @@ const typeIntoCombobox = async (
   await userEvent.type(canvas.getByRole('combobox'), query)
 }
 
+const typeIntoComboboxAndBlur = async (
+  { canvasElement }: { canvasElement: HTMLElement },
+  query = 'no'
+) => {
+  const canvas = within(canvasElement)
+  await userEvent.type(canvas.getByRole('combobox'), query)
+  await userEvent.click(canvasElement)
+}
+
 const selectOptionAndTypeIntoCombobox = async (
   { canvasElement }: { canvasElement: HTMLElement },
   query = 'top'
@@ -100,6 +109,10 @@ export const NoResults = Template.bind({})
 NoResults.args = { placeholder: 'Pick a position' }
 NoResults.play = args => typeIntoCombobox(args, 'nope')
 
+export const QueryClearedOnBlur = Template.bind({})
+QueryClearedOnBlur.args = { placeholder: 'Pick a position' }
+QueryClearedOnBlur.play = typeIntoComboboxAndBlur
+
 export const Multiselect = Template.bind({})
 Multiselect.args = {
   classes: 'w-[200px]',
@@ -125,6 +138,10 @@ MultiselectSelectedRemove.play = removeOption
 export const MultiselectNoResults = Template.bind({})
 MultiselectNoResults.args = { initValue: [], classes: 'w-[200px]' }
 MultiselectNoResults.play = args => selectOptionAndTypeIntoCombobox(args, 'nope')
+
+export const MultiselectQueryClearedOnBlur = Template.bind({})
+MultiselectQueryClearedOnBlur.args = { initValue: [], classes: 'w-[200px]' }
+MultiselectQueryClearedOnBlur.play = typeIntoComboboxAndBlur
 
 export const SizeMdSelected = Template.bind({})
 SizeMdSelected.args = {
