@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.4](https://github.com/archilogic-com/honeycomb/compare/v2.6.3...v2.6.4) (2023-10-13)
+
+
+### Bug Fixes
+
+* **combobox:** clear query on blur ([#123](https://github.com/archilogic-com/honeycomb/issues/123)) ([701d7d4](https://github.com/archilogic-com/honeycomb/commit/701d7d465f158756ba7081e1945755cbcbca5b35))
+* **option:** change cursor ([#132](https://github.com/archilogic-com/honeycomb/issues/132)) ([2098b1e](https://github.com/archilogic-com/honeycomb/commit/2098b1eab6a26b8ca680ac8b3bbba279f11cf755))
+
 ## [2.6.3](https://github.com/archilogic-com/honeycomb/compare/v2.6.2...v2.6.3) (2023-10-04)
 
 
