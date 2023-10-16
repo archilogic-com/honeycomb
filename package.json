@@ -107,7 +107,7 @@
     "vite": "^4.4.9",
     "vite-plugin-dts": "3.6.0",
     "vite-svg-loader": "^4.0.0",
-    "vitest": "^0.34.1",
+    "vitest": "^0.34.6",
     "vue-tsc": "^1.8.8"
   },
   "prettier": "@archilogic/prettier"
