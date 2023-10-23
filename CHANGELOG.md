@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.5](https://github.com/archilogic-com/honeycomb/compare/v2.6.4...v2.6.5) (2023-10-23)
+
+
+### Bug Fixes
+
+* **icons:** fix Size2 icon, size small ([#145](https://github.com/archilogic-com/honeycomb/issues/145)) ([fe859f8](https://github.com/archilogic-com/honeycomb/commit/fe859f89b671aa0ddf25263ecfb5b42543627bb4))
+
 ## [2.6.4](https://github.com/archilogic-com/honeycomb/compare/v2.6.3...v2.6.4) (2023-10-13)
 
 
