@@ -19,7 +19,7 @@ export const Template = args => ({
     return { args }
   },
   template: `
-  <AHelperText v-bind="args">${args.default || ''}
+  <AHelperText class="mt-4" v-bind="args">${args.default || ''}
   </AHelperText>`
 })
 
@@ -96,34 +96,30 @@ The `<a-helper-text>` component allows for the addition of custom markup inside 
 In the example below, we are showing a custom icon with the default variant (`hint`).
 Note that in this case the component does not control the spacing around the icon or its size/line-height value.
 
-<Canvas>
-  <Story
-    name="w/ custom markup"
-    args={{
-      default: '<a-icon size="sm" name="check" class=" mr-1"/>This is a message with a checkmark',
-      class: 'w-[10rem]'
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="w/ custom markup"
+  args={{
+    default: '<a-icon size="sm" name="check" class=" mr-1"/>This is a message with a checkmark',
+    class: 'w-[10rem]'
+  }}>
+  {Template.bind({})}
+</Story>
 
-## Multiline
+## Wrapping long content
 
 HelperText will wrap text content and grow vertically if its width is limited.
 
-<Canvas isColumn="true">
-  <Story
-    name="hint multiline"
-    args={{ default: 'Please only use numbers, letters, and underscores', class: 'w-[10rem]' }}>
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="error multiline"
-    args={{
-      variant: 'error',
-      default: 'Please only use numbers, letters, and underscores',
-      class: 'w-[10rem]'
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="hint multiline"
+  args={{ default: 'Please only use numbers, letters, and underscores', class: 'w-[10rem]' }}>
+  {Template.bind({})}
+</Story>
+<Story
+  name="error multiline"
+  args={{
+    variant: 'error',
+    default: 'Please only use numbers, letters, and underscores',
+    class: 'w-[10rem]'
+  }}>
+  {Template.bind({})}
+</Story>
