@@ -12,6 +12,3 @@ updates:
       separator: '-'
     commit-message:
       prefix: 'chore'
-    ignore:
-      - dependency-name: 'semantic-release' # requires upgrade to node v18 (workarounds: https://semantic-release.gitbook.io/semantic-release/support/node-version#recommended-solution); currently storybook breaks on node v18
-      - dependency-name: '@storybook/*'
