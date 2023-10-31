@@ -96,23 +96,28 @@ To indicate the card is in an active (selected) state, set an `active` prop.
 The Card component has only the minimal necessary styles applied to it.
 This means you have to add sizing styles and have freedom in adding card content.
 
-<Canvas isColumn="true">
-  <Story
-    name="styling"
-    args={{
-      onClick: () => {},
-      classes: 'w-[400px] flex-col-reverse items-center overflow-hidden'
-    }}>
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="content"
-    args={{
-      onClick: () => {},
-      classes: 'flex',
-      default:
-        '<div class="flex bg-white p-4"><div class="heading-sm">I can be anything</div><a-logo></a-logo></div>'
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+```html
+<a-card class="flex p-2">
+  <div class="heading-sm">I can be anything</div>
+  <a-logo></a-logo>
+</a-card>
+```
+
+<Story
+  name="styling"
+  args={{
+    onClick: () => {},
+    classes: 'w-[400px] flex-col-reverse items-center overflow-hidden'
+  }}>
+  {Template.bind({})}
+</Story>
+<Story
+  name="content"
+  args={{
+    onClick: () => {},
+    classes: 'flex my-4',
+    default:
+      '<div class="flex bg-white p-4"><div class="heading-sm">I can be anything</div><a-logo></a-logo></div>'
+  }}>
+  {Template.bind({})}
+</Story>

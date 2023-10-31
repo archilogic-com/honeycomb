@@ -32,7 +32,7 @@ export const Template = args => ({
     }
   },
   template: `
-  <div class="w-[600px]">
+  <div class="w-[600px] m-4">
     <APanel v-bind="props">${args.slots.join('')}
     </APanel>
   </div>`
@@ -54,57 +54,49 @@ It has 3 sections (slots): title, body, and actions; all optional.
 
 ## Panel with all slots
 
-<Canvas>
-  <Story
-    name="all"
-    args={{
-      slots: [titleSlot, bodySlot, actionsSlot]
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="all"
+  args={{
+    slots: [titleSlot, bodySlot, actionsSlot]
+  }}>
+  {Template.bind({})}
+</Story>
 
 ## Panel without title
 
-<Canvas>
-  <Story
-    name="no title"
-    args={{
-      slots: [bodySlot, actionsSlot]
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="no title"
+  args={{
+    slots: [bodySlot, actionsSlot]
+  }}>
+  {Template.bind({})}
+</Story>
 
 ## Panel without actions
 
-<Canvas>
-  <Story
-    name="no actions"
-    args={{
-      slots: [titleSlot, bodySlot]
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="no actions"
+  args={{
+    slots: [titleSlot, bodySlot]
+  }}>
+  {Template.bind({})}
+</Story>
 
 ## Panel with scrollable body
 
-<Canvas>
-  <Story
-    name="scrollable body"
-    args={{
-      slots: [
-        titleSlot,
-        `
+<Story
+  name="scrollable body"
+  args={{
+    slots: [
+      titleSlot,
+      `
           <template #body>
             <p class="bg-palegreen h-[800px]">Some panel content</p>	
           </template>  
         `,
-        actionsSlot
-      ],
-      class: 'h-[400px]'
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+      actionsSlot
+    ],
+    class: 'h-[400px]'
+  }}>
+  {Template.bind({})}
+</Story>

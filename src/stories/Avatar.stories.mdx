@@ -37,20 +37,13 @@ Avatar come in **2 sizes**:
 ```
 
 <Canvas>
-  <Story name="md size">
-    {() => ({
-      components: { AAvatar },
-      template: '<a-avatar size="md"></a-avatar>'
-    })}
+  <Story name="md size" args={{ size: 'md' }}>
+    {Template.bind({})}
   </Story>
-  <Story name="lg size">
-    {() => ({
-      components: { AAvatar },
-      template: '<a-avatar size="lg"></a-avatar>'
-    })}
+  <Story name="lg size" args={{ size: 'lg' }}>
+    {Template.bind({})}
   </Story>
 </Canvas>
-
 ## Rendering the avatar
 
 The user icon is the default user avatar, and gets overwritten by the label prop or the `#default` slot children.

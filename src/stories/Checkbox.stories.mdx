@@ -155,13 +155,11 @@ This is useful if you need custom styling or extra markup in the label.
 <a-checkbox v-model="yourValue"><p class="body-sm-600">My Checkbox</p></a-checkbox>
 ```
 
-<Canvas>
-  <Story
-    name="checkbox with default slot"
-    args={{ checked: true, default: '<p class="body-sm-600">Bold Label in Slot</p>' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="checkbox with default slot"
+  args={{ checked: true, default: '<p class="body-sm-600">Bold Label in Slot</p>' }}>
+  {Template.bind({})}
+</Story>
 
 ### Using a hidden label
 

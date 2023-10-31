@@ -211,34 +211,47 @@ The `#label` slot can be used for custom label markup (e.g. icons or "help" tool
 or used as an escape hatch for custom styling.
 Likewise, the `#default` slot can be used to add custom markup to the value (e.g. a "copy to clipboard" button).
 
-<Canvas isColumn="true">
-  <Story
-    name="label slot"
-    args={{
-      value: 'abcdefg123456',
-      labelSlot: `<a-icon class="mr-1" name="flag" size="sm"/> Important key`,
-      align: 'col'
-    }}>
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="default slot with input"
-    args={{
-      label: 'Width',
-      default: `<a-text-input />`,
-      size: 'md'
-    }}>
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="default with button"
-    args={{
-      ...defaultArgs,
-      default: `<div class="flex items-center overflow-hidden"><span class="truncate">1234567890-098765432-0865434567876543</span><a-button variant="subtle" icon size="sm" aria-label="Copy ID"><a-icon size="md" name="copy"/></a-button></div>`
-    }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+```html
+<a-label-container label="Width" :value="value">
+  <template #label>
+    <a-icon class="mr-1" name="flag" size="sm" />
+    Important key
+  </template>
+  <template #default>
+    <div class="flex">
+      1234567890
+      <a-button variant="subtle" icon="copy" size="sm" label="Copy ID"></a-button>
+    </div>
+  </template>
+</a-label-container>
+```
+
+<Story
+  name="label slot"
+  args={{
+    value: 'abcdefg123456',
+    labelSlot: `<a-icon class="mr-1" name="flag" size="sm"/> Important key`,
+    align: 'col'
+  }}>
+  {Template.bind({})}
+</Story>
+<Story
+  name="default slot with input"
+  args={{
+    label: 'Width',
+    default: `<a-text-input />`,
+    size: 'md'
+  }}>
+  {Template.bind({})}
+</Story>
+<Story
+  name="default with button"
+  args={{
+    ...defaultArgs,
+    default: `<div class="flex items-center overflow-hidden"><span class="truncate">1234567890-098765432-0865434567876543</span><a-button variant="subtle" icon="Copy" label="Copy ID"></a-button></div>`
+  }}>
+  {Template.bind({})}
+</Story>
 
 ## Long labels and/or values
 
