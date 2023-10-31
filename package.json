@@ -96,7 +96,7 @@
     "eslint": "^8.48.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-storybook": "^0.6.15",
-    "eslint-plugin-vue": "^9.17.0",
+    "eslint-plugin-vue": "^9.18.1",
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "lint-staged": "^15.0.2",
