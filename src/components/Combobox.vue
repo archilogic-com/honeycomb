@@ -133,9 +133,6 @@ export default defineComponent({
         return props.modelValue
       },
       set: value => {
-        if (isMultiSelect(model.value)) {
-          query.value = ''
-        }
         emit('update:modelValue', value)
       }
     })
@@ -199,8 +196,10 @@ export default defineComponent({
     }
 
     const clearQuery = () => {
-      query.value = ''
-      emit('update:query', query.value)
+      setTimeout(() => {
+        query.value = ''
+        emit('update:query', query.value)
+      }, 100)
     }
 
     const removeValue = (value: string, event: Event) => {

@@ -51,6 +51,15 @@ const typeIntoComboboxAndBlur = async (
   await userEvent.click(canvasElement)
 }
 
+const typeIntoComboboxAndSelectByMouse = async (
+  { canvasElement }: { canvasElement: HTMLElement },
+  query = 'left'
+) => {
+  const canvas = within(canvasElement)
+  await userEvent.type(canvas.getByRole('combobox'), query)
+  await userEvent.click(canvas.getByRole('option', { name: 'Center Left' }))
+}
+
 const selectOptionAndTypeIntoCombobox = async (
   { canvasElement }: { canvasElement: HTMLElement },
   query = 'top'
@@ -173,6 +182,10 @@ export const SizeMdOpen = Template.bind({})
 SizeMdOpen.args = { size: 'md' }
 SizeMdOpen.play = openCombobox
 
+export const SizeMdFilteredAndSelected = Template.bind({})
+SizeMdFilteredAndSelected.args = { size: 'md' }
+SizeMdFilteredAndSelected.play = typeIntoComboboxAndSelectByMouse
+
 export const SizeMdSelectedDisabled = Template.bind({})
 SizeMdSelectedDisabled.args = {
   size: 'md',
@@ -237,6 +250,10 @@ MultiselectSizeMdOpen.args = {
 }
 MultiselectSizeMdOpen.play = openCombobox
 
+export const MultiSelectSizeMdFilteredAndSelected = Template.bind({})
+MultiSelectSizeMdFilteredAndSelected.args = { size: 'md', initValue: [], classes: 'w-[200px]' }
+MultiSelectSizeMdFilteredAndSelected.play = typeIntoComboboxAndSelectByMouse
+
 export const MultiselectSizeMdDisabled = Template.bind({})
 MultiselectSizeMdDisabled.args = {
   size: 'md',
@@ -269,6 +286,9 @@ SizeSmSelectedOpen.play = openCombobox
 
 export const SizeSmOpen = Template.bind({})
 SizeSmOpen.play = openCombobox
+
+export const SizeSmFilteredAndSelected = Template.bind({})
+SizeSmFilteredAndSelected.play = typeIntoComboboxAndSelectByMouse
 
 export const SizeSmSelectedDisabled = Template.bind({})
 SizeSmSelectedDisabled.args = {
@@ -325,6 +345,10 @@ MultiselectSizeSmOpen.args = {
   initValue: []
 }
 MultiselectSizeSmOpen.play = openCombobox
+
+export const MultiSelectSizeSmFilteredAndSelected = Template.bind({})
+MultiSelectSizeSmFilteredAndSelected.args = { initValue: [], classes: 'w-[200px]' }
+MultiSelectSizeSmFilteredAndSelected.play = typeIntoComboboxAndSelectByMouse
 
 export const MultiselectSizeSmDisabled = Template.bind({})
 MultiselectSizeSmDisabled.args = {
