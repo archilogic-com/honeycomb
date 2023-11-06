@@ -128,13 +128,21 @@ export default defineComponent({
       }
     }
 
+    let blurTimeout: NodeJS.Timeout
+    const clearQuery = () => {
+      blurTimeout = setTimeout(() => {
+        query.value = ''
+        emit('update:query', query.value)
+      }, 100)
+    }
+
     const model = computed({
       get: () => {
         return props.modelValue
       },
       set: value => {
-        if (isMultiSelect(model.value)) {
-          query.value = ''
+        if (!isMultiSelect(model.value)) {
+          clearTimeout(blurTimeout)
         }
         emit('update:modelValue', value)
       }
@@ -196,11 +204,6 @@ export default defineComponent({
         query.value = value || ''
         emit('update:query', query.value)
       }
-    }
-
-    const clearQuery = () => {
-      query.value = ''
-      emit('update:query', query.value)
     }
 
     const removeValue = (value: string, event: Event) => {
