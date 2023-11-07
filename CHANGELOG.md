@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.7.0](https://github.com/archilogic-com/honeycomb/compare/v2.6.6...v2.7.0) (2023-11-07)
+
+
+### Features
+
+* **icons:** add medium AI icon ([#179](https://github.com/archilogic-com/honeycomb/issues/179)) ([d633b55](https://github.com/archilogic-com/honeycomb/commit/d633b551b2638b8ccc8ec2d3e875c2452d627432))
+
 ## [2.6.6](https://github.com/archilogic-com/honeycomb/compare/v2.6.5...v2.6.6) (2023-11-06)
 
 
