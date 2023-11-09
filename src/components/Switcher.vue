@@ -15,7 +15,7 @@ export default defineComponent({
       required: true
     },
     options: {
-      type: Array as PropType<{ label: string; value: string }[]>,
+      type: Array as PropType<{ label: string; value: string; disabled?: boolean }[]>,
       required: true
     },
     label: {
@@ -23,6 +23,10 @@ export default defineComponent({
       default: ''
     },
     raised: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -46,20 +50,23 @@ export default defineComponent({
 <template>
   <RadioGroup
     v-model="model"
-    class="p-1 rounded bg-whisper flex max-w-fit gap-1"
-    :class="{ 'shadow-sm': raised }">
+    class="p-1 rounded bg-whisper flex max-w-fit gap-1 cursor-pointer"
+    :class="{ 'shadow-sm': raised, 'opacity-40 cursor-not-allowed': disabled }"
+    :disabled="disabled">
     <RadioGroupLabel class="sr-only">{{ label }}</RadioGroupLabel>
     <RadioGroupOption
       v-for="option in options"
       :key="option.value"
       v-slot="{ checked }"
       :value="option.value"
-      class="focus-visible:focus-outline flex rounded cursor-pointer transition-colors duration-500 ease-out">
+      :disabled="option.disabled"
+      class="focus-visible:focus-outline flex rounded transition-colors duration-500 ease-out">
       <div
         class="flex px-3 py-1 rounded active:bg-zurich48 active:text-mediumblue"
         :class="{
           'text-mediumblue bg-zurich': checked,
-          'hover:bg-athens': !checked
+          'hover:bg-gray': !checked,
+          'opacity-40 cursor-not-allowed': option.disabled
         }">
         {{ option.label }}
       </div>
