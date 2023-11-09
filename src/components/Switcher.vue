@@ -10,10 +10,6 @@ export default defineComponent({
     RadioGroupOption
   },
   props: {
-    label: {
-      type: String,
-      default: ''
-    },
     modelValue: {
       type: String,
       required: true
@@ -21,6 +17,14 @@ export default defineComponent({
     options: {
       type: Array as PropType<{ label: string; value: string }[]>,
       required: true
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    raised: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue'],
@@ -40,7 +44,10 @@ export default defineComponent({
 })
 </script>
 <template>
-  <RadioGroup v-model="model" class="p-1 rounded bg-whisper flex max-w-fit gap-1">
+  <RadioGroup
+    v-model="model"
+    class="p-1 rounded bg-whisper flex max-w-fit gap-1"
+    :class="{ 'shadow-sm': raised }">
     <RadioGroupLabel class="sr-only">{{ label }}</RadioGroupLabel>
     <RadioGroupOption
       v-for="option in options"

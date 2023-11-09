@@ -5,7 +5,12 @@ import ASwitcher from '../components/Switcher.vue'
 
 const meta: Meta<typeof ASwitcher> = {
   component: ASwitcher,
-  title: 'Components/Switcher'
+  title: 'Components/Switcher',
+  decorators: [
+    () => ({
+      template: `<div class="p-10 bg-white"><story/></div>`
+    })
+  ]
 }
 
 export default meta
@@ -21,13 +26,10 @@ export const Primary: Story = {
         { label: 'imperial', value: 'i' }
       ]
       const selected = ref('m')
-      const updateValue = (newValue: string) => {
-        selected.value = newValue
-      }
-      return { selected, options, updateValue }
+
+      return { selected, options }
     },
-    template: `<div class="p-4 bg-white">
-        <ASwitcher :model-value="selected" :options="options" label="Units" @update:modelValue="updateValue" />
-      </div>`
+    template: `
+        <ASwitcher v-model="selected" :options="options" label="Units" />`
   })
 }
