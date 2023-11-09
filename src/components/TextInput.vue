@@ -99,11 +99,11 @@ export default defineComponent({
         if (this.size === 'md') {
           return `${
             this.variant === 'subtle' ? 'min-h-10' : 'min-h-[6.5rem]'
-          } h-auto body-lg placeholder:body-lg'`
+          } h-auto body-lg placeholder:body-lg`
         } else {
           return `${
             this.variant === 'subtle' ? 'min-h-8' : 'min-h-16'
-          } h-auto body-sm placeholder:body-sm'`
+          } h-auto body-sm placeholder:body-sm`
         }
       }
     },
