@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.1](https://github.com/archilogic-com/honeycomb/compare/v2.7.0...v2.7.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* **textinput:** remove quotes from CSS classes ([8a5d7e1](https://github.com/archilogic-com/honeycomb/commit/8a5d7e11958f5580cfaf5903c93e752c72c17c85))
+
 # [2.7.0](https://github.com/archilogic-com/honeycomb/compare/v2.6.6...v2.7.0) (2023-11-07)
 
 
