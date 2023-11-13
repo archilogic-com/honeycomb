@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.2](https://github.com/archilogic-com/honeycomb/compare/v2.7.1...v2.7.2) (2023-11-13)
+
+
+### Bug Fixes
+
+* **combobox:** select from filtered list ([#180](https://github.com/archilogic-com/honeycomb/issues/180)) ([c142d63](https://github.com/archilogic-com/honeycomb/commit/c142d63623fb651f9560d0eb3b96b266cb6199ca))
+
 ## [2.7.1](https://github.com/archilogic-com/honeycomb/compare/v2.7.0...v2.7.1) (2023-11-10)
 
 
