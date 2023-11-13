@@ -113,7 +113,7 @@ export default defineComponent({
     const isMultiSelect = (modelValue: string[] | string): modelValue is string[] => {
       return Array.isArray(modelValue)
     }
-
+    const container = ref()
     const query = ref('')
 
     const inputRef = ref()
@@ -134,6 +134,7 @@ export default defineComponent({
       },
       set: value => {
         emit('update:modelValue', value)
+        clearQuery()
       }
     })
 
@@ -196,10 +197,8 @@ export default defineComponent({
     }
 
     const clearQuery = () => {
-      setTimeout(() => {
-        query.value = ''
-        emit('update:query', query.value)
-      }, 100)
+      query.value = ''
+      emit('update:query', query.value)
     }
 
     const removeValue = (value: string, event: Event) => {
@@ -222,6 +221,14 @@ export default defineComponent({
       }
     }
 
+    const handleBlur = (event: FocusEvent) => {
+      if (!container.value?.contains(event.relatedTarget)) {
+        // clear query after some delay in order to wait for the dropdown to be hidden
+        // avoids momentary flash of dropdown menu with unfiltered options list
+        setTimeout(clearQuery, 200)
+      }
+    }
+
     return {
       model,
       filteredOptions,
@@ -239,101 +246,99 @@ export default defineComponent({
       handleDelete,
       comboboxButton,
       optionsPanelWidth,
-      clearQuery
+      handleBlur,
+      container
     }
   }
 })
 </script>
 <template>
-  <Combobox
-    v-model="model"
-    as="div"
-    :class="{ relative: !escapeOverflow }"
-    :multiple="isMultiSelect">
-    <!-- @slot  named `#input` slot. Requires ComboboxInput component from headless-ui to work, and optionally ComboboxButton. Slot props: `query<string>`, calculated `displayValue<string>`, and `updateQuery<(value:string)=>void>` callback to be used with text input v-model update event-->
-    <slot name="input" :query="query" :display-value="displayValue" :update-query="updateQuery">
-      <ComboboxButton
-        ref="comboboxButton"
-        as="div"
-        class="group a-text-input-base relative flex items-center py-0"
-        :class="[
-          {
-            'h-auto min-h-10 body-lg placeholder:body-lg': size === 'md' && isMultiSelect,
-            'my-px h-auto min-h-[1.875rem] body-sm placeholder:body-sm':
-              size === 'sm' && isMultiSelect,
-            'a-text-input--sm': size === 'sm' && !isMultiSelect,
-            'a-text-input--md': size === 'md' && !isMultiSelect
-          },
-          variant === 'subtle' ? 'a-text-input--subtle' : 'a-text-input--default',
-          $attrs.disabled
-            ? 'a-text-input-disabled border-athens'
-            : 'focus-within:a-text-input-focus hover:a-text-input-hover',
-          variant === 'subtle' && $attrs.disabled && 'border-none'
-        ]"
-        @click="selectInputValue"
-        @keydown.delete="handleDelete">
-        <div
-          class="flex min-w-0 flex-wrap items-center truncate"
+  <div ref="container" :class="{ relative: !escapeOverflow }" @focusout="handleBlur">
+    <Combobox v-model="model" :multiple="isMultiSelect" :disabled="!!$attrs.disabled">
+      <!-- @slot  named `#input` slot. Requires ComboboxInput component from headless-ui to work, and optionally ComboboxButton. Slot props: `query<string>`, calculated `displayValue<string>`, and `updateQuery<(value:string)=>void>` callback to be used with text input v-model update event-->
+      <slot name="input" :query="query" :display-value="displayValue" :update-query="updateQuery">
+        <ComboboxButton
+          ref="comboboxButton"
+          as="div"
+          class="group a-text-input-base relative flex items-center py-0"
           :class="[
-            size === 'md' ? 'my-[7px] gap-1' : 'my-[2px] gap-[2px]',
             {
-              'mr-auto': variant !== 'subtle'
-            }
-          ]">
-          <template v-if="isMultiSelect && !inline">
-            <ATag
-              v-for="value in model"
-              :key="value"
-              :removable="!($attrs.disabled || getOption(value)?.disabled)"
-              :color="getOption(value)?.color"
-              @remove="removeValue(value, $event)">
-              {{ getOption(value)?.label || value }}
-            </ATag>
-          </template>
-          <AColorCircle
-            v-if="singleModelValueColor"
-            :color="singleModelValueColor"
-            class="mr-1"></AColorCircle>
-          <ComboboxInput
-            ref="inputRef"
-            class="truncate bg-transparent focus:focus-none disabled:a-text-input-disabled"
-            :style="`width: ${inputSize + 1}ch`"
-            :display-value="value => displayValue(value as string | string[])"
-            :placeholder="placeholderString"
-            :disabled="$attrs.disabled"
-            @blur="clearQuery"
-            @change.stop="updateQuery($event.target.value)" />
-        </div>
-        <FloatingArrow
-          v-if="!inline"
-          :float="variant === 'subtle' && !$attrs.disabled"
-          :class="$attrs.disabled && 'text-warsaw'" />
-      </ComboboxButton>
-    </slot>
-    <OptionsPanel
-      component="combobox"
-      :size="size"
-      :options="filteredOptions"
-      :class="panelClasses"
-      :direction="direction"
-      :multi="isMultiSelect"
-      :inline="inline"
-      :escape-overflow="escapeOverflow"
-      :width="optionsPanelWidth">
-      <template #default>
-        <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
-        <slot :filtered-options="filteredOptions"></slot>
-      </template>
-      <template #extra>
-        <!-- @slot named `#custom-option` slot. Takes `a-option` component or simple div for non-interactive elements, e.g. "no results" item. Use this slot to render a custom "no results" element, or add an extra option to create a new item. Default value: a div with centered "No options" text. Slot props: `query<string>`-->
-        <slot name="custom-option" :query="query">
+              'h-auto min-h-10 body-lg placeholder:body-lg': size === 'md' && isMultiSelect,
+              'my-px h-auto min-h-[1.875rem] body-sm placeholder:body-sm':
+                size === 'sm' && isMultiSelect,
+              'a-text-input--sm': size === 'sm' && !isMultiSelect,
+              'a-text-input--md': size === 'md' && !isMultiSelect
+            },
+            variant === 'subtle' ? 'a-text-input--subtle' : 'a-text-input--default',
+            $attrs.disabled
+              ? 'a-text-input-disabled border-athens'
+              : 'focus-within:a-text-input-focus hover:a-text-input-hover',
+            variant === 'subtle' && $attrs.disabled && 'border-none'
+          ]"
+          @click="selectInputValue"
+          @keydown.delete="handleDelete">
           <div
-            v-if="filteredOptions.length === 0"
-            class="flex h-8 items-center justify-center px-2 text-stone">
-            No options
+            class="flex min-w-0 flex-wrap items-center truncate"
+            :class="[
+              size === 'md' ? 'my-[7px] gap-1' : 'my-[2px] gap-[2px]',
+              {
+                'mr-auto': variant !== 'subtle'
+              }
+            ]">
+            <template v-if="isMultiSelect && !inline">
+              <ATag
+                v-for="value in model"
+                :key="value"
+                :removable="!($attrs.disabled || getOption(value)?.disabled)"
+                :color="getOption(value)?.color"
+                @remove="removeValue(value, $event)">
+                {{ getOption(value)?.label || value }}
+              </ATag>
+            </template>
+            <AColorCircle
+              v-if="singleModelValueColor"
+              :color="singleModelValueColor"
+              class="mr-1"></AColorCircle>
+            <ComboboxInput
+              ref="inputRef"
+              class="truncate bg-transparent focus:focus-none disabled:a-text-input-disabled"
+              :style="`width: ${inputSize + 1}ch`"
+              :display-value="value => displayValue(value as string | string[])"
+              :placeholder="placeholderString"
+              :disabled="$attrs.disabled"
+              @change.stop="updateQuery($event.target.value)" />
           </div>
-        </slot>
-      </template>
-    </OptionsPanel>
-  </Combobox>
+          <FloatingArrow
+            v-if="!inline"
+            :float="variant === 'subtle' && !$attrs.disabled"
+            :class="$attrs.disabled && 'text-warsaw'" />
+        </ComboboxButton>
+      </slot>
+      <OptionsPanel
+        component="combobox"
+        :size="size"
+        :options="filteredOptions"
+        :class="panelClasses"
+        :direction="direction"
+        :multi="isMultiSelect"
+        :inline="inline"
+        :escape-overflow="escapeOverflow"
+        :width="optionsPanelWidth">
+        <template #default>
+          <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
+          <slot :filtered-options="filteredOptions"></slot>
+        </template>
+        <template #extra>
+          <!-- @slot named `#custom-option` slot. Takes `a-option` component or simple div for non-interactive elements, e.g. "no results" item. Use this slot to render a custom "no results" element, or add an extra option to create a new item. Default value: a div with centered "No options" text. Slot props: `query<string>`-->
+          <slot name="custom-option" :query="query">
+            <div
+              v-if="filteredOptions.length === 0"
+              class="flex h-8 items-center justify-center px-2 text-stone">
+              No options
+            </div>
+          </slot>
+        </template>
+      </OptionsPanel>
+    </Combobox>
+  </div>
 </template>
