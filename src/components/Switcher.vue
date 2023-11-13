@@ -1,13 +1,22 @@
 <script lang="ts">
 import { defineComponent, computed, PropType } from 'vue'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
+import AIcon from './Icon.vue'
+
+export type SwitcherOption = {
+  label: string
+  value: string
+  disabled?: boolean
+  icon?: string
+}
 
 export default defineComponent({
   name: 'ASwitcher',
   components: {
     RadioGroup,
     RadioGroupLabel,
-    RadioGroupOption
+    RadioGroupOption,
+    AIcon
   },
   props: {
     modelValue: {
@@ -15,7 +24,7 @@ export default defineComponent({
       required: true
     },
     options: {
-      type: Array as PropType<{ label: string; value: string; disabled?: boolean }[]>,
+      type: Array as PropType<SwitcherOption[]>,
       required: true
     },
     label: {
@@ -50,8 +59,8 @@ export default defineComponent({
 <template>
   <RadioGroup
     v-model="model"
-    class="p-1 rounded bg-whisper flex max-w-fit gap-1 cursor-pointer"
-    :class="{ 'shadow-sm': raised, 'opacity-40 cursor-not-allowed': disabled }"
+    class="p-[2px] rounded bg-whisper flex max-w-fit gap-1"
+    :class="{ 'shadow-sm': raised }"
     :disabled="disabled">
     <RadioGroupLabel class="sr-only">{{ label }}</RadioGroupLabel>
     <RadioGroupOption
@@ -59,16 +68,22 @@ export default defineComponent({
       :key="option.value"
       v-slot="{ checked }"
       :value="option.value"
-      :disabled="option.disabled"
-      class="focus-visible:focus-outline flex rounded transition-colors duration-500 ease-out">
+      :disabled="option.disabled || disabled"
+      class="focus-visible:focus-outline flex h-8 rounded transition-colors duration-500 ease-out">
       <div
-        class="flex px-3 py-1 rounded active:bg-zurich48 active:text-mediumblue"
+        class="flex items-center px-3 py-1 rounded enabled:active:bg-zurich48 enabled:active:text-mediumblue enabled:cursor-pointer"
         :class="{
           'text-mediumblue bg-zurich': checked,
-          'hover:bg-gray': !checked,
-          'opacity-40 cursor-not-allowed': option.disabled
-        }">
-        {{ option.label }}
+          'hover:bg-gray': !checked && !option.disabled && !disabled,
+          'opacity-40 cursor-not-allowed': option.disabled || disabled
+        }"
+        :aria-label="option.icon ? option.label : undefined">
+        <slot :name="option.value">
+          <a-icon v-if="option.icon" :name="option.icon" size="sm"></a-icon>
+          <template v-else>
+            {{ option.label }}
+          </template>
+        </slot>
       </div>
     </RadioGroupOption>
   </RadioGroup>
