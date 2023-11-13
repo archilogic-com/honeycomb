@@ -2,18 +2,12 @@ import { ref, computed, Ref } from 'vue'
 import { Meta, StoryFn } from '@storybook/vue3'
 import { ACombobox, AOption, AOptionGroup, AColorCircle } from '../components'
 import { within, userEvent } from '@storybook/testing-library'
-import ComboboxDocs from './Combobox.mdx'
 import type { Option } from '../components/Option.vue'
 
 export default {
   title: 'Components/Combobox',
   component: ACombobox,
-  subcomponents: { AOption, AOptionGroup },
-  parameters: {
-    docs: {
-      page: ComboboxDocs
-    }
-  }
+  subcomponents: { AOption, AOptionGroup }
 } as Meta
 
 const focusCombobox: StoryFn['play'] = async ({ canvasElement }) => {

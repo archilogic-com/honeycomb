@@ -2,16 +2,10 @@ import { ref } from 'vue'
 import { Meta, StoryFn } from '@storybook/vue3'
 import { within, userEvent } from '@storybook/testing-library'
 import { ANumberInput, AInputGroup } from '../components'
-import NumberInputDocs from './NumberInput.mdx'
 
 export default {
   title: 'Components/NumberInput',
-  component: ANumberInput,
-  parameters: {
-    docs: {
-      page: NumberInputDocs
-    }
-  }
+  component: ANumberInput
 } as Meta
 
 const Template: StoryFn = (args, meta) => ({
