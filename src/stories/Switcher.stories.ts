@@ -5,6 +5,15 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 import ASwitcher from '../components/Switcher.vue'
 import AIcon from '../components/Icon.vue'
 
+/**
+ *
+ * The `<a-switcher>` component is a wrapper around
+ * [Headless UI's Radio Group components](https://headlessui.com/vue/radio-group).
+ *
+ * ```html
+ * <a-switcher label="Units" :options="unitList" v-model="selectedUnits"/>
+ * ```
+ */
 const meta: Meta<typeof ASwitcher> = {
   component: ASwitcher,
   title: 'Components/Switcher',
@@ -32,6 +41,9 @@ const renderSwitcher = (args: SwitcherProps) => ({
       <ASwitcher v-model="selected" v-bind="args" />`
 })
 
+/**
+ * The switcher component requires a list of `options`, a `v-model` value, and a `label` string for accessible label of the component as a whole.
+ */
 export const Primary: Story = {
   render: renderSwitcher,
   args: {
@@ -43,6 +55,10 @@ export const Primary: Story = {
   }
 }
 
+/**
+ * The Switcher component can display several options,
+ * but in most cases for selection between more than three options we recommend considering a different component, e.g. Listbox or Combobox.
+ */
 export const ThreeOptions: Story = {
   render: renderSwitcher,
   args: {
@@ -54,6 +70,10 @@ export const ThreeOptions: Story = {
     label: 'View'
   }
 }
+
+/**
+ * One of the options can be disabled by passing a disabled property on the relevant option object.
+ */
 export const DisabledOption: Story = {
   render: renderSwitcher,
   args: {
@@ -66,6 +86,9 @@ export const DisabledOption: Story = {
   }
 }
 
+/**
+ * Or you can disable the whole component by setting the `disabled` prop on `<a-switcher>`.
+ */
 export const DisabledSwitcher: Story = {
   render: renderSwitcher,
   args: {
@@ -74,6 +97,13 @@ export const DisabledSwitcher: Story = {
   }
 }
 
+/**
+ * If the options have an icon property,
+ * the value of the label property will be passed to the option's `aria-label` attribute,
+ * and the icon displayed to the user.
+ *
+ * **Note**: only icons of size "sm" are currently supported.
+ */
 export const IconOptions: Story = {
   render: renderSwitcher,
   args: {
@@ -85,6 +115,12 @@ export const IconOptions: Story = {
   }
 }
 
+/**
+ * For arbitrary content, such as icon + text label, unsupported icons, or customized style
+ * option slots can be used.
+ * The switcher component exposes a dynamic slot for each option
+ * generated with the option's value as the slot's name.
+ */
 export const UsingSlots: Story = {
   render: args => ({
     components: { ASwitcher, AIcon },
@@ -107,6 +143,9 @@ export const UsingSlots: Story = {
   }
 }
 
+/**
+ * For an elevated appearance (with box-shadow), set the `raised` prop on `<a-switcher>`.
+ */
 export const RaisedSwitcher: Story = {
   render: renderSwitcher,
   args: {
