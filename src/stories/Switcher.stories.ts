@@ -120,6 +120,9 @@ export const IconOptions: Story = {
  * option slots can be used.
  * The switcher component exposes a dynamic slot for each option
  * generated with the option's value as the slot's name.
+ *
+ * For information on template syntax for dynamic slot names, see
+ * [official vue documentation](https://vuejs.org/guide/components/slots.html#dynamic-slot-names).
  */
 export const UsingSlots: Story = {
   render: args => ({
