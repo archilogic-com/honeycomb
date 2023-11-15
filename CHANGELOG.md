@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.8.0](https://github.com/archilogic-com/honeycomb/compare/v2.7.2...v2.8.0) (2023-11-15)
+
+
+### Features
+
+* **switcher:** add component Al 1713 ([#184](https://github.com/archilogic-com/honeycomb/issues/184)) ([e770c3c](https://github.com/archilogic-com/honeycomb/commit/e770c3cc976864a10ba912b7eb8ef448555d2673))
+
 ## [2.7.2](https://github.com/archilogic-com/honeycomb/compare/v2.7.1...v2.7.2) (2023-11-13)
 
 
