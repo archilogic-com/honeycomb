@@ -69,15 +69,16 @@ export default defineComponent({
       v-slot="{ checked }"
       :value="option.value"
       :disabled="option.disabled || disabled"
-      class="focus-visible:focus-outline flex h-8 rounded transition-colors duration-500 ease-out">
+      class="focus-visible:focus-outline flex h-8 rounded transition-colors duration-500 ease-out cursor-pointer">
       <div
-        class="flex items-center px-3 py-1 rounded enabled:active:bg-zurich48 enabled:active:text-mediumblue enabled:cursor-pointer"
+        class="flex items-center px-3 py-1 rounded active:bg-zurich48 active:text-mediumblue"
         :class="{
           'text-mediumblue bg-zurich': checked,
-          'hover:bg-gray': !checked && !option.disabled && !disabled,
+          'hover:bg-gray active:bg-zurich48': !checked && !option.disabled && !disabled,
           'opacity-40 cursor-not-allowed': option.disabled || disabled
         }"
-        :aria-label="option.icon ? option.label : undefined">
+        :aria-label="option.icon ? option.label : undefined"
+        :title="option.icon ? option.label : undefined">
         <slot :name="option.value">
           <a-icon v-if="option.icon" :name="option.icon" size="sm"></a-icon>
           <template v-else>
