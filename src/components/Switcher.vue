@@ -71,10 +71,11 @@ export default defineComponent({
       :disabled="option.disabled || disabled"
       class="focus-visible:focus-outline flex h-8 rounded transition-colors duration-500 ease-out cursor-pointer">
       <div
-        class="flex items-center px-3 py-1 rounded active:bg-zurich48 active:text-mediumblue"
+        class="flex items-center px-3 py-1 rounded"
         :class="{
           'text-mediumblue bg-zurich': checked,
-          'hover:bg-gray active:bg-zurich48': !checked && !option.disabled && !disabled,
+          'hover:bg-gray hover:text-navy active:bg-zurich48 active:text-mediumblue':
+            !option.disabled && !disabled,
           'opacity-40 cursor-not-allowed': option.disabled || disabled
         }"
         :aria-label="option.icon ? option.label : undefined"
