@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.1](https://github.com/archilogic-com/honeycomb/compare/v2.8.0...v2.8.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* **switcher:** export switcher ([#185](https://github.com/archilogic-com/honeycomb/issues/185)) ([abfc27d](https://github.com/archilogic-com/honeycomb/commit/abfc27ddb29069db51ba94635c4cd5b43df4ac16))
+
 # [2.8.0](https://github.com/archilogic-com/honeycomb/compare/v2.7.2...v2.8.0) (2023-11-15)
 
 
