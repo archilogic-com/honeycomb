@@ -2,17 +2,11 @@ import { ref, computed } from 'vue'
 import { Meta, StoryFn } from '@storybook/vue3'
 import { within, userEvent } from '@storybook/testing-library'
 import { AListbox, AOption, AOptionGroup } from '../components'
-import ListboxDocs from './Listbox.mdx'
 
 export default {
   title: 'Components/Listbox',
   component: AListbox,
-  subcomponents: { AOption, AOptionGroup },
-  parameters: {
-    docs: {
-      page: ListboxDocs
-    }
-  }
+  subcomponents: { AOption, AOptionGroup }
 } as Meta
 
 const defaultOptions = [

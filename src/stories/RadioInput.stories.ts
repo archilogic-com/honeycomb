@@ -2,16 +2,10 @@ import { ref } from 'vue'
 import { Meta, StoryFn } from '@storybook/vue3'
 import { within, userEvent } from '@storybook/testing-library'
 import { ARadioInput } from '../components'
-import RadioInputDocs from './RadioInput.mdx'
 
 export default {
   title: 'Components/RadioInput',
-  component: ARadioInput,
-  parameters: {
-    docs: {
-      page: RadioInputDocs
-    }
-  }
+  component: ARadioInput
 } as Meta
 
 const Template: StoryFn = args => ({
