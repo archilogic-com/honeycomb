@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 
-import ASwitcher from '../components/Switcher.vue'
-import AIcon from '../components/Icon.vue'
+import { ASwitcher, AIcon } from '../components'
 
 /**
  *
