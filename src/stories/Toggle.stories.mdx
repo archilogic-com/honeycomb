@@ -40,6 +40,9 @@ a [toggle button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARI
   <Story name="toggle off" args={{ value: false }}>
     {Template.bind({})}
   </Story>
+  <Story name="toggle mixed" args={{ value: 'mixed' }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
 This component is designed as a **controlled** component, meaning that it does not update its own state,
@@ -74,6 +77,9 @@ To disable the toggle, just add a `disabled` attribute.
     {Template.bind({})}
   </Story>
   <Story name="toggle off disabled" args={{ value: false, disabled: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="toggle mixed disabled" args={{ value: 'mixed', disabled: true }}>
     {Template.bind({})}
   </Story>
 </Canvas>
