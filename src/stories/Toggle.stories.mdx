@@ -1,49 +1,32 @@
-import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
-import { ref } from 'vue'
-import { AToggle } from '../components'
+import { Meta, Canvas } from '@storybook/addon-docs'
 
-<Meta title="Components/Toggle" component={AToggle} argTypes={{}} />
+import * as ToggleStories from './Toggle.stories'
 
-export const Template = args => ({
-  components: { AToggle },
-  setup() {
-    const pressedState = ref(args.value)
-    return { args, pressedState }
-  },
-  template: `<AToggle v-bind="args" v-model="pressedState">${args.default || ''}</AToggle>`
-})
+<Meta of={ToggleStories} />
 
-# Toggle (Switch)
+# Toggle
 
 ## Usage
 
 ```html
 <a-toggle v-model="yourValue" labelId="example-id" />
-<AToggle v-model="yourValue" labelId="example-id" />
 ```
+
+<ArgsTypes of={AToggle} />
 
 `AToggle` renders an HTML button element with an `aria-pressed` attribute, which makes it
 a [toggle button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#toggle_buttons).
 
-<ArgsTable of={AToggle} />
+<Canvas of={ToggleStories.On} />
+
+The [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed#mixed)
+attribute for toggle buttons also supports a value of `mixed`.
+
+> A value of mixed means that the values of more than one item controlled by the button do not all share the same value.
+
+<Canvas of={ToggleStories.Mixed} />
 
 ### Using with v-model (recommended)
-
-```html
-<a-toggle v-model="yourValue" labelId="example-id" />
-```
-
-<Canvas columns={2}>
-  <Story name="toggle on" args={{ value: true }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="toggle off" args={{ value: false }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="toggle mixed" args={{ value: 'mixed' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
 
 This component is designed as a **controlled** component, meaning that it does not update its own state,
 but relies on the value provided by `v-model` instead. The `v-model` value is automatically updated on click events
@@ -72,17 +55,9 @@ const handleChange = newValue => {
 
 To disable the toggle, just add a `disabled` attribute.
 
-<Canvas>
-  <Story name="toggle on disabled" args={{ value: true, disabled: true }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="toggle off disabled" args={{ value: false, disabled: true }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="toggle mixed disabled" args={{ value: 'mixed', disabled: true }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
+<Canvas of={ToggleStories.OnDisabled} />
+<Canvas of={ToggleStories.OffDisabled} />
+<Canvas of={ToggleStories.MixedDisabled} />
 
 ## Labelling the toggle
 
@@ -91,62 +66,12 @@ labelled inputs. For more details, follow the [InputGroup documentation](path=/d
 
 However, a toggle switch component can be used in a variety of UIs, with variously designed labels.
 Please make sure to provide your text label element with a unique `id` and pass it as the `labelId` prop to `<a-toggle>`.
-E.g.:
 
-```html
-<div>
-  <p id="email-notifications-toggle">Email Notifications</p>
-  <a-toggle v-model="toggleState" labelId="email-notifications-toggle" />
-</div>
-```
-
-<Canvas>
-  <Story name="toggle with label">
-    {() => ({
-      components: { AToggle },
-      setup() {
-        const toggleState = ref(true)
-        return { toggleState }
-      },
-      template: `
-      <div class="flex items-center">
-        <p id="email-notifications" class="body-lg-500 pr-1">Email notifications</p>
-        <a-toggle v-model="toggleState" labelId="email-notifications" />
-      </div>`
-    })}
-  </Story>
-</Canvas>
+<Canvas of={ToggleStories.WithLabel} />
 
 If appropriate, add a click event listener to the labelling element to update to toggle state as well.
 
-```html
-<div>
-  <p id="clickable-label" @click="handleChange">
-    Clicking on this label will also switch the toggle.
-  </p>
-  <a-toggle v-model="toggleState" labelId="clickable-label" />
-</div>
-```
-
-<Canvas>
-  <Story name="toggle with clickable label">
-    {() => ({
-      components: { AToggle },
-      setup() {
-        const toggleState = ref(true)
-        const handleChange = newValue => {
-          toggleState.value = !toggleState.value
-        }
-        return { handleChange, toggleState }
-      },
-      template: `
-      <div class="flex items-center">
-        <p id="clickable-label"  class="body-lg-500 pr-1 cursor-pointer" @click="handleChange">Clicking on this label will also switch the toggle</p>
-        <a-toggle v-model="toggleState" labelId="clickable-label" />
-      </div>`
-    })}
-  </Story>
-</Canvas>
+<Canvas of={ToggleStories.WithClickableLabel} />
 
 ### Screen reader only label
 
