@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/addon-docs'
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs'
 
 import * as ToggleStories from './Toggle.stories'
 
@@ -12,7 +12,7 @@ import * as ToggleStories from './Toggle.stories'
 <a-toggle v-model="yourValue" labelId="example-id" />
 ```
 
-<ArgsTypes of={AToggle} />
+<ArgTypes of={ToggleStories} />
 
 `AToggle` renders an HTML button element with an `aria-pressed` attribute, which makes it
 a [toggle button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#toggle_buttons).
