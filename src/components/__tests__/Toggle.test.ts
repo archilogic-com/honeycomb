@@ -38,7 +38,7 @@ describe('Toggle.vue', () => {
       })
     })
   })
-  describe('when a toggle is has a `mixed` value', () => {
+  describe('when a toggle has a `mixed` value', () => {
     it('applies "aria-pressed=\'mixed\'" to the button', () => {
       const { getByRole } = render(Toggle, {
         props: { modelValue: 'mixed', labelId: 'toggle' }
