@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.9.0](https://github.com/archilogic-com/honeycomb/compare/v2.8.1...v2.9.0) (2023-11-21)
+
+
+### Features
+
+* **toggle:** add `mixed` state support Al 5094 ([#186](https://github.com/archilogic-com/honeycomb/issues/186)) ([d4cd34d](https://github.com/archilogic-com/honeycomb/commit/d4cd34d2ee3b14f5f0999363e7ce3315619fcfc7))
+
 ## [2.8.1](https://github.com/archilogic-com/honeycomb/compare/v2.8.0...v2.8.1) (2023-11-15)
 
 
