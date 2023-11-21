@@ -1,0 +1,87 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs'
+
+import * as ToggleStories from './Toggle.stories'
+
+<Meta of={ToggleStories} />
+
+# Toggle
+
+## Usage
+
+```html
+<a-toggle v-model="yourValue" labelId="example-id" />
+```
+
+<ArgTypes of={ToggleStories} />
+
+`AToggle` renders an HTML button element with an `aria-pressed` attribute, which makes it
+a [toggle button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#toggle_buttons).
+
+<Canvas of={ToggleStories.On} />
+
+The [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed#mixed)
+attribute for toggle buttons also supports a value of `mixed`.
+
+> A value of mixed means that the values of more than one item controlled by the button do not all share the same value.
+
+<Canvas of={ToggleStories.Mixed} />
+
+### Using with v-model (recommended)
+
+This component is designed as a **controlled** component, meaning that it does not update its own state,
+but relies on the value provided by `v-model` instead. The `v-model` value is automatically updated on click events
+(including those triggered by `space` and `enter` keys).
+See [Vue docs on v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model).
+
+### Using with event listener
+
+For more granular control over model value state changes,
+use the `modelValue` prop and the `update:modelValue` event.
+
+```html
+<!-- in your template -->
+<a-toggle :model-value="toggleState" @update:model-value="handleChange" labelId="example-id" />
+```
+
+```js
+// in your component's setup
+const toggleState = ref(true)
+const handleChange = newValue => {
+  toggleState.value = newValue
+}
+```
+
+## Disabling the toggle
+
+To disable the toggle, just add a `disabled` attribute.
+
+<Canvas of={ToggleStories.OnDisabled} />
+<Canvas of={ToggleStories.OffDisabled} />
+<Canvas of={ToggleStories.MixedDisabled} />
+
+## Labelling the toggle
+
+`<a-toggle>` can be used inside the `<a-input-group>` component to create consistently styled
+labelled inputs. For more details, follow the [InputGroup documentation](path=/docs/components-inputgroup--label).
+
+However, a toggle switch component can be used in a variety of UIs, with variously designed labels.
+Please make sure to provide your text label element with a unique `id` and pass it as the `labelId` prop to `<a-toggle>`.
+
+<Canvas of={ToggleStories.WithLabel} />
+
+If appropriate, add a click event listener to the labelling element to update the toggle state as well.
+
+<Canvas of={ToggleStories.WithClickableLabel} />
+
+### Screen reader only label
+
+In some case the toggle may not have a visible labelling element (e.g. in a table layout).
+In that case it is advised to provide an invisible labelling element with a tailwind class `sr-only`:
+
+```html
+<div>
+  <!-- this label will not be visible -->
+  <p id="my-toggle" class="sr-only">My Toggle</p>
+  <a-toggle v-model="toggleState" labelId="my-toggle" />
+</div>
+```

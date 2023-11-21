@@ -38,4 +38,21 @@ describe('Toggle.vue', () => {
       })
     })
   })
+  describe('when a toggle has a `mixed` value', () => {
+    it('applies "aria-pressed=\'mixed\'" to the button', () => {
+      const { getByRole } = render(Toggle, {
+        props: { modelValue: 'mixed', labelId: 'toggle' }
+      })
+      expect(getByRole('button')).toHaveAttribute('aria-pressed', 'mixed')
+    })
+    describe('when a toggle is pressed', () => {
+      it('emits an "update:modelValue" event', async () => {
+        const { getByRole, emitted } = render(Toggle, {
+          props: { modelValue: 'mixed', labelId: 'toggle' }
+        })
+        await userEvent.click(getByRole('button'))
+        expect(emitted()['update:modelValue'][0]).toEqual([false])
+      })
+    })
+  })
 })
