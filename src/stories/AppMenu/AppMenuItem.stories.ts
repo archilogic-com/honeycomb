@@ -18,8 +18,8 @@ import { menuStoriesDecorators, menuStoriesParameters } from './shared'
 const meta: Meta<typeof AAppMenuItem> = {
   component: AAppMenuItem,
   title: 'Components/AppMenu/AppMenuItem',
-  parameters: menuStoriesParameters,
-  decorators: menuStoriesDecorators
+  parameters: { ...menuStoriesParameters },
+  decorators: [...menuStoriesDecorators]
 }
 
 export default meta

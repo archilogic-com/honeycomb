@@ -21,8 +21,8 @@ import { menuStoriesDecorators, menuStoriesParameters } from './shared'
 const meta: Meta<typeof AAppMenuGroupTitle> = {
   component: AAppMenuGroupTitle,
   title: 'Components/AppMenu/Grouping Items',
-  parameters: menuStoriesParameters,
-  decorators: menuStoriesDecorators
+  parameters: { ...menuStoriesParameters },
+  decorators: [...menuStoriesDecorators]
 }
 
 export default meta

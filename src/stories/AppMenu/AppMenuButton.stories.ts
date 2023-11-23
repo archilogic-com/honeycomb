@@ -11,8 +11,8 @@ import { menuStoriesDecorators, menuStoriesParameters } from './shared'
 const meta: Meta<typeof AAppMenuButton> = {
   component: AAppMenuButton,
   title: 'Components/AppMenu/AppMenuButton',
-  parameters: menuStoriesParameters,
-  decorators: menuStoriesDecorators
+  parameters: { ...menuStoriesParameters },
+  decorators: [...menuStoriesDecorators]
 }
 
 export default meta

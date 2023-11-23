@@ -21,8 +21,8 @@ import { menuStoriesDecorators, menuStoriesParameters } from './shared'
 const meta: Meta<typeof AAppMenu> = {
   component: AAppMenu,
   title: 'Components/AppMenu',
-  parameters: menuStoriesParameters,
-  decorators: menuStoriesDecorators
+  parameters: { ...menuStoriesParameters },
+  decorators: [...menuStoriesDecorators]
 }
 
 export default meta
@@ -88,6 +88,7 @@ export const RightAligned: Story = {
 
 /**
  * This menu opens upwards instead of downwards.
+ *
  * ```html
  * <a-app-menu direction="up">…</a-app-menu>
  * ```
