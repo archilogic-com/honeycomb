@@ -1,8 +1,7 @@
-import type { Meta, StoryObj, StoryFn } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import type { ComponentProps } from 'vue-component-type-helpers'
-import { within } from '@storybook/testing-library'
 import { AAppMenu, AAppMenuItem, AAppMenuButton, AButton, AIcon } from '../../components'
-import { menuStoriesDecorators, menuStoriesParameters } from './shared'
+import { menuStoriesDecorators, menuStoriesParameters, openMenu } from './shared'
 
 /**
  * `<a-app-menu-button>` (aka `<a-popup-button>`) renders an AButton component by default,
@@ -43,11 +42,6 @@ const renderAppMenu = (args: AppMenuButtonProps) => ({
         </AAppMenu>
       `
 })
-
-const openMenu: StoryFn['play'] = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
-  await canvas.getByRole('button').click()
-}
 
 export const Primary: Story = {
   render: renderAppMenu,

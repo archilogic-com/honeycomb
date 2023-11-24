@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import isChromatic from 'chromatic/isChromatic'
 import {
   AAppMenu,
   AAppMenuItem,
@@ -7,7 +6,7 @@ import {
   AAppMenuButton,
   AAppMenuGroupTitle
 } from '../../components'
-import { menuStoriesDecorators, menuStoriesParameters } from './shared'
+import { menuStoriesDecorators, menuStoriesParameters, openMenu } from './shared'
 
 /**
  *
@@ -33,7 +32,7 @@ export const GroupedItemsWithTitle: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator, AAppMenuGroupTitle },
     template: `
-         <AAppMenu :open="${isChromatic()}">
+         <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria">My menu</AAppMenuButton>
           </template>
@@ -46,5 +45,6 @@ export const GroupedItemsWithTitle: Story = {
           <AAppMenuItem>Account</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenu
 }

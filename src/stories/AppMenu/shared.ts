@@ -1,3 +1,5 @@
+import { within } from '@storybook/testing-library'
+
 export const menuStoriesDecorators = [
   () => ({
     template: `
@@ -9,4 +11,20 @@ export const menuStoriesDecorators = [
   })
 ]
 
-export const menuStoriesParameters = { layout: 'fullscreen', chromatic: { delay: 1000 } }
+export const menuStoriesParameters = { layout: 'fullscreen' }
+
+export const openMenu = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('button').click()
+}
+
+export const openMenuAndSubmenu = async (
+  { canvasElement }: { canvasElement: HTMLElement },
+  submenuLevels: number = 1
+) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('button').click()
+  for (let submenu = 0; submenu < submenuLevels; submenu++) {
+    await canvas.getAllByRole('menuitem', { expanded: false })[0].click()
+  }
+}

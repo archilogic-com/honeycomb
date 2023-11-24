@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
-import isChromatic from 'chromatic/isChromatic'
+
 import {
   APopup,
   AAppMenu,
@@ -11,7 +11,12 @@ import {
   AStatus,
   AColorCircle
 } from '../../components'
-import { menuStoriesDecorators, menuStoriesParameters } from './shared'
+import {
+  menuStoriesDecorators,
+  menuStoriesParameters,
+  openMenu,
+  openMenuAndSubmenu
+} from './shared'
 /**
  * AAppMenu is a component for application menus that closely resemble desktop application menus.
  * It implements all the [behaviors and semantics conventional for such menus](https://www.w3.org/TR/wai-aria-practices/#menu).
@@ -50,23 +55,7 @@ const renderAppMenu = (args: AppMenuProps) => ({
 
 export const Primary: Story = {
   render: renderAppMenu,
-  args: {
-    open: isChromatic()
-  }
-}
-
-/**
- * A menu that is open by default.
- *
- * ```html
- * <a-app-menu open>…</a-app-menu>
- * ```
- */
-export const OpenByDefault: Story = {
-  render: renderAppMenu,
-  args: {
-    open: true
-  }
+  play: openMenu
 }
 
 /**
@@ -78,9 +67,8 @@ export const OpenByDefault: Story = {
  * ```
  */
 export const RightAligned: Story = {
-  render: renderAppMenu,
+  ...Primary,
   args: {
-    ...Primary.args,
     align: 'right',
     class: 'ml-auto'
   }
@@ -94,9 +82,8 @@ export const RightAligned: Story = {
  * ```
  */
 export const OpeningUpwards: Story = {
-  render: renderAppMenu,
+  ...Primary,
   args: {
-    ...Primary.args,
     direction: 'up',
     class: 'mt-auto'
   }
@@ -140,7 +127,7 @@ export const AllTogether: Story = {
       }
     },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
           </template>
@@ -165,7 +152,7 @@ export const AllTogether: Story = {
               </AAppMenuItem>
             </template>
           </AAppMenuItem>
-          <AAppMenuItem :open="${isChromatic()}">
+          <AAppMenuItem>
             View
             <template #submenu>
               <AAppMenuItem
@@ -188,7 +175,10 @@ export const AllTogether: Story = {
           </AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play(params) {
+    openMenuAndSubmenu(params, 2)
+  }
 }
 
 /**

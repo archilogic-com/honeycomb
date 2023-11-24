@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
+import { within } from '@storybook/testing-library'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { AAppMenu, AAppMenuItem, AAppMenuMultiButton } from '../../components'
 import { menuStoriesDecorators, menuStoriesParameters } from './shared'
@@ -64,6 +65,22 @@ const renderAppMenu = (args: AppMenuMultiButtonProps) => ({
 
 export const Primary: Story = {
   render: renderAppMenu
+}
+
+export const Pressed: Story = {
+  render: renderAppMenu,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await canvas.getByRole('button', { name: 'Wall' }).click()
+  }
+}
+
+export const MenuOpen: Story = {
+  render: renderAppMenu,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await canvas.getByRole('button', { name: 'Toggle menu' }).click()
+  }
 }
 
 export const Disabled: Story = {

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
-import isChromatic from 'chromatic/isChromatic'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import {
   AAppMenu,
@@ -11,7 +10,12 @@ import {
   AColorCircle,
   AStatus
 } from '../../components'
-import { menuStoriesDecorators, menuStoriesParameters } from './shared'
+import {
+  menuStoriesDecorators,
+  menuStoriesParameters,
+  openMenu,
+  openMenuAndSubmenu
+} from './shared'
 
 /**
  */
@@ -56,7 +60,7 @@ const renderAppMenu = (args: AppMenuItemProps) => ({
     }
   },
   template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria">Options</AAppMenuButton>
           </template>
@@ -95,7 +99,8 @@ export const Checkbox: Story = {
   args: {
     role: 'checkbox',
     items: [...checkOrRadioItems]
-  }
+  },
+  play: openMenu
 }
 
 export const Radio: Story = {
@@ -103,7 +108,8 @@ export const Radio: Story = {
   args: {
     role: 'radio',
     items: [...checkOrRadioItems]
-  }
+  },
+  play: openMenu
 }
 
 /**
@@ -114,7 +120,7 @@ export const IconIndicator: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton, AIcon, AColorCircle },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria">Sort by</AAppMenuButton>
           </template>
@@ -133,7 +139,8 @@ export const IconIndicator: Story = {
           </AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenu
 }
 
 /**
@@ -143,7 +150,7 @@ export const ExtraSlot: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton, AStatus },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria">Edit</AAppMenuButton>
           </template>
@@ -157,7 +164,8 @@ export const ExtraSlot: Story = {
           <AAppMenuItem>Status</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenu
 }
 
 /**
@@ -168,7 +176,7 @@ export const Shortcut: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria">Edit</AAppMenuButton>
           </template>
@@ -179,7 +187,8 @@ export const Shortcut: Story = {
           <AAppMenuItem>Status</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenu
 }
 
 /**
@@ -190,7 +199,7 @@ export const Link: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open}">
             <AAppMenuButton :open="open">Resources</AAppMenuButton>
           </template>
@@ -198,7 +207,8 @@ export const Link: Story = {
           <AAppMenuItem target="_blank" href="http://testing-developers.archilogic.com/space-api/v2">Developer Docs</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenu
 }
 
 /**
@@ -208,7 +218,7 @@ export const Disabled: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open}">
             <AAppMenuButton :open="open">Sort by</AAppMenuButton>
           </template>
@@ -217,7 +227,8 @@ export const Disabled: Story = {
           <AAppMenuItem>Status</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenu
 }
 
 /**
@@ -237,7 +248,7 @@ export const SubmenuSlot: Story = {
       }
     },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
           </template>
@@ -251,7 +262,7 @@ export const SubmenuSlot: Story = {
               <AAppMenuItem>Archive</AAppMenuItem>
             </template>
           </AAppMenuItem>
-          <AAppMenuItem :open="${isChromatic()}">
+          <AAppMenuItem>
             View
             <template #submenu>
               <AAppMenuItem
@@ -269,7 +280,8 @@ export const SubmenuSlot: Story = {
           </AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenuAndSubmenu
 }
 
 /**
@@ -279,11 +291,11 @@ export const SubmenuScroling: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
           </template>
-          <AAppMenuItem :open="${isChromatic()}">
+          <AAppMenuItem>
             Labels
             <template #submenu>
                <AAppMenuItem>Label 1</AAppMenuItem>
@@ -300,7 +312,8 @@ export const SubmenuScroling: Story = {
           <AAppMenuItem>Floor</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenuAndSubmenu
 }
 
 /**
@@ -310,7 +323,7 @@ export const SubmenuDisabled: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
           </template>
@@ -326,7 +339,8 @@ export const SubmenuDisabled: Story = {
           <AAppMenuItem>Your account</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: openMenuAndSubmenu
 }
 
 /**
@@ -337,17 +351,17 @@ export const SubmenuNested: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton },
     template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>Go to dashboard</AAppMenuItem>
-          <AAppMenuItem :open="${isChromatic()}">
+          <AAppMenuItem>
             Floor
             <template #submenu>
               <AAppMenuItem>Recent</AAppMenuItem>
               <AAppMenuItem>Duplicate</AAppMenuItem>
-              <AAppMenuItem :open="${isChromatic()}">Archive <template #submenu>
+              <AAppMenuItem>Archive <template #submenu>
                   <AAppMenuItem>
                     Floor 1
                   </AAppMenuItem>
@@ -360,7 +374,10 @@ export const SubmenuNested: Story = {
           <AAppMenuItem>Your account</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: params => {
+    openMenuAndSubmenu(params, 2)
+  }
 }
 
 /**
@@ -376,17 +393,19 @@ export const SubmenuRepositioning: Story = {
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton },
     template: `
-        <AAppMenu :open="${isChromatic()}"  align="right" class="ml-auto" >
+        <AAppMenu align="right" class="ml-auto">
           <template #menu-button="{open}">
             <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>Go to dashboard</AAppMenuItem>
-          <AAppMenuItem :open="${isChromatic()}">
+          <AAppMenuItem>
             Floor
             <template #submenu>
               <AAppMenuItem>Recent</AAppMenuItem>
               <AAppMenuItem>Duplicate</AAppMenuItem>
-              <AAppMenuItem :open="${isChromatic()}">Archive <template #submenu>
+              <AAppMenuItem>
+                Archive
+                <template #submenu>
                   <AAppMenuItem v-for="n in 30">
                     Floor {{n}}
                   </AAppMenuItem>
@@ -396,5 +415,8 @@ export const SubmenuRepositioning: Story = {
           <AAppMenuItem>Your account</AAppMenuItem>
         </AAppMenu>
       `
-  })
+  }),
+  play: params => {
+    openMenuAndSubmenu(params, 2)
+  }
 }
