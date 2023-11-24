@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj, StoryFn } from '@storybook/vue3'
 import type { ComponentProps } from 'vue-component-type-helpers'
-import isChromatic from 'chromatic/isChromatic'
+import { within } from '@storybook/testing-library'
 import { AAppMenu, AAppMenuItem, AAppMenuButton, AButton, AIcon } from '../../components'
 import { menuStoriesDecorators, menuStoriesParameters } from './shared'
 
@@ -29,7 +29,7 @@ const renderAppMenu = (args: AppMenuButtonProps) => ({
     return { slot, restArgs }
   },
   template: `
-        <AAppMenu :open="${isChromatic()}">
+        <AAppMenu>
           <template #menu-button="{open, aria}">
             <AAppMenuButton v-bind="{...aria, open, ...restArgs}" size="lg">
               <template #default v-if="slot">
@@ -44,18 +44,24 @@ const renderAppMenu = (args: AppMenuButtonProps) => ({
       `
 })
 
+const openMenu: StoryFn['play'] = async ({ canvasElement }) => {
+  const canvas = within(canvasElement)
+  await canvas.getByRole('button').click()
+}
+
 export const Primary: Story = {
   render: renderAppMenu,
   args: {
     label: 'Edit'
-  }
+  },
+  play: openMenu
 }
 
 /**
  * Using an icon button (same as `a-button` icon buttons)
  */
 export const IconButton: Story = {
-  render: renderAppMenu,
+  ...Primary,
   args: {
     icon: 'More',
     label: 'Actions'
@@ -66,7 +72,7 @@ export const IconButton: Story = {
  * AppMenuButton with a text label and an icon.
  */
 export const TextAndIcon: Story = {
-  render: renderAppMenu,
+  ...Primary,
   args: {
     ...Primary.args,
     default: `Edit <a-icon name="ChevronDown" size="other" />`
@@ -78,7 +84,7 @@ export const TextAndIcon: Story = {
  * To turn that behavior off, pass `:pressed="false"`.
  */
 export const PressedStateOff: Story = {
-  render: renderAppMenu,
+  ...Primary,
   args: {
     ...Primary.args,
     pressed: false
@@ -89,7 +95,7 @@ export const PressedStateOff: Story = {
  * AppMenuButton can be disabled with a `disabled` attribute.
  */
 export const Disabled: Story = {
-  render: renderAppMenu,
+  ...Primary,
   args: {
     ...Primary.args,
     disabled: true
