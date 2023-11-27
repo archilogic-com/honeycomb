@@ -295,7 +295,7 @@ export const SubmenuSlot: Story = {
  * Submenus with a lost list of items that don't fit on the screen become scrollable.
  */
 export const SubmenuScrolling: Story = {
-  decorators: [() => ({ template: "<div class='v-screen p-4'><story/></div>" })],
+  decorators: [() => ({ template: "<div class='h-screen p-4'><story/></div>" })],
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
     template: `
