@@ -23,7 +23,14 @@ const meta: Meta<typeof AAppMenuItem> = {
   component: AAppMenuItem,
   title: 'Components/AppMenu/AppMenuItem',
   parameters: { ...menuStoriesParameters },
-  decorators: [...menuStoriesDecorators]
+  decorators: [
+    (story, context) => {
+      console.log(context)
+      return context.name === 'Submenu Scrolling'
+        ? { template: '<story/>' }
+        : menuStoriesDecorators[0]()
+    }
+  ]
 }
 
 export default meta
@@ -287,7 +294,7 @@ export const SubmenuSlot: Story = {
 /**
  * Submenus with a lost list of items that don't fit on the screen become scrollable.
  */
-export const SubmenuScroling: Story = {
+export const SubmenuScrolling: Story = {
   decorators: [() => ({ template: "<div class='v-screen p-4'><story/></div>" })],
   render: () => ({
     components: { AAppMenu, AAppMenuItem, AAppMenuButton, AAppMenuSeparator },
