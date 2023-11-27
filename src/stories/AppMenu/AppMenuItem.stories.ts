@@ -17,19 +17,13 @@ import {
   openMenuAndSubmenu
 } from './shared'
 
-/**
- */
 const meta: Meta<typeof AAppMenuItem> = {
   component: AAppMenuItem,
   title: 'Components/AppMenu/AppMenuItem',
   parameters: { ...menuStoriesParameters },
   decorators: [
-    (story, context) => {
-      console.log(context)
-      return context.name === 'Submenu Scrolling'
-        ? { template: '<story/>' }
-        : menuStoriesDecorators[0]()
-    }
+    (story, context) =>
+      context.name === 'Submenu Scrolling' ? { template: '<story/>' } : menuStoriesDecorators[0]()
   ]
 }
 
