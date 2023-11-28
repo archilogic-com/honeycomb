@@ -5,7 +5,7 @@ import { menuStoriesDecorators, menuStoriesParameters, openMenu } from './shared
 
 /**
  * `<a-app-menu-button>` (aka `<a-popup-button>`) renders an AButton component by default,
- * and accepts[ AButton's props](path=/docs/components-button--docs) in addition to APopupButton props.
+ * and accepts [AButton's props](path=/docs/components-button--docs) in addition to APopupButton props.
  */
 const meta: Meta<typeof AAppMenuButton> = {
   component: AAppMenuButton,
