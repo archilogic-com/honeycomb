@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.9.1](https://github.com/archilogic-com/honeycomb/compare/v2.9.0...v2.9.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* **switcher:** padding around switcher options ([#207](https://github.com/archilogic-com/honeycomb/issues/207)) ([f30df7e](https://github.com/archilogic-com/honeycomb/commit/f30df7ed44aa5a818183f85cd0505a98b8a9c6c0))
+
 # [2.9.0](https://github.com/archilogic-com/honeycomb/compare/v2.8.1...v2.9.0) (2023-11-21)
 
 
