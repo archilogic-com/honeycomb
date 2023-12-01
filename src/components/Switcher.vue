@@ -59,7 +59,7 @@ export default defineComponent({
 <template>
   <RadioGroup
     v-model="model"
-    class="p-[2px] rounded bg-whisper flex max-w-fit gap-1"
+    class="p-1 rounded bg-whisper flex max-w-fit gap-1"
     :class="{ 'shadow-sm': raised }"
     :disabled="disabled">
     <RadioGroupLabel class="sr-only">{{ label }}</RadioGroupLabel>
