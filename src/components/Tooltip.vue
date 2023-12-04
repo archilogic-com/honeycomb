@@ -28,7 +28,8 @@ export default defineComponent({
     const reference = ref(null)
     const floating = ref(null)
     const { floatingStyles } = useFloating(reference, floating, {
-      middleware: []
+      placement: 'top',
+      middleware: [flip(), shift()]
     })
 
     const isVisible = ref(false)
@@ -63,6 +64,7 @@ export default defineComponent({
 <template>
   <div
     ref="reference"
+    class="w-fit h-fit"
     @focusin="showTooltip"
     @mouseenter="showTooltip"
     @mouseleave="hideTooltip"
@@ -72,8 +74,8 @@ export default defineComponent({
       :id="tooltipId"
       ref="floating"
       :style="floatingStyles"
-      class="absolute m-max top-0 left-0"
-      :class="isVisible ? 'block' : 'hidden'">
+      class="absolute top-0 left-0 max-w-[140px] min-w-10"
+      :class="isVisible ? 'visible' : 'invisible'">
       <div class="body-sm text-stone rounded shadow-sm bg-white p-2 m-2">
         <span v-if="content">{{ content }}</span>
         <span v-if="shortcut">{{ shortcut }}</span>
