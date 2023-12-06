@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.10.0](https://github.com/archilogic-com/honeycomb/compare/v2.9.1...v2.10.0) (2023-12-06)
+
+
+### Features
+
+* add chevron up & down icons ([#215](https://github.com/archilogic-com/honeycomb/issues/215)) ([94e348b](https://github.com/archilogic-com/honeycomb/commit/94e348b004a194647e5ba4737e682e9e3908cf44))
+
 ## [2.9.1](https://github.com/archilogic-com/honeycomb/compare/v2.9.0...v2.9.1) (2023-12-01)
 
 
