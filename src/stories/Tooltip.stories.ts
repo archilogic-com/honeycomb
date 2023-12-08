@@ -91,12 +91,12 @@ export const Top: Story = {
 }
 
 export const Right: Story = {
+  ...Primary,
   decorators: [
     () => ({
       template: `<div class="w-full h-[200px] flex items-center justify-start"><story/></div>`
     })
-  ],
-  render: renderTooltip
+  ]
 }
 
 export const Left: Story = {
