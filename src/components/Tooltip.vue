@@ -14,7 +14,7 @@ export default defineComponent({
     /** determines how tooltip will be associated with the control that triggered it,
      * i.e. with `aria-describedby` or `aria-labelledby` attribute.
      */
-    type: {
+    role: {
       type: String as PropType<'label' | 'description'>,
       default: 'label'
     },
@@ -53,7 +53,7 @@ export default defineComponent({
     const tooltipId = `a-tooltip-${createId()}`
 
     const ariaSlotProps = {
-      [props.type === 'label' ? 'aria-labelledby' : 'aria-describedby']: tooltipId
+      [props.role === 'label' ? 'aria-labelledby' : 'aria-describedby']: tooltipId
     }
 
     // arrow positioning https://floating-ui.com/docs/arrow#visualization
@@ -104,6 +104,8 @@ export default defineComponent({
     <!-- @slot the control that triggers the tooltip goes into the default slot. 
     -->
     <slot v-bind="ariaSlotProps" />
+    <!-- role="tooltip" is mostly for testing purposes, to select tooltip by role. 
+        Even though it is a part of html spec, it does not do anything. -->
     <div
       :id="tooltipId"
       ref="floating"
