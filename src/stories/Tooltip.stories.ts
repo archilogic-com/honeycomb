@@ -6,7 +6,7 @@ import { userEvent, waitFor, within } from '@storybook/testing-library'
 type TooltipProps = ComponentProps<typeof ATooltip>
 
 /**
- * A tooltip component provides extra information about a control than triggers it.
+ * A tooltip component provides extra information about the control that triggers it.
  * It serves as an accessible label or description of a given control (see `type` prop).
  *
  * Only interactive elements should trigger tooltips,
@@ -56,11 +56,11 @@ const hoverButton = async ({ canvasElement }: { canvasElement: HTMLElement }) =>
  * Below are examples of differently positioned tooltips
  * based on available space on various sides of the screen.
  *
- * The positioning logic is handled by [Floating UI](https://floating-ui.com/docs/vue#options) library,
+ * The positioning logic is handled by the [Floating UI](https://floating-ui.com/docs/vue#options) library,
  * with the use of `flip()` and `shift()` [middleware](https://floating-ui.com/docs/middleware).
  *
  * If there's available space on every side of the tooltip,
- * it is rendered on the top center of the
+ * it is rendered on the top center of the control.
  */
 export const Primary: Story = {
   decorators: [

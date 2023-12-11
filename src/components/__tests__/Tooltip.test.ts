@@ -15,7 +15,7 @@ const tooltipPropsAndSlots = {
 }
 
 describe('Tooltip.vue', () => {
-  describe('then the tooltip role is "label"', () => {
+  describe('when the tooltip role is "label"', () => {
     it('assigns an "id" to the tooltip element and "aria-labelledby" to the control', () => {
       const { getByRole } = render(Tooltip, { ...tooltipPropsAndSlots })
       expect(getByRole('button')).toHaveAttribute(
@@ -25,7 +25,7 @@ describe('Tooltip.vue', () => {
       expect(getByRole('tooltip')).toHaveAttribute('id', expect.stringContaining(tooltipId))
     })
   })
-  describe('then the tooltip role is "description"', () => {
+  describe('when the tooltip role is "description"', () => {
     it('assigns an "id" to the tooltip element and "aria-labelledby" to the control', () => {
       const { getByRole } = render(Tooltip, {
         ...tooltipPropsAndSlots,
