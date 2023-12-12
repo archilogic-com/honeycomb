@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.11.0](https://github.com/archilogic-com/honeycomb/compare/v2.10.0...v2.11.0) (2023-12-12)
+
+
+### Features
+
+* **icons:** SpaceAndComponent ([#217](https://github.com/archilogic-com/honeycomb/issues/217)) ([3cce764](https://github.com/archilogic-com/honeycomb/commit/3cce764bb1f39162a987dd4d2054bf4e7a9fe6dd))
+
 # [2.10.0](https://github.com/archilogic-com/honeycomb/compare/v2.9.1...v2.10.0) (2023-12-06)
 
 
