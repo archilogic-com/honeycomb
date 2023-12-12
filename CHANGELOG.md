@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.12.0](https://github.com/archilogic-com/honeycomb/compare/v2.11.0...v2.12.0) (2023-12-12)
+
+
+### Features
+
+* **tooltip:** add tooltip component Al 2049 ([#218](https://github.com/archilogic-com/honeycomb/issues/218)) ([259bff8](https://github.com/archilogic-com/honeycomb/commit/259bff823f0d789a528dbd37e04262a669652d14))
+
 # [2.11.0](https://github.com/archilogic-com/honeycomb/compare/v2.10.0...v2.11.0) (2023-12-12)
 
 
