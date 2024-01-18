@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.13.0](https://github.com/archilogic-com/honeycomb/compare/v2.12.0...v2.13.0) (2024-01-18)
+
+
+### Features
+
+* add drop icon ([#244](https://github.com/archilogic-com/honeycomb/issues/244)) ([c3c926f](https://github.com/archilogic-com/honeycomb/commit/c3c926f1a9e02f01d98936562f96197e25b4ab7d))
+
 # [2.12.0](https://github.com/archilogic-com/honeycomb/compare/v2.11.0...v2.12.0) (2023-12-12)
 
 
