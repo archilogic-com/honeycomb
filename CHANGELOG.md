@@ -1,5 +1,40 @@
 # Changelog
 
+# [2.13.0](https://github.com/archilogic-com/honeycomb/compare/v2.12.0...v2.13.0) (2024-01-18)
+
+
+### Features
+
+* add drop icon ([#244](https://github.com/archilogic-com/honeycomb/issues/244)) ([c3c926f](https://github.com/archilogic-com/honeycomb/commit/c3c926f1a9e02f01d98936562f96197e25b4ab7d))
+
+# [2.12.0](https://github.com/archilogic-com/honeycomb/compare/v2.11.0...v2.12.0) (2023-12-12)
+
+
+### Features
+
+* **tooltip:** add tooltip component Al 2049 ([#218](https://github.com/archilogic-com/honeycomb/issues/218)) ([259bff8](https://github.com/archilogic-com/honeycomb/commit/259bff823f0d789a528dbd37e04262a669652d14))
+
+# [2.11.0](https://github.com/archilogic-com/honeycomb/compare/v2.10.0...v2.11.0) (2023-12-12)
+
+
+### Features
+
+* **icons:** SpaceAndComponent ([#217](https://github.com/archilogic-com/honeycomb/issues/217)) ([3cce764](https://github.com/archilogic-com/honeycomb/commit/3cce764bb1f39162a987dd4d2054bf4e7a9fe6dd))
+
+# [2.10.0](https://github.com/archilogic-com/honeycomb/compare/v2.9.1...v2.10.0) (2023-12-06)
+
+
+### Features
+
+* add chevron up & down icons ([#215](https://github.com/archilogic-com/honeycomb/issues/215)) ([94e348b](https://github.com/archilogic-com/honeycomb/commit/94e348b004a194647e5ba4737e682e9e3908cf44))
+
+## [2.9.1](https://github.com/archilogic-com/honeycomb/compare/v2.9.0...v2.9.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* **switcher:** padding around switcher options ([#207](https://github.com/archilogic-com/honeycomb/issues/207)) ([f30df7e](https://github.com/archilogic-com/honeycomb/commit/f30df7ed44aa5a818183f85cd0505a98b8a9c6c0))
+
 # [2.9.0](https://github.com/archilogic-com/honeycomb/compare/v2.8.1...v2.9.0) (2023-11-21)
 
 

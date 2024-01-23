@@ -19,6 +19,10 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    controls: {
+      type: String,
+      default: undefined
     }
   }
 })
@@ -43,6 +47,7 @@ export default defineComponent({
       :aria-expanded="open"
       aria-label="Toggle menu"
       :disabled="disabled"
+      :aria-controls="controls"
       class="absolute bottom-0 right-0 top-0 flex items-center rounded focus-visible:focus-shadow hover:enabled:pt-[2px] hover:enabled:text-navy disabled:cursor-not-allowed disabled:opacity-40 group-hover:text-navy"
       :class="{
         'text-mediumblue': open || pressed,
