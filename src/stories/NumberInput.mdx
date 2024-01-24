@@ -84,11 +84,22 @@ To provide a custom placeholder, use the `placeholder` prop.
 
 While the appearance of the input steppers is customized, the functionality remains the same.
 To change the input's step value, provide the `step` attribute.
+In addition, `big-step` and `small-step` props can be provided to change the input value by
+larger or smaller increments while holding `Shift` of `Shift + Alt` correspondingly.
 
 ```html
 <a-number-input v-model="value" step="0.5" />
 ```
 
-<Canvas isColumn={true}>
+<Canvas>
   <Story id="components-numberinput--step-up"></Story>
 </Canvas>
+
+## Listening to value updates
+
+There are several events available which indicate that the value has changed:
+
+- `@update:model-value` is emitted each time the model value updates,
+  both when the value is inputted directly, or changed with input stepping functions
+- `@update:by-step` is emitted when a user changes the input value by using stepper buttons or arrow up/down keys
+- the native `@change` event is emitted as usual after the input loses focus.

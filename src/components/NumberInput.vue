@@ -9,14 +9,21 @@ export default defineComponent({
   components: { AInput, StepUpArrow, StepDownArrow },
   inheritAttrs: false,
   props: {
+    /**
+     * works the same as the HTML step attribute, default `1`
+     */
     step: {
       type: Number,
       default: 1
     },
+    /** if provided, can be used to change the number input value
+     * with up/down arrow keys or step buttons while holding Shift + Alt */
     smallStep: {
       type: Number,
       default: undefined
     },
+    /** if provided, can be used to change the number input value
+     * with up/down arrow keys or step buttons while holding Shift  */
     bigStep: {
       type: Number,
       default: undefined
