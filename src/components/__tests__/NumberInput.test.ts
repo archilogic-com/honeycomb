@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import NumberInput from '../NumberInput.vue'
 
 describe('NumberInput.vue', () => {
-  describe('when the input value is changed by typing in new value', () => {
+  describe('when the input value is changed by typing a new value', () => {
     it('emits one event', async () => {
       const { getByRole, emitted } = render(NumberInput, {
         props: { modelValue: '1' }
