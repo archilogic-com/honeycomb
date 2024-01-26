@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.14.0](https://github.com/archilogic-com/honeycomb/compare/v2.13.0...v2.14.0) (2024-01-26)
+
+
+### Features
+
+* **number-input:** add new stepper events and props Al 5312 ([#252](https://github.com/archilogic-com/honeycomb/issues/252)) ([50fe234](https://github.com/archilogic-com/honeycomb/commit/50fe23440e63a122821e5586a292feae03528718))
+
 # [2.13.0](https://github.com/archilogic-com/honeycomb/compare/v2.12.0...v2.13.0) (2024-01-18)
 
 
