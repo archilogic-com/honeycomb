@@ -8,28 +8,65 @@ export default defineComponent({
   name: 'ANumberInput',
   components: { AInput, StepUpArrow, StepDownArrow },
   inheritAttrs: false,
-  emits: ['update:model-value'],
+  props: {
+    /**
+     * works the same as the HTML step attribute, default `1`
+     */
+    step: {
+      type: Number,
+      default: 1
+    },
+    /** if provided, can be used to change the number input value
+     * with up/down arrow keys or step buttons while holding Shift + Alt */
+    smallStep: {
+      type: Number,
+      default: undefined
+    },
+    /** if provided, can be used to change the number input value
+     * with up/down arrow keys or step buttons while holding Shift  */
+    bigStep: {
+      type: Number,
+      default: undefined
+    }
+  },
+  emits: ['update:model-value', 'update:by-step'],
   setup(props, { expose, emit }) {
     const inputRef = ref()
 
-    const updateValue = (newValue: number) => {
+    const emitUpdateValue = (newValue: number) => {
       emit('update:model-value', newValue)
     }
 
-    const stepUp = () => {
+    const emitUpdateByStep = (newValue: number) => {
+      emit('update:by-step', newValue)
+    }
+
+    const useStep = (event: PointerEvent | KeyboardEvent, operation: 'up' | 'down') => {
       const inputElement = inputRef.value?.el
       if (inputElement) {
-        inputElement.stepUp()
-        updateValue(inputElement.value)
+        let step = props.step
+        if (event.shiftKey && event.altKey && props.smallStep) {
+          step = props.smallStep
+        } else if (event.shiftKey && props.bigStep) {
+          step = props.bigStep
+        }
+        inputElement.step = step
+        if (operation === 'up') {
+          inputElement.stepUp()
+        } else {
+          inputElement.stepDown()
+        }
+        emitUpdateValue(inputElement.value)
+        emitUpdateByStep(inputElement.value)
       }
     }
 
-    const stepDown = () => {
-      const inputElement = inputRef.value?.el
-      if (inputElement) {
-        inputElement.stepDown()
-        updateValue(inputElement.value)
-      }
+    const stepUp = (event: PointerEvent | KeyboardEvent) => {
+      useStep(event, 'up')
+    }
+
+    const stepDown = (event: PointerEvent | KeyboardEvent) => {
+      useStep(event, 'down')
     }
 
     expose({
@@ -38,7 +75,7 @@ export default defineComponent({
       $el: inputRef.value?.inputRef
     })
 
-    return { stepUp, stepDown, inputRef, updateValue }
+    return { stepUp, stepDown, inputRef, emitUpdateValue }
   }
 })
 </script>
@@ -47,9 +84,12 @@ export default defineComponent({
     <AInput
       v-bind="$attrs"
       ref="inputRef"
+      :step="step"
       type="number"
       class="a-number-input group-hover:a-text-input-hover"
-      @update:model-value="updateValue" />
+      @keydown.up.prevent="stepUp"
+      @keydown.down.prevent="stepDown"
+      @update:model-value="emitUpdateValue" />
     <div
       class="invisible absolute bottom-0 right-0 top-0 flex flex-col justify-center text-warsaw"
       :class="!$attrs.disabled && 'group-focus-within:visible group-hover:visible'">

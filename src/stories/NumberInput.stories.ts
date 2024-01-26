@@ -138,13 +138,17 @@ InvalidValueFocused.play = focusInput
 export const StepUp = Template.bind({})
 StepUp.args = {
   initValue: 10,
-  step: 0.5
+  step: 1,
+  bigStep: 10,
+  smallStep: 0.1
 }
 StepUp.play = stepUp
 
 export const StepDown = Template.bind({})
 StepDown.args = {
   initValue: 10,
-  step: 0.5
+  step: 1,
+  bigStep: 10,
+  smallStep: 0.1
 }
 StepDown.play = stepDown
