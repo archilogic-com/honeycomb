@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.1](https://github.com/archilogic-com/honeycomb/compare/v2.14.0...v2.14.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* type errors ([8b09664](https://github.com/archilogic-com/honeycomb/commit/8b09664fe23147063b70c30648c6c901098b7bff))
+
 # [2.14.0](https://github.com/archilogic-com/honeycomb/compare/v2.13.0...v2.14.0) (2024-01-26)
 
 
