@@ -41,7 +41,7 @@ export default defineComponent({
       emit('update:by-step', newValue)
     }
 
-    const useStep = (event: PointerEvent | KeyboardEvent, operation: 'up' | 'down') => {
+    const useStep = (event: MouseEvent | KeyboardEvent, operation: 'up' | 'down') => {
       const inputElement = inputRef.value?.el
       if (inputElement) {
         let step = props.step
@@ -61,11 +61,11 @@ export default defineComponent({
       }
     }
 
-    const stepUp = (event: PointerEvent | KeyboardEvent) => {
+    const stepUp = (event: MouseEvent | KeyboardEvent) => {
       useStep(event, 'up')
     }
 
-    const stepDown = (event: PointerEvent | KeyboardEvent) => {
+    const stepDown = (event: MouseEvent | KeyboardEvent) => {
       useStep(event, 'down')
     }
 
