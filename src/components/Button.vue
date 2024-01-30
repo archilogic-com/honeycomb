@@ -5,7 +5,7 @@ import AIcon from './Icon.vue'
 
 type ButtonVariant = 'primary' | 'subtle' | 'standard'
 
-type ButtonSize = 'md' | 'lg' | 'auto'
+type ButtonSize = 'sm' | 'md' | 'lg' | 'auto'
 
 export default defineComponent({
   name: 'AButton',
@@ -33,7 +33,9 @@ export default defineComponent({
     /**
      * button size
      *
-     * `lg`, `md` (default), or `auto`
+     * `lg`, `md` (default) sets button size with appropriate padding;
+     * `auto` sets button size to the size of its content;
+     * `sm` or `auto` is allowed for icon buttons to render the icons of sizes `sm`/`other` without extra padding
      */
     size: {
       type: String as PropType<ButtonSize>,
@@ -105,10 +107,10 @@ export default defineComponent({
     })
 
     const iconSize = computed(() => {
-      if (props.size !== 'auto') {
-        return props.size
+      if (props.size === 'auto') {
+        return 'other'
       }
-      return undefined
+      return props.size
     })
 
     const ariaLabel = computed(() => {

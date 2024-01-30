@@ -811,8 +811,28 @@ It is highly recommended to provide a `label` prop for accessible labelling of t
   </Story>
 </Canvas>
 
-Alternative pattern for non-standard icon sizes
-(use at your own risk, some prop combinations might produce unexpected results):
+For icons of sizes `sm` and `other` you can set `size="sm"` or `size="auto"` accordingly.
+The button will render the required icon without any extra padding.
+
+<Story
+  name="icon sm"
+  args={{
+    icon: 'Close',
+    size: 'sm'
+  }}>
+  {Template.bind({})}
+</Story>
+<Story
+  name="icon other"
+  args={{
+    icon: 'Padlock',
+    size: 'auto'
+  }}>
+  {Template.bind({})}
+</Story>
+
+Alternatively you can pass the custom icon or markup into the default slot,
+and set button size to "auto".
 
 ```html
 <a-button size="auto" label="Settings"><your-icon /></a-button>
@@ -821,49 +841,9 @@ Alternative pattern for non-standard icon sizes
 <Story
   name="icon auto"
   args={{
-    label: 'Close',
+    label: 'Lock item',
     size: 'auto',
-    default: '<a-icon name="Close" size="sm" />'
-  }}>
-  {Template.bind({})}
-</Story>
-<Story
-  name="icon auto subtle"
-  args={{
-    variant: 'subtle',
-    label: 'Close',
-    size: 'auto',
-    default: '<a-icon name="Close" size="sm" />'
-  }}>
-  {Template.bind({})}
-</Story>
-<Story
-  name="icon auto primary"
-  args={{
-    variant: 'primary',
-    label: 'Close',
-    size: 'auto',
-    default: '<a-icon name="Close" size="sm" />'
-  }}>
-  {Template.bind({})}
-</Story>
-<Story
-  name="icon auto disabled"
-  args={{
-    disabled: true,
-    label: 'Close',
-    size: 'auto',
-    default: '<a-icon name="Close" size="sm" />'
-  }}>
-  {Template.bind({})}
-</Story>
-<Story
-  name="icon auto pressed"
-  args={{
-    pressed: true,
-    label: 'Close',
-    size: 'auto',
-    default: '<a-icon name="Close" size="sm" />'
+    default: '<a-icon name="Padlock" size="other" />'
   }}>
   {Template.bind({})}
 </Story>
