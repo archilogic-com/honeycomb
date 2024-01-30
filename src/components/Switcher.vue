@@ -75,7 +75,7 @@ export default defineComponent({
         :class="{
           'text-mediumblue bg-zurich': checked,
           'hover:bg-gray hover:text-navy active:bg-zurich48 active:text-mediumblue':
-            !option.disabled && !disabled,
+            !option.disabled && !disabled && !checked,
           'opacity-40 cursor-not-allowed': option.disabled || disabled
         }"
         :aria-label="option.icon ? option.label : undefined"
