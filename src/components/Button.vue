@@ -33,7 +33,9 @@ export default defineComponent({
     /**
      * button size
      *
-     * `lg`, `md` (default), or `auto`
+     * `lg`, `md` (default) sets button size with appropriate padding
+     * `auto` sets button size to the size of its content
+     * `sm` or `auto` is allowed for icon buttons to render the icons of sizes `sm`/`other` without extra padding
      */
     size: {
       type: String as PropType<ButtonSize>,
