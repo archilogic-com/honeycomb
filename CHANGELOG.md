@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.14.2](https://github.com/archilogic-com/honeycomb/compare/v2.14.1...v2.14.2) (2024-01-30)
+
+
+### Bug Fixes
+
+* **button:** size prop type to allow for icon size sm/other ([#260](https://github.com/archilogic-com/honeycomb/issues/260)) ([8690501](https://github.com/archilogic-com/honeycomb/commit/8690501ed3a091fde55ab5e05c39679858d96b31))
+* **tooltips:** correct width inside small relative container ([#261](https://github.com/archilogic-com/honeycomb/issues/261)) ([3e4db21](https://github.com/archilogic-com/honeycomb/commit/3e4db21b901285437ab205afd65722559b1b9079))
+
 ## [2.14.1](https://github.com/archilogic-com/honeycomb/compare/v2.14.0...v2.14.1) (2024-01-29)
 
 
