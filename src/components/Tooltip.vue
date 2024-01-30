@@ -111,7 +111,7 @@ export default defineComponent({
       ref="floating"
       role="tooltip"
       :style="floatingStyles"
-      class="absolute top-0 left-0 max-w-[160px] min-w-10 z-10"
+      class="absolute top-0 left-0 max-w-[180px] min-w-10 w-max z-10"
       :class="isVisible ? 'visible' : 'invisible'">
       <div
         ref="floatingArrow"
