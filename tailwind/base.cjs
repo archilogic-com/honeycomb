@@ -13,7 +13,7 @@ function createBaseStyles({ addBase }) {
       '@apply block shrink-0 border-0 bg-gray p-0 h-px': {}
     },
     kbd: {
-      '@apply body-sm text-warsaw': {}
+      '@apply body-sm text-stone': {}
     }
   })
 }
