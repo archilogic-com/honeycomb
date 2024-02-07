@@ -22,7 +22,7 @@ export default defineConfig({
       }
     },
     rollupOptions: {
-      external: ['vue', '@headlessui/vue'],
+      external: ['vue', '@headlessui/vue', '@floating-ui/vue', '@vueuse/core', 'tabbable'],
       output: {
         globals: {
           vue: 'Vue'
