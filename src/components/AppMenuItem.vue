@@ -4,10 +4,11 @@ import { useElementBounding } from '@vueuse/core'
 
 import AIcon from './Icon.vue'
 import ArrowKeyFocusable from './ArrowKeyFocusable.vue'
+import { type Shortcut, default as KeyboardShortcut } from './KeyboardShortcut.vue'
 
 export default defineComponent({
   name: 'AAppMenuItem',
-  components: { AIcon, ArrowKeyFocusable },
+  components: { AIcon, ArrowKeyFocusable, KeyboardShortcut },
   props: {
     disabled: {
       type: Boolean,
@@ -29,8 +30,12 @@ export default defineComponent({
       type: String as PropType<'radio' | 'checkbox' | ''>,
       default: ''
     },
+    /**
+     * type `string` for shortcut prop is deprecated,
+     * use type `Shortcut` or `Shortcut[]` instead to
+     */
     shortcut: {
-      type: String,
+      type: [String, Object, Array] as PropType<string | Shortcut | Shortcut[]>,
       default: ''
     },
     /**
@@ -225,7 +230,13 @@ export default defineComponent({
       </div>
       <div class="mr-2 flex w-fit shrink-0 items-center gap-2">
         <slot name="extra"></slot>
-        <kbd v-if="shortcut" class="text-warsaw body-sm">{{ shortcut }}</kbd>
+        <KeyboardShortcut
+          v-if="shortcut"
+          :class="disabled && '!text-warsaw'"
+          variant="subtle"
+          :shortcut="
+            typeof shortcut === 'string' ? { keySequence: shortcut } : shortcut
+          "></KeyboardShortcut>
       </div>
       <template v-if="$slots.submenu">
         <a-icon name="MenuChevronRight" size="other" class="mr-2"></a-icon>
