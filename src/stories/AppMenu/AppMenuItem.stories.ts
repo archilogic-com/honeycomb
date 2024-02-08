@@ -182,7 +182,44 @@ export const Shortcut: Story = {
             <AAppMenuButton :open="open" v-bind="aria">Edit</AAppMenuButton>
           </template>
           <AAppMenuItem>Cut</AAppMenuItem>
-          <AAppMenuItem shortcut="Ctrl C">
+          <AAppMenuItem :shortcut="{modifiers: ['ctrl'], keySequence: 'c'}">
+            Copy
+          </AAppMenuItem>
+          <AAppMenuItem>Status</AAppMenuItem>
+        </AAppMenu>
+      `
+  }),
+  play: openMenu
+}
+export const MultipleShortcuts: Story = {
+  render: () => ({
+    components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+    template: `
+        <AAppMenu>
+          <template #menu-button="{open, aria}">
+            <AAppMenuButton :open="open" v-bind="aria">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem :shortcut="[{modifiers: ['ctrl'], keySequence: 'c'}, {modifiers: ['shift'], keySequence: 'c'}]">
+            Copy
+          </AAppMenuItem>
+          <AAppMenuItem>Status</AAppMenuItem>
+        </AAppMenu>
+      `
+  }),
+  play: openMenu
+}
+
+export const DisabledWithShortcuts: Story = {
+  render: () => ({
+    components: { AAppMenu, AAppMenuItem, AAppMenuButton },
+    template: `
+        <AAppMenu>
+          <template #menu-button="{open, aria}">
+            <AAppMenuButton :open="open" v-bind="aria">Edit</AAppMenuButton>
+          </template>
+          <AAppMenuItem>Cut</AAppMenuItem>
+          <AAppMenuItem disabled :shortcut="[{modifiers: ['ctrl'], keySequence: 'c'}, {modifiers: ['shift'], keySequence: 'c'}]">
             Copy
           </AAppMenuItem>
           <AAppMenuItem>Status</AAppMenuItem>
