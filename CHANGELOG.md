@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.15.0](https://github.com/archilogic-com/honeycomb/compare/v2.14.2...v2.15.0) (2024-02-08)
+
+
+### Bug Fixes
+
+* **button, switcher:** remove hover styles for pressed/checked state ([#259](https://github.com/archilogic-com/honeycomb/issues/259)) ([1b766f9](https://github.com/archilogic-com/honeycomb/commit/1b766f9ec04370c1831d6b478e45158d6d124149))
+
+
+### Features
+
+* **keyboard-shortcut:** add component Al 2134 ([#271](https://github.com/archilogic-com/honeycomb/issues/271)) ([7e35a17](https://github.com/archilogic-com/honeycomb/commit/7e35a1718fef137610eb1cbf6f1e6df068f1af6e))
+
 ## [2.14.2](https://github.com/archilogic-com/honeycomb/compare/v2.14.1...v2.14.2) (2024-01-30)
 
 
