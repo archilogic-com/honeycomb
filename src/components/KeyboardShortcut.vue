@@ -99,12 +99,12 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div class="flex items-center gap-2">
+  <div class="flex items-center gap-2 text-stone">
     <template v-for="(item, index) in shortcuts" :key="'shortcut' + index">
       <div :class="{ 'flex gap-[2px]': item.keys.length > 1 }">
         <template v-for="key in item.keys" :key="key">
           <kbd
-            class="text-stone body-xs-600"
+            class="body-xs-600"
             :class="{ 'px-1 py-[2px] bg-athens rounded-md': variant === 'default' }">
             {{ key }}
           </kbd>
