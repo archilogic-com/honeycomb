@@ -145,9 +145,9 @@ export default defineComponent({
       'bg-zurich text-mediumblue': variant !== 'primary' && pressed,
       'text-inherit bg-transparent': variant === 'subtle' && !pressed,
       'bg-athens text-navy': variant === 'standard' && !pressed,
-      'hover:bg-blueribbon active:bg-darkblue': variant === 'primary' && !isDisabled,
+      'hover:bg-blueribbon active:bg-darkblue': variant === 'primary' && !isDisabled && !pressed,
       'hover:bg-gray hover:text-navy active:bg-zurich active:text-mediumblue':
-        variant !== 'primary' && !isDisabled
+        variant !== 'primary' && !isDisabled && !pressed
     }"
     :disabled="isDisabled"
     :aria-label="ariaLabel"
