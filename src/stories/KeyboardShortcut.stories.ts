@@ -5,6 +5,9 @@ import { AKeyboardShortcut } from '../components'
 type KeyboardShortcutProps = ComponentProps<typeof AKeyboardShortcut>
 
 /**
+ * The KeyboardShortcut component accepts either a single shortcut or an array of shortcuts to display.
+ * Each shortcut object can have one or more `modifiers` (`shift`, `alt`, etc),
+ * and either a `keySequence` consisting of one or more keys or a `mouseEvent` (e.g. 'click', 'drag')
  */
 const meta: Meta<KeyboardShortcutProps> = {
   component: AKeyboardShortcut,
@@ -25,6 +28,7 @@ const renderKeyboardShortcut = (args: ComponentProps<KeyboardShortcutProps>) => 
 })
 
 /**
+ * A single shortcut with a modifier and a key
  */
 export const Primary: Story = {
   render: renderKeyboardShortcut,
@@ -33,6 +37,9 @@ export const Primary: Story = {
   }
 }
 
+/**
+ * A single shortcut with a modifier and a mouse event
+ */
 export const Mouse: Story = {
   ...Primary,
   args: {
@@ -40,6 +47,9 @@ export const Mouse: Story = {
   }
 }
 
+/**
+ * Multiple shortcuts passed to `shortcut` prop
+ */
 export const MultipleShortcuts: Story = {
   ...Primary,
   args: {
