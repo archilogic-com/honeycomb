@@ -67,6 +67,7 @@
     "tabbable": "^6.2.0"
   },
   "devDependencies": {
+    "@archilogic/toolbox": "^3.11.0",
     "@archilogic/eslint-config": "^2.0.0",
     "@archilogic/prettier": "^1.0.1",
     "@semantic-release/changelog": "^6.0.3",
