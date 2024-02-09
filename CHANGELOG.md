@@ -1,5 +1,19 @@
 # Changelog
 
+# [2.16.0](https://github.com/archilogic-com/honeycomb/compare/v2.15.0...v2.16.0) (2024-02-09)
+
+
+### Bug Fixes
+
+* **keyboard-shortcut:** allow overwriting text color of shortcut ([491859f](https://github.com/archilogic-com/honeycomb/commit/491859fb715d8d503ea11dbfa085029da88d71d4))
+
+
+### Features
+
+* **app-menu-item:** render `a-keyboard-shortcut` if 'shortcut' prop is provided ([9779877](https://github.com/archilogic-com/honeycomb/commit/977987722c5161d2c15cb54de12f7db597770349))
+* **keyboard-shortcut:** export type Shortcut ([4fa4dc2](https://github.com/archilogic-com/honeycomb/commit/4fa4dc2ca5fb2d27089209fb224440adf9b40a1b))
+* **tailwind:** remove kbd styles from tailwind base layer ([e89e594](https://github.com/archilogic-com/honeycomb/commit/e89e594221aafe84475c10d73e47e5bf2ba4e2f0))
+
 # [2.15.0](https://github.com/archilogic-com/honeycomb/compare/v2.14.2...v2.15.0) (2024-02-08)
 
 
