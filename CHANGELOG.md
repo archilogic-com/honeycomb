@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.16.1](https://github.com/archilogic-com/honeycomb/compare/v2.16.0...v2.16.1) (2024-02-12)
+
+
+### Bug Fixes
+
+* **number-input:** emit number value instead of string ([#280](https://github.com/archilogic-com/honeycomb/issues/280)) ([2e3a0af](https://github.com/archilogic-com/honeycomb/commit/2e3a0af43044bd9697e3cb319a4de3071e0f8c34))
+
 # [2.16.0](https://github.com/archilogic-com/honeycomb/compare/v2.15.0...v2.16.0) (2024-02-09)
 
 
