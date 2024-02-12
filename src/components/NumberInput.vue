@@ -13,19 +13,19 @@ export default defineComponent({
      * works the same as the HTML step attribute, default `1`
      */
     step: {
-      type: Number,
+      type: [Number, String],
       default: 1
     },
     /** if provided, can be used to change the number input value
      * with up/down arrow keys or step buttons while holding Shift + Alt */
     smallStep: {
-      type: Number,
+      type: [Number, String],
       default: undefined
     },
     /** if provided, can be used to change the number input value
      * with up/down arrow keys or step buttons while holding Shift  */
     bigStep: {
-      type: Number,
+      type: [Number, String],
       default: undefined
     }
   },
@@ -56,8 +56,8 @@ export default defineComponent({
         } else {
           inputElement.stepDown()
         }
-        emitUpdateValue(inputElement.value)
-        emitUpdateByStep(inputElement.value)
+        emitUpdateValue(inputElement.valueAsNumber)
+        emitUpdateByStep(inputElement.valueAsNumber)
       }
     }
 

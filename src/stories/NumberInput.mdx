@@ -1,4 +1,4 @@
-import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { Meta, ArgTypes, Canvas } from '@storybook/addon-docs'
 import AInput from '../components/internal/Input.vue'
 
 import * as NumberInputStories from './NumberInput.stories'
@@ -14,7 +14,9 @@ import * as NumberInputStories from './NumberInput.stories'
 `ANumberInput` is a wrapper around the HTML `<input>` element with all the native functionality.
 Its props and styles are consistent with other inputs in our design system.
 
-<ArgsTable of={AInput} />
+<ArgTypes of={AInput} />
+
+<ArgTypes of={NumberInputStories} />
 
 ## Labelling the input
 
@@ -47,11 +49,9 @@ For more details, follow the [InputGroup documentation](path=/docs/components-in
 
 `<a-input-group>` follows the same sizing scale and variant options as our other input components.
 
-<Canvas columns={2}>
-  <Story id="components-numberinput--size-sm"></Story>
-  <Story id="components-numberinput--size-md"></Story>
-  <Story id="components-numberinput--subtle"></Story>
-</Canvas>
+<Canvas of={NumberInputStories.SizeSm} />
+<Canvas of={NumberInputStories.SizeMd} />
+<Canvas of={NumberInputStories.Subtle} />
 
 ## Invalid state
 
@@ -62,9 +62,7 @@ For more details, follow the [InputGroup documentation](path=/docs/components-in
 When the input is in an invalid state, set the `invalid` prop to `true`.
 It is recommended to also display an error message.
 
-<Canvas isColumn={true}>
-  <Story id="components-numberinput--invalid"></Story>
-</Canvas>
+<Canvas of={NumberInputStories.Invalid} />
 
 ## Custom placeholder
 
@@ -75,10 +73,7 @@ It is recommended to also display an error message.
 No placeholder is shown by default, except for the `subtle` variant.
 To provide a custom placeholder, use the `placeholder` prop.
 
-<Canvas isColumn={true}>
-  <Story id="components-numberinput--subtle"></Story>
-  <Story id="components-numberinput--custom-placeholder"></Story>
-</Canvas>
+<Canvas of={NumberInputStories.CustomPlaceholder} />
 
 ## Input Steppers
 
@@ -91,9 +86,7 @@ larger or smaller increments while holding `Shift` of `Shift + Alt` correspondin
 <a-number-input v-model="value" step="0.5" />
 ```
 
-<Canvas>
-  <Story id="components-numberinput--step-up"></Story>
-</Canvas>
+<Canvas of={NumberInputStories.StepUp} />
 
 ## Listening to value updates
 
