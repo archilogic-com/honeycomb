@@ -45,7 +45,8 @@ export default defineComponent({
     const inputRef = ref(null)
     const updateValue = (event: Event) => {
       const target = event.target as HTMLInputElement
-      emit('update:modelValue', target.value)
+      // this input is still only used as type="number"
+      emit('update:modelValue', target.valueAsNumber)
     }
     const selectValue = () => {
       if (props.size === 'sm' && inputRef.value) {
