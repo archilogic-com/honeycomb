@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.17.0](https://github.com/archilogic-com/honeycomb/compare/v2.16.1...v2.17.0) (2024-03-11)
+
+
+### Features
+
+* **infra:** deploy storybook using github pages ([#296](https://github.com/archilogic-com/honeycomb/issues/296)) ([db186d2](https://github.com/archilogic-com/honeycomb/commit/db186d2d3acb78d58fe5aad3dc8325291b9f3577))
+
 ## [2.16.1](https://github.com/archilogic-com/honeycomb/compare/v2.16.0...v2.16.1) (2024-02-12)
 
 
