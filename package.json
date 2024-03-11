@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.0.2",
-    "@vueuse/core": "^10.5.0",
+    "@vueuse/core": "^10.9.0",
     "tabbable": "^6.2.0"
   },
   "devDependencies": {
