@@ -1,5 +1,7 @@
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref } from 'vue'
+import { defineComponent, onBeforeUnmount, PropType, ref, Ref } from 'vue'
+
+export const sidebarResizingClass = 'a-sidebar--resizing'
 
 export default defineComponent({
   name: 'ASidebar',
@@ -28,9 +30,11 @@ export default defineComponent({
   },
   setup(props) {
     const sidebar: Ref<HTMLElement | null> = ref(null)
+    const isResizing = ref(false)
 
     function resize(event: MouseEvent) {
       event.preventDefault() // prevent text selection
+      isResizing.value = true
       document.body.style.cursor = 'col-resize'
       if (sidebar.value) {
         let newWidth: number
@@ -44,6 +48,7 @@ export default defineComponent({
     }
 
     function stopResize() {
+      isResizing.value = false
       document.body.style.cursor = 'auto'
       document.removeEventListener('mousemove', resize, false)
     }
@@ -53,7 +58,11 @@ export default defineComponent({
       document.addEventListener('mouseup', stopResize, false)
     }
 
-    return { initResize, sidebar }
+    onBeforeUnmount(() => {
+      stopResize()
+    })
+
+    return { initResize, sidebar, isResizing }
   },
   computed: {
     borderClass() {
@@ -61,6 +70,9 @@ export default defineComponent({
     },
     resizableClass() {
       return this.side === 'left' ? '-right-1' : '-left-1'
+    },
+    isResizingClass() {
+      return this.isResizing ? sidebarResizingClass : ''
     }
   }
 })
@@ -70,7 +82,7 @@ export default defineComponent({
     :is="as"
     ref="sidebar"
     class="relative min-h-full flex-shrink-0 border-gray bg-white"
-    :class="borderClass">
+    :class="[borderClass, isResizingClass]">
     <div class="flex h-full flex-col items-stretch justify-start">
       <!--
           @slot Use the slot to add children to the sidebar.

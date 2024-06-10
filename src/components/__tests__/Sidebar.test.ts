@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue'
 
-import Sidebar from '../Sidebar.vue'
+import Sidebar, { sidebarResizingClass } from '../Sidebar.vue'
 
 describe('Sidebar.vue', () => {
   describe('when `as` prop is not provided', () => {
@@ -116,6 +116,25 @@ describe('Sidebar.vue', () => {
 
         await fireEvent(document, new MouseEvent('mouseup'))
         expect(window.getComputedStyle(document.body).cursor).toBe('auto')
+      })
+      it(`applies the ${sidebarResizingClass} class`, async () => {
+        const { getByRole } = render(Sidebar, {
+          props: {
+            resizable: true
+          },
+          slots: {
+            default: `sidebar`
+          }
+        })
+        const resizeBar = getByRole('separator')
+
+        await fireEvent(resizeBar, new MouseEvent('mousedown'))
+        await fireEvent(document, new MouseEvent('mousemove', { clientX: 100 }))
+
+        expect(getByRole('complementary')).toHaveClass(sidebarResizingClass)
+
+        await fireEvent(document, new MouseEvent('mouseup'))
+        expect(getByRole('complementary')).not.toHaveClass(sidebarResizingClass)
       })
     })
   })
