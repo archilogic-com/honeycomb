@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.18.0](https://github.com/archilogic-com/honeycomb/compare/v2.17.0...v2.18.0) (2024-06-10)
+
+
+### Features
+
+* **sidebar:** add className when sidebar is resizing ([#314](https://github.com/archilogic-com/honeycomb/issues/314)) ([a1be54a](https://github.com/archilogic-com/honeycomb/commit/a1be54a0703f57f5b3468b4d1c51a26166f9819f))
+
 # [2.17.0](https://github.com/archilogic-com/honeycomb/compare/v2.16.1...v2.17.0) (2024-03-11)
 
 
