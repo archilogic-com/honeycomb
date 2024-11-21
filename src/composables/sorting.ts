@@ -7,9 +7,9 @@ export type SortingComposable = {
   sort: Ref<string>
   isAscending: Ref<boolean>
   updateSortType: (sort: string) => void
-  sortData: (data: any) => any
+  sortData: <T extends Record<string, unknown>>(data: T[]) => T[]
   isSortActive: (sort: string) => boolean
-  getSortIndicator: (header: string) => SortingType
+  getSortIndicator: (header: string) => SortingType | undefined
 }
 
 export const useSorting = ({
@@ -20,42 +20,48 @@ export const useSorting = ({
   const sort = ref(sortInitial ? sortInitial.replace(SYMBOL_DESC, '') : '')
   const isAscending = ref(sortInitial.indexOf(SYMBOL_DESC) < 0)
 
-  const validateWithCheckForNull = (a: any, b: any, compare: (a: any, b: any) => number) => {
+  const validateWithCheckForNull = <T extends Record<string, unknown>>(
+    a: T,
+    b: T,
+    compare: (a: string | number, b: string | number) => number
+  ): number => {
     if (a[sort.value] == null) {
       return -1
     }
     if (b[sort.value] == null) {
       return 1
     }
-    return compare(a[sort.value], b[sort.value])
+    return compare(a[sort.value] as string | number, b[sort.value] as string | number)
   }
 
-  const getValidatorForStrings = (a: string, b: string) => a.localeCompare(b)
-  const getValidatorForNumbers = (a: number, b: number) => a - b
+  const getValidatorForStrings = (a: string | number, b: string | number) =>
+    String(a).localeCompare(String(b))
+  const getValidatorForNumbers = (a: string | number, b: string | number) => Number(a) - Number(b)
 
-  const getValidatorForStringsByOrder = () => {
+  const getValidatorForStringsByOrder = <T extends Record<string, unknown>>() => {
     return isAscending.value
-      ? (a: string, b: string) => validateWithCheckForNull(a, b, getValidatorForStrings)
-      : (b: string, a: string) => validateWithCheckForNull(a, b, getValidatorForStrings)
+      ? (a: T, b: T) => validateWithCheckForNull(a, b, getValidatorForStrings)
+      : (b: T, a: T) => validateWithCheckForNull(a, b, getValidatorForStrings)
   }
-  const getValidatorForNumbersByOrder = () => {
+  const getValidatorForNumbersByOrder = <T extends Record<string, unknown>>() => {
     return isAscending.value
-      ? (a: number, b: number) => validateWithCheckForNull(a, b, getValidatorForNumbers)
-      : (b: number, a: number) => validateWithCheckForNull(a, b, getValidatorForNumbers)
+      ? (a: T, b: T) => validateWithCheckForNull(a, b, getValidatorForNumbers)
+      : (b: T, a: T) => validateWithCheckForNull(a, b, getValidatorForNumbers)
   }
 
-  const getValidator = (item: string | number) => {
+  const getValidator = (item: unknown) => {
     if (typeof item === 'string') return getValidatorForStringsByOrder()
     if (typeof item === 'number') return getValidatorForNumbersByOrder()
+    return undefined
   }
 
-  const sortData = (data: any) => {
+  const sortData = <T extends Record<string, unknown>>(data: T[]): T[] => {
     if (!sort.value) {
       sort.value = sortDefault ? sortDefault.replace(SYMBOL_DESC, '') : ''
       isAscending.value = sortDefault.indexOf(SYMBOL_DESC) < 0
     }
 
-    const item = data.find((item: any) => item[sort.value])
+    const item = data.find(item => item[sort.value])
     if (!item || !item[sort.value]) {
       return data
     }
@@ -83,7 +89,7 @@ export const useSorting = ({
     onChange()
   }
 
-  const getSortIndicator = (header: string): SortingType => {
+  const getSortIndicator = (header: string): SortingType | undefined => {
     if (isSortActive(header)) {
       return isAscending.value ? SortingTypes.Asc : SortingTypes.Desc
     }

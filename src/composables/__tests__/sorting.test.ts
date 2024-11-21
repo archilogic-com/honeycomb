@@ -3,7 +3,13 @@ import { useSorting, SortingComposable } from '../sorting'
 const item1 = {
   stringProperty: 'a',
   numberProperty: 1
+} as const
+
+type TestItem = {
+  stringProperty: string | null
+  numberProperty: number | null
 }
+
 const item2 = {
   stringProperty: 'b',
   numberProperty: 2
@@ -16,7 +22,7 @@ const testData = [item1, item2, item3]
 
 describe('useSorting', () => {
   let sortingModule: SortingComposable
-  let sortedData: any
+  let sortedData: TestItem[]
   const onChange = vi.fn()
 
   afterEach(vi.resetAllMocks)

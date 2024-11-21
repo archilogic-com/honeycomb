@@ -5,7 +5,6 @@ import { SelectItemCallback } from '../composables/multiSelect'
 
 export default defineComponent({
   name: 'ATableRow',
-  expose: ['trRef', 'toggleRow'],
   props: {
     /**
      * optional
@@ -38,7 +37,7 @@ export default defineComponent({
       default: undefined
     }
   },
-  setup(props) {
+  setup(props, { expose }) {
     const expanded = ref(false)
     const trRef = ref(null)
     function toggleRow(event: MouseEvent): void
@@ -56,6 +55,11 @@ export default defineComponent({
         props.selectRowCallback(props.selectId, event)
       }
     }
+
+    expose({
+      trRef,
+      toggleRow
+    })
 
     return {
       expanded,
