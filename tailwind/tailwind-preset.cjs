@@ -120,7 +120,8 @@ module.exports = {
           }
         },
         '.a-text-input-focus': {
-          '@apply border-blueribbon bg-white shadow-border shadow-blueribbon outline-none hover:bg-white': {}
+          '@apply border-blueribbon bg-white shadow-border shadow-blueribbon outline-none hover:bg-white':
+            {}
         },
         '.a-text-input-placeholder': {
           '@apply text-warsaw': {},
