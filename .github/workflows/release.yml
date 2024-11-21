@@ -10,6 +10,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.CI_GITHUB_TOKEN }}
+      - name: Setup npm auth token
+        run: npm config set //registry.npmjs.org/:_authToken=${{secrets.CI_NPM_TOKEN_READONLY}}
       - name: Set up node
         uses: actions/setup-node@v3
         with:
