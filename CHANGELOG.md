@@ -5,6 +5,19 @@
 
 ### Bug Fixes
 
+* debug token ([121b63f](https://github.com/archilogic-com/honeycomb/commit/121b63f6fbcec9534bfef0f0e11e7b18a40b87db))
+* use publish token ([55b6774](https://github.com/archilogic-com/honeycomb/commit/55b6774b7ec72d12edf0c695ed82d55bfe725e60))
+
+
+### Features
+
+* update to vue 3.5 ([7ac2608](https://github.com/archilogic-com/honeycomb/commit/7ac26080d950309e4cd97b1fac5b41ccc2aeeeef))
+
+# [2.19.0-test-vue-3.5.1](https://github.com/archilogic-com/honeycomb/compare/v2.18.0...v2.19.0-test-vue-3.5.1) (2024-11-22)
+
+
+### Bug Fixes
+
 * use publish token ([55b6774](https://github.com/archilogic-com/honeycomb/commit/55b6774b7ec72d12edf0c695ed82d55bfe725e60))
 
 
