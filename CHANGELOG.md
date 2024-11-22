@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.19.0-test-vue-3.5.1](https://github.com/archilogic-com/honeycomb/compare/v2.18.0...v2.19.0-test-vue-3.5.1) (2024-11-22)
+
+
+### Features
+
+* update to vue 3.5 ([7ac2608](https://github.com/archilogic-com/honeycomb/commit/7ac26080d950309e4cd97b1fac5b41ccc2aeeeef))
+
 # [2.18.0](https://github.com/archilogic-com/honeycomb/compare/v2.17.0...v2.18.0) (2024-06-10)
 
 
