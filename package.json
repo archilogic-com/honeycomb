@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.5",
-    "@vueuse/core": "^11.3.0",
+    "@vueuse/core": "^12.0.0",
     "tabbable": "^6.2.0"
   },
   "devDependencies": {
@@ -91,7 +91,7 @@
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.20.0",
     "@vitejs/plugin-vue": "^5.0.3",
-    "@vitest/ui": "^2.1.5",
+    "@vitest/ui": "^2.1.8",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "autoprefixer": "^10.4.17",
@@ -102,7 +102,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-vue": "^9.20.1",
     "husky": "^9.0.10",
-    "jsdom": "^24.0.0",
+    "jsdom": "^24.1.1",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.9",
@@ -115,7 +115,7 @@
     "vite": "^5.4.11",
     "vite-plugin-dts": "^4.3.0",
     "vite-svg-loader": "^5.1.0",
-    "vitest": "^2.1.5",
+    "vitest": "^2.1.8",
     "vue": "^3.5.13",
     "vue-component-type-helpers": "^1.8.27",
     "vue-tsc": "^2.1.10"
