@@ -34,6 +34,10 @@ jobs:
 
       - name: Run unit tests
         run: npm run test
+
+      - name: Setup npm publish token
+        run: npm config set //registry.npmjs.org/:_authToken=${{secrets.CI_NPM_TOKEN}}
+
       - name: Release
         env:
           NPM_TOKEN: ${{ secrets.CI_NPM_TOKEN }}
