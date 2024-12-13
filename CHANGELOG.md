@@ -1,5 +1,18 @@
 # Changelog
 
+# [2.19.0](https://github.com/archilogic-com/honeycomb/compare/v2.18.0...v2.19.0) (2024-12-13)
+
+
+### Bug Fixes
+
+* **infra:** use correct npm tokens in ci ([fb0ae42](https://github.com/archilogic-com/honeycomb/commit/fb0ae42444358438104303f20a753586e6fb033b))
+* **number-input:** always cast emitted modelValue to number ([#316](https://github.com/archilogic-com/honeycomb/issues/316)) ([9a9f2a0](https://github.com/archilogic-com/honeycomb/commit/9a9f2a0eb929ef2bc636bccd9979d9ee762fbba6))
+
+
+### Features
+
+* update to vue 3.5 ([e4a9293](https://github.com/archilogic-com/honeycomb/commit/e4a9293615f6267e21255cb38c734452a23683a7))
+
 # [2.18.0](https://github.com/archilogic-com/honeycomb/compare/v2.17.0...v2.18.0) (2024-06-10)
 
 
