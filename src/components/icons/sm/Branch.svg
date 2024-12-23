@@ -1,0 +1,22 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="branchIconMaskSm">
+      <rect width="100%" height="100%" fill="white" />
+      <circle cx="8" cy="5" r="1.5" />
+      <circle cx="5" cy="12" r="1.5" />
+      <circle cx="11" cy="12" r="1.5" />
+    </mask>
+  </defs>
+
+  <g mask="url(#branchIconMaskSm)">
+    <path
+      d="M8 5L5 12M8 5L11 12"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round" />
+  </g>
+
+  <circle cx="8" cy="5" r="1.5" stroke="currentColor" fill="none" />
+  <circle cx="5" cy="12" r="1.5" stroke="currentColor" fill="none" />
+  <circle cx="11" cy="12" r="1.5" stroke="currentColor" fill="none" />
+</svg>
