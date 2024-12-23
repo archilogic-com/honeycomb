@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.19.0",
+  "version": "2.20.0-test-branch-icon.1",
   "publishConfig": {
     "access": "public"
   },

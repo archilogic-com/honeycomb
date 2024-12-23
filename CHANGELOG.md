@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.20.0-test-branch-icon.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.0...v2.20.0-test-branch-icon.1) (2024-12-23)
+
+
+### Features
+
+* **icons:** add branch icon ([93af2a7](https://github.com/archilogic-com/honeycomb/commit/93af2a7d48c2464b5db52f027c0d7302a5e4f780))
+
 # [2.19.0](https://github.com/archilogic-com/honeycomb/compare/v2.18.0...v2.19.0) (2024-12-13)
 
 
