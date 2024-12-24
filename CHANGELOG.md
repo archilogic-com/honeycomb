@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.19.1-test-fix-number-input.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.0...v2.19.1-test-fix-number-input.1) (2024-12-24)
+
+
+### Bug Fixes
+
+* **number-input:** emit undefined instead of NaN when input is cleared ([05a76aa](https://github.com/archilogic-com/honeycomb/commit/05a76aac5629ab7a2e0ac60d1c5bdb7943252fde))
+* **number-input:** use defineModel macro to normalize modelValue ([e1e4743](https://github.com/archilogic-com/honeycomb/commit/e1e4743477221a688457ca783a312e08dfc9422b))
+
 # [2.19.0](https://github.com/archilogic-com/honeycomb/compare/v2.18.0...v2.19.0) (2024-12-13)
 
 
