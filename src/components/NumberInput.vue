@@ -52,7 +52,11 @@ const inputRef = ref<HTMLInputElement | null>(null)
 
 const updateValue = (event: Event) => {
   const target = event.target as HTMLInputElement
-  modelValue.value = target.valueAsNumber
+  if (target.value === '') {
+    modelValue.value = undefined
+  } else {
+    modelValue.value = target.valueAsNumber
+  }
 }
 
 const selectValue = () => {
