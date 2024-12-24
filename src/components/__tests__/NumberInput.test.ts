@@ -50,7 +50,7 @@ describe('NumberInput.vue', () => {
         props: { modelValue: 1 }
       })
       await userEvent.type(getByRole('spinbutton'), '3')
-      expect(emitted()['update:model-value'][0]).toEqual([3])
+      expect(emitted()['update:modelValue'][0]).toEqual([3])
       expect(emitted()['update:by-step']).toBeUndefined()
     })
 
@@ -63,7 +63,17 @@ describe('NumberInput.vue', () => {
       await userEvent.tab()
       const event = new Event('input')
       input.dispatchEvent(event)
-      expect(emitted()['update:model-value'][0]).toEqual([3.14])
+      expect(emitted()['update:modelValue'][0]).toEqual([3.14])
+    })
+  })
+
+  describe('when a value initially provided and then the input is cleared', () => {
+    it('emits an event with the cleared value', async () => {
+      const { getByRole, emitted } = render(NumberInput, {
+        props: { modelValue: 1 }
+      })
+      await userEvent.clear(getByRole('spinbutton'))
+      expect(emitted()['update:modelValue'][0]).toEqual([undefined])
     })
   })
 
@@ -74,7 +84,7 @@ describe('NumberInput.vue', () => {
       })
       await userEvent.tab()
       await userEvent.keyboard('[ArrowUp]')
-      expect(emitted()['update:model-value'][0]).toEqual([2])
+      expect(emitted()['update:modelValue'][0]).toEqual([2])
       expect(emitted()['update:by-step'][0]).toEqual([2])
     })
 
@@ -84,7 +94,7 @@ describe('NumberInput.vue', () => {
       })
       await userEvent.tab()
       await userEvent.keyboard('[ArrowDown]')
-      expect(emitted()['update:model-value'][0]).toEqual([0])
+      expect(emitted()['update:modelValue'][0]).toEqual([0])
       expect(emitted()['update:by-step'][0]).toEqual([0])
     })
 
@@ -104,7 +114,7 @@ describe('NumberInput.vue', () => {
         props: { modelValue: 1 }
       })
       await userEvent.click(getByRole('button', { name: 'Step Up' }))
-      expect(emitted()['update:model-value'][0]).toEqual([2])
+      expect(emitted()['update:modelValue'][0]).toEqual([2])
       expect(emitted()['update:by-step'][0]).toEqual([2])
     })
 
