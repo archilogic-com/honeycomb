@@ -13,6 +13,14 @@ describe('NumberInput.vue', () => {
       expect(getByRole('spinbutton')).toHaveValue(42)
     })
 
+    it('shows placeholder when modelValue is undefined', () => {
+      const { getByRole } = render(NumberInput, {
+        props: { modelValue: undefined, placeholder: 'Test placeholder' }
+      })
+      expect(getByRole('spinbutton')).toHaveAttribute('placeholder', 'Test placeholder')
+      expect(getByRole('spinbutton')).toHaveValue(null)
+    })
+
     it('applies size classes correctly', () => {
       const { getByRole } = render(NumberInput, {
         props: { modelValue: 0, size: 'md' }
