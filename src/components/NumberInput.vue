@@ -13,7 +13,7 @@ export default defineComponent({
      */
     modelValue: {
       type: Number,
-      default: 0
+      default: undefined
     },
     /**
      * the size of the input field
