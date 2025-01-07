@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.0...v2.19.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* **number-input:** support empty initialization ([5315ccc](https://github.com/archilogic-com/honeycomb/commit/5315ccc290a45cd570acac6afd2cba47d6533f52))
+
 # [2.19.0](https://github.com/archilogic-com/honeycomb/compare/v2.18.0...v2.19.0) (2024-12-13)
 
 
