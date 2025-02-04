@@ -12,7 +12,7 @@ export default defineComponent({
      * the prop modelValue is required to use v-model
      */
     modelValue: {
-      type: Number,
+      type: [Number, String],
       default: undefined
     },
     /**
