@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.2-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.1...v2.19.2-beta.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **number-input:** allow initial modelValue as String type ([a79d572](https://github.com/archilogic-com/honeycomb/commit/a79d572458947e2cd56a658d6f2ea803e13d5fe1))
+
 ## [2.19.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.0...v2.19.1) (2025-01-07)
 
 
