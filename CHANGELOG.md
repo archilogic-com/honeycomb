@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.2-test-fix-context-menu-loop.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.1...v2.19.2-test-fix-context-menu-loop.1) (2025-03-10)
+
+
+### Bug Fixes
+
+* **AppMenuItem:** defer bounding box measurement to next frame ([17efeaf](https://github.com/archilogic-com/honeycomb/commit/17efeaf21bcd9667080efc1343c734c6dcfac8c0))
+
 ## [2.19.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.0...v2.19.1) (2025-01-07)
 
 

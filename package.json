@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.19.1",
+  "version": "2.19.2-test-fix-context-menu-loop.1",
   "publishConfig": {
     "access": "public"
   },
