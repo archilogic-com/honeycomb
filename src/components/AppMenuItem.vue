@@ -52,7 +52,10 @@ export default defineComponent({
     const submenu = ref()
     const menuitem = ref()
     const isSubmenuOpen = ref(false)
-    const { right, left, width } = useElementBounding(submenu, { windowScroll: false })
+    const { right, left, width } = useElementBounding(submenu, {
+      windowScroll: false,
+      updateTiming: 'next-frame'
+    })
 
     onMounted(async () => {
       if (props.open) {
