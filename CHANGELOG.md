@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.2](https://github.com/archilogic-com/honeycomb/compare/v2.19.1...v2.19.2) (2025-03-11)
+
+
+### Bug Fixes
+
+* **AppMenuItem:** defer bounding box measurement to next frame ([bafa94c](https://github.com/archilogic-com/honeycomb/commit/bafa94c5ff78d605dfd30f36a0259eb4cc6f11b0))
+
 ## [2.19.1](https://github.com/archilogic-com/honeycomb/compare/v2.19.0...v2.19.1) (2025-01-07)
 
 
