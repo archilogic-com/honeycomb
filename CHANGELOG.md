@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.20.0](https://github.com/archilogic-com/honeycomb/compare/v2.19.2...v2.20.0) (2025-12-04)
+
+
+### Features
+
+* **CheckboxSelectAll:** add slot support for custom labels ([#319](https://github.com/archilogic-com/honeycomb/issues/319)) ([6014dd5](https://github.com/archilogic-com/honeycomb/commit/6014dd597e84dce1676fc94b980e5640a50fbc25))
+
 ## [2.19.2](https://github.com/archilogic-com/honeycomb/compare/v2.19.1...v2.19.2) (2025-03-11)
 
 
