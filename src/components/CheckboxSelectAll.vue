@@ -20,8 +20,10 @@ export default defineComponent({
       type: Number,
       required: true
     },
-    /*
+    /**
      * checkbox label (optional)
+     * Use the default slot for custom label markup.
+     * If both are provided, the slot takes precedence.
      */
     label: {
       type: String,
@@ -60,5 +62,11 @@ export default defineComponent({
     :model-value="selectedState === 'all'"
     :mixed="selectedState === 'some'"
     :label="label"
-    @update:model-value="handleSelectAll"></a-checkbox>
+    @update:model-value="handleSelectAll">
+    <!--
+      @slot Use the default slot to add a custom label to the checkbox.
+      Slot content takes precedence over the label prop.
+    -->
+    <slot />
+  </a-checkbox>
 </template>

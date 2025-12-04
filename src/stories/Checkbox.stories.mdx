@@ -259,6 +259,49 @@ Below is the same example implemented with a handy `<a-checkbox-select-all>` com
   </Story>
 </Canvas>
 
+### Using custom slot content
+
+You can use the default slot to provide custom label markup instead of the `label` prop.
+The slot content takes precedence over the `label` prop when both are provided.
+
+```html
+<a-checkbox-select-all
+  :selected-size="selected.length"
+  :items-size="options.length"
+  @select="selectAll"
+  @clear="clearSelection">
+  <span class="body-sm-600">Select All ({{ selected.length }}/{{ options.length }})</span>
+</a-checkbox-select-all>
+```
+
+<Canvas>
+  <Story name="select all with custom slot">
+    {() => ({
+      components: { ACheckbox, ACheckboxSelectAll },
+      setup() {
+        const options = ['coffee', 'tea', 'schoggi']
+        const selected = ref(['coffee', 'tea'])
+        return { selected, options }
+      },
+      template: `
+      <div>
+        <fieldset class="ml-2">
+          <legend>Choose your drinks:</legend>
+          <a-checkbox-select-all
+            :selected-size="selected.length"
+            :items-size="options.length"
+            @select="selected = [...options]"
+            @clear="selected = []">
+            <span class="body-sm-600">Select All ({{ selected.length }}/{{ options.length }})</span>
+          </a-checkbox-select-all>
+          <a-checkbox class="ml-2" v-for="option in options" v-model="selected" :label="option" :value="option"/>
+        </fieldset>
+        <p class="body-md">Selected: {{selected.join(', ')}}</p>
+      </div>`
+    })}
+  </Story>
+</Canvas>
+
 ## Readonly (controlled) checkbox
 
 If you want your checkbox to be readonly, that is not to update its own model value
