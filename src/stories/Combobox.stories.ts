@@ -871,3 +871,58 @@ const TemplateOverflow: StoryFn = () => ({
 
 export const OverflowContainer = TemplateOverflow.bind({})
 OverflowContainer.play = openCombobox
+
+export const MultiselectMaxTags = Template.bind({})
+MultiselectMaxTags.args = {
+  initValue: ['top-left', 'top-right', 'center-left', 'center-right', 'bottom-left'],
+  maxTags: 2,
+  classes: 'w-[300px]'
+}
+
+export const MultiselectMaxTagsCustomLabel = Template.bind({})
+MultiselectMaxTagsCustomLabel.args = {
+  initValue: ['top-left', 'top-right', 'center-left', 'center-right'],
+  maxTags: 2,
+  collapsedTagsLabel: (n: number) => `(${n} hidden)`,
+  classes: 'w-[300px]'
+}
+
+export const MultiselectMaxTagsZero = Template.bind({})
+MultiselectMaxTagsZero.args = {
+  initValue: ['top-left', 'top-right', 'center-left'],
+  maxTags: 0,
+  classes: 'w-[200px]'
+}
+
+export const MultiselectMaxTagsWithColors = Template.bind({})
+MultiselectMaxTagsWithColors.args = {
+  options: optionsWithColors,
+  initValue: ['demo', 'test', 'my-project', 'new-client', 'wip'],
+  maxTags: 2,
+  classes: 'w-[300px]'
+}
+
+const TemplateCustomSelectedTags: StoryFn = (args, meta) => ({
+  components: { ACombobox },
+  setup() {
+    const selected = ref(args.initValue || [])
+    const { classes = 'w-[300px]', ...props } = args
+    const options = args.options || defaultOptions
+    return { story: meta.name, props, options, selected, classes }
+  },
+  template: `
+  <div class="flex min-h-[320px] bg-white p-2 flex-col">
+    <p class="mt-2 body-xs">Selected value: {{JSON.stringify(selected)}}</p>
+    <p class="mb-2 body-lg">{{story}}</p>
+    <ACombobox v-bind="props" v-model="selected" :options="options" :class="classes">
+      <template #selected-tags="{ selectedValues }">
+        <span class="text-navy body-sm px-1">{{ selectedValues.length }} items selected</span>
+      </template>
+    </ACombobox>
+  </div>`
+})
+
+export const MultiselectCustomSelectedTags = TemplateCustomSelectedTags.bind({})
+MultiselectCustomSelectedTags.args = {
+  initValue: ['top-left', 'top-right', 'center-left', 'center-right', 'bottom-left']
+}
