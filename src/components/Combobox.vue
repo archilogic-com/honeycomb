@@ -106,6 +106,24 @@ export default defineComponent({
     escapeOverflow: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Maximum number of tags to display in multi-select mode.
+     * When exceeded, remaining selections are collapsed into a "+N more" indicator.
+     * Set to `undefined` (default) to display all tags.
+     */
+    maxTags: {
+      type: Number as PropType<number | undefined>,
+      default: undefined
+    },
+    /**
+     * Custom function to generate the collapsed tags label.
+     * Receives the count of hidden tags.
+     * Default: `(count) => \`+${count} more\``
+     */
+    collapsedTagsLabel: {
+      type: Function as PropType<(count: number) => string>,
+      default: (count: number) => `+${count} more`
     }
   },
   emits: ['update:modelValue', 'update:query'],
@@ -215,6 +233,18 @@ export default defineComponent({
       return undefined
     })
 
+    const visibleValues = computed(() => {
+      if (!isMultiSelect(model.value)) return []
+      if (props.maxTags === undefined) return model.value
+      return model.value.slice(0, props.maxTags)
+    })
+
+    const hiddenCount = computed(() => {
+      if (!isMultiSelect(model.value)) return 0
+      if (props.maxTags === undefined) return 0
+      return Math.max(0, model.value.length - props.maxTags)
+    })
+
     const handleDelete = () => {
       if (isMultiSelect(model.value) && !query.value) {
         model.value = model.value.slice(0, -1)
@@ -247,7 +277,9 @@ export default defineComponent({
       comboboxButton,
       optionsPanelWidth,
       handleBlur,
-      container
+      container,
+      visibleValues,
+      hiddenCount
     }
   }
 })
@@ -285,16 +317,28 @@ export default defineComponent({
                 'mr-auto': variant !== 'subtle'
               }
             ]">
-            <template v-if="isMultiSelect && !inline">
+            <!-- @slot Named `#selected-tags` slot. Use to customize how selected values are displayed in multi-select mode. Slot props: `selectedValues` (all selected values), `visibleValues` (values to display respecting maxTags), `hiddenCount` (number of hidden selections), `getOption` (helper to get option details), `removeValue` (helper to remove a value), `disabled` (whether combobox is disabled) -->
+            <slot
+              v-if="isMultiSelect && !inline"
+              name="selected-tags"
+              :selected-values="model"
+              :visible-values="visibleValues"
+              :hidden-count="hiddenCount"
+              :get-option="getOption"
+              :remove-value="removeValue"
+              :disabled="$attrs.disabled">
               <ATag
-                v-for="value in model"
+                v-for="value in visibleValues"
                 :key="value"
                 :removable="!($attrs.disabled || getOption(value)?.disabled)"
                 :color="getOption(value)?.color"
                 @remove="removeValue(value, $event)">
                 {{ getOption(value)?.label || value }}
               </ATag>
-            </template>
+              <span v-if="hiddenCount > 0" class="flex items-center px-1 text-stone body-xs-400">
+                {{ collapsedTagsLabel(hiddenCount) }}
+              </span>
+            </slot>
             <AColorCircle
               v-if="singleModelValueColor"
               :color="singleModelValueColor"
