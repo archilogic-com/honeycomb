@@ -4,6 +4,7 @@ import { Combobox, ComboboxButton, ComboboxInput } from '@headlessui/vue'
 
 import type { Option } from './Option.vue'
 import { OptionGroup, areOptionsGrouped } from './OptionGroup.vue'
+import { GROUP_VALUE_PREFIX } from './SelectableOptionGroup.vue'
 import ATag from './Tag.vue'
 import AColorCircle from './ColorCircle.vue'
 import OptionsPanel, { Direction } from './internal/OptionsPanel.vue'
@@ -124,6 +125,15 @@ export default defineComponent({
     collapsedTagsLabel: {
       type: Function as PropType<(count: number) => string>,
       default: (count: number) => `+${count} more`
+    },
+    /**
+     * When true and the combobox is in multi-select mode with grouped options,
+     * displays a CheckboxSelectAll in each group header to select/clear all
+     * options in that group.
+     */
+    selectableGroups: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'update:query'],
@@ -146,11 +156,41 @@ export default defineComponent({
       }
     }
 
+    // toggle all options in a group (select all if not all selected, otherwise clear)
+    const handleGroupToggle = (options: Option[]) => {
+      if (!isMultiSelect(props.modelValue)) return
+
+      const values = options.filter(o => !o.disabled).map(o => o.value)
+      const currentSet = new Set(props.modelValue)
+      const allSelected = values.every(v => currentSet.has(v))
+
+      const newSelection = allSelected
+        ? props.modelValue.filter(v => !values.includes(v))
+        : [...new Set([...props.modelValue, ...values])]
+
+      emit('update:modelValue', newSelection)
+      clearQuery()
+    }
+
     const model = computed({
       get: () => {
         return props.modelValue
       },
       set: value => {
+        // handle keyboard selection of group headers (which have __group__ prefix)
+        if (isMultiSelect(value) && areOptionsGrouped(props.options)) {
+          const groupValue = value.find(v => v.startsWith(GROUP_VALUE_PREFIX))
+          if (groupValue) {
+            // extract group title and toggle its options
+            const title = groupValue.slice(GROUP_VALUE_PREFIX.length)
+            const group = props.options.find(g => g.title === title)
+            if (group) {
+              handleGroupToggle(group.options)
+            }
+            return
+          }
+        }
+
         emit('update:modelValue', value)
         clearQuery()
       }
@@ -245,6 +285,13 @@ export default defineComponent({
       return Math.max(0, model.value.length - props.maxTags)
     })
 
+    const showSelectableGroups = computed(
+      () =>
+        props.selectableGroups &&
+        isMultiSelect(props.modelValue) &&
+        areOptionsGrouped(props.options)
+    )
+
     const handleDelete = () => {
       if (isMultiSelect(model.value) && !query.value) {
         model.value = model.value.slice(0, -1)
@@ -279,7 +326,8 @@ export default defineComponent({
       handleBlur,
       container,
       visibleValues,
-      hiddenCount
+      hiddenCount,
+      showSelectableGroups
     }
   }
 })
@@ -367,7 +415,9 @@ export default defineComponent({
         :multi="isMultiSelect"
         :inline="inline"
         :escape-overflow="escapeOverflow"
-        :width="optionsPanelWidth">
+        :width="optionsPanelWidth"
+        :selectable-groups="showSelectableGroups"
+        :selected-values="isMultiSelect ? (model as string[]) : []">
         <template #default>
           <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
           <slot :filtered-options="filteredOptions"></slot>

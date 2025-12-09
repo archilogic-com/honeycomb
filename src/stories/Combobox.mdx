@@ -272,6 +272,29 @@ Additionally, `a-combobox-option-group` component can be used in `a-combobox`s d
   <Story id="components-combobox--multiselect-grouped-options" />
 </Canvas>
 
+### Selectable groups
+
+In multi-select mode with grouped options, you can enable group-level selection controls using the `selectableGroups` prop.
+This displays a checkbox in each group header that allows selecting or clearing all options in that group at once.
+
+```html
+<a-combobox v-model="values" :options="groupedOptions" selectable-groups />
+```
+
+<Canvas>
+  <Story id="components-combobox--multiselect-selectable-groups" />
+  <Story id="components-combobox--multiselect-selectable-groups-partial-selection" />
+  <Story id="components-combobox--multiselect-selectable-groups-full-group-selected" />
+</Canvas>
+
+The group checkbox shows three states:
+
+- **Unchecked**: No options in the group are selected
+- **Checked**: All enabled options in the group are selected
+- **Indeterminate**: Some (but not all) options in the group are selected
+
+Note: Disabled options are skipped when selecting all, but are removed when clearing the group.
+
 ### Long option labels
 
 Long option labels will be truncated by default, both in the options dropdown and selected state:
