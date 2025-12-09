@@ -52,6 +52,46 @@ selecting multiple values. The options panel will **not** be closed after select
   <Story id="components-combobox--multiselect" />
 </Canvas>
 
+### Limiting visible tags with maxTags
+
+When many items are selected, the input can become crowded. Use the `maxTags` prop to limit visible tags and show a "+N more" indicator.
+
+```html
+<a-combobox v-model="values" :options="options" :max-tags="3" />
+```
+
+<Canvas>
+  <Story id="components-combobox--multiselect-max-tags" />
+</Canvas>
+
+You can customize the collapsed label text with the `collapsedTagsLabel` prop:
+
+```html
+<a-combobox
+  v-model="values"
+  :options="options"
+  :max-tags="2"
+  :collapsed-tags-label="(n) => `(${n} hidden)`" />
+```
+
+<Canvas>
+  <Story id="components-combobox--multiselect-max-tags-custom-label" />
+</Canvas>
+
+For full customization, use the `#selected-tags` slot:
+
+```html
+<a-combobox v-model="values" :options="options">
+  <template #selected-tags="{ selectedValues }">
+    <span>{{ selectedValues.length }} items selected</span>
+  </template>
+</a-combobox>
+```
+
+<Canvas>
+  <Story id="components-combobox--multiselect-custom-selected-tags" />
+</Canvas>
+
 ## Combobox Input
 
 Clicking on the combobox input, as well as pressing `Arrow Down` when it's focused, will open the options panel.
