@@ -9,6 +9,8 @@ import {
 import AButton from './Button.vue'
 import APanel from './Panel.vue'
 
+type ClassValue = string | string[] | Record<string, boolean>
+
 export default defineComponent({
   name: 'ADialog',
   components: { HlDialog, HlDialogPanel, HlDialogTitle, AButton, APanel },
@@ -36,6 +38,20 @@ export default defineComponent({
     position: {
       type: String as PropType<'top' | 'center' | 'bottom'>,
       default: 'top'
+    },
+    /**
+     * Custom classes for internal panel containers. Passed through to APanel.
+     * - `title`: merged with panel title defaults
+     * - `body`: merged with panel body defaults
+     * - `actions`: merged with panel actions defaults
+     */
+    classes: {
+      type: Object as PropType<{
+        title?: ClassValue
+        body?: ClassValue
+        actions?: ClassValue
+      }>,
+      default: () => ({})
     }
   },
   emits: ['close'],
@@ -70,7 +86,7 @@ export default defineComponent({
         <slot></slot>
       </HlDialogPanel>
       <HlDialogPanel v-else class="contents">
-        <APanel class="m-[5rem] min-w-[20rem] overflow-auto">
+        <APanel class="m-[5rem] min-w-[20rem] overflow-auto" :classes="classes">
           <!-- this snippet passes up all the wrapper component's slots -->
           <template v-for="(_, slot) in $slots" #[slot]="scope">
             <slot :name="slot" v-bind="scope || {}" />
