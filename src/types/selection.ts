@@ -1,12 +1,18 @@
 import { type Color } from '../colors'
 
 /**
+ * Valid value types that can be used as option values.
+ * Constrained to types compatible with HeadlessUI components.
+ */
+export type OptionValue = string | number | boolean | Record<string, unknown> | null
+
+/**
  * Base constraint for all option types.
  * Every option must have at minimum a value, label, and optional disabled state.
  *
  * @typeParam V - The type of the option's value (default: string)
  */
-export interface BaseOption<V = string> {
+export interface BaseOption<V extends OptionValue = string> {
   value: V
   label: string
   disabled?: boolean
@@ -18,7 +24,7 @@ export interface BaseOption<V = string> {
  *
  * @typeParam V - The type of the option's value (default: string)
  */
-export interface ExtendedOption<V = string> extends BaseOption<V> {
+export interface ExtendedOption<V extends OptionValue = string> extends BaseOption<V> {
   color?: Color
 }
 
@@ -46,7 +52,10 @@ export interface ExtendedOption<V = string> extends BaseOption<V> {
  *   { value: 1, label: 'One', metadata: { priority: 1 } }
  * ]
  */
-export type Option<V = string, T extends BaseOption<V> = ExtendedOption<V>> = T
+export type Option<
+  V extends OptionValue = string,
+  T extends BaseOption<V> = ExtendedOption<V>
+> = T
 
 /**
  * Generic OptionGroup for grouped options.
@@ -54,7 +63,10 @@ export type Option<V = string, T extends BaseOption<V> = ExtendedOption<V>> = T
  * @typeParam V - The type of the option's value (default: string)
  * @typeParam T - The full option type extending BaseOption<V> (default: ExtendedOption<V>)
  */
-export interface OptionGroup<V = string, T extends BaseOption<V> = ExtendedOption<V>> {
+export interface OptionGroup<
+  V extends OptionValue = string,
+  T extends BaseOption<V> = ExtendedOption<V>
+> {
   title?: string
   options: T[]
 }
@@ -64,7 +76,7 @@ export interface OptionGroup<V = string, T extends BaseOption<V> = ExtendedOptio
  *
  * @typeParam V - The type of the option's value (default: string)
  */
-export interface SwitcherOption<V = string> extends BaseOption<V> {
+export interface SwitcherOption<V extends OptionValue = string> extends BaseOption<V> {
   icon?: string
 }
 
@@ -74,7 +86,7 @@ export interface SwitcherOption<V = string> extends BaseOption<V> {
  * @typeParam V - The type of the option's value
  * @typeParam T - The full option type extending BaseOption<V>
  */
-export function areOptionsGrouped<V, T extends BaseOption<V>>(
+export function areOptionsGrouped<V extends OptionValue, T extends BaseOption<V>>(
   options: T[] | OptionGroup<V, T>[]
 ): options is OptionGroup<V, T>[] {
   return !!options.length && 'options' in options[0]

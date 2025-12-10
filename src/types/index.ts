@@ -1,4 +1,5 @@
 export {
+  type OptionValue,
   type BaseOption,
   type ExtendedOption,
   type Option,
