@@ -1,25 +1,28 @@
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { ListboxOptions, ComboboxOptions } from '@headlessui/vue'
-import AOption, { Option } from '../Option.vue'
-import AOptionGroup, { OptionGroup, areOptionsGrouped } from '../OptionGroup.vue'
-import ASelectableOptionGroup from '../SelectableOptionGroup.vue'
-
+// Re-export Direction type for backwards compatibility
 export type Direction = 'up' | 'down'
+</script>
 
-export default defineComponent({
-  name: 'OptionsPanel',
-  components: { ListboxOptions, ComboboxOptions, AOption, AOptionGroup, ASelectableOptionGroup },
-  props: {
+<script setup lang="ts" generic="T extends BaseOption = ExtendedOption">
+import { ListboxOptions, ComboboxOptions } from '@headlessui/vue'
+import AOption from '../Option.vue'
+import AOptionGroup from '../OptionGroup.vue'
+import ASelectableOptionGroup from '../SelectableOptionGroup.vue'
+import {
+  type BaseOption,
+  type ExtendedOption,
+  type OptionGroup,
+  areOptionsGrouped
+} from '../../types/selection'
+
+const props = withDefaults(
+  defineProps<{
     /**
      * the component inside of which the option is rendered
      *
      * `'listbox' | 'combobox'`
      */
-    component: {
-      type: String as PropType<'listbox' | 'combobox'>,
-      default: 'listbox'
-    },
+    component?: 'listbox' | 'combobox'
     /**
      * An option is at the minimum a `{ value: string, label: string }` object.
      * This prop is used to display the list of options,
@@ -27,72 +30,58 @@ export default defineComponent({
      *
      * You can also provide a grouped structure of options: `[{ title: string, options: Option[] }]`
      */
-    options: {
-      type: Array as PropType<Option[] | OptionGroup[]>,
-      required: true
-    },
+    options: T[] | OptionGroup<string, T>[]
     /**
      * direction in which the dropdown is opening.
      * possible values: `up`, `down`. Default is `down`
      */
-    direction: {
-      type: String as PropType<Direction>,
-      default: 'down'
-    },
+    direction?: Direction
     /**
      * the sizing of the component
      */
-    size: {
-      type: String as PropType<'sm' | 'md'>,
-      default: 'sm'
-    },
+    size?: 'sm' | 'md'
     /**
      * whether the options are rendered in multiselect combobox
      */
-    multi: {
-      type: Boolean,
-      default: false
-    },
+    multi?: boolean
     /**
      * whether the options panel is rendered inline
      */
-    inline: {
-      type: Boolean,
-      default: false
-    },
+    inline?: boolean
     /**
      * allow the options panel to be rendered outside the flow of a container that has content that needs scrolling
      */
-    escapeOverflow: {
-      type: Boolean,
-      default: false
-    },
+    escapeOverflow?: boolean
     /**
      * width of the panel in pixels, to be provided when escapeOverflow is true
      */
-    width: {
-      type: Number,
-      default: 0
-    },
+    width?: number
     /**
      * whether to show selectable checkboxes in group headers
      */
-    selectableGroups: {
-      type: Boolean,
-      default: false
-    },
+    selectableGroups?: boolean
     /**
      * current selection values for computing group selection state
      */
-    selectedValues: {
-      type: Array as PropType<string[]>,
-      default: () => []
-    }
-  },
-  setup() {
-    return { areOptionsGrouped }
+    selectedValues?: string[]
+  }>(),
+  {
+    component: 'listbox',
+    direction: 'down',
+    size: 'sm',
+    multi: false,
+    inline: false,
+    escapeOverflow: false,
+    width: 0,
+    selectableGroups: false,
+    selectedValues: () => []
   }
-})
+)
+
+// Type guard for checking if options are grouped
+const isGrouped = (opts: T[] | OptionGroup<string, T>[]): opts is OptionGroup<string, T>[] => {
+  return areOptionsGrouped(opts)
+}
 </script>
 <template>
   <component
@@ -115,12 +104,12 @@ export default defineComponent({
     :style="escapeOverflow && width && `width: ${width}px`">
     <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
     <slot>
-      <template v-if="areOptionsGrouped(options)">
+      <template v-if="isGrouped(options)">
         <!-- use SelectableOptionGroup when selectableGroups is enabled -->
         <template v-if="selectableGroups">
           <ASelectableOptionGroup
             v-for="group in options"
-            :key="group.title || group.options[0].value"
+            :key="group.title || String(group.options[0].value)"
             :title="group.title || ''"
             :options="group.options"
             :model-value="selectedValues" />
@@ -128,7 +117,7 @@ export default defineComponent({
         <template v-else>
           <AOptionGroup
             v-for="group in options"
-            :key="group.title || group.options[0].value"
+            :key="group.title || String(group.options[0].value)"
             :component="component"
             :options="group.options"
             :title="group.title"
@@ -138,7 +127,7 @@ export default defineComponent({
       <template v-else>
         <AOption
           v-for="option in options"
-          :key="option.value"
+          :key="String(option.value)"
           :component="component"
           :option="option"
           :multi="multi"></AOption>
