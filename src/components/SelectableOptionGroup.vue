@@ -1,78 +1,62 @@
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue'
+// Re-export GROUP_VALUE_PREFIX for backwards compatibility
+export { GROUP_VALUE_PREFIX } from '../types/selection'
+</script>
+
+<script setup lang="ts" generic="T extends BaseOption = ExtendedOption">
+import { computed } from 'vue'
 import { ComboboxOption } from '@headlessui/vue'
 import ASeparator from './Separator.vue'
-import { Option } from './Option.vue'
 import AOption from './Option.vue'
 import ACheckbox from './Checkbox.vue'
+import { type BaseOption, type ExtendedOption, GROUP_VALUE_PREFIX } from '../types/selection'
 
-export const GROUP_VALUE_PREFIX = '__group__'
-
-export default defineComponent({
-  name: 'ASelectableOptionGroup',
-  components: { ASeparator, AOption, ACheckbox, ComboboxOption },
-  props: {
+const props = withDefaults(
+  defineProps<{
     /**
      * the option group title
      */
-    title: {
-      type: String,
-      required: true
-    },
+    title: string
     /**
      * list of options in this group
      */
-    options: {
-      type: Array as PropType<Option[]>,
-      required: true
-    },
+    options: T[]
     /**
      * current selection values (for computing checkbox state)
      */
-    modelValue: {
-      type: Array as PropType<string[]>,
-      default: () => []
-    },
+    modelValue?: string[]
     /**
      * parent component type. Only 'combobox' is supported because this component
      * uses Headless UI's ComboboxOption for keyboard navigation.
      * This prop exists for API consistency with AOptionGroup.
      */
-    component: {
-      type: String as PropType<'combobox'>,
-      default: 'combobox',
-      validator: (value: string) => value === 'combobox'
-    }
-  },
-  setup(props) {
-    const titleId = computed(() => `${props.title}-option-group`)
-
-    // used by Headless UI for keyboard navigation AND click selection
-    const groupValue = computed(() => `${GROUP_VALUE_PREFIX}${props.title}`)
-
-    const enabledOptions = computed(() => props.options.filter(o => !o.disabled))
-
-    const selectedCount = computed(() => {
-      const selectedSet = new Set(props.modelValue)
-      return props.options.filter(o => selectedSet.has(o.value)).length
-    })
-
-    const areAllSelected = computed(
-      () => selectedCount.value === enabledOptions.value.length && enabledOptions.value.length > 0
-    )
-
-    const isPartiallySelected = computed(
-      () => selectedCount.value > 0 && selectedCount.value < enabledOptions.value.length
-    )
-
-    return {
-      titleId,
-      groupValue,
-      areAllSelected,
-      isPartiallySelected
-    }
+    component?: 'combobox'
+  }>(),
+  {
+    modelValue: () => [],
+    component: 'combobox'
   }
+)
+
+const titleId = computed(() => `${props.title}-option-group`)
+
+// used by Headless UI for keyboard navigation AND click selection
+const groupValue = computed(() => `${GROUP_VALUE_PREFIX}${props.title}`)
+
+const enabledOptions = computed(() => props.options.filter(o => !o.disabled))
+
+const selectedCount = computed(() => {
+  const selectedSet = new Set(props.modelValue)
+  return props.options.filter(o => selectedSet.has(String(o.value))).length
 })
+
+const areAllSelected = computed(
+  () => selectedCount.value === enabledOptions.value.length && enabledOptions.value.length > 0
+)
+
+const isPartiallySelected = computed(
+  () => selectedCount.value > 0 && selectedCount.value < enabledOptions.value.length
+)
 </script>
 
 <template>
@@ -105,7 +89,7 @@ export default defineComponent({
       <slot>
         <AOption
           v-for="option in options"
-          :key="option.value"
+          :key="String(option.value)"
           component="combobox"
           multi
           :option="option" />
