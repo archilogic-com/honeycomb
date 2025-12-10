@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.22.0](https://github.com/archilogic-com/honeycomb/compare/v2.21.0...v2.22.0) (2025-12-10)
+
+
+### Features
+
+* **Panel:** accept custom css classes for internal containers ([9edcaab](https://github.com/archilogic-com/honeycomb/commit/9edcaabd6ab33f662128b45ac700dcfa6ede6481))
+
 # [2.21.0](https://github.com/archilogic-com/honeycomb/compare/v2.20.0...v2.21.0) (2025-12-10)
 
 
