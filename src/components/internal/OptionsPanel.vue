@@ -1,5 +1,4 @@
 <script lang="ts">
-// Re-export Direction type for backwards compatibility
 export type Direction = 'up' | 'down'
 </script>
 
@@ -15,7 +14,12 @@ import {
   areOptionsGrouped
 } from '../../types/selection'
 
-const props = withDefaults(
+const optionsComponents = {
+  listbox: ListboxOptions,
+  combobox: ComboboxOptions
+}
+
+withDefaults(
   defineProps<{
     /**
      * the component inside of which the option is rendered
@@ -78,14 +82,13 @@ const props = withDefaults(
   }
 )
 
-// Type guard for checking if options are grouped
 const isGrouped = (opts: T[] | OptionGroup<string, T>[]): opts is OptionGroup<string, T>[] => {
   return areOptionsGrouped(opts)
 }
 </script>
 <template>
   <component
-    :is="`${component}-options`"
+    :is="optionsComponents[component]"
     as="div"
     :static="inline"
     class="focus-visible:outline-none"

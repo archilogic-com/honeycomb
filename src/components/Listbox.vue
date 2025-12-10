@@ -100,7 +100,6 @@ const valueOption = computed(() => flatOptions.value.find(option => option.value
 
 const valueLabel = computed(() => valueOption.value?.label || model.value)
 
-// Type-safe color access
 const valueOptionColor = computed(() => {
   const opt = valueOption.value as (BaseOption & { color?: Color }) | undefined
   return opt?.color

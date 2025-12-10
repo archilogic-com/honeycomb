@@ -1,5 +1,4 @@
 <script lang="ts">
-// Re-export GROUP_VALUE_PREFIX for backwards compatibility
 export { GROUP_VALUE_PREFIX } from '../types/selection'
 </script>
 

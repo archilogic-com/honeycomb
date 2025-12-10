@@ -236,7 +236,6 @@ const removeValue = (value: string, event: Event) => {
   }
 }
 
-// Type-safe color access
 const getOptionColor = (option: T | undefined): Color | undefined => {
   const opt = option as (BaseOption & { color?: Color }) | undefined
   return opt?.color
@@ -263,9 +262,7 @@ const hiddenCount = computed(() => {
 
 const showSelectableGroups = computed(
   () =>
-    props.selectableGroups &&
-    isMultiSelect(props.modelValue) &&
-    areOptionsGrouped(props.options)
+    props.selectableGroups && isMultiSelect(props.modelValue) && areOptionsGrouped(props.options)
 )
 
 const handleDelete = () => {
@@ -296,8 +293,7 @@ const isMulti = computed(() => isMultiSelect(model.value))
           :class="[
             {
               'h-auto min-h-10 body-lg placeholder:body-lg': size === 'md' && isMulti,
-              'my-px h-auto min-h-[1.875rem] body-sm placeholder:body-sm':
-                size === 'sm' && isMulti,
+              'my-px h-auto min-h-[1.875rem] body-sm placeholder:body-sm': size === 'sm' && isMulti,
               'a-text-input--sm': size === 'sm' && !isMulti,
               'a-text-input--md': size === 'md' && !isMulti
             },
