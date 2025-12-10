@@ -1,6 +1,8 @@
 <script lang="ts">
 import { defineComponent, PropType, Component } from 'vue'
 
+type ClassValue = string | string[] | Record<string, boolean>
+
 export default defineComponent({
   name: 'APanel',
   props: {
@@ -15,13 +17,27 @@ export default defineComponent({
     as: {
       type: [Object, String] as PropType<Component | keyof HTMLElementTagNameMap>,
       default: 'div'
+    },
+    /**
+     * Custom classes for internal containers. Merged with default classes.
+     * - `title`: merged with (min-h-10 px-6 pt-2 heading-sm)
+     * - `body`: merged with (overflow-auto px-6 py-4 body-md)
+     * - `actions`: merged with (mt-auto flex h-16 items-center gap-2 rounded-b border-t border-gray bg-athens px-6 py-3)
+     */
+    classes: {
+      type: Object as PropType<{
+        title?: ClassValue
+        body?: ClassValue
+        actions?: ClassValue
+      }>,
+      default: () => ({})
     }
   }
 })
 </script>
 <template>
   <div class="a-panel-lg flex flex-col whitespace-pre-line rounded bg-white">
-    <div v-if="$slots.title || title" class="min-h-10 px-6 pt-2 heading-sm">
+    <div v-if="$slots.title || title" class="min-h-10 px-6 pt-2 heading-sm" :class="classes.title">
       <!--
         @slot #title
         For simple strings, use the `title` prop.
@@ -31,7 +47,7 @@ export default defineComponent({
         {{ title }}
       </slot>
     </div>
-    <div class="overflow-auto px-6 py-4 body-md">
+    <div class="overflow-auto px-6 py-4 body-md" :class="classes.body">
       <!--
         @slot #body
         This is a padded container with typography styles 
@@ -40,7 +56,8 @@ export default defineComponent({
     </div>
     <div
       v-if="$slots.actions"
-      class="mt-auto flex h-16 items-center gap-2 rounded-b border-t border-gray bg-athens px-6 py-3">
+      class="mt-auto flex h-16 items-center gap-2 rounded-b border-t border-gray bg-athens px-6 py-3"
+      :class="classes.actions">
       <!--
           @slot #actions
           Use the slot to provide buttons for user actions.
