@@ -4,13 +4,13 @@
 export type { Option, BaseOption, ExtendedOption, OptionValue } from '../types/selection'
 </script>
 
-<script setup lang="ts" generic="V extends OptionValue = string, T extends BaseOption<V> = ExtendedOption<V>">
+<script setup lang="ts" generic="T extends BaseOption = ExtendedOption">
 import { computed } from 'vue'
 import { ListboxOption, ComboboxOption } from '@headlessui/vue'
 import ACheckbox from './Checkbox.vue'
 import AColorCircle from './ColorCircle.vue'
 import { type Color } from '../colors'
-import { type OptionValue, type BaseOption, type ExtendedOption } from '../types/selection'
+import { type BaseOption, type ExtendedOption } from '../types/selection'
 
 const props = withDefaults(
   defineProps<{
@@ -48,7 +48,7 @@ const componentOption = computed(() =>
 
 // Type-safe check for color property (only available on ExtendedOption)
 const optionColor = computed(() => {
-  const opt = props.option as BaseOption<V> & { color?: Color }
+  const opt = props.option as BaseOption & { color?: Color }
   return opt.color
 })
 </script>

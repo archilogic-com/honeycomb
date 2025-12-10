@@ -1,57 +1,43 @@
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+// Re-export types for backwards compatibility
+export type { OptionGroup } from '../types/selection'
+export { areOptionsGrouped } from '../types/selection'
+</script>
+
+<script setup lang="ts" generic="T extends BaseOption = ExtendedOption">
+import { computed } from 'vue'
 import ASeparator from './Separator.vue'
-import { Option } from './Option.vue'
 import AOption from './Option.vue'
+import { type BaseOption, type ExtendedOption } from '../types/selection'
 
-export type OptionGroup = {
-  title?: string
-  options: Option[]
-}
-
-export const areOptionsGrouped = (options: Option[] | OptionGroup[]): options is OptionGroup[] => {
-  return !!options.length && 'options' in options[0]
-}
-
-export default defineComponent({
-  name: 'AOptionGroup',
-  components: { ASeparator, AOption },
-  props: {
+const props = withDefaults(
+  defineProps<{
     /**
      * the option group title
      */
-    title: {
-      type: String,
-      default: ''
-    },
+    title?: string
     /**
      * list of options to render
      */
-    options: {
-      type: Array as PropType<Option[]>,
-      default: () => []
-    },
+    options?: T[]
     /**
      * parent component, listbox or combobox
      */
-    component: {
-      type: String as PropType<'listbox' | 'combobox'>,
-      default: 'listbox'
-    },
+    component?: 'listbox' | 'combobox'
     /**
      * whether the option is rendered in multiselect combobox (with a checkbox)
      */
-    multi: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    titleId() {
-      return this.title ? `${this.title}-option-group` : undefined
-    }
+    multi?: boolean
+  }>(),
+  {
+    title: '',
+    options: () => [],
+    component: 'listbox',
+    multi: false
   }
-})
+)
+
+const titleId = computed(() => (props.title ? `${props.title}-option-group` : undefined))
 </script>
 
 <template>
@@ -68,14 +54,14 @@ export default defineComponent({
     </div>
     <!--
         @slot  `#default` slot. Takes `a-option` components without any wrappers.
-        Use this slot to render listbox or combobox options with extra styles or markup. 
-        
+        Use this slot to render listbox or combobox options with extra styles or markup.
+
         Default value: `options` prop rendered as `a-option`s
       -->
     <slot>
       <AOption
         v-for="option in options"
-        :key="option.value"
+        :key="String(option.value)"
         :component="component"
         :multi="multi"
         :option="option"></AOption>
