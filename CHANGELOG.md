@@ -1,5 +1,20 @@
 # Changelog
 
+# [2.22.0-test-component-generics.1](https://github.com/archilogic-com/honeycomb/compare/v2.21.0...v2.22.0-test-component-generics.1) (2025-12-10)
+
+
+### Features
+
+* **Combobox:** migrate to script setup with generics ([41980e6](https://github.com/archilogic-com/honeycomb/commit/41980e67f51fd9be8bd14f21640f58870ba942c6))
+* **Listbox:** migrate to script setup with generics ([28114ee](https://github.com/archilogic-com/honeycomb/commit/28114ee92a6d866b97398a8c353e2dce4029cb6e))
+* **OptionGroup:** migrate to script setup with generics ([216c096](https://github.com/archilogic-com/honeycomb/commit/216c09619b772706d0ab9a7ea660c1c27ea1c661))
+* **Option:** migrate to script setup with generics ([6390bfa](https://github.com/archilogic-com/honeycomb/commit/6390bfa3b34c2cbb1d158bfe91baba91227766dd))
+* **OptionsPanel:** migrate to script setup with generics ([e3f01c0](https://github.com/archilogic-com/honeycomb/commit/e3f01c03408c54fc9e3c2ff6796cf8a25ee7f769))
+* **Panel:** accept custom css classes for internal containers ([3c9e560](https://github.com/archilogic-com/honeycomb/commit/3c9e560df6cda5c4e2de8161a6e4aa13a1d8ca51))
+* **SelectableOptionGroup:** migrate to script setup with generics ([973d6cd](https://github.com/archilogic-com/honeycomb/commit/973d6cd7c370a435f3ceb3da0d935aa73ca04c29))
+* **Switcher:** migrate to script setup with generics ([8910e4a](https://github.com/archilogic-com/honeycomb/commit/8910e4a76388825868ab08bc5646dc9a9d3dc599))
+* **types:** add generic selection types module ([1cac666](https://github.com/archilogic-com/honeycomb/commit/1cac6665660278de333198ce17e2afdafed47fbc))
+
 # [2.21.0](https://github.com/archilogic-com/honeycomb/compare/v2.20.0...v2.21.0) (2025-12-10)
 
 
