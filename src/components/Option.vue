@@ -1,6 +1,4 @@
 <script lang="ts">
-// Re-export types for backwards compatibility
-// This separate script block is needed because <script setup> doesn't support named exports
 export type { Option, BaseOption, ExtendedOption, OptionValue } from '../types/selection'
 </script>
 
@@ -39,14 +37,10 @@ const props = withDefaults(
   }
 )
 
-// Note: Slots are typed via template usage, not defineSlots, for better compatibility
-// Slot props: default({ active, selected, disabled, option }), extra()
-
 const componentOption = computed(() =>
   props.component === 'combobox' ? ComboboxOption : ListboxOption
 )
 
-// Type-safe check for color property (only available on ExtendedOption)
 const optionColor = computed(() => {
   const opt = props.option as BaseOption & { color?: Color }
   return opt.color

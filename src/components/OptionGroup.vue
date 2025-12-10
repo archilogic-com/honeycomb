@@ -1,5 +1,4 @@
 <script lang="ts">
-// Re-export types for backwards compatibility
 export type { OptionGroup } from '../types/selection'
 export { areOptionsGrouped } from '../types/selection'
 </script>

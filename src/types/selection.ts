@@ -52,10 +52,7 @@ export interface ExtendedOption<V extends OptionValue = string> extends BaseOpti
  *   { value: 1, label: 'One', metadata: { priority: 1 } }
  * ]
  */
-export type Option<
-  V extends OptionValue = string,
-  T extends BaseOption<V> = ExtendedOption<V>
-> = T
+export type Option<V extends OptionValue = string, T extends BaseOption<V> = ExtendedOption<V>> = T
 
 /**
  * Generic OptionGroup for grouped options.
