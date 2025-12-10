@@ -1,13 +1,19 @@
 import { ref, computed, Ref } from 'vue'
 import { Meta, StoryFn } from '@storybook/vue3'
-import { ACombobox, AOption, AOptionGroup, AColorCircle } from '../components'
+import {
+  ACombobox,
+  AOption,
+  AOptionGroup,
+  ASelectableOptionGroup,
+  AColorCircle
+} from '../components'
 import { within, userEvent } from '@storybook/testing-library'
 import type { Option } from '../components/Option.vue'
 
 export default {
   title: 'Components/Combobox',
   component: ACombobox,
-  subcomponents: { AOption, AOptionGroup }
+  subcomponents: { AOption, AOptionGroup, ASelectableOptionGroup }
 } as Meta
 
 const focusCombobox: StoryFn['play'] = async ({ canvasElement }) => {
@@ -926,3 +932,57 @@ export const MultiselectCustomSelectedTags = TemplateCustomSelectedTags.bind({})
 MultiselectCustomSelectedTags.args = {
   initValue: ['top-left', 'top-right', 'center-left', 'center-right', 'bottom-left']
 }
+
+// Selectable groups
+export const MultiselectSelectableGroups = Template.bind({})
+MultiselectSelectableGroups.args = {
+  initValue: [],
+  options: groupedOptionsData,
+  selectableGroups: true,
+  classes: 'w-[12rem]'
+}
+MultiselectSelectableGroups.play = openCombobox
+
+export const MultiselectSelectableGroupsPartialSelection = Template.bind({})
+MultiselectSelectableGroupsPartialSelection.args = {
+  initValue: ['apple', 'carrot'],
+  options: groupedOptionsData,
+  selectableGroups: true,
+  classes: 'w-[12rem]'
+}
+MultiselectSelectableGroupsPartialSelection.play = openCombobox
+
+export const MultiselectSelectableGroupsFullGroupSelected = Template.bind({})
+MultiselectSelectableGroupsFullGroupSelected.args = {
+  initValue: ['apple', 'pear'],
+  options: groupedOptionsData,
+  selectableGroups: true,
+  classes: 'w-[12rem]'
+}
+MultiselectSelectableGroupsFullGroupSelected.play = openCombobox
+
+const groupedOptionsWithDisabled = [
+  {
+    title: 'fruit',
+    options: [
+      { value: 'apple', label: 'Apple' },
+      { value: 'pear', label: 'Pear', disabled: true }
+    ]
+  },
+  {
+    title: 'veggie',
+    options: [
+      { value: 'carrot', label: 'Carrot' },
+      { value: 'onion', label: 'Onion' }
+    ]
+  }
+]
+
+export const MultiselectSelectableGroupsWithDisabled = Template.bind({})
+MultiselectSelectableGroupsWithDisabled.args = {
+  initValue: [],
+  options: groupedOptionsWithDisabled,
+  selectableGroups: true,
+  classes: 'w-[12rem]'
+}
+MultiselectSelectableGroupsWithDisabled.play = openCombobox

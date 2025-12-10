@@ -3,12 +3,13 @@ import { defineComponent, PropType } from 'vue'
 import { ListboxOptions, ComboboxOptions } from '@headlessui/vue'
 import AOption, { Option } from '../Option.vue'
 import AOptionGroup, { OptionGroup, areOptionsGrouped } from '../OptionGroup.vue'
+import ASelectableOptionGroup from '../SelectableOptionGroup.vue'
 
 export type Direction = 'up' | 'down'
 
 export default defineComponent({
   name: 'OptionsPanel',
-  components: { ListboxOptions, ComboboxOptions, AOption, AOptionGroup },
+  components: { ListboxOptions, ComboboxOptions, AOption, AOptionGroup, ASelectableOptionGroup },
   props: {
     /**
      * the component inside of which the option is rendered
@@ -72,6 +73,20 @@ export default defineComponent({
     width: {
       type: Number,
       default: 0
+    },
+    /**
+     * whether to show selectable checkboxes in group headers
+     */
+    selectableGroups: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * current selection values for computing group selection state
+     */
+    selectedValues: {
+      type: Array as PropType<string[]>,
+      default: () => []
     }
   },
   setup() {
@@ -101,13 +116,24 @@ export default defineComponent({
     <!-- @slot  `#default` slot. Takes `a-option` or `a-option-group` components without any wrappers. Use this slot to render options with extra styles or markup. Default value: `options` prop rendered as `a-option`s or `a-option-group`s -->
     <slot>
       <template v-if="areOptionsGrouped(options)">
-        <AOptionGroup
-          v-for="group in options"
-          :key="group.title || group.options[0].value"
-          :component="component"
-          :options="group.options"
-          :title="group.title"
-          :multi="multi"></AOptionGroup>
+        <!-- use SelectableOptionGroup when selectableGroups is enabled -->
+        <template v-if="selectableGroups">
+          <ASelectableOptionGroup
+            v-for="group in options"
+            :key="group.title || group.options[0].value"
+            :title="group.title || ''"
+            :options="group.options"
+            :model-value="selectedValues" />
+        </template>
+        <template v-else>
+          <AOptionGroup
+            v-for="group in options"
+            :key="group.title || group.options[0].value"
+            :component="component"
+            :options="group.options"
+            :title="group.title"
+            :multi="multi" />
+        </template>
       </template>
       <template v-else>
         <AOption
