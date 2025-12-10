@@ -1,5 +1,13 @@
 # Changelog
 
+# [2.21.0](https://github.com/archilogic-com/honeycomb/compare/v2.20.0...v2.21.0) (2025-12-10)
+
+
+### Features
+
+* **Combobox:** support customizing the tag display for multi-select ([2e4cdcd](https://github.com/archilogic-com/honeycomb/commit/2e4cdcd7263d6715e3f6a7316e2afb361d55d991))
+* **combobox:** support toggling multi-select groups with selectableGroups option ([#321](https://github.com/archilogic-com/honeycomb/issues/321)) ([8701e0a](https://github.com/archilogic-com/honeycomb/commit/8701e0a5b9c91e62b039bbda0a31aed2d902ac8b))
+
 # [2.20.0](https://github.com/archilogic-com/honeycomb/compare/v2.19.2...v2.20.0) (2025-12-04)
 
 
