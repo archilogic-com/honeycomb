@@ -13,17 +13,23 @@ import icons, { DEPRECATED_ICONS } from '../components/icons'
   }}
 />
 
+export const toKebabCase = str => str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+
 export const Template = args => ({
   components: { AIcon },
   setup() {
-    return { args, icons, DEPRECATED_ICONS }
+    const getIconId = name => `${toKebabCase(name)}-${args.size}`
+    return { args, icons, DEPRECATED_ICONS, getIconId }
   },
   template: `
-  <div class="grid grid-cols-5">
-    <div class="m-4 flex items-center text-navy w-max" v-for="(icon, name) in icons.${args.size}">
-      <a-icon :size="args.size" :name="name" />
-      <span class="ml-3 body-md">{{name}}</span>
-      <span v-if="DEPRECATED_ICONS[args.size].includes(name)" class="text-error body-xs-600 mx-1">(deprecated)</span>
+  <div class="grid grid-cols-4">
+    <div class="m-4 flex flex-col text-navy" v-for="(icon, name) in icons.${args.size}">
+      <div class="flex items-center">
+        <a-icon :size="args.size" :name="name" />
+        <span class="ml-3 body-md">{{name}}</span>
+        <span v-if="DEPRECATED_ICONS[args.size].includes(name)" class="text-error body-xs-600 mx-1">(deprecated)</span>
+      </div>
+      <code class="text-xs text-warsaw mt-1">{{getIconId(name)}}</code>
     </div>
   </div>
   `
