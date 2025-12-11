@@ -3,7 +3,8 @@
   lang="ts"
   generic="
     T extends BaseOption = ExtendedOption,
-    Options extends T[] | OptionGroup<string, T>[] = T[] | OptionGroup<string, T>[]
+    Options extends T[] | OptionGroup<string, T>[] = T[] | OptionGroup<string, T>[],
+    ModelValue extends string | string[] = string | string[]
   ">
 import { ref, computed, useAttrs } from 'vue'
 import { Combobox, ComboboxButton, ComboboxInput } from '@headlessui/vue'
@@ -53,7 +54,7 @@ const props = withDefaults(
      * When a single option can be selected, modelValue must be a string.
      * When multiple options can be selected, modelValue must be a list of strings.
      */
-    modelValue: string | string[]
+    modelValue: ModelValue
     /**
      * direction in which the dropdown is opening.
      *
@@ -111,7 +112,7 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string | string[]]
+  'update:modelValue': [value: ModelValue]
   'update:query': [query: string]
 }>()
 
@@ -146,13 +147,13 @@ const handleGroupToggle = (options: T[]) => {
     ? props.modelValue.filter(v => !values.includes(v))
     : [...new Set([...props.modelValue, ...values])]
 
-  emit('update:modelValue', newSelection)
+  emit('update:modelValue', newSelection as ModelValue)
   clearQuery()
 }
 
 const model = computed({
-  get: () => props.modelValue,
-  set: value => {
+  get: (): ModelValue => props.modelValue,
+  set: (value: ModelValue) => {
     // handle keyboard selection of group headers (which have __group__ prefix)
     if (isMultiSelect(value) && areOptionsGrouped(props.options)) {
       const groupValue = value.find(v => v.startsWith(GROUP_VALUE_PREFIX))
@@ -222,7 +223,7 @@ const inputSize = computed(() => {
 
 const updateQuery = (value: string) => {
   if (model.value && !value && !isMultiSelect(model.value)) {
-    model.value = ''
+    model.value = '' as ModelValue
   }
   if (query.value !== value) {
     query.value = value || ''
@@ -238,7 +239,7 @@ const clearQuery = () => {
 const removeValue = (value: string, event: Event) => {
   event.stopPropagation()
   if (isMultiSelect(model.value) && model.value.includes(value)) {
-    model.value = model.value.filter(item => item !== value)
+    model.value = model.value.filter(item => item !== value) as ModelValue
   }
 }
 
@@ -273,7 +274,7 @@ const showSelectableGroups = computed(
 
 const handleDelete = () => {
   if (isMultiSelect(model.value) && !query.value) {
-    model.value = model.value.slice(0, -1)
+    model.value = model.value.slice(0, -1) as ModelValue
   }
 }
 
