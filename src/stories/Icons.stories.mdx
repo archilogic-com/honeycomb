@@ -33,10 +33,45 @@ export const Template = args => ({
 
 <ArgsTable of={AIcon} />
 
+## Type-Safe Usage (Recommended)
+
+Use the `icon` prop with the format `name-size` for type-safe icon selection. This ensures valid name+size combinations at compile time.
+
+```html
+<!-- Type-safe: invalid combinations will show TypeScript errors -->
+<a-icon icon="folder-sm" />
+<a-icon icon="check-md" />
+<a-icon icon="burger-lg" />
+<a-icon icon="add-other" />
+```
+
+The `icon` prop accepts kebab-case identifiers like:
+
+- `search-sm`, `folder-sm`, `check-sm` (small icons)
+- `search-md`, `folder-md`, `check-md` (medium icons)
+- `search-lg`, `burger-lg`, `pencil-lg` (large icons)
+- `add-other`, `warning-other` (other size icons)
+
+**TypeScript will catch invalid combinations:**
+
+```typescript
+<a-icon icon="check-other" />  // Error: 'check-other' is not assignable to IconIdentifier
+<a-icon icon="burger-sm" />    // Error: 'burger-sm' is not assignable to IconIdentifier
+```
+
+## Legacy Usage (Deprecated)
+
+The `name` and `size` props still work but are deprecated. They don't provide compile-time validation of valid combinations.
+
+```html
+<!-- Deprecated: use icon="folder-sm" instead -->
+<a-icon size="sm" name="Folder" />
+```
+
 ## Icons sm (16x16px)
 
 ```html
-<a-icon size="sm" name="Folder" />
+<a-icon icon="folder-sm" />
 ```
 
 <Canvas>
@@ -48,7 +83,7 @@ export const Template = args => ({
 ## Icons md (32x32px)
 
 ```html
-<a-icon name="Folder" />
+<a-icon icon="folder-md" />
 ```
 
 <Canvas>
@@ -60,7 +95,7 @@ export const Template = args => ({
 ## Icons lg (40x40px)
 
 ```html
-<a-icon size="lg" name="Burger" />
+<a-icon icon="burger-lg" />
 ```
 
 <Canvas>
@@ -72,7 +107,7 @@ export const Template = args => ({
 ## Icons other (various sizes)
 
 ```html
-<a-icon size="other" name="Add" />
+<a-icon icon="add-other" />
 ```
 
 <Canvas>
@@ -87,7 +122,7 @@ The icons' `fill` or `stroke` attribute is set to `currentColor` so they will ma
 
 ```html
 <div class="text-error">
-  <a-icon name="Info" />
+  <a-icon icon="info-md" />
   This is a red error message.
 </div>
 ```
@@ -96,15 +131,15 @@ The icons' `fill` or `stroke` attribute is set to `currentColor` so they will ma
   <Story name="change color">
     {() => ({
       components: { AIcon },
-      template: `<div class="flex items-center text-error"><a-icon size="other" name="warning"/>This is a red error message.</div>`
+      template: `<div class="flex items-center text-error"><a-icon icon="warning-other"/>This is a red error message.</div>`
     })}
   </Story>
 </Canvas>
 
 ## Troubleshooting
 
-If you don't see the correct icon, please double check the provided `size` and `name` props:
-together they form the path, from which the requested icon component is loaded.
+**Using TypeScript?** Use the `icon` prop for compile-time validation. Invalid combinations like `icon="check-other"` will show TypeScript errors.
 
-If the icon does not exist, an error will be printed to the console
-along with the list of all available icons in each size.
+**Not using TypeScript?** If you don't see the correct icon, double check the `icon` prop value. The format is `name-size` in kebab-case (e.g., `arrow-left-md`).
+
+If the icon does not exist, an error will be printed to the console along with the list of all available icons in each size.
