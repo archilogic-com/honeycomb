@@ -1,23 +1,26 @@
-<script lang="ts">
-import { defineComponent, PropType, ref, computed } from 'vue'
+<script
+  setup
+  lang="ts"
+  generic="
+    T extends BaseOption = ExtendedOption,
+    Options extends T[] | OptionGroup<string, T>[] = T[] | OptionGroup<string, T>[],
+    ModelValue extends string = string
+  ">
+import { ref, computed, useAttrs } from 'vue'
 import { Listbox, ListboxButton } from '@headlessui/vue'
-
-import type { Option } from './Option.vue'
-import { OptionGroup, areOptionsGrouped } from './OptionGroup.vue'
 import AColorCircle from './ColorCircle.vue'
-import OptionsPanel, { Direction } from './internal/OptionsPanel.vue'
+import OptionsPanel, { type Direction } from './internal/OptionsPanel.vue'
 import FloatingArrow from './internal/FloatingArrow.vue'
+import {
+  type BaseOption,
+  type ExtendedOption,
+  type OptionGroup,
+  areOptionsGrouped
+} from '../types/selection'
+import { type Color } from '../colors'
 
-export default defineComponent({
-  name: 'AListbox',
-  components: {
-    Listbox,
-    ListboxButton,
-    OptionsPanel,
-    FloatingArrow,
-    AColorCircle
-  },
-  props: {
+const props = withDefaults(
+  defineProps<{
     /**
      * An option is at the minimum a `{ value: string, label: string }` object.
      * This prop is used to display the list of listbox options,
@@ -25,105 +28,88 @@ export default defineComponent({
      *
      * You can also provide a grouped structure of options: `[{ title: string, options: Option[] }]`
      */
-    options: {
-      type: Array as PropType<Option[] | OptionGroup[]>,
-      required: true
-    },
+    options: Options
     /**
      * an optional placeholder can be displayed when no value is currently selected.
      */
-    placeholder: {
-      type: String,
-      default: 'Select value'
-    },
+    placeholder?: string
     /**
      * the size of the listbox component
      */
-    size: {
-      type: String as PropType<'sm' | 'md'>,
-      default: 'sm'
-    },
+    size?: 'sm' | 'md'
     /**
      * how the listbox button is displayed when not focused
      */
-    variant: {
-      type: String as PropType<'subtle' | 'default'>,
-      default: 'default'
-    },
+    variant?: 'subtle' | 'default'
     /**
      * the prop modelValue is required to use [v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model) with a component.
      */
-    modelValue: {
-      type: String,
-      required: true
-    },
+    modelValue: ModelValue
     /**
      * direction in which the dropdown is opening.
      * possible values: `up`, `down`. Default is `down`
      */
-    direction: {
-      type: String as PropType<Direction>,
-      default: 'down'
-    },
+    direction?: Direction
     /**
      * extra classes to style the listbox options panel
      * useful for setting the panel height
      */
-    panelClasses: {
-      type: String,
-      default: ''
-    },
+    panelClasses?: string
     /**
      * the options panel can be rendered inline instead of the absolutely positioned dropdown
      */
-    inline: {
-      type: Boolean,
-      default: false
-    },
+    inline?: boolean
     /**
      * allow the options panel to be rendered outside the flow of a container that has content that needs scrolling
      */
-    escapeOverflow: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: ['update:modelValue'],
-  setup() {
-    const listboxButton = ref()
-    const optionsPanelWidth = computed(() => listboxButton.value?.el.offsetWidth)
-
-    // hack together a tab-out behavior for the listbox
-    const handleTab = (event: KeyboardEvent) => {
-      if (event.key === 'Tab') {
-        const newEvent = new KeyboardEvent('keydown', { key: 'Escape' })
-        event.target?.dispatchEvent(newEvent)
-      }
-    }
-
-    return { handleTab, listboxButton, optionsPanelWidth }
-  },
-  computed: {
-    flatOptions() {
-      return areOptionsGrouped(this.options)
-        ? this.options.map(({ options }) => options).flat()
-        : this.options
-    },
-    valueOption() {
-      return this.flatOptions.find(option => option.value === this.model)
-    },
-    valueLabel() {
-      return this.valueOption?.label || this.model
-    },
-    model: {
-      get() {
-        return this.modelValue
-      },
-      set(value: string) {
-        this.$emit('update:modelValue', value)
-      }
-    }
+    escapeOverflow?: boolean
+  }>(),
+  {
+    placeholder: 'Select value',
+    size: 'sm',
+    variant: 'default',
+    direction: 'down',
+    panelClasses: '',
+    inline: false,
+    escapeOverflow: false
   }
+)
+
+const emit = defineEmits<{
+  'update:modelValue': [value: ModelValue]
+}>()
+
+const attrs = useAttrs()
+
+const listboxButton = ref()
+const optionsPanelWidth = computed(() => listboxButton.value?.el.offsetWidth)
+
+// hack together a tab-out behavior for the listbox
+const handleTab = (event: KeyboardEvent) => {
+  if (event.key === 'Tab') {
+    const newEvent = new KeyboardEvent('keydown', { key: 'Escape' })
+    event.target?.dispatchEvent(newEvent)
+  }
+}
+
+const flatOptions = computed((): T[] =>
+  areOptionsGrouped(props.options)
+    ? props.options.map(({ options }) => options).flat()
+    : (props.options as T[])
+)
+
+const model = computed({
+  get: (): ModelValue => props.modelValue,
+  set: (value: ModelValue) => emit('update:modelValue', value)
+})
+
+const valueOption = computed(() => flatOptions.value.find(option => option.value === model.value))
+
+const valueLabel = computed(() => valueOption.value?.label || model.value)
+
+const valueOptionColor = computed(() => {
+  const opt = valueOption.value as (BaseOption & { color?: Color }) | undefined
+  return opt?.color
 })
 </script>
 <template>
@@ -145,7 +131,7 @@ export default defineComponent({
           -->
           <slot name="listbox-value">
             <div v-if="model" class="truncate">
-              <AColorCircle v-if="valueOption?.color" :color="valueOption?.color" class="mr-2" />
+              <AColorCircle v-if="valueOptionColor" :color="valueOptionColor" class="mr-2" />
               <span>{{ valueLabel }}</span>
             </div>
             <span v-else class="a-text-input-placeholder">{{ placeholder }}</span>
@@ -153,8 +139,8 @@ export default defineComponent({
         </div>
         <FloatingArrow
           v-if="!inline"
-          :float="variant === 'subtle' && !$attrs.disabled"
-          :class="{ 'text-warsaw': $attrs.disabled }" />
+          :float="variant === 'subtle' && !attrs.disabled"
+          :class="{ 'text-warsaw': attrs.disabled }" />
       </slot>
     </ListboxButton>
     <OptionsPanel

@@ -10,6 +10,23 @@ const defaultOptions = [
   { value: 'e', label: 'Option E' }
 ]
 
+// Helper to count visible tags in the combobox trigger
+// Tags have removable buttons with aria-label="Remove"
+const getVisibleTagCount = () => {
+  return screen.queryAllByLabelText('Remove').length
+}
+
+// Helper to check if a tag with specific text is visible
+const hasVisibleTag = (label: string) => {
+  // Tags are rendered as ATag components with removable buttons
+  // The tag text appears alongside the Remove button
+  const removeButtons = screen.queryAllByLabelText('Remove')
+  return removeButtons.some(button => {
+    const tag = button.closest('[class*="a-tag"]') || button.parentElement
+    return tag?.textContent?.includes(label)
+  })
+}
+
 describe('Combobox.vue - Multi-select tag display', () => {
   describe('maxTags prop', () => {
     it('displays all tags when maxTags is undefined', () => {
@@ -20,11 +37,13 @@ describe('Combobox.vue - Multi-select tag display', () => {
         }
       })
 
-      expect(screen.getByText('Option A')).toBeInTheDocument()
-      expect(screen.getByText('Option B')).toBeInTheDocument()
-      expect(screen.getByText('Option C')).toBeInTheDocument()
-      expect(screen.getByText('Option D')).toBeInTheDocument()
-      expect(screen.getByText('Option E')).toBeInTheDocument()
+      // All 5 tags should be visible (each has a Remove button)
+      expect(getVisibleTagCount()).toBe(5)
+      expect(hasVisibleTag('Option A')).toBe(true)
+      expect(hasVisibleTag('Option B')).toBe(true)
+      expect(hasVisibleTag('Option C')).toBe(true)
+      expect(hasVisibleTag('Option D')).toBe(true)
+      expect(hasVisibleTag('Option E')).toBe(true)
     })
 
     it('limits visible tags to maxTags count', () => {
@@ -36,11 +55,13 @@ describe('Combobox.vue - Multi-select tag display', () => {
         }
       })
 
-      expect(screen.getByText('Option A')).toBeInTheDocument()
-      expect(screen.getByText('Option B')).toBeInTheDocument()
-      expect(screen.queryByText('Option C')).not.toBeInTheDocument()
-      expect(screen.queryByText('Option D')).not.toBeInTheDocument()
-      expect(screen.queryByText('Option E')).not.toBeInTheDocument()
+      // Only 2 tags should be visible
+      expect(getVisibleTagCount()).toBe(2)
+      expect(hasVisibleTag('Option A')).toBe(true)
+      expect(hasVisibleTag('Option B')).toBe(true)
+      expect(hasVisibleTag('Option C')).toBe(false)
+      expect(hasVisibleTag('Option D')).toBe(false)
+      expect(hasVisibleTag('Option E')).toBe(false)
     })
 
     it('shows collapsed indicator when tags exceed maxTags', () => {
@@ -76,9 +97,12 @@ describe('Combobox.vue - Multi-select tag display', () => {
         }
       })
 
-      expect(screen.queryByText('Option A')).not.toBeInTheDocument()
-      expect(screen.queryByText('Option B')).not.toBeInTheDocument()
-      expect(screen.queryByText('Option C')).not.toBeInTheDocument()
+      // With maxTags: 0, no tags should be visible (no Remove buttons)
+      expect(getVisibleTagCount()).toBe(0)
+      expect(hasVisibleTag('Option A')).toBe(false)
+      expect(hasVisibleTag('Option B')).toBe(false)
+      expect(hasVisibleTag('Option C')).toBe(false)
+      // The collapsed indicator should be shown
       expect(screen.getByText('+3 more')).toBeInTheDocument()
     })
   })
