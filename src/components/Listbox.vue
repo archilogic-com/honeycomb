@@ -3,7 +3,8 @@
   lang="ts"
   generic="
     T extends BaseOption = ExtendedOption,
-    Options extends T[] | OptionGroup<string, T>[] = T[] | OptionGroup<string, T>[]
+    Options extends T[] | OptionGroup<string, T>[] = T[] | OptionGroup<string, T>[],
+    ModelValue extends string = string
   ">
 import { ref, computed, useAttrs } from 'vue'
 import { Listbox, ListboxButton } from '@headlessui/vue'
@@ -43,7 +44,7 @@ const props = withDefaults(
     /**
      * the prop modelValue is required to use [v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model) with a component.
      */
-    modelValue: string
+    modelValue: ModelValue
     /**
      * direction in which the dropdown is opening.
      * possible values: `up`, `down`. Default is `down`
@@ -75,7 +76,7 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
+  'update:modelValue': [value: ModelValue]
 }>()
 
 const attrs = useAttrs()
@@ -98,8 +99,8 @@ const flatOptions = computed((): T[] =>
 )
 
 const model = computed({
-  get: () => props.modelValue,
-  set: (value: string) => emit('update:modelValue', value)
+  get: (): ModelValue => props.modelValue,
+  set: (value: ModelValue) => emit('update:modelValue', value)
 })
 
 const valueOption = computed(() => flatOptions.value.find(option => option.value === model.value))

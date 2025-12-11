@@ -2,7 +2,10 @@
 export type { SwitcherOption } from '../types/selection'
 </script>
 
-<script setup lang="ts" generic="T extends SwitcherOption = SwitcherOption">
+<script
+  setup
+  lang="ts"
+  generic="T extends SwitcherOption = SwitcherOption, ModelValue extends string = string">
 import { computed } from 'vue'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import AIcon from './Icon.vue'
@@ -10,7 +13,7 @@ import { type SwitcherOption } from '../types/selection'
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string
+    modelValue: ModelValue
     options: T[]
     label?: string
     raised?: boolean
@@ -24,12 +27,12 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
+  'update:modelValue': [value: ModelValue]
 }>()
 
 const model = computed({
-  get: () => props.modelValue,
-  set: value => emit('update:modelValue', value)
+  get: (): ModelValue => props.modelValue,
+  set: (value: ModelValue) => emit('update:modelValue', value)
 })
 </script>
 <template>
