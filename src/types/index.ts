@@ -6,5 +6,6 @@ export {
   type OptionGroup,
   type SwitcherOption,
   areOptionsGrouped,
+  isOptionGroup,
   GROUP_VALUE_PREFIX
 } from './selection'

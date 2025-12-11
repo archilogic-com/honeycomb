@@ -78,7 +78,7 @@ export interface SwitcherOption<V extends OptionValue = string> extends BaseOpti
 }
 
 /**
- * Type guard to check if options are grouped.
+ * Type guard to check if options array contains grouped options.
  *
  * @typeParam V - The type of the option's value
  * @typeParam T - The full option type extending BaseOption<V>
@@ -87,6 +87,25 @@ export function areOptionsGrouped<V extends OptionValue, T extends BaseOption<V>
   options: T[] | OptionGroup<V, T>[]
 ): options is OptionGroup<V, T>[] {
   return !!options.length && 'options' in options[0]
+}
+
+/**
+ * Type guard to check if a single item is an OptionGroup (vs a flat option).
+ * Useful for narrowing types when iterating over mixed option arrays.
+ *
+ * @example
+ * filteredOptions.map(item => {
+ *   if (isOptionGroup(item)) {
+ *     // item is OptionGroup - access item.options, item.title
+ *   } else {
+ *     // item is T - access item.value, item.label
+ *   }
+ * })
+ */
+export function isOptionGroup<V extends OptionValue, T extends BaseOption<V>>(
+  item: T | OptionGroup<V, T>
+): item is OptionGroup<V, T> {
+  return 'options' in item
 }
 
 /**
