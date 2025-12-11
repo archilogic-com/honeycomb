@@ -101,7 +101,7 @@ export default defineComponent({
 
     const iconName = computed(() => {
       if (typeof props.icon === 'string' && props.icon.length) {
-        return props.icon
+        return props.icon as import('./icons/types').AnyIconName
       }
       return undefined
     })

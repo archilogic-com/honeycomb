@@ -1,4 +1,5 @@
 import { type Color } from '../colors'
+import { type SmIcon, type SmIconLower } from '../components/icons/types'
 
 /**
  * Valid value types that can be used as option values.
@@ -74,7 +75,7 @@ export interface OptionGroup<
  * @typeParam V - The type of the option's value (default: string)
  */
 export interface SwitcherOption<V extends OptionValue = string> extends BaseOption<V> {
-  icon?: string
+  icon?: SmIcon | SmIconLower
 }
 
 /**
