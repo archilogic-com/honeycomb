@@ -1,4 +1,10 @@
-<script setup lang="ts" generic="T extends BaseOption = ExtendedOption">
+<script
+  setup
+  lang="ts"
+  generic="
+    T extends BaseOption = ExtendedOption,
+    Options extends T[] | OptionGroup<string, T>[] = T[] | OptionGroup<string, T>[]
+  ">
 import { ref, computed, useAttrs } from 'vue'
 import { Combobox, ComboboxButton, ComboboxInput } from '@headlessui/vue'
 import ATag from './Tag.vue'
@@ -23,7 +29,7 @@ const props = withDefaults(
      *
      * You can also provide a grouped structure of options: `[{ title: string, options: Option[] }]`
      */
-    options: T[] | OptionGroup<string, T>[]
+    options: Options
     /**
      * a placeholder string to be displayed when no value is currently selected.
      */
@@ -166,13 +172,13 @@ const model = computed({
   }
 })
 
-const flatOptions = computed(() =>
+const flatOptions = computed((): T[] =>
   areOptionsGrouped(props.options)
     ? props.options.map(({ options }) => options).flat()
-    : props.options
+    : (props.options as T[])
 )
 
-const filteredOptions = computed(() => {
+const filteredOptions = computed((): Options => {
   if (query.value === '') {
     return props.options
   } else {
@@ -187,9 +193,9 @@ const filteredOptions = computed(() => {
           title,
           options: options.filter(applyFilter)
         }))
-        .filter(group => group.options.length)
+        .filter(group => group.options.length) as Options
     } else {
-      return props.options.filter(applyFilter)
+      return (props.options as T[]).filter(applyFilter) as Options
     }
   }
 })
