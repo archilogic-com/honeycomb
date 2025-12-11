@@ -1,4 +1,5 @@
 import { type Color } from '../colors'
+import { type SmIconId } from '../components/icons/types'
 
 /**
  * Valid value types that can be used as option values.
@@ -70,11 +71,12 @@ export interface OptionGroup<
 
 /**
  * Switcher-specific option with icon support.
+ * Icons use the type-safe format "name-sm" (e.g., "search-sm", "check-sm").
  *
  * @typeParam V - The type of the option's value (default: string)
  */
 export interface SwitcherOption<V extends OptionValue = string> extends BaseOption<V> {
-  icon?: string
+  icon?: SmIconId
 }
 
 /**

@@ -1,5 +1,6 @@
 import { Component } from 'vue'
-export type IconSize = 'sm' | 'md' | 'lg' | 'other'
+import { type IconSize } from './types'
+export type { IconSize } from './types'
 
 const iconModules: Record<string, { default: Component }> = import.meta.glob('./**/*.svg', {
   eager: true
