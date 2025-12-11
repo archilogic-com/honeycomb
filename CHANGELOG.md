@@ -1,5 +1,26 @@
 # Changelog
 
+# [2.23.0-test-icon-props.1](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.23.0-test-icon-props.1) (2025-12-11)
+
+
+### Features
+
+* **Button:** accept IconIdentifier in icon prop ([cf637c8](https://github.com/archilogic-com/honeycomb/commit/cf637c841f7122551dbb0079ee9f80d0abb5cdf2))
+* **Combobox,Listbox:** preserve options type in slot props ([ab60d1f](https://github.com/archilogic-com/honeycomb/commit/ab60d1ff98c26dd16e7f2ac275e65ca43fa09e1c))
+* **Combobox:** migrate to script setup with generics ([a1d424a](https://github.com/archilogic-com/honeycomb/commit/a1d424a2a01cc1fa350d49d13d3e6a4e932e2a60))
+* **Combobox:** preserve modelValue type in emit ([b7d8c4d](https://github.com/archilogic-com/honeycomb/commit/b7d8c4de2cb7cab26a58cf16d7715bc8ddfb5e47))
+* **Icon:** add type-safe icon name validation ([f64fc18](https://github.com/archilogic-com/honeycomb/commit/f64fc18ba54aba4cd179206f43dee861d023b980))
+* **Icon:** add type-safe icon prop with combined name+size ([dcdf98e](https://github.com/archilogic-com/honeycomb/commit/dcdf98eb47239d1b9f0bc7757429fc2d438bc136))
+* **Listbox,Switcher:** preserve modelValue type in emit ([ed44719](https://github.com/archilogic-com/honeycomb/commit/ed44719ae3d9b2a6926c9be542e542bea8d94b0d))
+* **Listbox:** migrate to script setup with generics ([6688ff2](https://github.com/archilogic-com/honeycomb/commit/6688ff23d2326ded22178648a07338ca66786e56))
+* **OptionGroup:** migrate to script setup with generics ([3360f63](https://github.com/archilogic-com/honeycomb/commit/3360f63378154c4b3cc9f7df060d7f9cfb225135))
+* **Option:** migrate to script setup with generics ([c4c65d1](https://github.com/archilogic-com/honeycomb/commit/c4c65d1c023a2645619244cc485d1d5821b4f489))
+* **OptionsPanel:** migrate to script setup with generics ([2c0404b](https://github.com/archilogic-com/honeycomb/commit/2c0404b509ba1eab1dc444ede5dc475a130cf4ed))
+* **SelectableOptionGroup:** migrate to script setup with generics ([fa38f28](https://github.com/archilogic-com/honeycomb/commit/fa38f280525e74f13e013b1a54bff96717a722d6))
+* **Switcher:** migrate to script setup with generics ([617fd0f](https://github.com/archilogic-com/honeycomb/commit/617fd0f5ab67121dca17ae99d4fb25627e419fd5))
+* **types:** add generic selection types module ([1d012c4](https://github.com/archilogic-com/honeycomb/commit/1d012c42a95b305549b39da0ab056607e780879e))
+* **types:** add isOptionGroup type guard for individual items ([6fc2aa9](https://github.com/archilogic-com/honeycomb/commit/6fc2aa9704edaf1f2292b59ade93c6dc75466a0b))
+
 # [2.22.0](https://github.com/archilogic-com/honeycomb/compare/v2.21.0...v2.22.0) (2025-12-10)
 
 
