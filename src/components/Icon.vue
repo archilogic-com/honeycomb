@@ -1,4 +1,8 @@
 <script lang="ts">
+import { defineComponent, computed, type PropType } from 'vue'
+import icons, { DEPRECATED_ICONS } from './icons'
+import { type IconSize, type IconIdentifier, type AnyIconName } from './icons/types'
+
 export type {
   IconSize,
   IconName,
@@ -6,47 +10,83 @@ export type {
   MdIcon,
   LgIcon,
   OtherIcon,
-  AnyIconName
+  AnyIconName,
+  IconIdentifier,
+  SmIconId,
+  MdIconId,
+  LgIconId,
+  OtherIconId
 } from './icons/types'
-</script>
 
-<script setup lang="ts">
-import { computed, capitalize as capitalizeFirstLetter } from 'vue'
-import icons, { DEPRECATED_ICONS } from './icons'
-import { type IconSize, type AnyIconName } from './icons/types'
-
-const props = withDefaults(
-  defineProps<{
+export default defineComponent({
+  name: 'AIcon',
+  props: {
     /**
-     * icon name in PascalCase (e.g. ArrowDown, Warning) or camelCase (e.g. arrowDown, warning)
-     * together with the size identifies the correct icon to load
+     * Type-safe icon identifier in format "name-size" (e.g., "search-sm", "check-md")
+     * This is the recommended way to specify icons as it enforces valid name+size combinations.
      */
-    name: AnyIconName
+    icon: {
+      type: String as PropType<IconIdentifier>,
+      default: undefined
+    },
     /**
-     * icon size - used to set width and height on an `svg` element
-     * currently used sizes: `sm`: 1rem/16px, `md` (default): 2rem/32px, `lg`: 2.5rem/40px, `other`: various sizes for special cases
+     * @deprecated Use `icon` prop instead (e.g., icon="search-sm")
+     * Icon name in PascalCase (e.g. ArrowDown, Warning) or camelCase (e.g. arrowDown, warning)
      */
-    size?: IconSize
-  }>(),
-  {
-    size: 'md'
-  }
-)
+    name: {
+      type: String as PropType<AnyIconName>,
+      default: undefined
+    },
+    /**
+     * @deprecated Use `icon` prop instead (e.g., icon="search-sm")
+     * Icon size - used to set width and height on an `svg` element
+     */
+    size: {
+      type: String as PropType<IconSize>,
+      default: 'md'
+    }
+  },
+  setup(props) {
+    const iconComponent = computed(() => {
+      let size: IconSize
+      let name: string
 
-const iconComponent = computed(() => {
-  const size = props.size
-  const name = capitalizeFirstLetter(props.name)
-  if (DEPRECATED_ICONS[size].includes(name)) {
-    console.warn(
-      `Icon "${name}" in size "${size}" is deprecated and will be removed in the next major version.
-      Use another supported size or alternative icon, see storybook docs https://honeycomb.archilogic.com`
-    )
-  }
-  if (icons[size][name]) {
-    return icons[size][name]
-  } else {
-    console.error(`Icon ${name} of size ${size} does not exist.`, 'Available icons', icons)
-    return null
+      if (props.icon) {
+        // New format: "search-sm" -> extract size from suffix
+        const lastDash = props.icon.lastIndexOf('-')
+        size = props.icon.slice(lastDash + 1) as IconSize
+        // Convert kebab-case name to PascalCase: "arrow-left" -> "ArrowLeft"
+        name = props.icon
+          .slice(0, lastDash)
+          .split('-')
+          .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+          .join('')
+      } else if (props.name) {
+        // Legacy format
+        size = props.size
+        // Capitalize first letter to handle camelCase input
+        name = props.name.charAt(0).toUpperCase() + props.name.slice(1)
+      } else {
+        console.error('[Honeycomb] a-icon: either icon or name prop is required')
+        return null
+      }
+
+      if (DEPRECATED_ICONS[size].includes(name)) {
+        console.warn(
+          `Icon "${name}" in size "${size}" is deprecated and will be removed in the next major version.
+          Use another supported size or alternative icon, see storybook docs https://honeycomb.archilogic.com`
+        )
+      }
+
+      if (icons[size][name]) {
+        return icons[size][name]
+      } else {
+        console.error(`Icon ${name} of size ${size} does not exist.`, 'Available icons', icons)
+        return null
+      }
+    })
+
+    return { iconComponent }
   }
 })
 </script>

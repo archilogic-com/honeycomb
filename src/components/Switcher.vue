@@ -60,7 +60,7 @@ const model = computed({
         :aria-label="option.icon ? option.label : undefined"
         :title="option.icon ? option.label : undefined">
         <slot :name="String(option.value)">
-          <a-icon v-if="option.icon" :name="option.icon" size="sm"></a-icon>
+          <a-icon v-if="option.icon" :icon="option.icon"></a-icon>
           <template v-else>
             {{ option.label }}
           </template>

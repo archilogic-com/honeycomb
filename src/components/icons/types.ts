@@ -179,3 +179,18 @@ export type IconNameAnyCase<S extends IconSize> = IconName<S> | IconNameLower<S>
 export type AnyIcon = SmIcon | MdIcon | LgIcon | OtherIcon
 export type AnyIconLower = SmIconLower | MdIconLower | LgIconLower | OtherIconLower
 export type AnyIconName = AnyIcon | AnyIconLower
+
+// Helper to convert PascalCase to kebab-case at type level
+type KebabCase<S extends string> = S extends `${infer First}${infer Rest}`
+  ? Rest extends Uncapitalize<Rest>
+    ? `${Lowercase<First>}${KebabCase<Rest>}`
+    : `${Lowercase<First>}-${KebabCase<Rest>}`
+  : S
+
+// Type-safe icon identifiers in format "name-size" (e.g., "search-sm", "arrow-left-md")
+export type SmIconId = `${KebabCase<SmIcon>}-sm`
+export type MdIconId = `${KebabCase<MdIcon>}-md`
+export type LgIconId = `${KebabCase<LgIcon>}-lg`
+export type OtherIconId = `${KebabCase<OtherIcon>}-other`
+
+export type IconIdentifier = SmIconId | MdIconId | LgIconId | OtherIconId
