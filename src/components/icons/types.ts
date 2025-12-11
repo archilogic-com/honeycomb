@@ -1,6 +1,3 @@
-// Auto-generated icon types - do not edit manually
-// Run `npm run generate:icon-types` to regenerate
-
 export type SmIcon =
   | 'Ai'
   | 'Archive'
