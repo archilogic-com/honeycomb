@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.24.0-test-export-types.3](https://github.com/archilogic-com/honeycomb/compare/v2.24.0-test-export-types.2...v2.24.0-test-export-types.3) (2025-12-18)
+
+
+### Bug Fixes
+
+* **Combobox,Listbox:** handle empty option groups and null element refs ([5b75f14](https://github.com/archilogic-com/honeycomb/commit/5b75f141291828cc84afa1fb4ea3398cee65ff09))
+
 # [2.24.0-test-export-types.2](https://github.com/archilogic-com/honeycomb/compare/v2.24.0-test-export-types.1...v2.24.0-test-export-types.2) (2025-12-18)
 
 
