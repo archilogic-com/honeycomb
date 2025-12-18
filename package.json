@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.23.0-test-icon-props.2",
+  "version": "2.23.0-test-icon-props.1",
   "publishConfig": {
     "access": "public"
   },
