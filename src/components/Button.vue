@@ -2,10 +2,15 @@
 import { computed, defineComponent, PropType } from 'vue'
 import ASpinner from './Spinner.vue'
 import AIcon from './Icon.vue'
+import { type IconIdentifier, type AnyIconName } from './icons/types'
 
 type ButtonVariant = 'primary' | 'subtle' | 'standard'
 
 type ButtonSize = 'sm' | 'md' | 'lg' | 'auto'
+
+const isIconIdentifier = (str: string): boolean => {
+  return /-(sm|md|lg|other)$/.test(str)
+}
 
 export default defineComponent({
   name: 'AButton',
@@ -41,15 +46,9 @@ export default defineComponent({
       type: String as PropType<ButtonSize>,
       default: 'md'
     },
-    /**
-     * deprecated usage: Boolean
-     * removes horizontal padding, use size `auto` instead
-     *
-     * recommended usage: icon name as a String
-     * the icon size will be inferred from the button size prop
-     */
+    /** IconIdentifier (e.g., "search-sm") or icon name (e.g., "Search") */
     icon: {
-      type: [Boolean, String],
+      type: [Boolean, String] as PropType<boolean | AnyIconName | IconIdentifier>,
       default: false
     },
     /**
@@ -99,18 +98,15 @@ export default defineComponent({
       return tagName.value === 'button' && (props.disabled || props.loading)
     })
 
-    const iconName = computed(() => {
-      if (typeof props.icon === 'string' && props.icon.length) {
-        return props.icon
+    const resolvedIconIdentifier = computed(() => {
+      if (typeof props.icon !== 'string' || !props.icon.length) {
+        return undefined
       }
-      return undefined
-    })
-
-    const iconSize = computed(() => {
-      if (props.size === 'auto') {
-        return 'other'
+      if (isIconIdentifier(props.icon)) {
+        return props.icon as IconIdentifier
       }
-      return props.size
+      const iconSize = props.size === 'auto' ? 'other' : props.size
+      return `${props.icon}-${iconSize}` as IconIdentifier
     })
 
     const ariaLabel = computed(() => {
@@ -123,8 +119,7 @@ export default defineComponent({
     return {
       tagName,
       isDisabled,
-      iconName,
-      iconSize,
+      resolvedIconIdentifier,
       ariaLabel
     }
   }
@@ -164,9 +159,7 @@ export default defineComponent({
         the value of label prop or an icon
       -->
         <slot>
-          <template v-if="!!(iconName && iconSize)">
-            <a-icon :name="iconName" :size="iconSize"></a-icon>
-          </template>
+          <a-icon v-if="resolvedIconIdentifier" :icon="resolvedIconIdentifier"></a-icon>
           <template v-else>{{ label }}</template>
         </slot>
       </div>
