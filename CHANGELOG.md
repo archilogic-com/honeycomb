@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.24.0-test-export-types.2](https://github.com/archilogic-com/honeycomb/compare/v2.24.0-test-export-types.1...v2.24.0-test-export-types.2) (2025-12-18)
+
+
+### Bug Fixes
+
+* **Combobox:** handle empty option groups without crashing ([7cbb8fd](https://github.com/archilogic-com/honeycomb/commit/7cbb8fdf76b23a4ddab39c36310fa89c701a1513))
+
 # [2.24.0-test-export-types.1](https://github.com/archilogic-com/honeycomb/compare/v2.23.0...v2.24.0-test-export-types.1) (2025-12-18)
 
 

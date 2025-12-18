@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.24.0-test-export-types.1",
+  "version": "2.24.0-test-export-types.2",
   "publishConfig": {
     "access": "public"
   },
