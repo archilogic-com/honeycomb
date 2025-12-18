@@ -126,7 +126,7 @@ const container = ref()
 const query = ref('')
 const inputRef = ref()
 const comboboxButton = ref()
-const optionsPanelWidth = computed(() => comboboxButton.value?.el.offsetWidth)
+const optionsPanelWidth = computed(() => comboboxButton.value?.el?.offsetWidth)
 
 const selectInputValue = () => {
   if (inputRef.value) {

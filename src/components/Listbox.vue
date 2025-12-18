@@ -82,7 +82,7 @@ const emit = defineEmits<{
 const attrs = useAttrs()
 
 const listboxButton = ref()
-const optionsPanelWidth = computed(() => listboxButton.value?.el.offsetWidth)
+const optionsPanelWidth = computed(() => listboxButton.value?.el?.offsetWidth)
 
 // hack together a tab-out behavior for the listbox
 const handleTab = (event: KeyboardEvent) => {
