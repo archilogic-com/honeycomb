@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.22.1-test-skip-pre-release.1",
+  "version": "2.23.0-test-icon-props.2",
   "publishConfig": {
     "access": "public"
   },
@@ -54,7 +54,8 @@
     "format": "prettier . -w -u --loglevel silent",
     "codecheck": "npm run typecheck && npm run lint && npm run format",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "test": "vitest"
+    "test": "vitest",
+    "generate:icon-types": "npx tsx scripts/generate-icon-types.ts"
   },
   "peerDependencies": {
     "@headlessui/vue": "^1.7.23",

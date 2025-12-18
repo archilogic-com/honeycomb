@@ -1,5 +1,13 @@
 # Changelog
 
+# [2.23.0-test-icon-props.1](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.23.0-test-icon-props.1) (2025-12-18)
+
+
+### Features
+
+* **Combobox,Listbox,Switcher:** add generic type support for options ([039f79b](https://github.com/archilogic-com/honeycomb/commit/039f79b209d9f10ee7561282a2eb63c4de5c9b9b))
+* **Icon,Button:** add type-safe icon props with IconIdentifier ([708e493](https://github.com/archilogic-com/honeycomb/commit/708e493dc64ba459a71c11d0289ddb29bf0592ac))
+
 ## [2.22.1-test-skip-pre-release.1](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.22.1-test-skip-pre-release.1) (2025-12-11)
 
 
