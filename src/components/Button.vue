@@ -4,9 +4,9 @@ import ASpinner from './Spinner.vue'
 import AIcon from './Icon.vue'
 import { type IconIdentifier, type AnyIconName } from './icons/types'
 
-type ButtonVariant = 'primary' | 'subtle' | 'standard'
+export type ButtonVariant = 'primary' | 'subtle' | 'standard'
 
-type ButtonSize = 'sm' | 'md' | 'lg' | 'auto'
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'auto'
 
 const isIconIdentifier = (str: string): boolean => {
   return /-(sm|md|lg|other)$/.test(str)

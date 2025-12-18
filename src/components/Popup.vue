@@ -3,8 +3,8 @@ import { defineComponent, PropType, ref, computed, nextTick, onMounted } from 'v
 import { onClickOutside } from '@vueuse/core'
 import { focusable } from 'tabbable'
 
-type Align = 'right' | 'left'
-type Direction = 'up' | 'down'
+export type Align = 'right' | 'left'
+export type Direction = 'up' | 'down'
 
 let id = 0
 

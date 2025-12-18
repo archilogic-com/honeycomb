@@ -51,4 +51,31 @@ export { default as APanelCombobox } from './PanelCombobox.vue'
 export { default as APopupCombobox } from './PopupCombobox.vue'
 export { default as ASwitcher } from './Switcher.vue'
 export { default as ATooltip } from './Tooltip.vue'
-export { default as AKeyboardShortcut, type Shortcut } from './KeyboardShortcut.vue'
+export {
+  default as AKeyboardShortcut,
+  type Shortcut,
+  type ShortcutModifier,
+  type ShortcutMouseEvent
+} from './KeyboardShortcut.vue'
+
+export type {
+  IconIdentifier,
+  IconSize,
+  SmIcon,
+  MdIcon,
+  LgIcon,
+  OtherIcon,
+  SmIconId,
+  MdIconId,
+  LgIconId,
+  OtherIconId,
+  AnyIcon,
+  AnyIconName
+} from './icons/types'
+
+export type { ButtonVariant, ButtonSize } from './Button.vue'
+export type { LinkVariant, LinkSize } from './Link.vue'
+export type { StatusVariant } from './Status.vue'
+export type { CounterVariant } from './Counter.vue'
+export type { AvatarSize } from './Avatar.vue'
+export type { Align, Direction } from './Popup.vue'
