@@ -10,6 +10,7 @@ import { computed } from 'vue'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import AIcon from './Icon.vue'
 import { type SwitcherOption } from '../types/selection'
+import { type SmIcon, type SmIconId } from './icons/types'
 
 const props = withDefaults(
   defineProps<{
@@ -60,7 +61,11 @@ const model = computed({
         :aria-label="option.icon ? option.label : undefined"
         :title="option.icon ? option.label : undefined">
         <slot :name="String(option.value)">
-          <a-icon v-if="option.icon" :name="option.icon" size="sm"></a-icon>
+          <a-icon
+            v-if="option.icon"
+            :icon="option.icon.endsWith('-sm') ? (option.icon as SmIconId) : undefined"
+            :name="option.icon.endsWith('-sm') ? undefined : (option.icon as SmIcon)"
+            :size="option.icon.endsWith('-sm') ? undefined : 'sm'"></a-icon>
           <template v-else>
             {{ option.label }}
           </template>
