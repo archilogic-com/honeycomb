@@ -223,6 +223,47 @@ describe('Combobox.vue - Multi-select tag display', () => {
     })
   })
 
+  describe('grouped options', () => {
+    it('handles groups with empty options arrays', () => {
+      // Regression test: empty groups should not crash when rendering
+      // Previously crashed with "Cannot read properties of undefined (reading 'value')"
+      const groupedOptions = [
+        { title: 'Group A', options: [{ value: 'a', label: 'Option A' }] },
+        { title: 'Empty Group', options: [] },
+        { title: 'Group B', options: [{ value: 'b', label: 'Option B' }] }
+      ]
+
+      // Should render without throwing
+      const { container } = render(Combobox, {
+        props: {
+          options: groupedOptions,
+          modelValue: ''
+        }
+      })
+
+      // Verify the combobox rendered successfully
+      expect(container.querySelector('[role="combobox"]')).toBeInTheDocument()
+    })
+
+    it('handles group without title and empty options', () => {
+      // Edge case: group has neither title nor options
+      const groupedOptions = [
+        { title: '', options: [] },
+        { title: 'Valid Group', options: [{ value: 'a', label: 'Option A' }] }
+      ]
+
+      // Should render without throwing
+      const { container } = render(Combobox, {
+        props: {
+          options: groupedOptions,
+          modelValue: ''
+        }
+      })
+
+      expect(container.querySelector('[role="combobox"]')).toBeInTheDocument()
+    })
+  })
+
   describe('edge cases', () => {
     it('ignores maxTags in single-select mode', () => {
       render(Combobox, {
