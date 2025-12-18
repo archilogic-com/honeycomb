@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.22.1-test-skip-pre-release.1](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.22.1-test-skip-pre-release.1) (2025-12-11)
+
+
+### Bug Fixes
+
+* **ci:** don't create github releases for pre-releases ([2514b98](https://github.com/archilogic-com/honeycomb/commit/2514b98240e0f25fb260b922fddac202dd0fb768))
+
 # [2.22.0](https://github.com/archilogic-com/honeycomb/compare/v2.21.0...v2.22.0) (2025-12-10)
 
 
