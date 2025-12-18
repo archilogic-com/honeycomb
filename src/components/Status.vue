@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 
-type StatusVariant = 'primary' | 'success' | 'neutral' | 'danger'
+export type StatusVariant = 'primary' | 'success' | 'neutral' | 'danger'
 
 export default defineComponent({
   name: 'AStatus',

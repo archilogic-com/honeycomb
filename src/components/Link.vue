@@ -1,9 +1,9 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 
-type LinkVariant = 'primary' | 'standard'
+export type LinkVariant = 'primary' | 'standard'
 
-type LinkSize = 'sm' | 'md'
+export type LinkSize = 'sm' | 'md'
 
 export default defineComponent({
   name: 'ALink',

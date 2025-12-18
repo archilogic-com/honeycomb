@@ -2,13 +2,13 @@
 import { defineComponent, PropType, computed } from 'vue'
 import { isMac } from '@archilogic/toolbox'
 
-type ShortcutModifier =
+export type ShortcutModifier =
   | 'alt' // Alt on Windows, Option ⌥ on Mac
   | 'ctrl'
   | 'meta' // Windows Key on Windows, Command ⌘ on Mac
   | 'shift'
 
-type ShortcutMouseEvent = 'click' | 'drag' | 'double-click'
+export type ShortcutMouseEvent = 'click' | 'drag' | 'double-click'
 
 export type Shortcut =
   | { modifiers: ShortcutModifier[] }

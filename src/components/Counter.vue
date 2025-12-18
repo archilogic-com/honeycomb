@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 
-type CounterVariant = 'default' | 'primary' | 'highlight' | 'subtle'
+export type CounterVariant = 'default' | 'primary' | 'highlight' | 'subtle'
 
 export default defineComponent({
   name: 'ACounter',

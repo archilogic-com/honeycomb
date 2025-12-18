@@ -2,7 +2,7 @@
 import { defineComponent, PropType, computed } from 'vue'
 import AIcon from './Icon.vue'
 
-type AvatarSize = 'md' | 'lg'
+export type AvatarSize = 'md' | 'lg'
 
 export default defineComponent({
   name: 'AAvatar',
