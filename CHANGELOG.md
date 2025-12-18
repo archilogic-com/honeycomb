@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.23.0-test-icon-props.2](https://github.com/archilogic-com/honeycomb/compare/v2.23.0-test-icon-props.1...v2.23.0-test-icon-props.2) (2025-12-18)
+
+
+### Features
+
+* trigger .2 release ([3ce0450](https://github.com/archilogic-com/honeycomb/commit/3ce045038a29006c3bc5532aedfcaa18f45276d4))
+
 # [2.23.0-test-icon-props.1](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.23.0-test-icon-props.1) (2025-12-18)
 
 
