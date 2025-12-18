@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.24.0-test-export-types.1](https://github.com/archilogic-com/honeycomb/compare/v2.23.0...v2.24.0-test-export-types.1) (2025-12-18)
+
+
+### Features
+
+* **types:** export component and composable types from main entry point ([2ebefb2](https://github.com/archilogic-com/honeycomb/commit/2ebefb2d5c9ffb88876f2fff1d7a7196655f500a))
+
 # [2.23.0](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.23.0) (2025-12-18)
 
 
