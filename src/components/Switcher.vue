@@ -1,59 +1,38 @@
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue'
+export type { SwitcherOption } from '../types/selection'
+</script>
+
+<script
+  setup
+  lang="ts"
+  generic="T extends SwitcherOption = SwitcherOption, ModelValue extends string = string">
+import { computed } from 'vue'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import AIcon from './Icon.vue'
+import { type SwitcherOption } from '../types/selection'
 
-export type SwitcherOption = {
-  label: string
-  value: string
-  disabled?: boolean
-  icon?: string
-}
-
-export default defineComponent({
-  name: 'ASwitcher',
-  components: {
-    RadioGroup,
-    RadioGroupLabel,
-    RadioGroupOption,
-    AIcon
-  },
-  props: {
-    modelValue: {
-      type: String,
-      required: true
-    },
-    options: {
-      type: Array as PropType<SwitcherOption[]>,
-      required: true
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    raised: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const model = computed({
-      get: () => {
-        return props.modelValue
-      },
-      set: value => {
-        emit('update:modelValue', value)
-      }
-    })
-    return {
-      model
-    }
+const props = withDefaults(
+  defineProps<{
+    modelValue: ModelValue
+    options: T[]
+    label?: string
+    raised?: boolean
+    disabled?: boolean
+  }>(),
+  {
+    label: '',
+    raised: false,
+    disabled: false
   }
+)
+
+const emit = defineEmits<{
+  'update:modelValue': [value: ModelValue]
+}>()
+
+const model = computed({
+  get: (): ModelValue => props.modelValue,
+  set: (value: ModelValue) => emit('update:modelValue', value)
 })
 </script>
 <template>
@@ -65,7 +44,7 @@ export default defineComponent({
     <RadioGroupLabel class="sr-only">{{ label }}</RadioGroupLabel>
     <RadioGroupOption
       v-for="option in options"
-      :key="option.value"
+      :key="String(option.value)"
       v-slot="{ checked }"
       :value="option.value"
       :disabled="option.disabled || disabled"
@@ -80,7 +59,7 @@ export default defineComponent({
         }"
         :aria-label="option.icon ? option.label : undefined"
         :title="option.icon ? option.label : undefined">
-        <slot :name="option.value">
+        <slot :name="String(option.value)">
           <a-icon v-if="option.icon" :name="option.icon" size="sm"></a-icon>
           <template v-else>
             {{ option.label }}

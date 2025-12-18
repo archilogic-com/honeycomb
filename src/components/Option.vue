@@ -1,30 +1,23 @@
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+export type { Option, BaseOption, ExtendedOption, OptionValue } from '../types/selection'
+</script>
+
+<script setup lang="ts" generic="T extends BaseOption = ExtendedOption">
+import { computed } from 'vue'
 import { ListboxOption, ComboboxOption } from '@headlessui/vue'
 import ACheckbox from './Checkbox.vue'
 import AColorCircle from './ColorCircle.vue'
 import { type Color } from '../colors'
+import { type BaseOption, type ExtendedOption } from '../types/selection'
 
-export type Option = {
-  value: string
-  label: string
-  disabled?: boolean
-  color?: Color
-}
-
-export default defineComponent({
-  name: 'AOption',
-  components: { ListboxOption, ComboboxOption, ACheckbox, AColorCircle },
-  props: {
+const props = withDefaults(
+  defineProps<{
     /**
      * the component inside of which the option is rendered
      *
      * `'listbox' | 'combobox'`
      */
-    component: {
-      type: String as PropType<'listbox' | 'combobox'>,
-      default: 'listbox'
-    },
+    component?: 'listbox' | 'combobox'
     /**
      * the option to be rendered
      * containing `value`, `label` and optional `disabled` properties
@@ -32,28 +25,25 @@ export default defineComponent({
      * alternatively pass `value` and `disabled` props directly to a-option
      * and render a label via the default slot.
      */
-    option: {
-      type: Object as PropType<Option>,
-      default: () => ({})
-    },
+    option: T
     /**
      * whether the option is rendered in multiselect combobox (with a checkbox)
      */
-    multi: {
-      type: Boolean,
-      default: false
-    }
-  },
-
-  setup(props) {
-    const componentOption = computed(() =>
-      props.component === 'combobox' ? ComboboxOption : ListboxOption
-    )
-
-    return {
-      componentOption
-    }
+    multi?: boolean
+  }>(),
+  {
+    component: 'listbox',
+    multi: false
   }
+)
+
+const componentOption = computed(() =>
+  props.component === 'combobox' ? ComboboxOption : ListboxOption
+)
+
+const optionColor = computed(() => {
+  const opt = props.option as BaseOption & { color?: Color }
+  return opt.color
 })
 </script>
 <template>
@@ -76,7 +66,7 @@ export default defineComponent({
              @slot Named `#extra` slot. Use to add an icon or image preview, or any extra elements on the left-hand side of the option label.
           -->
         <slot name="extra">
-          <a-color-circle v-if="option.color" class="mr-2" :color="option.color"></a-color-circle>
+          <a-color-circle v-if="optionColor" class="mr-2" :color="optionColor"></a-color-circle>
         </slot>
         <!--
             @slot `#default` slot. Use to render custom styles or extra markup for the option. Renders option label by default.
@@ -93,7 +83,7 @@ export default defineComponent({
              @slot Named `#extra` slot. Use to add an icon or image preview, or any extra elements on the left-hand side of the option label.
           -->
           <slot name="extra">
-            <a-color-circle v-if="option.color" class="ml-2" :color="option.color"></a-color-circle>
+            <a-color-circle v-if="optionColor" class="ml-2" :color="optionColor"></a-color-circle>
           </slot>
         </span>
         <!--

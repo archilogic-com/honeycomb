@@ -12,3 +12,5 @@ export * from './components'
 export * from './composables'
 
 export * from './colors'
+
+export * from './types'
