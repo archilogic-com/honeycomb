@@ -111,16 +111,16 @@ const isGrouped = (opts: T[] | OptionGroup<string, T>[]): opts is OptionGroup<st
         <!-- use SelectableOptionGroup when selectableGroups is enabled -->
         <template v-if="selectableGroups">
           <ASelectableOptionGroup
-            v-for="group in options"
-            :key="group.title || String(group.options[0].value)"
+            v-for="(group, index) in options"
+            :key="group.title || group.options[0]?.value || `group-${index}`"
             :title="group.title || ''"
             :options="group.options"
             :model-value="selectedValues" />
         </template>
         <template v-else>
           <AOptionGroup
-            v-for="group in options"
-            :key="group.title || String(group.options[0].value)"
+            v-for="(group, index) in options"
+            :key="group.title || group.options[0]?.value || `group-${index}`"
             :component="component"
             :options="group.options"
             :title="group.title"

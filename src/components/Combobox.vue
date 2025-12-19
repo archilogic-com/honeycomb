@@ -126,12 +126,11 @@ const container = ref()
 const query = ref('')
 const inputRef = ref()
 const comboboxButton = ref()
-const optionsPanelWidth = computed(() => comboboxButton.value?.el.offsetWidth)
+const optionsPanelWidth = computed(() => comboboxButton.value?.el?.offsetWidth)
 
 const selectInputValue = () => {
-  if (inputRef.value) {
-    const element = inputRef.value.$el as HTMLInputElement
-    element.select()
+  if (inputRef.value?.$el) {
+    inputRef.value.$el.select()
   }
 }
 
