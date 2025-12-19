@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
 
 import Combobox from '../Combobox.vue'
 
@@ -220,6 +221,109 @@ describe('Combobox.vue - Multi-select tag display', () => {
       })
 
       expect(screen.getByTestId('hidden')).toHaveTextContent('3 hidden')
+    })
+  })
+
+  describe('keyboard interaction', () => {
+    it('opens dropdown with ArrowDown key', async () => {
+      render(Combobox, {
+        props: {
+          options: defaultOptions,
+          modelValue: ''
+        }
+      })
+
+      const input = screen.getByRole('combobox')
+      await userEvent.click(input) // focus
+      await userEvent.keyboard('{ArrowDown}')
+
+      // Options should now be visible
+      expect(screen.getByText('Option A')).toBeVisible()
+    })
+
+    it('opens dropdown when typing', async () => {
+      render(Combobox, {
+        props: {
+          options: defaultOptions,
+          modelValue: ''
+        }
+      })
+
+      const input = screen.getByRole('combobox')
+      await userEvent.type(input, 'Opt')
+
+      // Options should now be visible (filtered)
+      expect(screen.getByText('Option A')).toBeVisible()
+    })
+  })
+
+  describe('scoped slots', () => {
+    it('provides filteredOptions via default slot', async () => {
+      render(Combobox, {
+        props: {
+          options: defaultOptions,
+          modelValue: ''
+        },
+        slots: {
+          default: `
+            <template #default="{ filteredOptions }">
+              <div v-for="opt in filteredOptions" :key="opt.value" data-testid="custom-option">
+                Custom: {{ opt.label }}
+              </div>
+            </template>
+          `
+        }
+      })
+
+      const input = screen.getByRole('combobox')
+      await userEvent.click(input)
+      await userEvent.keyboard('{ArrowDown}')
+
+      // Custom options should be rendered via slot
+      const customOptions = await screen.findAllByTestId('custom-option')
+      expect(customOptions.length).toBe(5)
+      expect(customOptions[0]).toHaveTextContent('Custom: Option A')
+    })
+  })
+
+  describe('grouped options', () => {
+    it('handles groups with empty options arrays', () => {
+      // Regression test: empty groups should not crash when rendering
+      // Previously crashed with "Cannot read properties of undefined (reading 'value')"
+      const groupedOptions = [
+        { title: 'Group A', options: [{ value: 'a', label: 'Option A' }] },
+        { title: 'Empty Group', options: [] },
+        { title: 'Group B', options: [{ value: 'b', label: 'Option B' }] }
+      ]
+
+      // Should render without throwing
+      const { container } = render(Combobox, {
+        props: {
+          options: groupedOptions,
+          modelValue: ''
+        }
+      })
+
+      // Verify the combobox rendered successfully
+      expect(container.querySelector('[role="combobox"]')).toBeInTheDocument()
+    })
+
+    it('handles group without title and empty options', () => {
+      // Edge case: group has neither title nor options
+      const groupedOptions = [
+        { title: '', options: [] },
+        { title: 'Valid Group', options: [{ value: 'a', label: 'Option A' }] }
+      ]
+
+      // Should render without throwing
+      const { container } = render(Combobox, {
+        props: {
+          options: groupedOptions,
+          modelValue: ''
+        }
+      })
+
+      expect(container.querySelector('[role="combobox"]')).toBeInTheDocument()
     })
   })
 
