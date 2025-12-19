@@ -18,7 +18,7 @@ export type {
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import icons, { DEPRECATED_ICONS } from './icons'
+import icons from './icons'
 import { type IconSize, type IconIdentifier, type AnyIconName } from './icons/types'
 
 defineOptions({
@@ -65,21 +65,9 @@ const iconComponent = computed(() => {
   } else if (props.name) {
     size = props.size
     name = props.name.charAt(0).toUpperCase() + props.name.slice(1)
-    const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-    console.warn(
-      `The "name" and "size" props are deprecated and will be removed in the next major version.
-      Use the "icon" prop instead: <a-icon icon="${kebabName}-${size}" />`
-    )
   } else {
     console.error('a-icon: either "icon" or "name" prop is required')
     return null
-  }
-
-  if (DEPRECATED_ICONS[size].includes(name)) {
-    console.warn(
-      `Icon "${name}" in size "${size}" is deprecated and will be removed in the next major version.
-      Use another supported size or alternative icon, see storybook docs https://honeycomb.archilogic.com`
-    )
   }
 
   if (icons[size][name]) {
