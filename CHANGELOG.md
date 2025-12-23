@@ -1,5 +1,18 @@
 # Changelog
 
+# [2.24.0](https://github.com/archilogic-com/honeycomb/compare/v2.23.0...v2.24.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* **Combobox,Listbox,Option:** handle empty groups, null refs, and add Option compatibility ([c16a66c](https://github.com/archilogic-com/honeycomb/commit/c16a66c64ae038d411f8238e2cdc684bdfcd5e7f))
+* **Icon:** remove deprecation warnings ([4f82c6f](https://github.com/archilogic-com/honeycomb/commit/4f82c6fcb2d59e9eddb2b423b5755b8557b1cfc6))
+
+
+### Features
+
+* **types:** export component and composable types from main entry point ([5e8e7ef](https://github.com/archilogic-com/honeycomb/commit/5e8e7ef18622dddf50121385a166d4bbd6cfe9f7))
+
 # [2.23.0](https://github.com/archilogic-com/honeycomb/compare/v2.22.0...v2.23.0) (2025-12-18)
 
 
