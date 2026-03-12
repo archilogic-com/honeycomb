@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+@import './typography.css';
+@import './utilities.css';
+@import './components.css';
+@plugin "./components-plugin.js";
+@import './base.css';
+
+@theme {
+  /* Clear Tailwind defaults to enforce honeycomb's restricted scales */
+  --spacing-*: initial;
+  --color-*: initial;
+  --shadow-*: initial;
+  --radius-*: initial;
+
+  /* Spacing (intentionally restricted to design system values) */
+  --spacing-px: 1px;
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-unset: unset;
+
+  /* Colors */
+  --color-white: #ffffff;
+  --color-navy: #172c4d;
+  --color-mediumblue: #1414c1;
+  --color-newyork: #0c1829;
+  --color-stone: #4d586b;
+  --color-warsaw: #929baa;
+  --color-oslo: #72849e;
+  --color-stone8: rgba(77, 89, 107, 0.08);
+  --color-stone16: rgba(77, 89, 107, 0.16);
+  --color-gray: #cfd5de;
+  --color-athens: #e8ebef;
+  --color-whisper: #f7f8fa;
+  --color-zurich: #bdd7ff;
+  --color-blueribbon: #3355ff;
+  --color-darkblue: #000099;
+  --color-zurich48: rgba(189, 215, 255, 0.48);
+  --color-error: #ab220a;
+  --color-warning: #ffc400;
+  --color-sanfran: #54c072;
+  --color-orange: #ffab00;
+  --color-purple: #6700ab;
+  --color-fandango: #c40096;
+  --color-dodger: #007aff;
+  --color-flamingo: #ef5533;
+  --color-aqua: #00b5ce;
+  --color-palered: #ffeae6;
+  --color-palegreen: #e6ffed;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Shadows */
+  --shadow-sm: 0px 2px 8px rgba(12, 24, 41, 0.2);
+  --shadow-md: 0px 4px 20px rgba(12, 24, 41, 0.2);
+  --shadow-lg: 0px 16px 50px rgba(12, 24, 41, 0.2);
+  --shadow-border: inset 0 0 0 1px;
+  --shadow-none: none;
+
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius: 3px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Keyframes */
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -120px;
+    }
+  }
+  @keyframes shimmer {
+    33%,
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Animations */
+  --animate-spin: spin 2s linear infinite;
+  --animate-dash: dash 1.5s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+}

@@ -65,7 +65,7 @@ export default defineComponent({
 <template>
   <component
     :is="tagName"
-    class="relative inline-block cursor-pointer underline transition duration-200 ease-in-out after:absolute after:-inset-1 after:inline-block after:rounded after:transition after:duration-200 after:ease-in-out focus-visible:outline-none focus-visible:after:focus-shadow"
+    class="relative inline-block cursor-pointer underline transition duration-200 ease-in-out after:absolute after:-inset-1 after:inline-block after:rounded after:transition after:duration-200 after:ease-in-out focus-visible:outline-hidden focus-visible:after:focus-shadow"
     :class="linkClasses">
     <!--
       @slot __Note__: Slot content takes precedence over the content prop.

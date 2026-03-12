@@ -197,7 +197,7 @@ export default defineComponent({
 <template>
   <li
     ref="menuitem"
-    class="static body-sm focus:bg-athens focus-visible:outline-none"
+    class="static body-sm focus:bg-athens focus-visible:outline-hidden"
     :class="[
       disabled
         ? 'cursor-not-allowed text-warsaw'
@@ -235,7 +235,7 @@ export default defineComponent({
         <slot name="extra"></slot>
         <KeyboardShortcut
           v-if="shortcut"
-          :class="disabled && '!text-warsaw'"
+          :class="disabled && 'text-warsaw!'"
           variant="subtle"
           :shortcut="
             typeof shortcut === 'string' ? { keySequence: shortcut } : shortcut

@@ -80,5 +80,5 @@ const iconComponent = computed(() => {
 </script>
 
 <template>
-  <component :is="iconComponent" v-if="iconComponent" aria-hidden class="flex-shrink-0" />
+  <component :is="iconComponent" v-if="iconComponent" aria-hidden class="shrink-0" />
 </template>

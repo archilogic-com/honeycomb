@@ -59,7 +59,7 @@
   },
   "peerDependencies": {
     "@headlessui/vue": "^1.7.23",
-    "tailwindcss": "^3.4.15",
+    "tailwindcss": "^4.0.0",
     "vue": "^3.5.18"
   },
   "dependencies": {
@@ -83,6 +83,7 @@
     "@storybook/testing-library": "^0.2.2",
     "@storybook/vue3": "^7.6.14",
     "@storybook/vue3-vite": "^7.6.14",
+    "@tailwindcss/vite": "^4.2.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/user-event": "^14.5.1",
@@ -95,7 +96,6 @@
     "@vitest/ui": "^2.1.8",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^12.0.0",
-    "autoprefixer": "^10.4.17",
     "chromatic": "^9.1.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
@@ -111,7 +111,7 @@
     "react-dom": "^18.2.0",
     "semantic-release": "^24.2.0",
     "storybook": "^7.6.14",
-    "tailwindcss": "^3.4.15",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.11",
     "vite-plugin-dts": "^4.3.0",
