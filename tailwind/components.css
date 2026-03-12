@@ -1,0 +1,40 @@
+@utility a-panel-sm {
+  @apply bg-white shadow-md rounded-sm;
+}
+
+@utility a-panel-lg {
+  @apply bg-white shadow-lg rounded;
+}
+
+@utility a-menu-panel {
+  @apply a-panel-sm min-w-min sm:min-w-[14rem] py-2;
+  max-height: calc(100vh - 16px);
+}
+
+@utility a-text-input-base {
+  @apply w-full rounded-sm border border-gray p-2 text-newyork;
+}
+
+@utility a-text-input-focus {
+  @apply border-primary-hover bg-white shadow-border shadow-primary-hover outline-hidden hover:bg-white;
+}
+
+@utility a-text-input--md {
+  @apply h-10 body-lg placeholder:body-lg;
+}
+
+@utility a-text-input--sm {
+  @apply h-[1.875rem] my-px body-sm placeholder:body-sm;
+}
+
+@utility a-text-input--default {
+  @apply border-gray bg-whisper;
+}
+
+@utility a-text-input--subtle {
+  @apply border-transparent bg-transparent;
+}
+
+@utility a-text-input--invalid {
+  @apply bg-transparent border-error shadow-border shadow-error;
+}

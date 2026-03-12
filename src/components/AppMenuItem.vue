@@ -197,7 +197,7 @@ export default defineComponent({
 <template>
   <li
     ref="menuitem"
-    class="static body-sm focus:bg-athens focus-visible:outline-none"
+    class="static body-sm focus:bg-athens focus-visible:outline-hidden"
     :class="[
       disabled
         ? 'cursor-not-allowed text-warsaw'

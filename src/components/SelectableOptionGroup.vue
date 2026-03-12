@@ -99,6 +99,8 @@ const isPartiallySelected = computed(
 </template>
 
 <style>
+@reference "../../tailwind/theme.css";
+
 .a-selectable-option-group__header:hover {
   @apply bg-athens;
 }
