@@ -7,7 +7,7 @@
     "jsx": "preserve",
     "moduleResolution": "bundler",
     "isolatedModules": true,
-    "types": ["vite/client", "vitest/globals", "mdx"],
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom/vitest", "mdx"],
     "baseUrl": ".",
     "skipLibCheck": true,
     "esModuleInterop": true,

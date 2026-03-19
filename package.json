@@ -5,7 +5,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=20.19",
     "npm": ">=7"
   },
   "files": [
@@ -83,7 +83,7 @@
     "@storybook/testing-library": "^0.2.2",
     "@storybook/vue3": "^7.6.14",
     "@storybook/vue3-vite": "^7.6.14",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.2",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/user-event": "^14.5.1",
@@ -92,8 +92,8 @@
     "@types/mdx": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.20.0",
-    "@vitejs/plugin-vue": "^5.0.3",
-    "@vitest/ui": "^2.1.8",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "@vitest/ui": "^4.1.0",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "chromatic": "^9.1.0",
@@ -113,10 +113,10 @@
     "storybook": "^7.6.14",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.6.3",
-    "vite": "^5.4.11",
-    "vite-plugin-dts": "^4.3.0",
-    "vite-svg-loader": "^5.1.0",
-    "vitest": "^2.1.8",
+    "vite": "^8.0.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-svg-loader": "^5.1.1",
+    "vitest": "^4.1.0",
     "vue": "^3.5.18",
     "vue-component-type-helpers": "^1.8.27",
     "vue-tsc": "^2.1.10"
