@@ -1,5 +1,30 @@
 # Changelog
 
+# [3.0.0-test-tailwind-v4.1](https://github.com/archilogic-com/honeycomb/compare/v2.24.0...v3.0.0-test-tailwind-v4.1) (2026-03-19)
+
+
+* feat!: migrate Tailwind CSS v3 to v4 ([7550da6](https://github.com/archilogic-com/honeycomb/commit/7550da6c421c4d40a140f94eeb2daf2edace8f98))
+
+
+### BREAKING CHANGES
+
+* Tailwind v4 CSS-first configuration replaces JS presets.
+
+- Convert tailwind-preset.cjs to theme.css (@theme directive)
+- Convert typography.cjs to typography.css (23 @utility blocks)
+- Convert base.cjs to base.css (@layer base)
+- Split component classes into components.css (@utility) and components-plugin.js (@plugin)
+- Add @tailwindcss/vite plugin to vite.config.ts and storybook
+- Replace autoprefixer (built into TW4)
+- Fix outline-none -> outline-hidden (5 components)
+- Fix flex-shrink-0 -> shrink-0 (3 components)
+- Add border-gray to a-text-input-base (border default color change)
+- Add @reference to Checkbox.vue and SelectableOptionGroup.vue scoped styles
+- Update peerDependencies.tailwindcss to ^4.0.0
+
+Consumers must replace JS preset/plugin imports with:
+  @import '@archilogic/honeycomb/tailwind';
+
 # [2.24.0](https://github.com/archilogic-com/honeycomb/compare/v2.23.0...v2.24.0) (2025-12-23)
 
 
