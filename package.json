@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.24.0",
+  "version": "3.0.0-test-tailwind-v4.1",
   "publishConfig": {
     "access": "public"
   },
