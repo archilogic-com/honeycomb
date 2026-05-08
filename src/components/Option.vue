@@ -71,7 +71,7 @@ const optionColor = computed(() => {
       class="flex min-h-8 min-w-8 items-center px-2 cursor-pointer"
       :class="{
         'bg-athens': active,
-        'bg-primary-subtle text-primary': selected && !multi,
+        'bg-primary-subtle-alpha text-primary': selected && !multi,
         'text-newyork': !selected && !slotDisabled,
         'cursor-not-allowed text-warsaw': slotDisabled
       }">
