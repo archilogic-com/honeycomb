@@ -352,7 +352,7 @@ GroupedOptions.args = {
 GroupedOptions.play = openListbox
 
 const optionsWithColors = [
-  { value: 'demo', label: 'Demo', color: 'mediumblue' },
+  { value: 'demo', label: 'Demo', color: 'primary' },
   { value: 'test', label: 'Test', color: 'aqua' },
   { value: 'my-project', label: 'My project', color: 'orange' },
   { value: 'new-client', label: 'New client', color: 'fandango' },

@@ -13,7 +13,7 @@ export default defineComponent({
       default: 'md'
     },
     /**
-     * spinner color variant: `default` (warsaw), and `prominent` (mediumblue)
+     * spinner color variant: `default` (warsaw), and `prominent` (primary)
      */
     variant: {
       type: String as PropType<'prominent' | 'default'>,
@@ -22,7 +22,7 @@ export default defineComponent({
   },
   computed: {
     spinnerColorClass() {
-      return this.variant === 'default' ? 'text-warsaw' : 'text-mediumblue'
+      return this.variant === 'default' ? 'text-warsaw' : 'text-primary'
     },
     spinnerSize() {
       const spinnerSizeMap = {

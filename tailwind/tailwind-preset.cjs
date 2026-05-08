@@ -78,15 +78,15 @@ module.exports = {
         },
         '.focus-shadow': {
           outline: 'none',
-          'box-shadow': `inset 0 0 0 2px ${theme('colors.blueribbon')}`
+          'box-shadow': 'inset 0 0 0 2px var(--honeycomb-color-primary-hover)'
         },
         '.focus-outline': {
-          outline: `2px solid ${theme('colors.blueribbon')}`,
+          outline: '2px solid var(--honeycomb-color-primary-hover)',
           'outline-offset': '-2px'
         },
         '.focus-border': {
           outline: 'none',
-          border: `2px solid ${theme('colors.blueribbon')}`
+          border: '2px solid var(--honeycomb-color-primary-hover)'
         },
         '.focus-none': {
           outline: 'none',
@@ -120,7 +120,7 @@ module.exports = {
           }
         },
         '.a-text-input-focus': {
-          '@apply border-blueribbon bg-white shadow-border shadow-blueribbon outline-none hover:bg-white':
+          '@apply border-primary-hover bg-white shadow-border shadow-primary-hover outline-none hover:bg-white':
             {}
         },
         '.a-text-input-placeholder': {

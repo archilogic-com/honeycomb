@@ -29,7 +29,7 @@ export default defineComponent({
   <span
     class="rounded px-1 py-[2px] uppercase body-xs-600"
     :class="{
-      'bg-zurich text-mediumblue': variant === 'primary',
+      'bg-primary-subtle text-primary': variant === 'primary',
       'bg-palered text-newyork': variant === 'danger',
       'bg-athens text-newyork': variant === 'neutral',
       'bg-palegreen text-newyork': variant === 'success'

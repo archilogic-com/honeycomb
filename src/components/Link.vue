@@ -39,7 +39,7 @@ export default defineComponent({
   },
   computed: {
     linkClasses() {
-      const linkClasses = ['active:text-mediumblue active:decoration-zurich']
+      const linkClasses = ['active:text-primary active:decoration-primary-subtle']
 
       if (this.size === 'sm') {
         linkClasses.push('body-sm')
@@ -51,7 +51,7 @@ export default defineComponent({
         linkClasses.push('text-navy hover:text-newyork decoration-warsaw hover:decoration-stone')
       } else {
         linkClasses.push(
-          'text-mediumblue hover:text-darkblue decoration-mediumblue hover:decoration-darkblue'
+          'text-primary hover:text-primary-active decoration-primary hover:decoration-primary-active'
         )
       }
       return linkClasses.join(' ')

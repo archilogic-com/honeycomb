@@ -100,7 +100,7 @@ export default defineComponent({
 }
 .custom-checkbox:checked,
 .custom-checkbox:indeterminate {
-  @apply border-mediumblue bg-mediumblue;
+  @apply border-primary bg-primary;
 }
 
 .custom-checkbox:hover {
@@ -109,7 +109,7 @@ export default defineComponent({
 
 .custom-checkbox:checked:hover:not(:disabled),
 .custom-checkbox:indeterminate:hover:not(:disabled) {
-  @apply border-blueribbon bg-blueribbon;
+  @apply border-primary-hover bg-primary-hover;
 }
 
 .custom-checkbox:disabled {
