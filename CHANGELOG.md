@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.25.0-test-variable-colours.3](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.2...v2.25.0-test-variable-colours.3) (2026-05-08)
+
+
+### Bug Fixes
+
+* properly map zurich48 ([18a7d70](https://github.com/archilogic-com/honeycomb/commit/18a7d70460f7816f87f4c4f98b135610f0c6f46f))
+
 # [2.25.0-test-variable-colours.2](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.1...v2.25.0-test-variable-colours.2) (2026-05-08)
 
 
