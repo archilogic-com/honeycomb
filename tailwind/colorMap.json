@@ -14,6 +14,7 @@
   "primary-subtle": "var(--honeycomb-color-primary-subtle)",
   "primary-hover": "var(--honeycomb-color-primary-hover)",
   "primary-active": "var(--honeycomb-color-primary-active)",
+  "primary-subtle-alpha": "var(--honeycomb-color-primary-subtle-alpha)",
   "error": "#ab220a",
   "warning": "#ffc400",
   "sanfran": "#54c072",
