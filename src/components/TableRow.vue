@@ -73,8 +73,8 @@ export default defineComponent({
 <template>
   <tr
     ref="trRef"
-    class="cursor-pointer scroll-mt-12 hover:bg-athens focus-visible:focus-outline active:bg-primary-subtle"
-    :class="{ 'bg-primary-subtle': selected }"
+    class="cursor-pointer scroll-mt-12 hover:bg-athens focus-visible:focus-outline active:bg-primary-subtle-alpha"
+    :class="{ 'bg-primary-subtle-alpha hover:bg-primary-subtle': selected }"
     v-bind="$attrs"
     tabindex="-1"
     @click="selectRow"
