@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "2.25.0-test-variable-colours.1",
+  "version": "2.25.0-test-variable-colours.2",
   "publishConfig": {
     "access": "public"
   },

@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.25.0-test-variable-colours.2](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.1...v2.25.0-test-variable-colours.2) (2026-05-08)
+
+
+### Features
+
+* add back primary subtle alpha ([4e0ce7d](https://github.com/archilogic-com/honeycomb/commit/4e0ce7d96f64363102b549e026d9e7d8583bc279))
+
 # [2.25.0-test-variable-colours.1](https://github.com/archilogic-com/honeycomb/compare/v2.24.0...v2.25.0-test-variable-colours.1) (2026-05-08)
 
 
