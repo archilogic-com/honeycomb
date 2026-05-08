@@ -1,5 +1,13 @@
 # Changelog
 
+# [2.25.0-test-variable-colours.1](https://github.com/archilogic-com/honeycomb/compare/v2.24.0...v2.25.0-test-variable-colours.1) (2026-05-08)
+
+
+### Features
+
+* introducing css color vars ([27c54db](https://github.com/archilogic-com/honeycomb/commit/27c54dbcb3b94dc85a853edec0c8651fa87e8354))
+* replace color keys with primary color names ([b3c8ace](https://github.com/archilogic-com/honeycomb/commit/b3c8ace1f02b6a891e5937a2cf65cbe8d7d30bf7))
+
 # [2.24.0](https://github.com/archilogic-com/honeycomb/compare/v2.23.0...v2.24.0) (2025-12-23)
 
 
