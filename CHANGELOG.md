@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.25.0-test-variable-colours.4](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.3...v2.25.0-test-variable-colours.4) (2026-05-11)
+
+
+### Bug Fixes
+
+* keep the old color keys to ease transition ([95d6dac](https://github.com/archilogic-com/honeycomb/commit/95d6dac6f1fc6e626277c136d81217944284aebd))
+
 # [2.25.0-test-variable-colours.3](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.2...v2.25.0-test-variable-colours.3) (2026-05-08)
 
 
