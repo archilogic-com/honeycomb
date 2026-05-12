@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.25.0-test-variable-colours.5](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.4...v2.25.0-test-variable-colours.5) (2026-05-12)
+
+
+### Features
+
+* themed canvas colors ([370036f](https://github.com/archilogic-com/honeycomb/commit/370036f31488d616098b1f74097961c7c068efc5))
+
 # [2.25.0-test-variable-colours.4](https://github.com/archilogic-com/honeycomb/compare/v2.25.0-test-variable-colours.3...v2.25.0-test-variable-colours.4) (2026-05-11)
 
 
