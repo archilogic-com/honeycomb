@@ -164,6 +164,8 @@ import { colorMap } from '@archilogic/honeycomb/colors'
 
 ## Functional
 
+Themeable colors for interactive UI states.
+
 <Canvas>
   <Story name="primary-subtle">
     {() => ({
@@ -216,6 +218,58 @@ import { colorMap } from '@archilogic/honeycomb/colors'
           <div class="bg-warning w-16 h-16 mb-0.5 rounded-full absolute top-0"></div>
           <p class="body-lg-600 capitalize">warning</p>
           <p class="body-lg">#ffc400</p>
+        `
+    })}
+  </Story>
+</Canvas>
+
+## Canvas
+
+Static hex values for use in canvas / WebGL rendering.
+
+<Canvas>
+  <Story name="zurich">
+    {() => ({
+      template: `
+          <div class="bg-zurich w-16 h-16 mb-0.5 rounded-full absolute top-0"></div>
+          <p class="body-lg-600">Zurich</p>
+          <p class="body-lg">#bdd7ff</p>
+        `
+    })}
+  </Story>
+  <Story name="blueribbon">
+    {() => ({
+      template: `
+          <div class="bg-blueribbon w-16 h-16 mb-0.5 rounded-full absolute top-0"></div>
+          <p class="body-lg-600">Blue ribbon</p>
+          <p class="body-lg">#3355ff</p>
+        `
+    })}
+  </Story>
+  <Story name="darkblue">
+    {() => ({
+      template: `
+          <div class="bg-darkblue w-16 h-16 mb-0.5 rounded-full absolute top-0"></div>
+          <p class="body-lg-600">Dark blue</p>
+          <p class="body-lg">#000099</p>
+        `
+    })}
+  </Story>
+  <Story name="zurich48">
+    {() => ({
+      template: `
+          <div class="bg-zurich48 w-16 h-16 mb-0.5 rounded-full absolute top-0"></div>
+          <p class="body-lg-600">Zurich .48</p>
+          <p class="body-lg">#bdd7ff .48</p>
+        `
+    })}
+  </Story>
+  <Story name="mediumblue">
+    {() => ({
+      template: `
+          <div class="bg-mediumblue w-16 h-16 mb-0.5 rounded-full absolute top-0"></div>
+          <p class="body-lg-600">Medium blue</p>
+          <p class="body-lg">#1414c1</p>
         `
     })}
   </Story>
@@ -309,7 +363,9 @@ import { colorMap } from '@archilogic/honeycomb/colors'
 
 ## Deprecated
 
-These color names still work but will be removed in the next major version. Use the semantic `primary-*` names instead.
+These color names are static hex values and will be removed in the next major version.
+Use the semantic `primary-*` names instead — they follow the active theme and support runtime overrides.
+Use the old names only where a static color is required (e.g. canvas / WebGL rendering).
 
 - `mediumblue` → `primary`
 - `blueribbon` → `primary-hover`
