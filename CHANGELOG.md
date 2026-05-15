@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.25.0](https://github.com/archilogic-com/honeycomb/compare/v2.24.0...v2.25.0) (2026-05-15)
+
+
+### Features
+
+* **themes:** introduce variable based colors in colorMap ([#327](https://github.com/archilogic-com/honeycomb/issues/327)) ([25d72c6](https://github.com/archilogic-com/honeycomb/commit/25d72c67da6708675d932471e893b45fdd4b646e))
+
 # [2.24.0](https://github.com/archilogic-com/honeycomb/compare/v2.23.0...v2.24.0) (2025-12-23)
 
 
