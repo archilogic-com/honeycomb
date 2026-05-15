@@ -4,7 +4,7 @@ const plugin = require('tailwindcss/plugin')
 function createBaseStyles({ addBase }) {
   addBase({
     '::selection': {
-      '@apply bg-zurich48': {}
+      '@apply bg-primary-subtle-alpha': {}
     },
     body: {
       '@apply text-navy body-md bg-whisper': {}

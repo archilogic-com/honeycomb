@@ -135,13 +135,13 @@ export default defineComponent({
       'h-10 min-w-10 px-4': size === 'lg' && !icon,
       'h-8 min-w-8 px-3': size === 'md' && !icon,
       'text-white': variant === 'primary',
-      'bg-darkblue': variant === 'primary' && pressed,
-      'bg-mediumblue': variant === 'primary' && !pressed,
-      'bg-zurich text-mediumblue': variant !== 'primary' && pressed,
+      'bg-primary-active': variant === 'primary' && pressed,
+      'bg-primary': variant === 'primary' && !pressed,
+      'bg-primary-subtle text-primary': variant !== 'primary' && pressed,
       'text-inherit bg-transparent': variant === 'subtle' && !pressed,
       'bg-athens text-navy': variant === 'standard' && !pressed,
-      'hover:bg-blueribbon active:bg-darkblue': variant === 'primary' && !isDisabled && !pressed,
-      'hover:bg-gray hover:text-navy active:bg-zurich active:text-mediumblue':
+      'hover:bg-primary-hover active:bg-primary-active': variant === 'primary' && !isDisabled && !pressed,
+      'hover:bg-gray hover:text-navy active:bg-primary-subtle active:text-primary':
         variant !== 'primary' && !isDisabled && !pressed
     }"
     :disabled="isDisabled"

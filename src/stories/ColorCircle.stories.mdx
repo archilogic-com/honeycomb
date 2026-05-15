@@ -42,13 +42,13 @@ export const Template = args => ({
 ## Setting the color
 
 To set the color of the component, just pass a `color` prop.
-[Archilogic colors](path=/docs/primitives-colors--mediumblue) work without any prefixes.
+[Archilogic colors](path=/docs/primitives-colors--primary) work without any prefixes.
 Any string that is a valid color in normal CSS will work too, i.e. hex and rgb values,
 as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names)
 
 ```html
 <!-- Archilogic colors -->
-<a-color-circle color="mediumblue" />
+<a-color-circle color="primary" />
 <!-- valid HTML colors -->
 <a-color-circle color="#ffc400" />
 <a-color-circle color="rgb(255, 20, 147)" />
@@ -59,7 +59,7 @@ as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_colo
 
 ```html
 <!-- not recommended -->
-<a-color-circle class="bg-mediumblue" />
+<a-color-circle class="bg-primary" />
 ```
 
 <Canvas>
@@ -95,7 +95,7 @@ as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_colo
     name="with border"
     args={{
       color: 'white',
-      borderColor: 'mediumblue'
+      borderColor: 'primary'
     }}>
     {Template.bind({})}
   </Story>
@@ -106,18 +106,18 @@ as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_colo
 The element comes in two sizes, `md` (default) and `lg`.
 
 ```html
-<a-color-circle size="lg" color="mediumblue" />
+<a-color-circle size="lg" color="primary" />
 ```
 
 <Canvas>
   <Story
     name="size md"
     args={{
-      color: 'mediumblue'
+      color: 'primary'
     }}>
     {Template.bind({})}
   </Story>
-  <Story name="size lg" args={{ size: 'lg', color: 'mediumblue' }}>
+  <Story name="size lg" args={{ size: 'lg', color: 'primary' }}>
     {Template.bind({})}
   </Story>
 </Canvas>

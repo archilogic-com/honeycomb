@@ -1,0 +1,11 @@
+:root {
+  --honeycomb-color-primary: #1414c1;
+  --honeycomb-color-primary-hover: #3355ff;
+  --honeycomb-color-primary-active: #000099;
+  --honeycomb-color-primary-subtle: #bdd7ff;
+  --honeycomb-color-primary-subtle-alpha: color-mix(
+    in srgb,
+    var(--honeycomb-color-primary-subtle) 48%,
+    transparent
+  );
+}

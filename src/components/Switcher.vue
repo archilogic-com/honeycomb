@@ -53,8 +53,8 @@ const model = computed({
       <div
         class="flex items-center px-3 py-1 rounded"
         :class="{
-          'text-mediumblue bg-zurich': checked,
-          'hover:bg-gray hover:text-navy active:bg-zurich48 active:text-mediumblue':
+          'text-primary bg-primary-subtle': checked,
+          'hover:bg-gray hover:text-navy active:bg-primary-subtle-alpha active:text-primary':
             !option.disabled && !disabled && !checked,
           'opacity-40 cursor-not-allowed': option.disabled || disabled
         }"

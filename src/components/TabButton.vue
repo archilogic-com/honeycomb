@@ -27,10 +27,10 @@ export default defineComponent({
   <button
     :class="
       selected
-        ? 'border-b-2 border-mediumblue text-mediumblue body-md-600'
+        ? 'border-b-2 border-primary text-primary body-md-600'
         : 'text-stone body-md-500'
     "
-    class="h-8 px-2 transition duration-300 ease-in-out hover:text-mediumblue focus-visible:focus-outline">
+    class="h-8 px-2 transition duration-300 ease-in-out hover:text-primary focus-visible:focus-outline">
     <!--
           @slot #default
           Use the slot to provide the tab title

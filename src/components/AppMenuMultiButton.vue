@@ -50,7 +50,7 @@ export default defineComponent({
       :aria-controls="controls"
       class="absolute bottom-0 right-0 top-0 flex items-center rounded focus-visible:focus-shadow hover:enabled:pt-[2px] hover:enabled:text-navy disabled:cursor-not-allowed disabled:opacity-40 group-hover:text-navy"
       :class="{
-        'text-mediumblue': open || pressed,
+        'text-primary': open || pressed,
         'left-0 justify-end pt-[2px]': open
       }">
       <AIcon name="ChevronDown" size="other" class="mx-[2px]" />

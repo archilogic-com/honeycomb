@@ -23,10 +23,10 @@ export default defineComponent({
   computed: {
     backgroundClass() {
       if (this.modelValue === 'mixed') {
-        return 'before:bg-mediumblue hover:before:bg-blueribbon before:border-r-[15px] before:border-warsaw hover:before:opacity-75'
+        return 'before:bg-primary hover:before:bg-primary-hover before:border-r-[15px] before:border-warsaw hover:before:opacity-75'
       }
       if (this.modelValue) {
-        return 'before:bg-mediumblue hover:before:bg-blueribbon'
+        return 'before:bg-primary hover:before:bg-primary-hover'
       } else {
         return 'before:bg-warsaw  hover:before:opacity-75'
       }

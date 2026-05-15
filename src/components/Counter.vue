@@ -31,7 +31,7 @@ export default defineComponent({
         counterClasses.push('bg-athens text-navy')
       }
       if (this.variant === 'primary') {
-        counterClasses.push('bg-zurich text-mediumblue')
+        counterClasses.push('bg-primary-subtle text-primary')
       }
       if (this.variant === 'highlight') {
         counterClasses.push('bg-white text-navy')

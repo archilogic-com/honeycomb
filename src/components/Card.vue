@@ -28,9 +28,9 @@ export default defineComponent({
     :is="tagName"
     class="group relative inline-flex rounded bg-whisper shadow-border shadow-gray focus-visible:focus-none"
     :class="{
-      'hover:cursor-pointer hover:bg-athens active:bg-zurich active:text-mediumblue':
+      'hover:cursor-pointer hover:bg-athens active:bg-primary-subtle active:text-primary':
         tagName !== 'div',
-      'bg-zurich [&:not(:hover)]:text-mediumblue': active
+      'bg-primary-subtle [&:not(:hover)]:text-primary': active
     }">
     <div
       class="absolute inset-0 rounded shadow-border shadow-gray"
