@@ -235,7 +235,7 @@ export default defineComponent({
         <slot name="extra"></slot>
         <KeyboardShortcut
           v-if="shortcut"
-          :class="disabled && '!text-warsaw'"
+          :class="disabled && 'text-warsaw!'"
           variant="subtle"
           :shortcut="
             typeof shortcut === 'string' ? { keySequence: shortcut } : shortcut
