@@ -1,5 +1,21 @@
 # Changelog
 
+# [3.0.0-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.26.0-beta.1...v3.0.0-beta.1) (2026-06-23)
+
+
+* feat!: migrate Tailwind CSS v3 to v4 ([#330](https://github.com/archilogic-com/honeycomb/issues/330)) ([1a319c4](https://github.com/archilogic-com/honeycomb/commit/1a319c42d53ac1a603c6743f87b3b4908d656860))
+
+
+### BREAKING CHANGES
+
+* Tailwind CSS v4 (CSS-first configuration) replaces v3. The
+shipped JS presets (tailwind/tailwind-preset.cjs, tailwind/base.cjs,
+tailwind/typography.cjs) along with tailwind.config.cjs and postcss.config.cjs
+are removed. Consumers must adopt the @tailwindcss/vite plugin and replace their
+Tailwind config with `@import '@archilogic/honeycomb/tailwind'` (see the Getting
+Started guide). tailwindcss is now a ^4 peer dependency and Node >=22.12 is
+required.
+
 # [2.26.0-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.25.0...v2.26.0-beta.1) (2026-06-23)
 
 
