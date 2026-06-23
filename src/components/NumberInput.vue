@@ -171,14 +171,14 @@ export default defineComponent({
       class="invisible absolute bottom-0 right-0 top-0 flex flex-col justify-center text-warsaw"
       :class="!$attrs.disabled && 'group-focus-within:visible group-hover:visible'">
       <button
-        class="group/up p-2 pb-1 hover:text-stone focus:outline-none"
+        class="group/up p-2 pb-1 hover:text-stone focus:outline-hidden"
         tabindex="-1"
         aria-label="Step Up"
         @click="stepUp">
         <StepUpArrow class="group-active/up:translate-y-[-2px]" />
       </button>
       <button
-        class="group/down p-2 pt-1 hover:text-stone focus:outline-none"
+        class="group/down p-2 pt-1 hover:text-stone focus:outline-hidden"
         tabindex="-1"
         aria-label="Step Down"
         @click="stepDown">

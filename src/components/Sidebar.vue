@@ -81,7 +81,7 @@ export default defineComponent({
   <component
     :is="as"
     ref="sidebar"
-    class="relative min-h-full flex-shrink-0 border-gray bg-white"
+    class="relative min-h-full shrink-0 border-gray bg-white"
     :class="[borderClass, isResizingClass]">
     <div class="flex h-full flex-col items-stretch justify-start">
       <!--
@@ -94,7 +94,7 @@ export default defineComponent({
       v-if="resizable"
       role="separator"
       aria-orientation="vertical"
-      class="absolute top-0 min-h-full w-2 flex-shrink-0 hover:cursor-col-resize"
+      class="absolute top-0 min-h-full w-2 shrink-0 hover:cursor-col-resize"
       :class="resizableClass"
       @mousedown="initResize"></div>
   </component>

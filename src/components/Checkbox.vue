@@ -95,6 +95,8 @@ export default defineComponent({
   </label>
 </template>
 <style scoped>
+@reference "../../tailwind/theme.css";
+
 .custom-checkbox {
   @apply m-px inline-block h-[14px] w-[14px] cursor-pointer appearance-none rounded border border-stone bg-white transition-colors duration-300 ease-in-out;
 }
