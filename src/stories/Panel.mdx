@@ -1,0 +1,35 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks'
+
+import * as PanelStories from './Panel.stories'
+
+<Meta of={PanelStories} />
+
+# Panel
+
+APanel has a box shadow that works well with floating components like popups and dialogs.
+It has 3 sections (slots): title, body, and actions; all optional.
+
+```html
+<a-panel title="My Panel">
+  <template #body>Body content</template>
+  <template #actions>
+    <a-button @click="doStuff">OK</a-button>
+  </template>
+</a-panel>
+```
+
+## Panel with all slots
+
+<Story of={PanelStories.All} />
+
+## Panel without title
+
+<Story of={PanelStories.NoTitle} />
+
+## Panel without actions
+
+<Story of={PanelStories.NoActions} />
+
+## Panel with scrollable body
+
+<Story of={PanelStories.ScrollableBody} />

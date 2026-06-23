@@ -1,0 +1,95 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as LinkStories from './Link.stories'
+
+<Meta of={LinkStories} />
+
+# Links
+
+## Usage
+
+```html
+<a-link href="/somewhere">Hyperlink</a-link>
+<ALink href="/somewhere">Hyperlink</ALink>
+```
+
+<ArgTypes of={LinkStories} />
+
+## HTML attributes
+
+Any additional HTML attributes will be passed down to the original `<a>` element.
+Example:
+
+```html
+<a-link href="/" target="_blank">Home</a-link>
+```
+
+<Canvas of={LinkStories.ProvideHref} />
+
+## Usage with Vue Router
+
+To use `<a-link>` with a `<router-link>` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-link :href="href" @click="navigate">{{ route.fullPath }}</a-link>
+</router-link>
+```
+
+## Link variants and sizes
+
+Links come in **2 stylistic variants**:
+`standard` and `primary`
+and **2 size options**:
+`md` and `sm` (default)
+
+```html
+<!-- variant="standard" is the default and can be omitted -->
+<a-link variant="standard">click here</a-link>
+<a-link variant="primary">click here</a-link>
+
+<!-- size="sm" is the default and can be omitted -->
+<a-link size="sm">click here</a-link>
+<a-link size="md">click here</a-link>
+```
+
+<Canvas of={LinkStories.StandardSm} />
+<Canvas of={LinkStories.PrimarySm} />
+<Canvas of={LinkStories.StandardMd} />
+<Canvas of={LinkStories.PrimaryMd} />
+
+## Using the content prop
+
+```html
+<a-link content="Link here"></a-link>
+```
+
+An alternative way to set the link text, is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are provided, the slot children take precedence.
+
+The following links are rendered with the `content` prop instead of slot content.
+
+<Canvas of={LinkStories.StandardWithContentProp} />
+<Canvas of={LinkStories.PrimaryWithContentProp} />
+
+## Inline example
+
+Example of `<a-link>` within a paragraph of text.
+
+```html
+Structural editing is a
+<a-link href="somewhere">beta feature</a-link>
+.
+```
+
+<Canvas of={LinkStories.InlineExample} />
+
+## Rendering a button
+
+If `href` attribute is omitted, the component will render an HTML `button`.
+
+```html
+<a-link @click="yourClickHandler">I'm a button that looks like a link.</a-link>
+```
+
+<Canvas of={LinkStories.AsAButton} />

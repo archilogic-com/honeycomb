@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ref } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 
@@ -13,7 +13,9 @@ import { ASwitcher, AIcon } from '../components'
  * <a-switcher label="Units" :options="unitList" v-model="selectedUnits"/>
  * ```
  */
-const meta: Meta<typeof ASwitcher> = {
+// ASwitcher is a generic component; cast (as the Combobox/Listbox stories do) so its
+// generic signature satisfies Meta's component field.
+const meta = {
   component: ASwitcher,
   title: 'Components/Switcher',
   decorators: [
@@ -21,7 +23,7 @@ const meta: Meta<typeof ASwitcher> = {
       template: `<div class="p-10 bg-white"><story/></div>`
     })
   ]
-}
+} as Meta<SwitcherProps>
 
 export default meta
 

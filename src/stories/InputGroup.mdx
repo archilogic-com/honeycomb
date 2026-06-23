@@ -1,0 +1,105 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as InputGroupStories from './InputGroup.stories'
+
+<Meta of={InputGroupStories} />
+
+# InputGroup
+
+```html
+<a-input-group label="MyLabel">
+  <template #input="{labelledby}">
+    <a-text-input v-model="myValue" :aria-labelledby="labelledby" />
+  </template>
+</a-input-group>
+```
+
+`AInputGroup` is a special container element for inputs, that handles label - input element relation,
+optional input - hint/error text relation, as well as the layout and sizing options for the elements (via [LabelContainer](path=/docs/components-labelcontainer--col))
+
+<ArgTypes of={InputGroupStories} />
+
+## Label and helper text
+
+The input label can be set via the `label` prop.
+The `<a-input-group>` component generates a unique id and renders the `<label>` element.
+The label id is then exposed as the named slot prop `labelledby`.
+Use this prop as the value for the input's `aria-labelledby` attribute.
+
+Providing the input hint or error message works similarly.
+Use the `helper` prop to set the hint or error string.
+The unique element id is then generated and assigned to the helper text,
+and the `describedby` named slot prop should be set as the value for the input's `aria-describedby` attribute.
+
+For displaying the helper text as the validation error, add the `invalid` prop to the `<a-input-group>`,
+and don't forget to set `aria-invalid` on the input element.
+
+```html
+<!-- `errorState` is determined by the consumer's input validation -->
+<a-input-group label="MyLabel" helper="Some input requirements" :invalid="errorState">
+  <template #input="{labelledby, describedby}">
+    <a-text-input
+      v-model="myValue"
+      :aria-labelledby="labelledby"
+      :aria-describedby="describedby"
+      :aria-invalid="errorState" />
+  </template>
+</a-input-group>
+```
+
+The examples below show size `xs` with `col` alignment (the default values for `size` and `align` props),
+including an input with `maxlength` attribute.
+
+<Canvas of={InputGroupStories.LabelXsCol} />
+<Canvas of={InputGroupStories.MaxlengthXsCol} />
+<Canvas of={InputGroupStories.HintXsCol} />
+<Canvas of={InputGroupStories.ErrorXsCol} />
+
+## Layout and sizing
+
+`InputGroup` is a wrapper around the [LabelContainer](path=/docs/components-labelcontainer--col),
+and it follows the same sizing and alignment pattern.
+
+Note: make sure to provide the appropriate size prop to both `<a-input-group>` and the input or control element (where appropriate).
+
+```html
+<a-input-group label="MyLabel" size="md">
+  <template #input>
+    <a-text-input size="md" ... />
+  </template>
+</a-input-group>
+```
+
+Above you can see the input group component rendered in size `xs` (text input size `sm`), in `col` alignment.
+These are the default values for all the components used.
+
+Below are other common examples.
+
+Size `sm` with `row` alignment:
+
+<Canvas of={InputGroupStories.LabelSmRow} />
+<Canvas of={InputGroupStories.HintSmRow} />
+<Canvas of={InputGroupStories.ErrorSmRow} />
+
+The examples below show size `md` with `col` alignment,
+including an input with `maxlength` attribute.
+
+<Canvas of={InputGroupStories.LabelMdCol} />
+<Canvas of={InputGroupStories.MaxlengthMdCol} />
+<Canvas of={InputGroupStories.HintMdCol} />
+<Canvas of={InputGroupStories.ErrorMdCol} />
+
+## Other input components
+
+The input group component can be used the same way with other input (control) components,
+e.g. combobox, listbox, toggle.
+
+<Canvas of={InputGroupStories.Combobox} />
+<Canvas of={InputGroupStories.Toggle} />
+
+## Using `#label` and `#helper` slots
+
+Occasionally, you might need to provide more complex markup for the input label
+or the hint/error text. In those situations, slots of the same names can be used.
+
+<Canvas of={InputGroupStories.LabelAndHelperSlots} />

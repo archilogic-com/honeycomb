@@ -1,0 +1,242 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} />
+
+# Buttons
+
+```html
+<a-button>Button</a-button>
+<AButton>Button</AButton>
+```
+
+<ArgTypes of={ButtonStories} />
+
+## Event handlers
+
+You can attach any event handlers to this component.
+
+```html
+<a-button @click="yourClickHandler">Button</a-button>
+```
+
+## HTML attributes
+
+All additional html attributes will be passed to the original `<button>` element.
+Example:
+
+```html
+<a-button type="submit" disabled>Button</a-button>
+```
+
+## Button variants
+
+Buttons come in **3 stylistic variants**:
+`standard`, `primary`, and `subtle`.
+
+```html
+<!-- variant="standard" is the default and can be omitted -->
+<a-button>Button</a-button>
+<a-button variant="primary">Button</a-button>
+<a-button variant="subtle">Button</a-button>
+```
+
+## Button size
+
+### Size "md" (default)
+
+All button variants in size `md` (default): default state, pressed, disabled and loading.
+
+```html
+<!-- size="md" is the default and can be omitted -->
+<a-button>Button</a-button>
+```
+
+<Canvas of={ButtonStories.Standard} />
+<Canvas of={ButtonStories.Primary} />
+<Canvas of={ButtonStories.Subtle} />
+<Canvas of={ButtonStories.StandardWIcon} />
+<Canvas of={ButtonStories.PrimaryWIcon} />
+<Canvas of={ButtonStories.SubtleWIcon} />
+<Canvas of={ButtonStories.StandardPressed} />
+<Canvas of={ButtonStories.PrimaryPressed} />
+<Canvas of={ButtonStories.SubtlePressed} />
+<Canvas of={ButtonStories.StandardPressedWIcon} />
+<Canvas of={ButtonStories.PrimaryPressedWIcon} />
+<Canvas of={ButtonStories.SubtlePressedWIcon} />
+<Canvas of={ButtonStories.StandardDisabled} />
+<Canvas of={ButtonStories.PrimaryDisabled} />
+<Canvas of={ButtonStories.SubtleDisabled} />
+<Canvas of={ButtonStories.StandardDisabledWIcon} />
+<Canvas of={ButtonStories.PrimaryDisabledWIcon} />
+<Canvas of={ButtonStories.SubtleDisabledWIcon} />
+<Canvas of={ButtonStories.StandardLoading} />
+<Canvas of={ButtonStories.PrimaryLoading} />
+<Canvas of={ButtonStories.SubtleLoading} />
+<Canvas of={ButtonStories.StandardLoadingWIcon} />
+<Canvas of={ButtonStories.PrimaryLoadingWIcon} />
+<Canvas of={ButtonStories.SubtleLoadingWIcon} />
+
+### Size "lg"
+
+All button variants in size `lg`: default state, pressed, disabled and loading.
+
+```html
+<a-button size="lg">Button</a-button>
+```
+
+<Canvas of={ButtonStories.StandardLarge} />
+<Canvas of={ButtonStories.PrimaryLarge} />
+<Canvas of={ButtonStories.SubtleLarge} />
+<Canvas of={ButtonStories.StandardLargeWIcon} />
+<Canvas of={ButtonStories.PrimaryLargeWIcon} />
+<Canvas of={ButtonStories.SubtleLargeWIcon} />
+<Canvas of={ButtonStories.StandardLargePressed} />
+<Canvas of={ButtonStories.PrimaryLargePressed} />
+<Canvas of={ButtonStories.SubtleLargePressed} />
+<Canvas of={ButtonStories.StandardLargePressedWIcon} />
+<Canvas of={ButtonStories.PrimaryLargePressedWIcon} />
+<Canvas of={ButtonStories.SubtleLargePressedWIcon} />
+<Canvas of={ButtonStories.StandardLargeDisabled} />
+<Canvas of={ButtonStories.PrimaryLargeDisabled} />
+<Canvas of={ButtonStories.SubtleLargeDisabled} />
+<Canvas of={ButtonStories.StandardLargeDisabledWIcon} />
+<Canvas of={ButtonStories.PrimaryLargeDisabledWIcon} />
+<Canvas of={ButtonStories.SubtleLargeDisabledWIcon} />
+<Canvas of={ButtonStories.StandardLargeLoading} />
+<Canvas of={ButtonStories.PrimaryLargeLoading} />
+<Canvas of={ButtonStories.SubtleLargeLoading} />
+<Canvas of={ButtonStories.StandardLargeLoadingWIcon} />
+<Canvas of={ButtonStories.PrimaryLargeLoadingWIcon} />
+<Canvas of={ButtonStories.SubtleLargeLoadingWIcon} />
+
+### Size "auto"
+
+```html
+<a-button size="auto">
+  <!-- your html content and styles-->
+</a-button>
+```
+
+For flexible button sizing, set the `size` prop to `auto`.
+The button will assume the dimensions of its contents.
+Useful for clickable images, complex clickable components like cards, or custom sized icon buttons.
+
+**Note**: You might want to handle the loading state (if required) without relying on the `loading` prop,
+depending on the button's slot content.
+
+<Canvas of={ButtonStories.ButtonSizeAuto} />
+
+## Icon Buttons
+
+Recommended usage:
+
+```html
+<a-button size="md" label="Settings" icon="Menu"></a-button>
+```
+
+The icon size will be the same as the value of the button's `size` prop.
+It is highly recommended to provide a `label` prop for accessible labelling of the icon button.
+
+<Canvas of={ButtonStories.Icon} />
+<Canvas of={ButtonStories.IconPrimary} />
+<Canvas of={ButtonStories.IconSubtle} />
+<Canvas of={ButtonStories.IconLg} />
+<Canvas of={ButtonStories.IconLgPrimary} />
+<Canvas of={ButtonStories.IconLgSubtle} />
+<Canvas of={ButtonStories.IconPressed} />
+<Canvas of={ButtonStories.IconPrimaryPressed} />
+<Canvas of={ButtonStories.IconSubtlePressed} />
+<Canvas of={ButtonStories.IconLgPressed} />
+<Canvas of={ButtonStories.IconLgPrimaryPressed} />
+<Canvas of={ButtonStories.IconLgSubtlePressed} />
+<Canvas of={ButtonStories.IconDisabled} />
+<Canvas of={ButtonStories.IconPrimaryDisabled} />
+<Canvas of={ButtonStories.IconSubtleDisabled} />
+<Canvas of={ButtonStories.IconLgDisabled} />
+<Canvas of={ButtonStories.IconLgPrimaryDisabled} />
+<Canvas of={ButtonStories.IconLgSubtleDisabled} />
+<Canvas of={ButtonStories.IconLoading} />
+<Canvas of={ButtonStories.IconPrimaryLoading} />
+<Canvas of={ButtonStories.IconSubtleLoading} />
+<Canvas of={ButtonStories.IconLgLoading} />
+<Canvas of={ButtonStories.IconLgPrimaryLoading} />
+<Canvas of={ButtonStories.IconLgSubtleLoading} />
+
+For icons of sizes `sm` and `other` you can set `size="sm"` or `size="auto"` accordingly.
+The button will render the required icon without any extra padding.
+
+<Canvas of={ButtonStories.IconSm} />
+<Canvas of={ButtonStories.IconOther} />
+
+Alternatively you can pass the custom icon or markup into the default slot,
+and set button size to "auto".
+
+```html
+<a-button size="auto" label="Settings"><your-icon /></a-button>
+```
+
+<Canvas of={ButtonStories.IconAuto} />
+
+## Using the label prop
+
+```html
+<a-button label="Button"></a-button>
+<a-button label="Primary Menu">
+  Primary
+  <a-icon name="ChevronDown" size="other" />
+</a-button>
+```
+
+An alternative way to set the label text, is to use the `label` prop.
+Keep in mind that if both the label prop and the default slot are used, the slot content will be displayed to the user,
+and the `label` prop will be used as the accessible label (i.e. as the value of `aria-label` attribute).
+**Note**: if you use a descriptive text label for the button in its default slot,
+there's no need to add the `label` prop. Use it for icon buttons or other buttons that lack a descriptive text label.
+
+The following buttons are rendered with the `label` prop instead of slot content.
+
+<Canvas of={ButtonStories.StandardWLabelProp} />
+<Canvas of={ButtonStories.PrimaryWLabelProp} />
+<Canvas of={ButtonStories.SubtleWLabelProp} />
+<Canvas of={ButtonStories.PrimaryWLabelPropAndSlotContent} />
+
+## Rendering a link
+
+You can render an anchor tag that looks like a button by passing an `href` to it.
+
+**Important!** Anchor tags [do not accept a `disabled` attribute](https://stackoverflow.com/a/13955695).
+If you need to provide a disabled state to an anchor tag, remove the `href` and add a `disabled`.
+This will render a disabled button.
+Example:
+
+```html
+<!-- active link -->
+<a-button variant="primary" href="/">Button</a-button>
+
+<!-- disabled link-->
+<a-button variant="primary" disabled>Button</a-button>
+```
+
+<Canvas of={ButtonStories.StandardWHref} />
+<Canvas of={ButtonStories.PrimaryWHref} />
+<Canvas of={ButtonStories.SubtleWHref} />
+<Canvas of={ButtonStories.LargeWHref} />
+<Canvas of={ButtonStories.IconWHref} />
+
+### Usage with Vue Router
+
+To use `a-button` as a link with a `router-link` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-button :href="href" @click="navigate">{{ route.fullPath }}</a-button>
+</router-link>
+```
+
+## Pressed state
+
+`a-button` has a `pressed` prop to show the button as "pressed" (e.g. for an open menu or a button that switches some state on and off).
+Behind the scenes, it sets the [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed)
+attribute with values `true`, `false` and `undefined` (default).

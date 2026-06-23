@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import { Meta, StoryFn } from '@storybook/vue3'
-import { within, userEvent } from '@storybook/testing-library'
+import { Meta, StoryFn } from '@storybook/vue3-vite'
+import { within, userEvent } from 'storybook/test'
 import { ANumberInput, AInputGroup } from '../components'
 
 export default {

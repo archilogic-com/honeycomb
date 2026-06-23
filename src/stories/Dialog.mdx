@@ -1,0 +1,146 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as DialogStories from './Dialog.stories'
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+This is a wrapper around the [Headless UI Dialog](https://headlessui.dev/vue/dialog) component with our custom styling and positioning logic.
+
+```html
+<a-dialog :open="isDialogOpen" @close="handleCloseDialog" title="My title">
+  <template #body>
+    <p>My dialog body</p>
+  </template>
+  <template #actions>
+    <a-button @click="doStuff">OK</a-button>
+  </template>
+</a-dialog>
+```
+
+<ArgTypes of={DialogStories} />
+
+## Dialog position and size
+
+Dialog size is dependent on its content, but default margins and minimum width are applied.
+The dialog is always centered horizontally.
+
+### Vertical positioning
+
+By default, the dialog is positioned near the top of the screen.
+
+Top:
+
+```html
+<a-dialog>
+  <!-- dialog content -->
+</a-dialog>
+```
+
+<Canvas of={DialogStories.TopVerticalAlignment} />
+
+Center:
+
+```html
+<a-dialog position="center">
+  <!-- dialog content -->
+</a-dialog>
+```
+
+<Canvas of={DialogStories.CenterVerticalAlignment} />
+
+Bottom:
+
+```html
+<a-dialog position="bottom">
+  <!-- dialog content -->
+</a-dialog>
+```
+
+<Canvas of={DialogStories.BottomVerticalAlignment} />
+
+## Dialog overlay
+
+By default, `<a-dialog>` renders a semi-transparent overlay.
+Setting `:overlay="false"` will make the overlay fully transparent.
+
+```html
+<a-dialog :overlay="false">
+  <!-- dialog content -->
+</a-dialog>
+```
+
+<Canvas of={DialogStories.NoOverlay} />
+
+## Dialog with a styled panel
+
+For dialogs with a title, and/or body content, and/or actions a panel layout is used.
+It applies consistent spacing and other styles for these sections, as well as adds a "close" button in the top right corner.
+Hitting "Esc" key or clicking anywhere outside the panel closes the dialog as well.
+
+```html
+<a-dialog title="Do you want to proceed?">
+  <template #body>
+    <p>This cannot be undone</p>
+  </template>
+  <template #actions>
+    <a-button variant="primary" size="lg" @click="toggleDialog(false)">Confirm</a-button>
+    <a-button variant="subtle" size="lg" @click="toggleDialog(false)">Cancel</a-button>
+  </template>
+</a-dialog>
+```
+
+<Canvas of={DialogStories.TitleAndActions} />
+
+### Without actions
+
+Informational dialogs do not necessarily need the actions section.
+
+```html
+<a-dialog title="Build version">
+  <template #body>1234567890</template>
+</a-dialog>
+```
+
+<Canvas of={DialogStories.NoActions} />
+
+## Dialog with a blank panel
+
+`ADialog` has a `#default` slot for arbitrary content.
+It has no padding or typography styles, just a clean white panel with round(-er) corners.
+Hitting "Esc" key or clicking anywhere outside the panel closes the dialog.
+
+**Note:** make sure to add at least one focusable element inside the modal
+to ensure the focus is correctly trapped inside the modal.
+
+```html
+<a-dialog>
+  <div class="flex flex-col">
+    <p>Some dialog content</p>
+    <a-button @click="toggleDialog(false)">Done</a-button>
+  </div>
+</a-dialog>
+```
+
+<Canvas of={DialogStories.DefaultSlot} />
+
+## Special examples
+
+### Scrollable dialog
+
+<Canvas of={DialogStories.ScrollablePanelBody} />
+
+<Canvas of={DialogStories.ScrollableDefaultSlot} />
+
+### Long title
+
+An example with a long title that wraps onto the next line.
+
+<Canvas of={DialogStories.LongTitle} />
+
+### Left-aligned action
+
+Example of an extra action that is aligned to the left and is not a button.
+
+<Canvas of={DialogStories.LeftAlignedAction} />

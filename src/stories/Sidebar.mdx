@@ -1,0 +1,87 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as SidebarStories from './Sidebar.stories'
+
+<Meta of={SidebarStories} />
+
+# Sidebar
+
+## Usage
+
+```html
+<a-sidebar>…</a-sidebar>
+<ASidebar>…</ASidebar>
+```
+
+`ASidebar` has one default slot for all its children.
+
+<ArgTypes of={SidebarStories} />
+
+## Position
+
+### Left Sidebar (default)
+
+```html
+<a-sidebar side="left">…</a-sidebar>
+```
+
+<Canvas of={SidebarStories.Left} />
+
+### Right Sidebar
+
+```html
+<a-sidebar side="right">…</a-sidebar>
+```
+
+<Canvas of={SidebarStories.Right} />
+
+## Size
+
+### Height
+
+The sidebar will take the full height of the parent container.
+Remember to adjust the display property of the parent container to `flex` or grid,
+otherwise the sidebar and the main content might be stacked vertically.
+
+```html
+<main class="flex">
+  <a-sidebar side="left">…</a-sidebar>
+  <section>…</section>
+</main>
+```
+
+### Width
+
+The default (minimum) width of the sidebar is determined by its contents.
+To override it, just add a width class:
+
+```html
+<a-sidebar class="w-[17rem]">…</a-sidebar>
+```
+
+<Canvas of={SidebarStories.CustomWidth} />
+
+### Resizable sidebar
+
+```html
+<a-sidebar resizable>…</a-sidebar>
+```
+
+<Canvas of={SidebarStories.ResizableLeft} />
+
+<Canvas of={SidebarStories.ResizableRight} />
+
+The minimum width of the sidebar is `max-content`, and the maximum width defaults to `50%`.
+You can override these values with inline styles.
+
+### With long scrollable content
+
+<Canvas of={SidebarStories.ResizableRightScroll} />
+
+## Semantic HTML
+
+This element returns an `<aside>` tag by default. You can change this by setting the `as` prop.
+
+```html
+<a-sidebar as="div">…</a-sidebar>
+```

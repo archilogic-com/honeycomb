@@ -1,5 +1,5 @@
 import { ref, computed, Ref } from 'vue'
-import { Meta, StoryFn } from '@storybook/vue3'
+import { Meta, StoryFn } from '@storybook/vue3-vite'
 import {
   ACombobox,
   AOption,
@@ -7,7 +7,7 @@ import {
   ASelectableOptionGroup,
   AColorCircle
 } from '../components'
-import { within, userEvent } from '@storybook/testing-library'
+import { within, userEvent } from 'storybook/test'
 import type { Option } from '../components/Option.vue'
 
 export default {
@@ -646,7 +646,7 @@ const TemplateBackendOptions: StoryFn = (args, meta) => ({
     const inputValue: Ref<string | string[]> = ref(args.initValue)
     const options: Ref<Option[]> = ref([])
     const loading = ref(false)
-    let requestId: NodeJS.Timeout
+    let requestId: ReturnType<typeof setTimeout>
 
     const searchOptions = async (query: string) => {
       loading.value = true

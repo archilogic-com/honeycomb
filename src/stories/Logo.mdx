@@ -1,0 +1,63 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as LogoStories from './Logo.stories'
+
+<Meta of={LogoStories} />
+
+# Logo
+
+```html
+<a-logo />
+<ALogo />
+```
+
+<ArgTypes of={LogoStories} />
+
+## Using as a button or link
+
+When the Archilogic logo is meant to be clickable, use `<a-logo-button>`.
+If it should behave like a link, provide an `href` attribute.
+
+```html
+<a-logo-button href="/" />
+<!-- OR -->
+<a-logo-button @click="doSomething" />
+```
+
+<Canvas of={LogoStories.LogoButton} />
+
+## Using as an svg image
+
+### Default
+
+At the moment, the `default` variant comes in one size only. You do not need to specify any props for it.
+
+```html
+<a-logo />
+```
+
+<Canvas of={LogoStories.LogoDefault} />
+
+### Mark
+
+The `mark` variant comes in 3 sizes. Providing a size prop for it is required.
+
+```html
+<a-logo variant="mark" size="md" />
+```
+
+<Canvas of={LogoStories.LogoMarkSm} />
+<Canvas of={LogoStories.LogoMarkMd} />
+<Canvas of={LogoStories.LogoMarkLg} />
+
+### Color
+
+The logo's default color is our [New York color](?path=/docs/primitives-colors--newyork).
+
+For dark backgrounds, it's possible to change the color to `white`:
+
+```html
+<a-logo color="light" />
+```
+
+<Canvas of={LogoStories.LogoLight} />
