@@ -1,27 +1,26 @@
-/// <reference types="vitest" />
-import * as path from 'path'
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import svgLoader from 'vite-svg-loader'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve('src')
+      '@': `${import.meta.dirname}/src`
     }
   },
   build: {
     lib: {
       entry: {
-        main: path.resolve(__dirname, './src/index.ts'),
-        'components/index': path.resolve(__dirname, './src/components/index.ts'),
-        'composables/index': path.resolve(__dirname, './src/composables/index.ts'),
-        'colors/index': path.resolve(__dirname, './src/colors/index.ts')
-      }
+        main: './src/index.ts',
+        'components/index': './src/components/index.ts',
+        'composables/index': './src/composables/index.ts',
+        'colors/index': './src/colors/index.ts'
+      },
+      cssFileName: 'style'
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: ['vue', '@headlessui/vue', '@floating-ui/vue', '@vueuse/core', 'tabbable'],
       output: {
         globals: {
