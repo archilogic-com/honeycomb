@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.26.0-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.25.0...v2.26.0-beta.1) (2026-06-23)
+
+
+### Features
+
+* migrate Vite 5 to 8 and Vitest 2 to 4.1 ([#329](https://github.com/archilogic-com/honeycomb/issues/329)) ([be8a56e](https://github.com/archilogic-com/honeycomb/commit/be8a56e7d817bc4d923b3a7e45066a3f82a50d5d))
+
 # [2.25.0](https://github.com/archilogic-com/honeycomb/compare/v2.24.0...v2.25.0) (2026-05-15)
 
 
