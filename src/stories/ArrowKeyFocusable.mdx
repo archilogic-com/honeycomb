@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as ArrowKeyFocusableStories from './ArrowKeyFocusable.stories'
+
+<Meta of={ArrowKeyFocusableStories} />
+
+# ArrowKeyFocusable
+
+## Usage
+
+```html
+<a-arrow-key-focusable>…</a-arrow-key-focusable>
+<AArrowKeyFocusable>…</AArrowKeyFocusable>
+```
+
+<ArgTypes of={ArrowKeyFocusableStories} />
+
+This component can be used as a wrapper that adds arrow-key navigation to its children.
+This is useful for components that should be just one tab stop in the tabbing sequence (aka composite widgets),
+within which the user navigates with arrow keys (plus optionally `Home` and `End`).
+
+**Important**: Each child should to have `tabindex` attribute set to `-1`.
+
+## Rendering a different container element
+
+`<a-arrow-key-focusable>` renders as `<div>` by default, but that can be changed with an `as` prop.
+You should provide semantically appropriate tags, e.g. `tbody` for a table content, `ul` for a list, etc.
+Regular tailwind classes can then be added to style this wrapper.
+
+<Canvas of={ArrowKeyFocusableStories.ListVertical} />
+
+## Horizontal and vertical navigation
+
+By default, the component can be navigated with the `up` and `down` arrow keys (see example above).
+If you want a horizontal layout and navigation with the `left` and `right` arrow keys, pass the `direction="horizontal"` prop to the component.
+
+<Canvas of={ArrowKeyFocusableStories.ButtonsHorizontal} />
+
+## Non-focusable children
+
+If the tabindex attribute is not set on a child of the `<a-arrow-key-focusable>` component,
+the child element will not receive focus and will be skipped by the keyboard navigation.
+A typical use case for this is a separator or a title component.
+
+<Canvas of={ArrowKeyFocusableStories.UnfocusableChildren} />

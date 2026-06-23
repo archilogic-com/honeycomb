@@ -1,0 +1,93 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as TopBarStories from './TopBar.stories'
+
+<Meta of={TopBarStories} />
+
+# Top Bars
+
+```html
+<a-top-bar>…</a-top-bar>
+<ATopBar>…</ATopBar>
+```
+
+`ATopBar` has one default slot for all its children.
+
+<ArgTypes of={TopBarStories} />
+
+### Primary TopBar
+
+<Canvas of={TopBarStories.Primary} />
+
+### Secondary TopBar
+
+<Canvas of={TopBarStories.Secondary} />
+
+## Styling
+
+### Position
+
+`ATopBar` component is designed to be used as a sticky header on the page. It has `position: sticky`,
+so it is positioned to the top of the parent container, and it is not taken out of the document flow as with `fixed` positioning.
+However, this has some potential gotchas with scrolling behaviour, depending on your DOM structure and scrolling containers.
+See [MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/position#:~:text=GitHub%20issue%20on%20W3C%20CSSWG):
+
+> Note that a sticky element "sticks" to its nearest ancestor that has a "scrolling mechanism"
+> (created when overflow is `hidden`, `scroll`, `auto`, or `overlay`), even if that ancestor isn't the
+> nearest actually scrolling ancestor. This effectively inhibits any "sticky" behavior.
+
+### Size
+
+The header takes full width of the parent container.
+
+It currently has `box-sizing: content-box` and no horizontal padding.
+Add appropriate horizontal padding/margin to the children elements.
+
+### Display
+
+It is a flex container, and the elements are centered vertically.
+You can add a `justify-content` class to the header to position its children horizontally,
+or use appropriate sizing and/or margins on the children.
+
+## Semantic HTML
+
+This element returns a `<header>` tag ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header)).
+Note that `<header>`s cannot be nested, but you can use multiple header elements on the page.
+Avoid using multiple headers as sibling elements. See examples below.
+
+Good:
+
+```html
+<body>
+  <a-top-bar>{{logo, search, user avatar}}</a-top-bar>
+  <section>
+    <a-top-bar>{{page heading, filters, pagination, etc}}</a-top-bar>
+    {{section content}}
+  </section>
+</body>
+```
+
+Bad:
+
+```html
+<section>
+  <a-top-bar>{{logo, search, user avatar}}</a-top-bar>
+  <a-top-bar>{{page heading, filters, pagination, etc}}</a-top-bar>
+  {{section content}}
+</section>
+```
+
+```html
+<section>
+  <a-top-bar>
+    {{logo, search, user avatar}}
+    <a-top-bar>{{page heading, filters, pagination, etc}}</a-top-bar>
+  </a-top-bar>
+  {{section content}}
+</section>
+```
+
+## Troubleshooting
+
+If the header does not 'stick', reconsider the structure of your containing elements and their scrolling behaviour,
+see [Position](#position).

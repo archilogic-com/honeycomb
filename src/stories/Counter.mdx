@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as CounterStories from './Counter.stories'
+
+<Meta of={CounterStories} />
+
+# Counter
+
+```html
+<a-counter>312</a-counter>
+<ACounter>312</ACounter>
+```
+
+The Counter component is usually placed before or after the label it's quantifying.
+It accepts strings that represent a number, e.g. `0`,`2359`,`200+`, `1k+`.
+
+<ArgTypes of={CounterStories} />
+
+## Counter variants
+
+Counters come in **4 stylistic variants**:
+`default`, `primary`, `highlight` and `subtle`.
+
+The `subtle` variant has a transparent background.
+
+```html
+<!-- variant="default" is the default and can be omitted -->
+<a-counter>312</a-counter>
+<a-counter variant="default">312</a-counter>
+<a-counter variant="primary">312</a-counter>
+<a-counter variant="highlight">312</a-counter>
+<a-counter variant="subtle">312</a-counter>
+```
+
+<Canvas of={CounterStories.Default} />
+<Canvas of={CounterStories.Primary} />
+<Canvas of={CounterStories.Highlight} />
+<Canvas of={CounterStories.Subtle} />
+
+## Using the content prop
+
+```html
+<a-counter content="312"></a-counter>
+```
+
+An alternative way to set the content text is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are used, the slot content takes precedence.
+
+The following Counter is rendered with the `content` prop instead of slot content.
+
+<Canvas of={CounterStories.WContentProp} />

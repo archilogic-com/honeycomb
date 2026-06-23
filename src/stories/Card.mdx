@@ -1,0 +1,64 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as CardStories from './Card.stories'
+
+<Meta of={CardStories} />
+
+# Card
+
+```html
+<a-card href="/somewhere">...</a-card>
+<ACard @click="handleClick">...</ACard>
+```
+
+<ArgTypes of={CardStories} />
+
+## Rendering a button (HTMLButtonElement)
+
+If you attach a click handler to the Card component
+it will render as a `button` and will have interactive styles applied to it.
+
+<Canvas of={CardStories.Button} />
+
+## Rendering a link (HTMLAnchorElement)
+
+If the `href` attribute is set, the component will render as an `a` tag and will have interactive styles applied to it.
+
+<Canvas of={CardStories.Link} />
+
+### Usage with Vue Router
+
+To use `a-link` as a link with a `router-link` component, use the [custom](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#custom) prop):
+
+```html
+<router-link to="/about" custom v-slot="{ href, route, navigate }">
+  <a-card :href="href" @click="navigate">...</a-card>
+</router-link>
+```
+
+## Rendering a generic non-interactive element (HTMLDivElement)
+
+Without an `href` attribute nor a click handler, the Card component renders as a generic `div` element without interactive styles.
+
+<Canvas of={CardStories.Div} />
+
+## Active (selected) state
+
+To indicate the card is in an active (selected) state, set an `active` prop.
+
+<Canvas of={CardStories.Active} />
+
+## Custom styles and card content
+
+The Card component has only the minimal necessary styles applied to it.
+This means you have to add sizing styles and have freedom in adding card content.
+
+```html
+<a-card class="flex p-2">
+  <div class="heading-sm">I can be anything</div>
+  <a-logo></a-logo>
+</a-card>
+```
+
+<Canvas of={CardStories.Styling} />
+<Canvas of={CardStories.Content} />

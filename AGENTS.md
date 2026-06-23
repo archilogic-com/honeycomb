@@ -52,4 +52,4 @@ The design system's tokens live in the Tailwind preset (`tailwind/tailwind-prese
 
 ### Stories
 
-Every component has a story in `src/stories/` (mostly `.stories.mdx`, newer ones as `.stories.ts` + companion `.mdx` docs). Chromatic snapshots stories on every push, so visual changes to components will surface as Chromatic diffs requiring approval.
+Every component has a story in `src/stories/`. On Storybook 10 the legacy `.stories.mdx` format no longer exists: each component is a **CSF `.stories.ts`** (story definitions) plus an optional **companion `.mdx`** docs page that references those stories via `of={…}` (see `Toggle.stories.ts` + `Toggle.mdx`). MDX docs import blocks from `@storybook/addon-docs/blocks` (use `<ArgTypes>`, not the removed `ArgsTable`); interaction/`play` helpers import from `storybook/test`. Autodocs is enabled globally via `tags: ['autodocs']` in `.storybook/preview.ts`. Chromatic snapshots stories on every push, so visual changes to components will surface as Chromatic diffs requiring approval.

@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as SkeletonStories from './Skeleton.stories'
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+```html
+<a-skeleton />
+<ASkeleton />
+```
+
+<ArgTypes of={SkeletonStories} />
+
+## Line variant (default)
+
+The line skeleton loader will take the full width of its container, but its height stays the same, `0.5rem`/`8px`.
+You can provide the required width and height class to the component.
+There are 4 allowed height values for the skeleton line corresponding to our spacing scale:
+
+- `4` 16px/1rem
+- `6` 24px/1.5rem
+- `8` 32px/2rem
+- `10` 40px/2.5rem
+
+```html
+<a-skeleton class="h-4" />
+<a-skeleton class="h-6" />
+<a-skeleton class="h-8" />
+<a-skeleton class="h-10" />
+```
+
+The width of the element can be controlled the same way:
+
+```html
+<a-skeleton class="w-full" />
+<a-skeleton class="w-3/4" />
+<a-skeleton class="w-1/2" />
+<a-skeleton class="w-1/4" />
+```
+
+<Canvas of={SkeletonStories.SkeletonLineSm} />
+<Canvas of={SkeletonStories.SkeletonLineMd} />
+<Canvas of={SkeletonStories.SkeletonLineLg} />
+<Canvas of={SkeletonStories.SkeletonLineXl} />
+
+## Block variant
+
+The block skeleton loader will take the full width and height of its container.
+Just provide the required width and height class to the component.
+
+```html
+<a-skeleton variant="block" class="h-[140px] w-[300px]" />
+```
+
+<Canvas of={SkeletonStories.SkeletonBlock} />

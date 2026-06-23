@@ -35,7 +35,7 @@ function renderWithCombobox(props: {
   })
 }
 
-function getHeaderCheckbox(container: HTMLElement): HTMLInputElement {
+function getHeaderCheckbox(container: Element): HTMLInputElement {
   const header = container.querySelector('.a-selectable-option-group__header')
   if (!header) throw new Error('Header not found')
   const checkbox = header.querySelector('input[type="checkbox"]') as HTMLInputElement

@@ -1,0 +1,96 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as PopupStories from './Popup.stories'
+
+<Meta of={PopupStories} />
+
+# Popup
+
+`<a-popup>` is a component for arbitrary content to be displayed in a floating panel.
+It manages its own open state, and has a slot for `<a-popup-button>` component that serves
+as the trigger and the visual anchor of the popup.
+
+<ArgTypes of={PopupStories} />
+
+## Basic example
+
+<Canvas of={PopupStories.Basic} />
+
+## Closing the popup
+
+By default, the popup panel will not close when elements inside of it are clicked.
+To close the popup, use the `close` slot prop from the default slot.
+The popup can also be closed by pressing the `Esc` key, by clicking anywhere outside the popup,
+or pressing the popup button again.
+
+```html
+<a-popup>
+  <template #button="{open, aria}">
+    <APopupButton :open="open" v-bind="aria">Filters</APopupButton>
+  </template>
+  <template #default="{close}">
+    <div>
+      ...
+      <button @click="close">Close</button>
+    </div>
+  </template>
+</a-popup>
+```
+
+<Canvas of={PopupStories.Close} />
+
+## Open by default
+
+The popup component will be open on render if the `open` prop is set to `true`.
+
+```html
+<a-popup open>…</a-popup>
+```
+
+<Canvas of={PopupStories.OpenByDefault} />
+
+## Vertical direction and horizontal alignment
+
+The popup can open upwards instead of downwards (default).
+
+```html
+<a-popup direction="up">…</a-popup>
+```
+
+<Canvas of={PopupStories.OpeningUpwards} />
+
+Its floating panel is normally aligned with the left edge of the trigger button,
+but it can be configured to be right-aligned with the `align` prop.
+
+```html
+<a-app-menu align="right">…</a-app-menu>
+```
+
+<Canvas of={PopupStories.RightAligned} />
+
+## Combobox inside Popup panel
+
+Use a special `<a-popup-combobox>` component for rendering a combobox inside the popup panel.
+It renders `<a-popup>` (and accepts the same props) with the `<a-panel-combobox>` component as the popup panel.
+The default slot expects a `<a-combobox>` component to which the slot props should be bound.
+
+```html
+<APopupCombobox>
+  <template #button="{ open, aria }">
+    <APopupButton :open="open" v-bind="aria">Add team members</APopupButton>
+  </template>
+  <template #default="{close, comboboxProps}">
+    <!-- optional: use the `close()` method to close the popup programmatically-->
+    <ACombobox
+      v-bind="comboboxProps"
+      v-model="selectedMembers"
+      placeholder="Search members"
+      :options="users" />
+  </template>
+</APopupCombobox>
+```
+
+See the full example code
+[here](https://github.com/archilogic-com/ui-components/blob/main/src/examples/PopupComboboxExample.vue).
+
+<Canvas of={PopupStories.ComboboxPopup} />

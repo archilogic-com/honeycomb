@@ -1,0 +1,157 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import { ACheckboxSelectAll } from '../components'
+import * as CheckboxStories from './Checkbox.stories'
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+```html
+<a-checkbox v-model="yourValue">Send me the spam</a-checkbox>
+<ACheckbox v-model="yourValue">Send me the spam</ACheckbox>
+```
+
+For this component to render properly, you need to import the stylesheet:
+
+```js
+import '@archilogic/honeycomb/css'
+```
+
+`ACheckbox` renders a native HTML `<input type="checkbox"/>` wrapped in a `<label>`.
+All the attributes will be bound to the input element.
+You can use the `label` prop or the `#default` slot to add the labelling text.
+
+<ArgTypes of={CheckboxStories} />
+
+## Data binding
+
+### Using with v-model (recommended)
+
+This component is designed as a **controlled** component, meaning that it does not hold its own state,
+but relies on the value provided by `v-model` instead.
+See [Vue docs on v-model](https://vuejs.org/guide/components/events.html#usage-with-v-model).
+
+```html
+<a-checkbox label="My Checkbox" v-model="yourValue" />
+<a-checkbox label="My Checkbox" v-model="yourValue" mixed />
+<a-checkbox label="My Checkbox" v-model="yourValue" disabled />
+```
+
+Any extra attributes (e.g. `disabled`) will be passed down to the `<input/>` element.
+
+<Canvas of={CheckboxStories.CheckboxOn} />
+<Canvas of={CheckboxStories.CheckboxOff} />
+<Canvas of={CheckboxStories.CheckboxMixed} />
+<Canvas of={CheckboxStories.CheckboxOnDisabled} />
+<Canvas of={CheckboxStories.CheckboxOffDisabled} />
+<Canvas of={CheckboxStories.CheckboxMixedDisabled} />
+
+### Using an array for multiple checkboxes
+
+Just like with regular HTML input, you can have multiple checkboxes, bound to the same array.
+In this case, remember to set the `value` attribute on each checkbox.
+
+<Canvas of={CheckboxStories.MultipleCheckboxes} />
+
+### Using with the event listener
+
+If using `v-model` doesn't fit your needs, pass a `modelValue` prop and update it accordingly on `update:modelValue` event.
+
+```html
+<!-- in your template -->
+<a-checkbox :model-value="checkboxState" @update:model-value="handleChange" />
+```
+
+```js
+// in your component's setup
+const checkboxState = ref(true)
+const handleChange = newValue => {
+  checkboxState.value = newValue
+}
+```
+
+## Labelling the checkbox
+
+There are several way to go about providing the label for this component.
+Bare in mind, that you **must** provide a label in one of the following ways:
+
+### Setting the `label` prop
+
+Simply pass a string that will be the label. Default styles will be applied to it automatically.
+
+```html
+<a-checkbox label="My Checkbox" v-model="yourValue" />
+```
+
+<Canvas of={CheckboxStories.CheckboxWithLabelProp} />
+<Canvas of={CheckboxStories.CheckboxWithLongLabelProp} />
+
+### Using the default slot
+
+This is useful if you need custom styling or extra markup in the label.
+
+```html
+<a-checkbox v-model="yourValue"><p class="body-sm-600">My Checkbox</p></a-checkbox>
+```
+
+<Canvas of={CheckboxStories.CheckboxWithDefaultSlot} />
+
+### Using a hidden label
+
+Sometimes you don't want to render a text label, but the checkbox still needs to be labelled
+for assistive technologies (also useful for testing). A good example of this use case
+are "select all" checkboxes in a table.
+
+```html
+<a-checkbox v-model="checkboxState" label="Select all" hide-label />
+```
+
+<Canvas of={CheckboxStories.CheckboxWithHiddenLabel} />
+
+## `indeterminate` state
+
+Sometimes a checkbox is in an [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes),
+(e.g. "select all" functionality).
+In this case, you can set the `mixed` prop to `true`.
+Note that it overrides the `v-model` value and you'll need
+a custom event listener to handle these state updates correctly.
+
+<Canvas of={CheckboxStories.CheckboxWithMixedState} />
+
+Below is the same example implemented with a handy `<a-checkbox-select-all>` component.
+
+<ArgTypes of={ACheckboxSelectAll} />
+
+<Canvas of={CheckboxStories.SelectAllCheckbox} />
+
+### Using custom slot content
+
+You can use the default slot to provide custom label markup instead of the `label` prop.
+The slot content takes precedence over the `label` prop when both are provided.
+
+```html
+<a-checkbox-select-all
+  :selected-size="selected.length"
+  :items-size="options.length"
+  @select="selectAll"
+  @clear="clearSelection">
+  <span class="body-sm-600">Select All ({{ selected.length }}/{{ options.length }})</span>
+</a-checkbox-select-all>
+```
+
+<Canvas of={CheckboxStories.SelectAllWithCustomSlot} />
+
+## Readonly (controlled) checkbox
+
+If you want your checkbox to be readonly, that is not to update its own model value
+but instead only display some current state, perhaps controlled by another component
+(parent or sibling), set `readonly` prop to `true`.
+
+It makes the checkbox unreachable via keyboard navigation or pointer events.
+
+```html
+<a-checkbox :model-value="someState" label="Controlled checkbox" readonly />
+```
+
+<Canvas of={CheckboxStories.ReadonlyCheckbox} />

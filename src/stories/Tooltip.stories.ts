@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { ATooltip, AButton } from '../components'
-import { userEvent, waitFor, within } from '@storybook/testing-library'
+import { userEvent, waitFor, within } from 'storybook/test'
 
 type TooltipProps = ComponentProps<typeof ATooltip>
 
