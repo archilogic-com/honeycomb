@@ -32,7 +32,7 @@ export default defineComponent({
 </script>
 <template>
   <span class="flex py-1 body-xs" :class="colorClass">
-    <AIcon v-if="variant === 'error'" class="mr-1" name="Warning" size="sm"></AIcon>
+    <AIcon v-if="variant === 'error'" class="mr-1" icon="warning-sm"></AIcon>
     <slot>{{ content }}</slot>
   </span>
 </template>

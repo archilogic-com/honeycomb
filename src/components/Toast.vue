@@ -98,7 +98,7 @@ export default defineComponent({
       v-if="dismissible"
       variant="subtle"
       label="Dismiss"
-      icon="Close"
+      icon="close-md"
       class="md:ml-6"
       :class="{
         'text-warsaw': variant === 'default',

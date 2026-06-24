@@ -40,7 +40,7 @@ const renderTooltip = (args: ComponentProps<TooltipProps>) => ({
   },
   template: `
   <ATooltip v-bind="args" v-slot="slotProps">
-    <a-button v-bind="slotProps" icon="User" size="md"></a-button>
+    <a-button v-bind="slotProps" icon="user-md" size="md"></a-button>
   </ATooltip>`
 })
 

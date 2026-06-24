@@ -242,7 +242,7 @@ export default defineComponent({
           "></KeyboardShortcut>
       </div>
       <template v-if="$slots.submenu">
-        <a-icon name="MenuChevronRight" size="other" class="mr-2"></a-icon>
+        <a-icon icon="menu-chevron-right-other" class="mr-2"></a-icon>
         <div
           v-if="isSubmenuOpen"
           ref="submenu"

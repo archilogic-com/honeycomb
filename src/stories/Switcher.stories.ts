@@ -109,8 +109,8 @@ export const IconOptions: Story = {
   render: renderSwitcher,
   args: {
     options: [
-      { label: 'Basic search', value: 'basic', icon: 'Search' },
-      { label: 'AI search', value: 'ai', icon: 'Ai' }
+      { label: 'Basic search', value: 'basic', icon: 'search-sm' },
+      { label: 'AI search', value: 'ai', icon: 'ai-sm' }
     ],
     label: 'Search type'
   }
@@ -135,7 +135,7 @@ export const UsingSlots: Story = {
     },
     template: `
       <ASwitcher v-model="selected" v-bind="args">
-        <template #ai><a-icon name="ai" size="sm" class="mr-1"/> AI search</template>
+        <template #ai><a-icon icon="ai-sm" class="mr-1"/> AI search</template>
       </ASwitcher>`
   }),
   args: {

@@ -52,7 +52,7 @@ export default defineComponent({
       <span class="flex-1 truncate text-left">
         <slot name="title">{{ title }}</slot>
       </span>
-      <AIcon :name="isOpen ? 'Hide' : 'Expand'" size="md" />
+      <AIcon :icon="isOpen ? 'hide-md' : 'expand-md'" />
     </summary>
     <slot name="default" />
   </details>
