@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.1.0-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.26.0-beta.1...v3.1.0-beta.1) (2026-06-24)
+
+
+### Features
+
+* migrate Tailwind CSS v3 to v4 ([#330](https://github.com/archilogic-com/honeycomb/issues/330)) ([47a425d](https://github.com/archilogic-com/honeycomb/commit/47a425dab233f0046f6bee6e978da5266d35300e))
+
 # [2.26.0-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.25.0...v2.26.0-beta.1) (2026-06-23)
 
 
