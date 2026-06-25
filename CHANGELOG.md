@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.1.0-beta.2](https://github.com/archilogic-com/honeycomb/compare/v3.1.0-beta.1...v3.1.0-beta.2) (2026-06-25)
+
+
+### Features
+
+* replace icon name/size props with type-safe icon identifiers ([#332](https://github.com/archilogic-com/honeycomb/issues/332)) ([c83d412](https://github.com/archilogic-com/honeycomb/commit/c83d4126fbcda2f8daa4aa210dba6d1ed8269f66))
+
 # [3.1.0-beta.1](https://github.com/archilogic-com/honeycomb/compare/v2.26.0-beta.1...v3.1.0-beta.1) (2026-06-24)
 
 
