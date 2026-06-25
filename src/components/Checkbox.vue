@@ -80,7 +80,7 @@ export default defineComponent({
     <span
       aria-hidden="true"
       class="custom-mark pointer-events-none absolute hidden p-[3px] text-white">
-      <AIcon :name="mixed ? 'CheckboxIndeterminate' : 'CheckboxCheck'" size="other"></AIcon>
+      <AIcon :icon="mixed ? 'checkbox-indeterminate-other' : 'checkbox-check-other'"></AIcon>
     </span>
     <!--
       @slot Use the default slot to add a label to the checkbox. 

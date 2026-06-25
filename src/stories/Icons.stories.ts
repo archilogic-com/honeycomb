@@ -32,7 +32,7 @@ const render = (args: IconArgs) => ({
   <div class="grid grid-cols-4">
     <div class="m-4 flex flex-col text-navy" v-for="(icon, name) in icons.${args.size}">
       <div class="flex items-center">
-        <a-icon :size="args.size" :name="name" />
+        <a-icon :icon="getIconId(name)" />
         <span class="ml-3 body-md">{{name}}</span>
         <span v-if="DEPRECATED_ICONS[args.size].includes(name)" class="text-error body-xs-600 mx-1">(deprecated)</span>
       </div>

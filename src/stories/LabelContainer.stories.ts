@@ -174,7 +174,7 @@ export const LabelSlot: Story = {
   render,
   args: {
     value: 'abcdefg123456',
-    labelSlot: `<a-icon class="mr-1" name="flag" size="sm"/> Important key`,
+    labelSlot: `<a-icon class="mr-1" icon="flag-sm"/> Important key`,
     align: 'col'
   }
 }
@@ -194,7 +194,7 @@ export const DefaultWithButton: Story = {
   render,
   args: {
     ...defaultArgs,
-    default: `<div class="flex items-center overflow-hidden"><span class="truncate">1234567890-098765432-0865434567876543</span><a-button variant="subtle" icon="Copy" label="Copy ID"></a-button></div>`
+    default: `<div class="flex items-center overflow-hidden"><span class="truncate">1234567890-098765432-0865434567876543</span><a-button variant="subtle" icon="copy-md" label="Copy ID"></a-button></div>`
   }
 }
 

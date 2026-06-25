@@ -78,7 +78,7 @@ export const StandardWIcon: Story = {
   name: 'standard w/ icon',
   render,
   args: {
-    default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    default: 'Standard <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -87,7 +87,7 @@ export const PrimaryWIcon: Story = {
   render,
   args: {
     variant: 'primary',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    default: 'Primary <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -96,7 +96,7 @@ export const SubtleWIcon: Story = {
   render,
   args: {
     variant: 'subtle',
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    default: 'Subtle <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -134,7 +134,7 @@ export const StandardPressedWIcon: Story = {
   render,
   args: {
     pressed: true,
-    default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    default: 'Standard <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -144,7 +144,7 @@ export const PrimaryPressedWIcon: Story = {
   args: {
     variant: 'primary',
     pressed: true,
-    default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    default: 'Primary <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -154,7 +154,7 @@ export const SubtlePressedWIcon: Story = {
   args: {
     variant: 'subtle',
     pressed: true,
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    default: 'Subtle <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -191,7 +191,7 @@ export const StandardDisabledWIcon: Story = {
   name: 'standard disabled w/ icon',
   render,
   args: {
-    default: 'Standard <a-icon name="ChevronDown" size="other" />',
+    default: 'Standard <a-icon icon="chevron-down-other" />',
     disabled: true
   }
 }
@@ -201,7 +201,7 @@ export const PrimaryDisabledWIcon: Story = {
   render,
   args: {
     variant: 'primary',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />',
+    default: 'Primary <a-icon icon="chevron-down-other" />',
     disabled: true
   }
 }
@@ -211,7 +211,7 @@ export const SubtleDisabledWIcon: Story = {
   render,
   args: {
     variant: 'subtle',
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+    default: 'Subtle <a-icon icon="chevron-down-other" />',
     disabled: true
   }
 }
@@ -249,7 +249,7 @@ export const StandardLoadingWIcon: Story = {
   name: 'standard loading w/ icon',
   render,
   args: {
-    default: 'Standard <a-icon name="ChevronDown" size="other" />',
+    default: 'Standard <a-icon icon="chevron-down-other" />',
     loading: true
   }
 }
@@ -259,7 +259,7 @@ export const PrimaryLoadingWIcon: Story = {
   render,
   args: {
     variant: 'primary',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />',
+    default: 'Primary <a-icon icon="chevron-down-other" />',
     loading: true
   }
 }
@@ -269,7 +269,7 @@ export const SubtleLoadingWIcon: Story = {
   render,
   args: {
     variant: 'subtle',
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+    default: 'Subtle <a-icon icon="chevron-down-other" />',
     loading: true
   }
 }
@@ -309,7 +309,7 @@ export const StandardLargeWIcon: Story = {
   render,
   args: {
     size: 'lg',
-    default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    default: 'Standard <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -319,7 +319,7 @@ export const PrimaryLargeWIcon: Story = {
   args: {
     variant: 'primary',
     size: 'lg',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    default: 'Primary <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -329,7 +329,7 @@ export const SubtleLargeWIcon: Story = {
   args: {
     variant: 'subtle',
     size: 'lg',
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    default: 'Subtle <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -372,7 +372,7 @@ export const StandardLargePressedWIcon: Story = {
   args: {
     size: 'lg',
     pressed: true,
-    default: 'Standard <a-icon name="ChevronDown" size="other" />'
+    default: 'Standard <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -383,7 +383,7 @@ export const PrimaryLargePressedWIcon: Story = {
     variant: 'primary',
     size: 'lg',
     pressed: true,
-    default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    default: 'Primary <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -394,7 +394,7 @@ export const SubtleLargePressedWIcon: Story = {
     variant: 'subtle',
     size: 'lg',
     pressed: true,
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />'
+    default: 'Subtle <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -435,7 +435,7 @@ export const StandardLargeDisabledWIcon: Story = {
   render,
   args: {
     size: 'lg',
-    default: 'Standard <a-icon name="ChevronDown" size="other" />',
+    default: 'Standard <a-icon icon="chevron-down-other" />',
     disabled: true
   }
 }
@@ -446,7 +446,7 @@ export const PrimaryLargeDisabledWIcon: Story = {
   args: {
     variant: 'primary',
     size: 'lg',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />',
+    default: 'Primary <a-icon icon="chevron-down-other" />',
     disabled: true
   }
 }
@@ -457,7 +457,7 @@ export const SubtleLargeDisabledWIcon: Story = {
   args: {
     variant: 'subtle',
     size: 'lg',
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+    default: 'Subtle <a-icon icon="chevron-down-other" />',
     disabled: true
   }
 }
@@ -499,7 +499,7 @@ export const StandardLargeLoadingWIcon: Story = {
   render,
   args: {
     size: 'lg',
-    default: 'Standard <a-icon name="ChevronDown" size="other" />',
+    default: 'Standard <a-icon icon="chevron-down-other" />',
     loading: true
   }
 }
@@ -510,7 +510,7 @@ export const PrimaryLargeLoadingWIcon: Story = {
   args: {
     variant: 'primary',
     size: 'lg',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />',
+    default: 'Primary <a-icon icon="chevron-down-other" />',
     loading: true
   }
 }
@@ -521,7 +521,7 @@ export const SubtleLargeLoadingWIcon: Story = {
   args: {
     variant: 'subtle',
     size: 'lg',
-    default: 'Subtle <a-icon name="ChevronDown" size="other" />',
+    default: 'Subtle <a-icon icon="chevron-down-other" />',
     loading: true
   }
 }
@@ -548,7 +548,7 @@ export const Icon: Story = {
   name: 'icon',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-md',
     label: 'Menu'
   }
 }
@@ -558,7 +558,7 @@ export const IconPrimary: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-md',
     label: 'Menu'
   }
 }
@@ -568,7 +568,7 @@ export const IconSubtle: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-md',
     label: 'Menu'
   }
 }
@@ -577,7 +577,7 @@ export const IconLg: Story = {
   name: 'icon lg',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-lg',
     label: 'Menu',
     size: 'lg'
   }
@@ -588,7 +588,7 @@ export const IconLgPrimary: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     label: 'Menu'
   }
@@ -599,7 +599,7 @@ export const IconLgSubtle: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     label: 'Menu'
   }
@@ -609,7 +609,7 @@ export const IconPressed: Story = {
   name: 'icon pressed',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-md',
     pressed: true,
     label: 'Menu'
   }
@@ -620,7 +620,7 @@ export const IconPrimaryPressed: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-md',
     pressed: true,
     label: 'Menu'
   }
@@ -631,7 +631,7 @@ export const IconSubtlePressed: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-md',
     pressed: true,
     label: 'Menu'
   }
@@ -641,7 +641,7 @@ export const IconLgPressed: Story = {
   name: 'icon lg pressed',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     pressed: true,
     label: 'Menu'
@@ -653,7 +653,7 @@ export const IconLgPrimaryPressed: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     pressed: true,
     label: 'Menu'
@@ -665,7 +665,7 @@ export const IconLgSubtlePressed: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     pressed: true,
     label: 'Menu'
@@ -676,7 +676,7 @@ export const IconDisabled: Story = {
   name: 'icon disabled',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-md',
     disabled: true,
     label: 'Menu'
   }
@@ -687,7 +687,7 @@ export const IconPrimaryDisabled: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-md',
     disabled: true,
     label: 'Menu'
   }
@@ -698,7 +698,7 @@ export const IconSubtleDisabled: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-md',
     disabled: true,
     label: 'Menu'
   }
@@ -708,7 +708,7 @@ export const IconLgDisabled: Story = {
   name: 'icon lg disabled',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-lg',
     disabled: true,
     size: 'lg',
     label: 'Menu'
@@ -720,7 +720,7 @@ export const IconLgPrimaryDisabled: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     disabled: true,
     label: 'Menu'
@@ -732,7 +732,7 @@ export const IconLgSubtleDisabled: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     disabled: true,
     label: 'Menu'
@@ -743,7 +743,7 @@ export const IconLoading: Story = {
   name: 'icon loading',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-md',
     loading: true,
     label: 'Menu'
   }
@@ -754,7 +754,7 @@ export const IconPrimaryLoading: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-md',
     loading: true,
     label: 'Menu'
   }
@@ -765,7 +765,7 @@ export const IconSubtleLoading: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-md',
     loading: true,
     label: 'Menu'
   }
@@ -775,7 +775,7 @@ export const IconLgLoading: Story = {
   name: 'icon lg loading',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-lg',
     loading: true,
     size: 'lg',
     label: 'Menu'
@@ -787,7 +787,7 @@ export const IconLgPrimaryLoading: Story = {
   render,
   args: {
     variant: 'primary',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     loading: true,
     label: 'Menu'
@@ -799,7 +799,7 @@ export const IconLgSubtleLoading: Story = {
   render,
   args: {
     variant: 'subtle',
-    icon: 'Burger',
+    icon: 'burger-lg',
     size: 'lg',
     loading: true,
     label: 'Menu'
@@ -810,7 +810,7 @@ export const IconSm: Story = {
   name: 'icon sm',
   render,
   args: {
-    icon: 'Close',
+    icon: 'close-sm',
     size: 'sm'
   }
 }
@@ -819,7 +819,7 @@ export const IconOther: Story = {
   name: 'icon other',
   render,
   args: {
-    icon: 'Padlock',
+    icon: 'padlock-other',
     size: 'auto'
   }
 }
@@ -830,7 +830,7 @@ export const IconAuto: Story = {
   args: {
     label: 'Lock item',
     size: 'auto',
-    default: '<a-icon name="Padlock" size="other" />'
+    default: '<a-icon icon="padlock-other" />'
   }
 }
 
@@ -866,7 +866,7 @@ export const PrimaryWLabelPropAndSlotContent: Story = {
   args: {
     variant: 'primary',
     label: 'Primary Menu',
-    default: 'Primary <a-icon name="ChevronDown" size="other" />'
+    default: 'Primary <a-icon icon="chevron-down-other" />'
   }
 }
 
@@ -913,7 +913,7 @@ export const IconWHref: Story = {
   name: 'icon w/ href',
   render,
   args: {
-    icon: 'Burger',
+    icon: 'burger-lg',
     title: 'Menu',
     size: 'lg',
     href: '/?path=/story/components-button--standard'

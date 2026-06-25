@@ -50,7 +50,7 @@ describe('Button.vue', () => {
   describe('when the "icon" prop and the "label" prop are present', () => {
     it('sets "aria-label" attribute to the value of the "label" prop', () => {
       const { getByRole } = render(Button, {
-        props: { label: 'Label', size: 'md', icon: 'More' }
+        props: { label: 'Label', size: 'md', icon: 'more-md' }
       })
       expect(getByRole('button')).toHaveAttribute('aria-label', 'Label')
     })

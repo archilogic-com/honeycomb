@@ -133,10 +133,10 @@ depending on the button's slot content.
 Recommended usage:
 
 ```html
-<a-button size="md" label="Settings" icon="Menu"></a-button>
+<a-button size="md" label="Settings" icon="settings-md"></a-button>
 ```
 
-The icon size will be the same as the value of the button's `size` prop.
+The `icon` prop takes a type-safe identifier in `name-size` format (e.g. `settings-md`).
 It is highly recommended to provide a `label` prop for accessible labelling of the icon button.
 
 <Canvas of={ButtonStories.Icon} />
@@ -185,7 +185,7 @@ and set button size to "auto".
 <a-button label="Button"></a-button>
 <a-button label="Primary Menu">
   Primary
-  <a-icon name="ChevronDown" size="other" />
+  <a-icon icon="chevron-down-other" />
 </a-button>
 ```
 

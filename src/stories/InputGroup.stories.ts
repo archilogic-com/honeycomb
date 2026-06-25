@@ -191,11 +191,11 @@ export const LabelAndHelperSlots: Story = {
     },
     template: `
         <AInputGroup v-bind="args" class="w-[300px]">
-          <template #label> <a-icon class="mr-1" name="user" size="sm"/> Label with an icon </template>
+          <template #label> <a-icon class="mr-1" icon="user-sm"/> Label with an icon </template>
           <template #input="{labelledby, describedby}">
             <a-text-input  v-model="myValue" :aria-labelledby="labelledby" :aria-describedby="describedby" />
           </template>
-          <template #helper> Helper needs an icon <a-icon class="ml-1" name="flag" size="sm"/></template>
+          <template #helper> Helper needs an icon <a-icon class="ml-1" icon="flag-sm"/></template>
         </AInputGroup>`
   })
 }

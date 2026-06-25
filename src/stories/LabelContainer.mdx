@@ -80,13 +80,13 @@ Likewise, the `#default` slot can be used to add custom markup to the value (e.g
 ```html
 <a-label-container label="Width" :value="value">
   <template #label>
-    <a-icon class="mr-1" name="flag" size="sm" />
+    <a-icon class="mr-1" icon="flag-sm" />
     Important key
   </template>
   <template #default>
     <div class="flex">
       1234567890
-      <a-button variant="subtle" icon="copy" size="sm" label="Copy ID"></a-button>
+      <a-button variant="subtle" icon="copy-md" size="sm" label="Copy ID"></a-button>
     </div>
   </template>
 </a-label-container>

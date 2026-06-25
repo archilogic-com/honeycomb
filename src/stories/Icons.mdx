@@ -35,13 +35,16 @@ The `icon` prop accepts kebab-case identifiers like:
 <a-icon icon="burger-sm" />    // Error: 'burger-sm' is not assignable to IconIdentifier
 ```
 
-## Legacy Usage (Deprecated)
+## Migration from `name` / `size`
 
-The `name` and `size` props still work but are deprecated. They don't provide compile-time validation of valid combinations.
+The legacy `name` and `size` props have been **removed**. Use the type-safe `icon` prop instead — combine the (kebab-cased) icon name and size with a dash:
 
 ```html
-<!-- Deprecated: use icon="folder-sm" instead -->
+<!-- Before (removed) -->
 <a-icon size="sm" name="Folder" />
+
+<!-- After -->
+<a-icon icon="folder-sm" />
 ```
 
 ## Icons sm (16x16px)

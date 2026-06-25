@@ -77,7 +77,7 @@ export default defineComponent({
       :aria-label="removeLabel"
       :disabled="!!attrs.disabled"
       @click="$emit('remove', $event)">
-      <AIcon name="close" size="sm"></AIcon>
+      <AIcon icon="close-sm"></AIcon>
     </button>
   </div>
 </template>

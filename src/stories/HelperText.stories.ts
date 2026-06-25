@@ -59,7 +59,7 @@ export const WCustomMarkup: Story = {
   name: 'w/ custom markup',
   render,
   args: {
-    default: '<a-icon size="sm" name="check" class=" mr-1"/>This is a message with a checkmark',
+    default: '<a-icon icon="check-sm" class=" mr-1"/>This is a message with a checkmark',
     class: 'w-[10rem]'
   }
 }

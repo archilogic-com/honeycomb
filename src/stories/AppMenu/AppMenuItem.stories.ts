@@ -128,7 +128,7 @@ export const IconIndicator: Story = {
           <AAppMenuItem>Name</AAppMenuItem>
           <AAppMenuItem>
             <template #icon>
-              <AIcon name="ArrowUp" size="sm" />
+              <AIcon icon="arrow-up-sm" />
             </template>
             Date
           </AAppMenuItem>
@@ -288,7 +288,7 @@ export const SubmenuSlot: Story = {
     template: `
         <AAppMenu>
           <template #menu-button="{open, aria}">
-            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="burger-lg" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>Go to dashboard</AAppMenuItem>
           <AAppMenuItem>
@@ -332,7 +332,7 @@ export const SubmenuScrolling: Story = {
     template: `
         <AAppMenu>
           <template #menu-button="{open, aria}">
-            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="burger-lg" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>
             Labels
@@ -364,7 +364,7 @@ export const SubmenuDisabled: Story = {
     template: `
         <AAppMenu>
           <template #menu-button="{open, aria}">
-            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="burger-lg" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>Go to dashboard</AAppMenuItem>
           <AAppMenuItem disabled>
@@ -392,7 +392,7 @@ export const SubmenuNested: Story = {
     template: `
         <AAppMenu>
           <template #menu-button="{open, aria}">
-            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="burger-lg" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>Go to dashboard</AAppMenuItem>
           <AAppMenuItem>
@@ -434,7 +434,7 @@ export const SubmenuRepositioning: Story = {
     template: `
         <AAppMenu align="right" class="ml-auto">
           <template #menu-button="{open}">
-            <AAppMenuButton :open="open" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+            <AAppMenuButton :open="open" size="lg" icon="burger-lg" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem>Go to dashboard</AAppMenuItem>
           <AAppMenuItem>

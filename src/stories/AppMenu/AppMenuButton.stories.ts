@@ -57,7 +57,7 @@ export const Primary: Story = {
 export const IconButton: Story = {
   ...Primary,
   args: {
-    icon: 'More',
+    icon: 'more-lg',
     label: 'Actions'
   }
 }
@@ -69,7 +69,7 @@ export const TextAndIcon: Story = {
   ...Primary,
   args: {
     ...Primary.args,
-    default: `Edit <a-icon name="ChevronDown" size="other" />`
+    default: `Edit <a-icon icon="chevron-down-other" />`
   }
 }
 

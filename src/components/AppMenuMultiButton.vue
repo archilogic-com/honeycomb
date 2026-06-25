@@ -53,7 +53,7 @@ export default defineComponent({
         'text-primary': open || pressed,
         'left-0 justify-end pt-[2px]': open
       }">
-      <AIcon name="ChevronDown" size="other" class="mx-[2px]" />
+      <AIcon icon="chevron-down-other" class="mx-[2px]" />
     </button>
   </div>
 </template>
