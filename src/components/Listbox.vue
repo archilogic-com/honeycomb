@@ -7,7 +7,7 @@
     ModelValue extends string = string
   ">
 import { ref, computed, useAttrs } from 'vue'
-import { Listbox, ListboxButton } from '@headlessui/vue'
+import { Listbox as HlListbox, ListboxButton } from '@headlessui/vue'
 import AColorCircle from './ColorCircle.vue'
 import OptionsPanel, { type Direction } from './internal/OptionsPanel.vue'
 import FloatingArrow from './internal/FloatingArrow.vue'
@@ -113,7 +113,7 @@ const valueOptionColor = computed(() => {
 })
 </script>
 <template>
-  <Listbox v-model="model" as="div" class="group" :class="{ relative: !escapeOverflow }">
+  <HlListbox v-model="model" as="div" class="group" :class="{ relative: !escapeOverflow }">
     <ListboxButton
       ref="listboxButton"
       class="a-text-input flex items-center group-focus-within:a-text-input-focus"
@@ -154,5 +154,5 @@ const valueOptionColor = computed(() => {
       @keyup="handleTab">
       <slot></slot>
     </OptionsPanel>
-  </Listbox>
+  </HlListbox>
 </template>
