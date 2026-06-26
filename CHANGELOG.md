@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.1.0-beta.3](https://github.com/archilogic-com/honeycomb/compare/v3.1.0-beta.2...v3.1.0-beta.3) (2026-06-26)
+
+
+### Features
+
+* **build:** drop CJS output and emit flattened ESM type declarations ([#333](https://github.com/archilogic-com/honeycomb/issues/333)) ([63d0c99](https://github.com/archilogic-com/honeycomb/commit/63d0c99f65b82f2365ef02cd764e09318507bee8))
+
 # [3.1.0-beta.2](https://github.com/archilogic-com/honeycomb/compare/v3.1.0-beta.1...v3.1.0-beta.2) (2026-06-25)
 
 
