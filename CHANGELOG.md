@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.1.0](https://github.com/archilogic-com/honeycomb/compare/v2.25.0...v3.1.0) (2026-06-26)
+
+
+### Features
+
+* **build:** drop CJS output and emit flattened ESM type declarations ([#333](https://github.com/archilogic-com/honeycomb/issues/333)) ([63d0c99](https://github.com/archilogic-com/honeycomb/commit/63d0c99f65b82f2365ef02cd764e09318507bee8))
+* migrate Tailwind CSS v3 to v4 ([#330](https://github.com/archilogic-com/honeycomb/issues/330)) ([47a425d](https://github.com/archilogic-com/honeycomb/commit/47a425dab233f0046f6bee6e978da5266d35300e))
+* migrate Vite 5 to 8 and Vitest 2 to 4.1 ([#329](https://github.com/archilogic-com/honeycomb/issues/329)) ([be8a56e](https://github.com/archilogic-com/honeycomb/commit/be8a56e7d817bc4d923b3a7e45066a3f82a50d5d))
+* replace icon name/size props with type-safe icon identifiers ([#332](https://github.com/archilogic-com/honeycomb/issues/332)) ([c83d412](https://github.com/archilogic-com/honeycomb/commit/c83d4126fbcda2f8daa4aa210dba6d1ed8269f66))
+
 # [3.1.0-beta.3](https://github.com/archilogic-com/honeycomb/compare/v3.1.0-beta.2...v3.1.0-beta.3) (2026-06-26)
 
 

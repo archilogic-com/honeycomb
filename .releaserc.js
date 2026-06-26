@@ -4,7 +4,6 @@ const isPrerelease = branch.startsWith('test-') || branch === 'beta'
 export default {
   branches: [
     'main',
-    'next',
     {
       name: 'beta',
       prerelease: true
