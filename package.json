@@ -13,38 +13,36 @@
     "tailwind"
   ],
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/main.js",
-      "require": "./dist/main.cjs"
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js"
     },
     "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components/index.js",
-      "require": "./dist/components/index.cjs"
+      "types": "./dist/components.d.ts",
+      "import": "./dist/components.js"
     },
     "./composables": {
-      "types": "./dist/composables/index.d.ts",
-      "import": "./dist/composables/index.js",
-      "require": "./dist/composables/index.cjs"
+      "types": "./dist/composables.d.ts",
+      "import": "./dist/composables.js"
     },
     "./colors": {
-      "types": "./dist/colors/index.d.ts",
-      "import": "./dist/colors/index.js",
-      "require": "./dist/colors/index.cjs"
+      "types": "./dist/colors.d.ts",
+      "import": "./dist/colors.js"
     },
     "./dist/*": "./dist/*",
     "./tailwind/*": "./tailwind/*",
     "./tailwind": "./tailwind/index.css",
     "./css": "./dist/style.css"
   },
-  "main": "./dist/main.cjs",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "scripts": {
     "watch": "vite build --watch",
-    "build:component-types": "vue-tsc --emitDeclarationOnly --declaration -p tsconfig.build.json --outDir dist",
-    "build": "vite build && npm run build:component-types",
+    "build": "vite build",
     "prepublishOnly": "npm run build",
     "serve": "vite preview",
     "storybook": "storybook dev -p 6006",

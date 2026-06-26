@@ -15,10 +15,11 @@ export default defineConfig({
     lib: {
       entry: {
         main: './src/index.ts',
-        'components/index': './src/components/index.ts',
-        'composables/index': './src/composables/index.ts',
-        'colors/index': './src/colors/index.ts'
+        components: './src/components/index.ts',
+        composables: './src/composables/index.ts',
+        colors: './src/colors/index.ts'
       },
+      formats: ['es'],
       cssFileName: 'style'
     },
     rolldownOptions: {
@@ -40,7 +41,8 @@ export default defineConfig({
     vue(),
     tailwindcss(),
     dts({
-      tsconfigPath: './tsconfig.build.json'
+      tsconfigPath: './tsconfig.build.json',
+      rollupTypes: true
     }),
     svgLoader({
       svgo: false
