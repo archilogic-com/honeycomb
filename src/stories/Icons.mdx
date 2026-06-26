@@ -1,0 +1,101 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import { AIcon } from '../components'
+import * as IconsStories from './Icons.stories'
+
+<Meta of={IconsStories} />
+
+# Icons
+
+<ArgTypes of={AIcon} />
+
+## Type-Safe Usage (Recommended)
+
+Use the `icon` prop with the format `name-size` for type-safe icon selection. This ensures valid name+size combinations at compile time.
+
+```html
+<!-- Type-safe: invalid combinations will show TypeScript errors -->
+<a-icon icon="folder-sm" />
+<a-icon icon="check-md" />
+<a-icon icon="burger-lg" />
+<a-icon icon="add-other" />
+```
+
+The `icon` prop accepts kebab-case identifiers like:
+
+- `search-sm`, `folder-sm`, `check-sm` (small icons)
+- `search-md`, `folder-md`, `check-md` (medium icons)
+- `search-lg`, `burger-lg`, `pencil-lg` (large icons)
+- `add-other`, `warning-other` (other size icons)
+
+**TypeScript will catch invalid combinations:**
+
+```typescript
+<a-icon icon="check-other" />  // Error: 'check-other' is not assignable to IconIdentifier
+<a-icon icon="burger-sm" />    // Error: 'burger-sm' is not assignable to IconIdentifier
+```
+
+## Migration from `name` / `size`
+
+The legacy `name` and `size` props have been **removed**. Use the type-safe `icon` prop instead — combine the (kebab-cased) icon name and size with a dash:
+
+```html
+<!-- Before (removed) -->
+<a-icon size="sm" name="Folder" />
+
+<!-- After -->
+<a-icon icon="folder-sm" />
+```
+
+## Icons sm (16x16px)
+
+```html
+<a-icon icon="folder-sm" />
+```
+
+<Canvas of={IconsStories.Small} />
+
+## Icons md (32x32px)
+
+```html
+<a-icon icon="folder-md" />
+```
+
+<Canvas of={IconsStories.Medium} />
+
+## Icons lg (40x40px)
+
+```html
+<a-icon icon="burger-lg" />
+```
+
+<Canvas of={IconsStories.Large} />
+
+## Icons other (various sizes)
+
+```html
+<a-icon icon="add-other" />
+```
+
+<Canvas of={IconsStories.Other} />
+
+## Icon colors
+
+The icons' `fill` or `stroke` attribute is set to `currentColor` so they will match the parent container's text color.
+
+```html
+<div class="text-error">
+  <a-icon icon="info-md" />
+  This is a red error message.
+</div>
+```
+
+<Canvas of={IconsStories.ChangeColor} />
+
+## Troubleshooting
+
+**Using TypeScript?** Use the `icon` prop for compile-time validation. Invalid combinations like `icon="check-other"` will show TypeScript errors.
+
+**Not using TypeScript?** If you don't see the correct icon, double check the `icon` prop value. The format is `name-size` in kebab-case (e.g., `arrow-left-md`).
+
+If the icon does not exist, an error will be printed to the console along with the list of all available icons in each size.

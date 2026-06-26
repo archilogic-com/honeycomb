@@ -1,0 +1,149 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Guide/Getting Started" />
+
+# Getting Started
+
+## Installation
+
+```
+npm i @archilogic/honeycomb
+```
+
+This library requires several peer dependencies: `tailwindcss` (v4+), `vue`, and `@headlessui/vue`.
+They will be installed automatically unless there is a version conflict.
+Please refer to `package.json` to determine a compatible version.
+
+## Configuring Tailwind CSS
+
+This library relies on Tailwind CSS v4 with the CSS-first configuration model.
+No `tailwind.config.js` or `postcss.config.js` files are needed.
+
+### Vite plugin
+
+Install the Tailwind CSS Vite plugin:
+
+```
+npm install -D @tailwindcss/vite tailwindcss
+```
+
+Add it to your `vite.config.ts`:
+
+```ts
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [tailwindcss(), vue()]
+})
+```
+
+### CSS entry point
+
+Create a CSS file that imports Honeycomb's Tailwind configuration:
+
+```css
+/* e.g. src/tailwind.css */
+@import '@archilogic/honeycomb/tailwind';
+```
+
+Honeycomb automatically registers its own `dist/` directory as a Tailwind source.
+If your app uses other packages with Tailwind classes, add `@source` directives for them:
+
+```css
+@import '@archilogic/honeycomb/tailwind';
+@source "../node_modules/@archilogic/app-kit/dist/**/*.{js,css}";
+```
+
+### Import CSS
+
+Import the CSS entry point in your app:
+
+```ts
+// e.g. in main.ts
+import './tailwind.css'
+```
+
+For some components it's required to also import the css bundle (mentioned in the respective component's docs if applicable).
+If you're using most components from the library, it's safe to add it next to the tailwind import.
+
+```ts
+import '@archilogic/honeycomb/css'
+```
+
+### Using `@apply` in Vue scoped styles
+
+If you use `@apply` with Honeycomb utilities in Vue `<style scoped>` blocks,
+add `@reference` at the top of the style block:
+
+```vue
+<style scoped>
+@reference "@archilogic/honeycomb/tailwind";
+dt {
+  @apply body-sm-600;
+}
+</style>
+```
+
+## Component Registration
+
+Registering all available components globally:
+
+```js
+import { registerAllComponents } from '@archilogic/honeycomb'
+
+const app = createApp(MyApp)
+
+registerAllComponents(app)
+```
+
+To import and register a subset of components, use one of the following ways.
+
+Import from the main package export:
+
+```js
+import { AButton } from '@archilogic/honeycomb'
+```
+
+Or import from the dedicated `components` export:
+
+```js
+import { AButton } from '@archilogic/honeycomb/components'
+// Or import all components:
+import * as components from '@archilogic/honeycomb/components'
+```
+
+Then register locally:
+
+```js
+export default defineComponent({
+  name: 'MyComponent',
+  components: { AButton }
+})
+```
+
+Or globally:
+
+```js
+const app = createApp(MyApp)
+app.component('a-button', AButton))
+```
+
+## Composables
+
+The library exports some composable functions as well.
+They can be imported in the similar way as components.
+
+Or from the main package export:
+
+```js
+import { useMultiSelect } from '@archilogic/honeycomb'
+```
+
+Either from the dedicated `composables` export:
+
+```js
+import { useMultiSelect } from '@archilogic/honeycomb/composables'
+
+// Or import all composables:
+import * as composables from '@archilogic/honeycomb/composables'
+```

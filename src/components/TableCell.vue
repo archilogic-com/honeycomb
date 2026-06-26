@@ -73,7 +73,7 @@ export default defineComponent({
           :aria-label="expanded ? 'collapse' : 'expand'"
           class="-ml-1 mr-1"
           @click="toggleCallback">
-          <AIcon size="other" :name="expanded ? 'MenuChevronDown' : 'MenuChevronRight'"></AIcon>
+          <AIcon :icon="expanded ? 'menu-chevron-down-other' : 'menu-chevron-right-other'"></AIcon>
         </button>
       </template>
       <!--

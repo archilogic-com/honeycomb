@@ -91,7 +91,7 @@ const isGrouped = (opts: T[] | OptionGroup<string, T>[]): opts is OptionGroup<st
     :is="optionsComponents[component]"
     as="div"
     :static="inline"
-    class="focus-visible:outline-none"
+    class="focus-visible:outline-hidden"
     :class="[
       {
         'bottom-full': direction === 'up',

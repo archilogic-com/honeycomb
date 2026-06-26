@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { AAppMenu, AAppMenuItem, AAppMenuButton, AButton, AIcon } from '../../components'
 import { menuStoriesDecorators, menuStoriesParameters, openMenu } from './shared'
@@ -57,7 +57,7 @@ export const Primary: Story = {
 export const IconButton: Story = {
   ...Primary,
   args: {
-    icon: 'More',
+    icon: 'more-lg',
     label: 'Actions'
   }
 }
@@ -69,7 +69,7 @@ export const TextAndIcon: Story = {
   ...Primary,
   args: {
     ...Primary.args,
-    default: `Edit <a-icon name="ChevronDown" size="other" />`
+    default: `Edit <a-icon icon="chevron-down-other" />`
   }
 }
 

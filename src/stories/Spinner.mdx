@@ -1,0 +1,42 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as SpinnerStories from './Spinner.stories'
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+```html
+<a-spinner />
+<ASpinner />
+```
+
+<ArgTypes of={SpinnerStories} />
+
+**This component renders an `svg` element with CSS animations applied. It doesn't include any wrapper elements or positioning styles, nor page overlays.**
+
+## Default
+
+The default spinner has color `warsaw` from our [dark neutrals palette](http://localhost:6006/?path=/docs/primitives-colors--warsaw#dark-neutrals).
+
+```html
+<a-spinner size="sm" />
+<a-spinner size="md" />
+<a-spinner size="lg" />
+```
+
+<Canvas of={SpinnerStories.SpinnerDefaultSm} />
+<Canvas of={SpinnerStories.SpinnerDefaultMd} />
+<Canvas of={SpinnerStories.SpinnerDefaultLg} />
+
+## Prominent
+
+The prominent spinner is in our [primary color](http://localhost:6006/?path=/docs/primitives-colors--primary#primary-pallette), `primary`.
+
+```html
+<a-spinner variant="prominent" />
+```
+
+<Canvas of={SpinnerStories.SpinnerProminentSm} />
+<Canvas of={SpinnerStories.SpinnerProminentMd} />
+<Canvas of={SpinnerStories.SpinnerProminentLg} />

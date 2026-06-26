@@ -97,7 +97,7 @@ export default defineComponent({
                 <slot name="title">{{ title }}</slot>
               </HlDialogTitle>
               <AButton
-                icon="Close"
+                icon="close-md"
                 variant="subtle"
                 class="absolute -right-4 top-0 text-stone"
                 label="Close"

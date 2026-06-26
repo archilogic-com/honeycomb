@@ -1,4 +1,4 @@
-import { within } from '@storybook/testing-library'
+import { within } from 'storybook/test'
 
 export const menuStoriesDecorators = [
   () => ({

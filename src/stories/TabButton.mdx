@@ -1,0 +1,21 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as TabButtonStories from './TabButton.stories'
+
+<Meta of={TabButtonStories} />
+
+# Tab Button
+
+```html
+<a-tab-button />
+<ATabButton />
+```
+
+## Full Documentation
+
+This component returns a [Headless UI's](https://headlessui.dev/) Tab component with our custom styling added.
+You can find full documentation [here](https://headlessui.dev/vue/tabs).
+
+<ArgTypes of={TabButtonStories} />
+
+<Canvas of={TabButtonStories.TabsExample} />

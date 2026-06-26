@@ -2,15 +2,11 @@
 import { computed, defineComponent, PropType } from 'vue'
 import ASpinner from './Spinner.vue'
 import AIcon from './Icon.vue'
-import { type IconIdentifier, type AnyIconName } from './icons/types'
+import { type IconIdentifier } from './icons/types'
 
 export type ButtonVariant = 'primary' | 'subtle' | 'standard'
 
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'auto'
-
-const isIconIdentifier = (str: string): boolean => {
-  return /-(sm|md|lg|other)$/.test(str)
-}
 
 export default defineComponent({
   name: 'AButton',
@@ -46,9 +42,9 @@ export default defineComponent({
       type: String as PropType<ButtonSize>,
       default: 'md'
     },
-    /** IconIdentifier (e.g., "search-sm") or icon name (e.g., "Search") */
+    /** Type-safe icon identifier (e.g., "search-sm", "more-md") */
     icon: {
-      type: [Boolean, String] as PropType<boolean | AnyIconName | IconIdentifier>,
+      type: [Boolean, String] as PropType<boolean | IconIdentifier>,
       default: false
     },
     /**
@@ -85,9 +81,9 @@ export default defineComponent({
     if (props.icon === true) {
       console.warn(
         `Deprecation notice: The recommended usage of the prop "icon" has changed.
-        Provide a string icon name along with size "sm" or "lg" for icon buttons
+        Provide a type-safe icon identifier (e.g. icon="close-sm") for icon buttons
         (instead of the icon markup in the default slot).
-        For flexible dimensions with no extra padding use the size "auto" instead.`
+        For flexible dimensions with no extra padding use a "-other" sized icon.`
       )
     }
 
@@ -102,11 +98,7 @@ export default defineComponent({
       if (typeof props.icon !== 'string' || !props.icon.length) {
         return undefined
       }
-      if (isIconIdentifier(props.icon)) {
-        return props.icon as IconIdentifier
-      }
-      const iconSize = props.size === 'auto' ? 'other' : props.size
-      return `${props.icon}-${iconSize}` as IconIdentifier
+      return props.icon
     })
 
     const ariaLabel = computed(() => {
@@ -140,7 +132,8 @@ export default defineComponent({
       'bg-primary-subtle text-primary': variant !== 'primary' && pressed,
       'text-inherit bg-transparent': variant === 'subtle' && !pressed,
       'bg-athens text-navy': variant === 'standard' && !pressed,
-      'hover:bg-primary-hover active:bg-primary-active': variant === 'primary' && !isDisabled && !pressed,
+      'hover:bg-primary-hover active:bg-primary-active':
+        variant === 'primary' && !isDisabled && !pressed,
       'hover:bg-gray hover:text-navy active:bg-primary-subtle active:text-primary':
         variant !== 'primary' && !isDisabled && !pressed
     }"

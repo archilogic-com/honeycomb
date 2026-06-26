@@ -197,7 +197,7 @@ export default defineComponent({
 <template>
   <li
     ref="menuitem"
-    class="static body-sm focus:bg-athens focus-visible:outline-none"
+    class="static body-sm focus:bg-athens focus-visible:outline-hidden"
     :class="[
       disabled
         ? 'cursor-not-allowed text-warsaw'
@@ -235,14 +235,14 @@ export default defineComponent({
         <slot name="extra"></slot>
         <KeyboardShortcut
           v-if="shortcut"
-          :class="disabled && '!text-warsaw'"
+          :class="disabled && 'text-warsaw!'"
           variant="subtle"
           :shortcut="
             typeof shortcut === 'string' ? { keySequence: shortcut } : shortcut
           "></KeyboardShortcut>
       </div>
       <template v-if="$slots.submenu">
-        <a-icon name="MenuChevronRight" size="other" class="mr-2"></a-icon>
+        <a-icon icon="menu-chevron-right-other" class="mr-2"></a-icon>
         <div
           v-if="isSubmenuOpen"
           ref="submenu"

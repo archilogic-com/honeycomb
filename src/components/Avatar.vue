@@ -42,7 +42,7 @@ export default defineComponent({
       class="flex h-full items-center justify-center rounded-full border border-white bg-whisper text-navy">
       <slot>
         <span v-if="firstLabelLetter" class="capitalize body-sm">{{ firstLabelLetter }}</span>
-        <a-icon v-else name="User" size="md" />
+        <a-icon v-else icon="user-md" />
       </slot>
     </div>
   </div>

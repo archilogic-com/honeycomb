@@ -1,0 +1,55 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as ColorCircleStories from './ColorCircle.stories'
+
+<Meta of={ColorCircleStories} />
+
+# ColorCircle
+
+```html
+<a-color-circle color="..." />
+```
+
+`AColorCircle` is a simple decorative component that shows a small color circle for quick visual distinction of elements.
+
+<ArgTypes of={ColorCircleStories} />
+
+## Setting the color
+
+To set the color of the component, just pass a `color` prop.
+[Archilogic colors](path=/docs/primitives-colors--primary) work without any prefixes.
+Any string that is a valid color in normal CSS will work too, i.e. hex and rgb values,
+as well as [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names)
+
+```html
+<!-- Archilogic colors -->
+<a-color-circle color="primary" />
+<!-- valid HTML colors -->
+<a-color-circle color="#ffc400" />
+<a-color-circle color="rgb(255, 20, 147)" />
+<a-color-circle color="mediumSlateBlue" />
+```
+
+**Note**: adding a tailwind class background-color class still works, but it's not recommended anymore:
+
+```html
+<!-- not recommended -->
+<a-color-circle class="bg-primary" />
+```
+
+<Canvas of={ColorCircleStories.ArchilogicColor} />
+<Canvas of={ColorCircleStories.Hex} />
+<Canvas of={ColorCircleStories.Rgb} />
+<Canvas of={ColorCircleStories.Html} />
+<Canvas of={ColorCircleStories.WithBorder} />
+
+## Size
+
+The element comes in two sizes, `md` (default) and `lg`.
+
+```html
+<a-color-circle size="lg" color="primary" />
+```
+
+<Canvas of={ColorCircleStories.SizeMd} />
+<Canvas of={ColorCircleStories.SizeLg} />

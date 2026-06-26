@@ -19,56 +19,33 @@ export type {
 <script setup lang="ts">
 import { computed } from 'vue'
 import icons from './icons'
-import { type IconSize, type IconIdentifier, type AnyIconName } from './icons/types'
+import { type IconSize, type IconIdentifier } from './icons/types'
 
 defineOptions({
   name: 'AIcon'
 })
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Type-safe icon identifier in format "name-size" (e.g., "search-sm", "check-md").
-     * This is the recommended way to specify icons as it enforces valid name+size combinations.
-     */
-    icon?: IconIdentifier
-    /**
-     * @deprecated Use `icon` prop instead (e.g., icon="search-sm").
-     * Icon name in PascalCase (e.g. ArrowDown, Warning) or camelCase (e.g. arrowDown, warning).
-     */
-    name?: AnyIconName
-    /**
-     * @deprecated Use `icon` prop instead (e.g., icon="search-sm").
-     * Icon size - used to set width and height on an `svg` element.
-     */
-    size?: IconSize
-  }>(),
-  {
-    icon: undefined,
-    name: undefined,
-    size: 'md'
-  }
-)
+const props = defineProps<{
+  /**
+   * Type-safe icon identifier in format "name-size" (e.g., "search-sm", "check-md").
+   * Enforces valid name+size combinations at the type level.
+   */
+  icon?: IconIdentifier
+}>()
 
 const iconComponent = computed(() => {
-  let size: IconSize
-  let name: string
-
-  if (props.icon) {
-    const lastDash = props.icon.lastIndexOf('-')
-    size = props.icon.slice(lastDash + 1) as IconSize
-    name = props.icon
-      .slice(0, lastDash)
-      .split('-')
-      .map(s => s.charAt(0).toUpperCase() + s.slice(1))
-      .join('')
-  } else if (props.name) {
-    size = props.size
-    name = props.name.charAt(0).toUpperCase() + props.name.slice(1)
-  } else {
-    console.error('a-icon: either "icon" or "name" prop is required')
+  if (!props.icon) {
+    console.error('a-icon: the "icon" prop is required')
     return null
   }
+
+  const lastDash = props.icon.lastIndexOf('-')
+  const size = props.icon.slice(lastDash + 1) as IconSize
+  const name = props.icon
+    .slice(0, lastDash)
+    .split('-')
+    .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+    .join('')
 
   if (icons[size][name]) {
     return icons[size][name]
@@ -80,5 +57,5 @@ const iconComponent = computed(() => {
 </script>
 
 <template>
-  <component :is="iconComponent" v-if="iconComponent" aria-hidden class="flex-shrink-0" />
+  <component :is="iconComponent" v-if="iconComponent" aria-hidden class="shrink-0" />
 </template>

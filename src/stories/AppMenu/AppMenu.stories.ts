@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ref } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 
@@ -129,7 +129,7 @@ export const AllTogether: Story = {
     template: `
         <AAppMenu>
           <template #menu-button="{open, aria}">
-            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="Burger" label="Menu"></AAppMenuButton>
+            <AAppMenuButton :open="open" v-bind="aria" size="lg" icon="burger-lg" label="Menu"></AAppMenuButton>
           </template>
           <AAppMenuItem href="https://testing-app.archilogic.com" target="dashboard">Go to dashboard</AAppMenuItem>
           <AAppMenuItem>

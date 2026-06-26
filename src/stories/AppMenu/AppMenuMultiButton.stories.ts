@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ref } from 'vue'
-import { within } from '@storybook/testing-library'
+import { within } from 'storybook/test'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { AAppMenu, AAppMenuItem, AAppMenuMultiButton } from '../../components'
 import { menuStoriesDecorators, menuStoriesParameters } from './shared'

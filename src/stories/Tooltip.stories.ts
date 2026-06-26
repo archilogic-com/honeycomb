@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { ATooltip, AButton } from '../components'
-import { userEvent, waitFor, within } from '@storybook/testing-library'
+import { userEvent, waitFor, within } from 'storybook/test'
 
 type TooltipProps = ComponentProps<typeof ATooltip>
 
@@ -40,7 +40,7 @@ const renderTooltip = (args: ComponentProps<TooltipProps>) => ({
   },
   template: `
   <ATooltip v-bind="args" v-slot="slotProps">
-    <a-button v-bind="slotProps" icon="User" size="md"></a-button>
+    <a-button v-bind="slotProps" icon="user-md" size="md"></a-button>
   </ATooltip>`
 })
 

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ref } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 
@@ -13,7 +13,9 @@ import { ASwitcher, AIcon } from '../components'
  * <a-switcher label="Units" :options="unitList" v-model="selectedUnits"/>
  * ```
  */
-const meta: Meta<typeof ASwitcher> = {
+// ASwitcher is a generic component; cast (as the Combobox/Listbox stories do) so its
+// generic signature satisfies Meta's component field.
+const meta = {
   component: ASwitcher,
   title: 'Components/Switcher',
   decorators: [
@@ -21,7 +23,7 @@ const meta: Meta<typeof ASwitcher> = {
       template: `<div class="p-10 bg-white"><story/></div>`
     })
   ]
-}
+} as Meta<SwitcherProps>
 
 export default meta
 
@@ -107,8 +109,8 @@ export const IconOptions: Story = {
   render: renderSwitcher,
   args: {
     options: [
-      { label: 'Basic search', value: 'basic', icon: 'Search' },
-      { label: 'AI search', value: 'ai', icon: 'Ai' }
+      { label: 'Basic search', value: 'basic', icon: 'search-sm' },
+      { label: 'AI search', value: 'ai', icon: 'ai-sm' }
     ],
     label: 'Search type'
   }
@@ -133,7 +135,7 @@ export const UsingSlots: Story = {
     },
     template: `
       <ASwitcher v-model="selected" v-bind="args">
-        <template #ai><a-icon name="ai" size="sm" class="mr-1"/> AI search</template>
+        <template #ai><a-icon icon="ai-sm" class="mr-1"/> AI search</template>
       </ASwitcher>`
   }),
   args: {

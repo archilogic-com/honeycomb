@@ -1,0 +1,117 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+
+import * as DisclosureStories from './Disclosure.stories'
+
+<Meta of={DisclosureStories} />
+
+# Disclosure
+
+```html
+<a-disclosure title="Title">
+  <section>Contents</section>
+</a-disclosure>
+<ADisclosure title="Title">
+  <section>Contents</section>
+</ADisclosure>
+```
+
+The Disclosure component renders a stylized HTML [details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) element.
+
+For this component to render properly, you need to import the stylesheet:
+
+```js
+import '@archilogic/honeycomb/dist/style.css'
+```
+
+## Examples
+
+### Closed by default, title prop
+
+```html
+<a-disclosure title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas of={DisclosureStories.ClosedByDefault} />
+
+### Opened by default
+
+```html
+<a-disclosure :open="true" title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas of={DisclosureStories.OpenedByDefault} />
+
+### Title slot
+
+```html
+<a-disclosure>
+  <template #title><span class="underline">Options</span></template>
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas of={DisclosureStories.TitleSlot} />
+
+### Listening to state changes
+
+Using the HTML [details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
+element's `toggle` event, the state can be found in `event.target.open`.
+
+```html
+<a-disclosure @toggle="onToggle" title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas of={DisclosureStories.StateChanges} />
+
+### Truncated title
+
+The title gets truncated if the text does not fit.
+
+```html
+<a-disclosure>
+  <template #title>It's supercalifragilisticexpialidocious</template>
+  <ul>
+    <li>Even though the sound of it</li>
+    <li>Is something quite atrocious</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas of={DisclosureStories.TruncatedTitle} />
+
+### Toggling the disclosure programmatically
+
+```html
+<a-button @click="isOpen = !isOpen">Toggle</a-button>
+<a-disclosure :open="isOpen" title="Options">
+  <ul>
+    <li>option A</li>
+    <li>option B</li>
+    <li>option C</li>
+  </ul>
+</a-disclosure>
+```
+
+<Canvas of={DisclosureStories.ExternalTrigger} />

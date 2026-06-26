@@ -1,0 +1,48 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as StatusStories from './Status.stories'
+
+<Meta of={StatusStories} />
+
+# Status
+
+```html
+<a-status>completed</a-status>
+<AStatus>completed</AStatus>
+```
+
+`AStatus` should be used as a visual indicator of an item's status/stage/phase for quick recognition.
+
+<ArgTypes of={StatusStories} />
+
+## Status variants
+
+Status comes in **4 stylistic variants**:
+`primary`, `success`, `neutral` and `danger`.
+
+```html
+<!-- variant="neutral" is the default and can be omitted -->
+<a-status>pending</a-status>
+<a-status variant="primary">pro</a-status>
+<a-status variant="success">completed</a-status>
+<a-status variant="neutral">pending</a-status>
+<a-status variant="danger">rejected</a-status>
+```
+
+<Canvas of={StatusStories.Neutral} />
+<Canvas of={StatusStories.Primary} />
+<Canvas of={StatusStories.Success} />
+<Canvas of={StatusStories.Danger} />
+
+## Using the content prop
+
+```html
+<a-status content="in progress"></a-status>
+```
+
+An alternative way to set the content text is to use the `content` prop.
+Keep in mind that if both the content prop and the default slot are used, the slot content takes precedence.
+
+The following Status component is rendered with the `content` prop instead of slot content.
+
+<Canvas of={StatusStories.WContentProp} />

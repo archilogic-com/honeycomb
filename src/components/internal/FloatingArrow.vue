@@ -17,6 +17,6 @@ export default defineComponent({
   <div
     class="transition-all duration-300 ease-in-out"
     :class="[float ? 'group-focus-within:grow group-hover:grow' : 'grow-0']">
-    <AIcon name="ChevronDown" size="other" class="ml-auto" />
+    <AIcon icon="chevron-down-other" class="ml-auto" />
   </div>
 </template>
