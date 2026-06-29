@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/archilogic-com/honeycomb/compare/v3.1.0...v3.1.1) (2026-06-29)
+
+
+### Bug Fixes
+
+* migrate TableHeader and AppMenuItem icons to typesafe icon prop ([#335](https://github.com/archilogic-com/honeycomb/issues/335)) ([93d31d0](https://github.com/archilogic-com/honeycomb/commit/93d31d0ee69731f6cb6a955c9a1f19c4e649f81e))
+
 # [3.1.0](https://github.com/archilogic-com/honeycomb/compare/v2.25.0...v3.1.0) (2026-06-26)
 
 
