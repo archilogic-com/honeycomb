@@ -221,11 +221,7 @@ export default defineComponent({
       class="flex h-8 w-full items-center">
       <div class="ml-2 flex w-4 shrink-0 items-center justify-center">
         <slot name="icon">
-          <a-icon
-            v-if="isSelectable"
-            :class="{ hidden: !selected }"
-            name="Check"
-            size="sm"></a-icon>
+          <a-icon v-if="isSelectable" :class="{ hidden: !selected }" icon="check-sm"></a-icon>
         </slot>
       </div>
       <div class="flex-1 whitespace-nowrap px-2 text-left">

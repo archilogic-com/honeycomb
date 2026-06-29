@@ -68,8 +68,7 @@ export default defineComponent({
         class="flex h-8 max-h-10 w-full cursor-pointer rounded-sm py-2 pl-4 text-left transition duration-200 ease-in-out body-sm-600 hover:text-newyork focus-visible:focus-shadow">
         <a-icon
           v-if="sortedBy"
-          size="sm"
-          :name="sortedBy === 'asc' ? 'ArrowUp' : 'ArrowDown'"
+          :icon="sortedBy === 'asc' ? 'arrow-up-sm' : 'arrow-down-sm'"
           class="-ml-4"></a-icon>
         <span class="truncate">
           <!--
