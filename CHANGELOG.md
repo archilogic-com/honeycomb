@@ -1,5 +1,13 @@
 # Changelog
 
+# [3.2.0-test-single-css-import.1](https://github.com/archilogic-com/honeycomb/compare/v3.1.1...v3.2.0-test-single-css-import.1) (2026-07-01)
+
+
+### Features
+
+* make Tailwind Preflight opt-in and stop forcing a page background ([b5b62d4](https://github.com/archilogic-com/honeycomb/commit/b5b62d43205a8d2b516ab149976bfcbcf223edcb))
+* serve component styles from the tailwind entry and drop the css bundle export ([c78626a](https://github.com/archilogic-com/honeycomb/commit/c78626a0b7bab8a82e71bfbc9f2f93dc6474dd07))
+
 ## [3.1.1](https://github.com/archilogic-com/honeycomb/compare/v3.1.0...v3.1.1) (2026-06-29)
 
 
