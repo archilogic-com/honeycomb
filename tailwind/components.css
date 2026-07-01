@@ -38,3 +38,49 @@
 @utility a-text-input--invalid {
   @apply bg-transparent border-error shadow-border shadow-error;
 }
+
+/* Component styles that can't be regenerated from utility classes alone.
+   Kept in the tailwind entry (not each component's <style>) so consumers get
+   them from `@archilogic/honeycomb/tailwind` without a separate CSS bundle. */
+@layer components {
+  /* The check mark's show/hide + disabled colour live on the span itself as
+     peer-* utilities (see Checkbox.vue), NOT here: a @layer components rule
+     can't beat the `hidden`/`text-white` utilities on that same element. */
+  .a-checkbox-input {
+    @apply m-px inline-block h-[14px] w-[14px] cursor-pointer appearance-none rounded border border-stone bg-white transition-colors duration-300 ease-in-out;
+  }
+  .a-checkbox-input:checked,
+  .a-checkbox-input:indeterminate {
+    @apply border-primary bg-primary;
+  }
+  .a-checkbox-input:hover {
+    @apply bg-stone16;
+  }
+  .a-checkbox-input:checked:hover:not(:disabled),
+  .a-checkbox-input:indeterminate:hover:not(:disabled) {
+    @apply border-primary-hover bg-primary-hover;
+  }
+  .a-checkbox-input:disabled {
+    @apply cursor-not-allowed border-stone16 bg-stone8;
+  }
+  .a-checkbox-input:checked:disabled,
+  .a-checkbox-input:indeterminate:disabled {
+    @apply border-transparent;
+  }
+  .a-checkbox-input:focus-visible {
+    @apply shadow-none focus-border;
+  }
+
+  .a-selectable-option-group__header:hover {
+    @apply bg-athens;
+  }
+  /* highlight child options while the group header is hovered or keyboard-active */
+  .a-selectable-option-group:has(.a-selectable-option-group__header:hover)
+    .a-selectable-option-group__options
+    [role='option'],
+  .a-selectable-option-group:has(.a-selectable-option-group__header--active)
+    .a-selectable-option-group__options
+    [role='option'] {
+    @apply bg-athens/50;
+  }
+}

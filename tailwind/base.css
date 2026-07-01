@@ -3,7 +3,7 @@
     @apply bg-primary-subtle-alpha;
   }
   body {
-    @apply text-navy body-md bg-whisper;
+    @apply text-navy body-md;
   }
   hr {
     @apply block shrink-0 border-0 bg-gray p-0 h-px;

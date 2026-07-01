@@ -48,7 +48,13 @@ SVG files in `src/components/icons/{sm,md,lg,other}/` are loaded eagerly via `im
 
 ### Styling and theming
 
-The design system's tokens live in the Tailwind preset (`tailwind/tailwind-preset.cjs`): a restricted spacing scale, custom shadows/radii, and colors from `tailwind/colorMap.json`. Colors support theming via CSS variables — `tailwind/variables.css` defines `--honeycomb-color-*` custom properties (defaults on `:root`), `colorMap.json` references them, and `src/colors/` exports the variable names for programmatic use. There are two copies of `colorMap.json` (`tailwind/` and `src/colors/`) — keep them in sync when changing colors. Prettier runs with `prettier-plugin-tailwindcss`, so class order is enforced.
+**Tokens** — a restricted spacing scale, custom shadows/radii, and colors — live in an `@theme` block in `tailwind/theme.css`. Consumers pull in the whole preset with one import, `@import '@archilogic/honeycomb/tailwind'`; there is no separate CSS bundle.
+
+**Component styles** that can't be utility classes (the Checkbox box, `SelectableOptionGroup`'s `:has()` highlight) go in `tailwind/components.css` under `@layer components`, not the component's `<style>` block. Mind the layer order — `theme, base, components, utilities` — because a `@layer components` rule always loses to a utility on the same element. So a rule that must beat a utility (e.g. un-hiding the check mark, which carries a `hidden` class) has to be a `peer-*`/variant utility in the template, not a component-layer rule.
+
+**Theming** is via CSS variables: `tailwind/variables.css` defines `--honeycomb-color-*` custom properties (defaults on `:root`), `colorMap.json` references them, and `src/colors/` exports the variable names for code. Keep the two copies of `colorMap.json` (`tailwind/` and `src/colors/`) in sync.
+
+**Formatting** — Prettier runs `prettier-plugin-tailwindcss`, so class order is enforced.
 
 ### Stories
 

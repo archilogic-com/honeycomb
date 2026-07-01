@@ -54,6 +54,8 @@ If your app uses other packages with Tailwind classes, add `@source` directives 
 @source "../node_modules/@archilogic/app-kit/dist/**/*.{js,css}";
 ```
 
+**Why is this a CSS `@import` and not a JavaScript import?** `@archilogic/honeycomb/tailwind` is Tailwind _source_ — design tokens (`@theme`), cascade layers, and component rules — not a prebuilt stylesheet. Your app's own Tailwind build compiles it, generating only the utilities you actually use and letting you override tokens. That is why it must be pulled in from a `.css` file rather than imported in JS, and why there is no separate CSS bundle: this one line ships every style Honeycomb needs.
+
 ### Import CSS
 
 Import the CSS entry point in your app:
@@ -61,13 +63,6 @@ Import the CSS entry point in your app:
 ```ts
 // e.g. in main.ts
 import './tailwind.css'
-```
-
-For some components it's required to also import the css bundle (mentioned in the respective component's docs if applicable).
-If you're using most components from the library, it's safe to add it next to the tailwind import.
-
-```ts
-import '@archilogic/honeycomb/css'
 ```
 
 ### Using `@apply` in Vue scoped styles
@@ -147,3 +142,21 @@ import { useMultiSelect } from '@archilogic/honeycomb/composables'
 // Or import all composables:
 import * as composables from '@archilogic/honeycomb/composables'
 ```
+
+## Upgrading
+
+### From 3.1 to 3.2
+
+Honeycomb no longer ships a prebuilt CSS bundle. If your app imported the compiled
+stylesheet directly, delete that import — neither path exists in 3.2:
+
+```ts
+// no longer exists in 3.2 — delete
+import '@archilogic/honeycomb/dist/style.css'
+import '@archilogic/honeycomb/css'
+```
+
+Component styles now arrive through the Tailwind preset you already import in your CSS
+entry (`@import '@archilogic/honeycomb/tailwind'`). If you do not yet import the preset that
+way, follow [Configuring Tailwind CSS](#configuring-tailwind-css) above — that single import
+is now the only stylesheet Honeycomb needs.
