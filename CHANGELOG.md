@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.2.0](https://github.com/archilogic-com/honeycomb/compare/v3.1.1...v3.2.0) (2026-07-01)
+
+
+### Features
+
+* make Tailwind Preflight opt-in and stop forcing a page background ([#346](https://github.com/archilogic-com/honeycomb/issues/346)) ([2638a59](https://github.com/archilogic-com/honeycomb/commit/2638a5939242ff52ca4b2cf114d7688031258a8b))
+
 ## [3.1.1](https://github.com/archilogic-com/honeycomb/compare/v3.1.0...v3.1.1) (2026-06-29)
 
 
