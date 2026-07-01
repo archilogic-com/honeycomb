@@ -35,8 +35,7 @@
     },
     "./dist/*": "./dist/*",
     "./tailwind/*": "./tailwind/*",
-    "./tailwind": "./tailwind/index.css",
-    "./css": "./dist/style.css"
+    "./tailwind": "./tailwind/index.css"
   },
   "module": "./dist/main.js",
   "types": "./dist/main.d.ts",

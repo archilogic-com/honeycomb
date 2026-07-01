@@ -76,10 +76,10 @@ export default defineComponent({
       v-bind="attrs"
       :tabindex="readonly ? '-1' : '0'"
       :indeterminate="mixed"
-      class="custom-checkbox shrink-0" />
+      class="a-checkbox-input peer shrink-0" />
     <span
       aria-hidden="true"
-      class="custom-mark pointer-events-none absolute hidden p-[3px] text-white">
+      class="a-checkbox-mark pointer-events-none absolute hidden p-[3px] text-white peer-checked:inline peer-indeterminate:inline peer-disabled:text-warsaw">
       <AIcon :icon="mixed ? 'checkbox-indeterminate-other' : 'checkbox-check-other'"></AIcon>
     </span>
     <!--
@@ -94,44 +94,3 @@ export default defineComponent({
     </span>
   </label>
 </template>
-<style scoped>
-@reference "../../tailwind/theme.css";
-
-.custom-checkbox {
-  @apply m-px inline-block h-[14px] w-[14px] cursor-pointer appearance-none rounded border border-stone bg-white transition-colors duration-300 ease-in-out;
-}
-.custom-checkbox:checked,
-.custom-checkbox:indeterminate {
-  @apply border-primary bg-primary;
-}
-
-.custom-checkbox:hover {
-  @apply bg-stone16;
-}
-
-.custom-checkbox:checked:hover:not(:disabled),
-.custom-checkbox:indeterminate:hover:not(:disabled) {
-  @apply border-primary-hover bg-primary-hover;
-}
-
-.custom-checkbox:disabled {
-  @apply cursor-not-allowed border-stone16 bg-stone8;
-}
-
-.custom-checkbox:checked:disabled,
-.custom-checkbox:indeterminate:disabled {
-  @apply border-transparent;
-}
-
-.custom-checkbox:checked + .custom-mark,
-.custom-checkbox:indeterminate + .custom-mark {
-  @apply inline;
-}
-.custom-checkbox:disabled + .custom-mark {
-  @apply text-warsaw;
-}
-
-.custom-checkbox:focus-visible {
-  @apply shadow-none focus-border;
-}
-</style>
