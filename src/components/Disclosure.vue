@@ -48,7 +48,7 @@ export default defineComponent({
     :open="isOpen"
     @toggle="(event: Event) => (isOpen = (event.target as HTMLDetailsElement).open)">
     <summary
-      class="flex w-full cursor-pointer items-center gap-2 text-stone body-md-600 hover:text-newyork focus-visible:focus-shadow">
+      class="flex w-full cursor-pointer list-none items-center gap-2 text-stone body-md-600 hover:text-newyork focus-visible:focus-shadow [&::-webkit-details-marker]:hidden">
       <span class="flex-1 truncate text-left">
         <slot name="title">{{ title }}</slot>
       </span>
@@ -57,12 +57,3 @@ export default defineComponent({
     <slot name="default" />
   </details>
 </template>
-
-<style scoped>
-details > summary {
-  list-style: none;
-}
-details > summary::-webkit-details-marker {
-  display: none;
-}
-</style>

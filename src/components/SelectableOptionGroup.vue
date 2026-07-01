@@ -97,21 +97,3 @@ const isPartiallySelected = computed(
   </div>
   <a-separator class="my-2 last-of-type:hidden" />
 </template>
-
-<style>
-@reference "../../tailwind/theme.css";
-
-.a-selectable-option-group__header:hover {
-  @apply bg-athens;
-}
-
-/* when header is hovered or focused via keyboard, highlight child options */
-.a-selectable-option-group:has(.a-selectable-option-group__header:hover)
-  .a-selectable-option-group__options
-  [role='option'],
-.a-selectable-option-group:has(.a-selectable-option-group__header--active)
-  .a-selectable-option-group__options
-  [role='option'] {
-  @apply bg-athens/50;
-}
-</style>
