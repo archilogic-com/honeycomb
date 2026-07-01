@@ -83,7 +83,7 @@
     "@types/lodash": "^4.14.202",
     "@types/mdx": "^2.0.10",
     "@types/node": "^22.10.0",
-    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^6.20.0",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vitest/ui": "^4.1.0",
