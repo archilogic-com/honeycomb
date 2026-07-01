@@ -1,0 +1,7 @@
+/*
+ * Storybook opts into Preflight, mirroring the typical consumer setup.
+ * honeycomb's tailwind entry itself no longer bundles Preflight — it's opt-in
+ * (see tailwind/theme.css), so consumers that want the reset add the line below.
+ */
+@import '../tailwind/index.css';
+@import 'tailwindcss/preflight.css' layer(base);

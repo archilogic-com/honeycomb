@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/vue3-vite'
 
-import '../tailwind/index.css'
+import './preview.css'
 
 const preview: Preview = {
   // SB8+ enables autodocs via a tag instead of the removed `docs.autodocs` option
