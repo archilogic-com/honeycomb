@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.1](https://github.com/archilogic-com/honeycomb/compare/v3.2.0...v3.3.0-test-al-7789.1) (2026-07-31)
+
+
+### Features
+
+* expose honeycomb icons in svg format ([afc8f48](https://github.com/archilogic-com/honeycomb/commit/afc8f4807f3c9450f63cf4ec4c8585b0cff8d4e2))
+
 # [3.2.0](https://github.com/archilogic-com/honeycomb/compare/v3.1.1...v3.2.0) (2026-07-01)
 
 
