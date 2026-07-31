@@ -17,7 +17,8 @@ export default defineConfig({
         main: './src/index.ts',
         components: './src/components/index.ts',
         composables: './src/composables/index.ts',
-        colors: './src/colors/index.ts'
+        colors: './src/colors/index.ts',
+        icons: './src/components/icons/manifest.ts'
       },
       formats: ['es'],
       cssFileName: 'style'
