@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.2](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.1...v3.3.0-test-al-7789.2) (2026-08-03)
+
+
+### Features
+
+* individually exposed icons (leveraging tree-shaking) ([14b4e8b](https://github.com/archilogic-com/honeycomb/commit/14b4e8b1a55395fa0f1822e9f86ab76e219300e4))
+
 # [3.3.0-test-al-7789.1](https://github.com/archilogic-com/honeycomb/compare/v3.2.0...v3.3.0-test-al-7789.1) (2026-07-31)
 
 
