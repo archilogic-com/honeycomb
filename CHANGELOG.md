@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.3](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.2...v3.3.0-test-al-7789.3) (2026-08-03)
+
+
+### Features
+
+* unified casing helpers ([ac08164](https://github.com/archilogic-com/honeycomb/commit/ac08164001fa6832a0008db7d31eda44a8cf3848))
+
 # [3.3.0-test-al-7789.2](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.1...v3.3.0-test-al-7789.2) (2026-08-03)
 
 
