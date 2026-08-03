@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.4](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.3...v3.3.0-test-al-7789.4) (2026-08-03)
+
+
+### Features
+
+* resolver for svg symbols ([3e6f7e6](https://github.com/archilogic-com/honeycomb/commit/3e6f7e640f73cb60e852408bdbbed326e0ce0cb0))
+
 # [3.3.0-test-al-7789.3](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.2...v3.3.0-test-al-7789.3) (2026-08-03)
 
 
