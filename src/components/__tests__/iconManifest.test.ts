@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs'
 import { join } from 'path'
-import { iconManifest } from '../icons/manifest'
+import { iconManifest, resolveSymbolSvg } from '../icons/manifest'
 
 const ICONS_DIR = join(__dirname, '../icons')
 const sizes = ['sm', 'md', 'lg', 'other'] as const
@@ -31,5 +31,21 @@ describe('iconManifest', () => {
     expect(iconManifest['close-sm']).toBeDefined()
     expect(iconManifest['close-md']).toBeDefined()
     expect(iconManifest['close-sm']).not.toBe(iconManifest['close-md'])
+  })
+})
+
+describe('resolveSymbolSvg', () => {
+  it('resolves namespaced honeycomb symbol ids to raw SVG', () => {
+    expect(resolveSymbolSvg('honeycomb:user-md')).toBe(iconManifest['user-md'])
+  })
+
+  it('returns undefined outside the honeycomb namespace', () => {
+    expect(resolveSymbolSvg('iso7010:F001')).toBeUndefined()
+    // bare ids are not namespaced symbol ids
+    expect(resolveSymbolSvg('user-md')).toBeUndefined()
+  })
+
+  it('returns undefined for unknown icons in the namespace', () => {
+    expect(resolveSymbolSvg('honeycomb:does-not-exist-md')).toBeUndefined()
   })
 })

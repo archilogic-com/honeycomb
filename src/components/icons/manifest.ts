@@ -13,3 +13,19 @@ for (const path in rawModules) {
   const [, size, name] = path.split('.')[1].split('/')
   iconManifest[`${toKebab(name)}-${size as IconSize}` as IconIdentifier] = rawModules[path]
 }
+
+/**
+ * Namespace prefix under which honeycomb icons are addressed in namespaced
+ * symbol ids (e.g. persisted floor-plan label icons): 'honeycomb:user-md'.
+ */
+export const HONEYCOMB_ICON_NAMESPACE = 'honeycomb:'
+
+/**
+ * Resolves a namespaced symbol id ('honeycomb:user-md') to its raw SVG
+ * source. Ids outside the honeycomb namespace and unknown icons resolve to
+ * undefined.
+ */
+export function resolveSymbolSvg(symbolId: string): string | undefined {
+  if (!symbolId.startsWith(HONEYCOMB_ICON_NAMESPACE)) return undefined
+  return (iconManifest as Record<string, string>)[symbolId.slice(HONEYCOMB_ICON_NAMESPACE.length)]
+}
