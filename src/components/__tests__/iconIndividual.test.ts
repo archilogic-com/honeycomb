@@ -1,7 +1,7 @@
 import * as individual from '../icons/individual'
 import { iconManifest } from '../icons/manifest'
 
-const toCamel = (kebab: string) => kebab.replace(/-([a-z0-9])/g, (_, char) => char.toUpperCase())
+import { toCamel } from '../icons/casing'
 
 describe('individual icon exports', () => {
   it('exports every manifest entry under its camelCased id', () => {

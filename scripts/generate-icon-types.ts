@@ -1,6 +1,7 @@
 import { readdirSync, writeFileSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
+import { toCamel, toKebab } from '../src/components/icons/casing'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ICONS_DIR = join(__dirname, '../src/components/icons')
@@ -16,9 +17,6 @@ function getIconNames(size: string): string[] {
     .map(f => f.replace('.svg', ''))
     .sort()
 }
-
-const toKebab = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
-const toCamel = (kebab: string) => kebab.replace(/-([a-z0-9])/g, (_, char) => char.toUpperCase())
 
 function generateUnionType(name: string, icons: string[]): string {
   if (icons.length === 0) return `export type ${name} = never`

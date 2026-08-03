@@ -1,4 +1,5 @@
 import { type IconIdentifier, type IconSize } from './types'
+import { toKebab } from './casing'
 export type { IconIdentifier, IconSize, SmIconId, MdIconId, LgIconId, OtherIconId } from './types'
 
 const rawModules: Record<string, string> = import.meta.glob('./**/*.svg', {
@@ -6,8 +7,6 @@ const rawModules: Record<string, string> = import.meta.glob('./**/*.svg', {
   import: 'default',
   eager: true
 })
-
-const toKebab = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 
 export const iconManifest = {} as Record<IconIdentifier, string>
 for (const path in rawModules) {
