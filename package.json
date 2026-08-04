@@ -33,6 +33,14 @@
       "types": "./dist/colors.d.ts",
       "import": "./dist/colors.js"
     },
+    "./icons": {
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.js"
+    },
+    "./icons/individual": {
+      "types": "./dist/icons-individual.d.ts",
+      "import": "./dist/icons-individual.js"
+    },
     "./dist/*": "./dist/*",
     "./tailwind/*": "./tailwind/*",
     "./tailwind": "./tailwind/index.css"
