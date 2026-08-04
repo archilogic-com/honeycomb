@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0](https://github.com/archilogic-com/honeycomb/compare/v3.2.0...v3.3.0) (2026-08-04)
+
+
+### Features
+
+* expose icons as raw SVGs ([#348](https://github.com/archilogic-com/honeycomb/issues/348)) ([d0aedb3](https://github.com/archilogic-com/honeycomb/commit/d0aedb362ffcc06d20027d84557ed511f68c4124))
+
 # [3.2.0](https://github.com/archilogic-com/honeycomb/compare/v3.1.1...v3.2.0) (2026-07-01)
 
 
