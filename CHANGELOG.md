@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.6](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.5...v3.3.0-test-al-7789.6) (2026-08-04)
+
+
+### Features
+
+* symmetrical function namings ([bb733e9](https://github.com/archilogic-com/honeycomb/commit/bb733e9e316f26efd9d688958cb1d58f596ae2a1))
+
 # [3.3.0-test-al-7789.5](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.4...v3.3.0-test-al-7789.5) (2026-08-04)
 
 
