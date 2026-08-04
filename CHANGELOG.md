@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.5](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.4...v3.3.0-test-al-7789.5) (2026-08-04)
+
+
+### Features
+
+* type safe icon helper to encode an icon ([11d458c](https://github.com/archilogic-com/honeycomb/commit/11d458c823dba21fac979c6a387b7536a3758542))
+
 # [3.3.0-test-al-7789.4](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.3...v3.3.0-test-al-7789.4) (2026-08-03)
 
 
