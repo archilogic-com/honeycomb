@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs'
 import { join } from 'path'
-import { iconManifest, resolveSymbolSvg, toIconSymbol } from '../icons/manifest'
+import { iconManifest, resolveIconSymbol, composeIconSymbol } from '../icons/manifest'
 
 const ICONS_DIR = join(__dirname, '../icons')
 const sizes = ['sm', 'md', 'lg', 'other'] as const
@@ -34,30 +34,30 @@ describe('iconManifest', () => {
   })
 })
 
-describe('resolveSymbolSvg', () => {
+describe('resolveIconSymbol', () => {
   it('resolves namespaced honeycomb symbol ids to raw SVG', () => {
-    expect(resolveSymbolSvg('honeycomb:user-md')).toBe(iconManifest['user-md'])
+    expect(resolveIconSymbol('honeycomb:user-md')).toBe(iconManifest['user-md'])
   })
 
   it('returns undefined outside the honeycomb namespace', () => {
-    expect(resolveSymbolSvg('iso7010:F001')).toBeUndefined()
+    expect(resolveIconSymbol('iso7010:F001')).toBeUndefined()
     // bare ids are not namespaced symbol ids
-    expect(resolveSymbolSvg('user-md')).toBeUndefined()
+    expect(resolveIconSymbol('user-md')).toBeUndefined()
   })
 
   it('returns undefined for unknown icons in the namespace', () => {
-    expect(resolveSymbolSvg('honeycomb:does-not-exist-md')).toBeUndefined()
+    expect(resolveIconSymbol('honeycomb:does-not-exist-md')).toBeUndefined()
   })
 })
 
-describe('toIconSymbol', () => {
+describe('composeIconSymbol', () => {
   it('composes the namespaced symbol id', () => {
-    expect(toIconSymbol('user-md')).toBe('honeycomb:user-md')
+    expect(composeIconSymbol('user-md')).toBe('honeycomb:user-md')
   })
 
-  it('round-trips through resolveSymbolSvg for every icon', () => {
+  it('round-trips through resolveIconSymbol for every icon', () => {
     for (const id of Object.keys(iconManifest) as (keyof typeof iconManifest)[]) {
-      expect(resolveSymbolSvg(toIconSymbol(id))).toBe(iconManifest[id])
+      expect(resolveIconSymbol(composeIconSymbol(id))).toBe(iconManifest[id])
     }
   })
 })

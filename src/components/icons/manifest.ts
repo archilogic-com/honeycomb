@@ -28,16 +28,16 @@ export type HoneycombIconSymbol = `${typeof HONEYCOMB_ICON_NAMESPACE}${IconIdent
  * source. Ids outside the honeycomb namespace and unknown icons resolve to
  * undefined.
  */
-export function resolveSymbolSvg(symbolId: string): string | undefined {
+export function resolveIconSymbol(symbolId: string): string | undefined {
   if (!symbolId.startsWith(HONEYCOMB_ICON_NAMESPACE)) return undefined
   return (iconManifest as Record<string, string>)[symbolId.slice(HONEYCOMB_ICON_NAMESPACE.length)]
 }
 
 /**
  * Composes the namespaced symbol id for an icon — the inverse of
- * resolveSymbolSvg, for writing symbols (e.g. into persisted floor-plan label
+ * resolveIconSymbol, for writing symbols (e.g. into persisted floor-plan label
  * icons). Typed against IconIdentifier, so unknown ids fail to compile.
  */
-export function toIconSymbol(id: IconIdentifier): HoneycombIconSymbol {
+export function composeIconSymbol(id: IconIdentifier): HoneycombIconSymbol {
   return `${HONEYCOMB_ICON_NAMESPACE}${id}`
 }
