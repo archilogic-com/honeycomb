@@ -11,6 +11,14 @@ describe('toKebab', () => {
     expect(toKebab('Ai')).toBe('ai')
     expect(toKebab('Size2')).toBe('size2')
   })
+
+  it('splits before a capital that follows another capital, matching the type-level KebabCase', () => {
+    expect(toKebab('LConnect')).toBe('l-connect')
+  })
+
+  it('splits runs of consecutive capitals, where a consuming pair regex cannot overlap', () => {
+    expect(toKebab('ABColumn')).toBe('a-b-column')
+  })
 })
 
 describe('toCamel', () => {

@@ -3,7 +3,7 @@
 // camelCase export names ('arrowDownSm').
 
 export const toKebab = (name: string): string =>
-  name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+  name.replace(/([A-Za-z0-9])(?=[A-Z])/g, '$1-').toLowerCase()
 
 export const toCamel = (kebab: string): string =>
   kebab.replace(/-([a-z0-9])/g, (_, char: string) => char.toUpperCase())

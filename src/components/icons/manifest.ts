@@ -16,20 +16,22 @@ for (const path in rawModules) {
 
 /**
  * Namespace prefix under which honeycomb icons are addressed in namespaced
- * symbol ids (e.g. persisted floor-plan label icons): 'honeycomb:user-md'.
+ * symbol ids (e.g. persisted floor-plan label icons): 'hc:user-md'.
  */
-export const HONEYCOMB_ICON_NAMESPACE = 'honeycomb:'
+export const HONEYCOMB_ICON_NAMESPACE = 'hc:'
 
-/** A honeycomb icon addressed as a namespaced symbol id, e.g. 'honeycomb:user-md' */
+/** A honeycomb icon addressed as a namespaced symbol id, e.g. 'hc:user-md' */
 export type HoneycombIconSymbol = `${typeof HONEYCOMB_ICON_NAMESPACE}${IconIdentifier}`
 
 /**
- * Resolves a namespaced symbol id ('honeycomb:user-md') to its raw SVG
+ * Resolves a namespaced symbol id ('hc:user-md') to its raw SVG
  * source. Ids outside the honeycomb namespace and unknown icons resolve to
  * undefined.
  */
 export function resolveIconSymbol(symbolId: string): string | undefined {
-  if (!symbolId.startsWith(HONEYCOMB_ICON_NAMESPACE)) return undefined
+  if (!symbolId.startsWith(HONEYCOMB_ICON_NAMESPACE)) {
+    return undefined
+  }
   return (iconManifest as Record<string, string>)[symbolId.slice(HONEYCOMB_ICON_NAMESPACE.length)]
 }
 

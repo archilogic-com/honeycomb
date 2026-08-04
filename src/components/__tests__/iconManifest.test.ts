@@ -36,7 +36,7 @@ describe('iconManifest', () => {
 
 describe('resolveIconSymbol', () => {
   it('resolves namespaced honeycomb symbol ids to raw SVG', () => {
-    expect(resolveIconSymbol('honeycomb:user-md')).toBe(iconManifest['user-md'])
+    expect(resolveIconSymbol('hc:user-md')).toBe(iconManifest['user-md'])
   })
 
   it('returns undefined outside the honeycomb namespace', () => {
@@ -46,13 +46,13 @@ describe('resolveIconSymbol', () => {
   })
 
   it('returns undefined for unknown icons in the namespace', () => {
-    expect(resolveIconSymbol('honeycomb:does-not-exist-md')).toBeUndefined()
+    expect(resolveIconSymbol('hc:does-not-exist-md')).toBeUndefined()
   })
 })
 
 describe('composeIconSymbol', () => {
   it('composes the namespaced symbol id', () => {
-    expect(composeIconSymbol('user-md')).toBe('honeycomb:user-md')
+    expect(composeIconSymbol('user-md')).toBe('hc:user-md')
   })
 
   it('round-trips through resolveIconSymbol for every icon', () => {
