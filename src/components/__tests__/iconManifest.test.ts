@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs'
 import { join } from 'path'
-import { iconManifest, resolveSymbolSvg } from '../icons/manifest'
+import { iconManifest, resolveSymbolSvg, toIconSymbol } from '../icons/manifest'
 
 const ICONS_DIR = join(__dirname, '../icons')
 const sizes = ['sm', 'md', 'lg', 'other'] as const
@@ -47,5 +47,17 @@ describe('resolveSymbolSvg', () => {
 
   it('returns undefined for unknown icons in the namespace', () => {
     expect(resolveSymbolSvg('honeycomb:does-not-exist-md')).toBeUndefined()
+  })
+})
+
+describe('toIconSymbol', () => {
+  it('composes the namespaced symbol id', () => {
+    expect(toIconSymbol('user-md')).toBe('honeycomb:user-md')
+  })
+
+  it('round-trips through resolveSymbolSvg for every icon', () => {
+    for (const id of Object.keys(iconManifest) as (keyof typeof iconManifest)[]) {
+      expect(resolveSymbolSvg(toIconSymbol(id))).toBe(iconManifest[id])
+    }
   })
 })

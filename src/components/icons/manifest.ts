@@ -20,6 +20,9 @@ for (const path in rawModules) {
  */
 export const HONEYCOMB_ICON_NAMESPACE = 'honeycomb:'
 
+/** A honeycomb icon addressed as a namespaced symbol id, e.g. 'honeycomb:user-md' */
+export type HoneycombIconSymbol = `${typeof HONEYCOMB_ICON_NAMESPACE}${IconIdentifier}`
+
 /**
  * Resolves a namespaced symbol id ('honeycomb:user-md') to its raw SVG
  * source. Ids outside the honeycomb namespace and unknown icons resolve to
@@ -28,4 +31,13 @@ export const HONEYCOMB_ICON_NAMESPACE = 'honeycomb:'
 export function resolveSymbolSvg(symbolId: string): string | undefined {
   if (!symbolId.startsWith(HONEYCOMB_ICON_NAMESPACE)) return undefined
   return (iconManifest as Record<string, string>)[symbolId.slice(HONEYCOMB_ICON_NAMESPACE.length)]
+}
+
+/**
+ * Composes the namespaced symbol id for an icon — the inverse of
+ * resolveSymbolSvg, for writing symbols (e.g. into persisted floor-plan label
+ * icons). Typed against IconIdentifier, so unknown ids fail to compile.
+ */
+export function toIconSymbol(id: IconIdentifier): HoneycombIconSymbol {
+  return `${HONEYCOMB_ICON_NAMESPACE}${id}`
 }
