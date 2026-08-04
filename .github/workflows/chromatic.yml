@@ -8,18 +8,18 @@ jobs:
 
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Required by Chromatic to retrieve git history
           token: ${{ secrets.CI_GITHUB_TOKEN }}
       - name: Setup npm auth token
         run: npm config set //registry.npmjs.org/:_authToken=${{secrets.CI_NPM_TOKEN_READONLY}}
       - name: Set up node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
         with:
           node-version-file: '.nvmrc'
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
