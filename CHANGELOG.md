@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0-test-al-7789.7](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.6...v3.3.0-test-al-7789.7) (2026-08-04)
+
+
+### Features
+
+* change namespace to hc, align toKebabKase (and unify usages) ([fc21ad0](https://github.com/archilogic-com/honeycomb/commit/fc21ad0acbcfb8f8e8063fcdfbb5e95afde50eae))
+
 # [3.3.0-test-al-7789.6](https://github.com/archilogic-com/honeycomb/compare/v3.3.0-test-al-7789.5...v3.3.0-test-al-7789.6) (2026-08-04)
 
 
