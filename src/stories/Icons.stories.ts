@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { AIcon } from '../components'
 import icons, { DEPRECATED_ICONS } from '../components/icons'
+import { toKebab } from '../components/icons/casing'
 
 type IconArgs = ComponentProps<typeof AIcon> & { size: 'sm' | 'md' | 'lg' | 'other' }
 
@@ -20,12 +21,10 @@ export default meta
 
 type Story = StoryObj<IconArgs>
 
-const toKebabCase = (str: string) => str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-
 const render = (args: IconArgs) => ({
   components: { AIcon },
   setup() {
-    const getIconId = (name: string) => `${toKebabCase(name)}-${args.size}`
+    const getIconId = (name: string) => `${toKebab(name)}-${args.size}`
     return { args, icons, DEPRECATED_ICONS, getIconId }
   },
   template: `
