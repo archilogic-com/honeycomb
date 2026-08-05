@@ -1,17 +1,11 @@
-name: Backup repo to CodeCommit
+name: Backup repo to S3
 on:
   push:
     branches:
       - main
 jobs:
-  to_codecommit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url: 'ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/honeycomb'
-          ssh_private_key: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
-          ssh_username: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
+  backup_to_codecommit:
+    uses: 'archilogic-com/actions/.github/workflows/backup-repo.yml@main'
+    with:
+      TARGET_REPO_URL: 'honeycomb'
+    secrets: inherit
