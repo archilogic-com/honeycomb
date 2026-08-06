@@ -1,11 +1,42 @@
-name: Backup repo to S3
+name: Backup repo to CodeCommit
 on:
   push:
     branches:
       - main
 jobs:
-  backup_to_codecommit:
-    uses: 'archilogic-com/actions/.github/workflows/backup-repo.yml@main'
-    with:
-      TARGET_REPO_URL: 'honeycomb'
-    secrets: inherit
+  # Inlined copy of archilogic-com/actions/.github/workflows/backup-repo.yml:
+  # honeycomb is public and cannot call that private reusable workflow.
+  check_repo_existence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.BACKUP_AWS_ACCES_KEY }}
+          aws-secret-access-key: ${{ secrets.BACKUP_AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Check CodeCommit repo existence
+        run: |
+          if aws codecommit get-repository --repository-name honeycomb 2>/dev/null; then
+            echo "Repository already exists."
+            current_default_branch=$(aws codecommit get-repository --repository-name honeycomb --query 'repositoryMetadata.defaultBranch' --output text)
+            if [[ "$current_default_branch" != main ]]; then
+              echo "Setting default branch to main"
+              aws codecommit update-default-branch --repository-name honeycomb --default-branch-name main
+            fi;
+          else
+            aws codecommit create-repository --repository-name honeycomb
+            echo "Repository created."
+          fi
+  to_codecommit:
+    runs-on: ubuntu-latest
+    needs: [check_repo_existence]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: 'ssh://git-codecommit.eu-west-1.amazonaws.com/v1/repos/honeycomb'
+          ssh_private_key: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
+          ssh_username: ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
