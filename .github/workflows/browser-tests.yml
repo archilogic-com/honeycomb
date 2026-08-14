@@ -1,0 +1,44 @@
+name: 'Browser tests'
+
+# Non-gating on purpose: this is the first Safari/WebKit coverage the design
+# system has had (AL-7818), so it reports rather than blocks. The jsdom suite
+# stays the gate — it still runs in chromatic.yml and release.yml.
+on: push
+
+jobs:
+  browser-tests:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+
+      - name: Setup npm auth token
+        run: npm config set //registry.npmjs.org/:_authToken=${{secrets.CI_NPM_TOKEN_READONLY}}
+
+      - name: Set up node
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Run browser tests (chromium + webkit)
+        run: npm run test:browser

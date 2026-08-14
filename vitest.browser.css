@@ -1,0 +1,14 @@
+/*
+ * Tailwind entry for the `browser` test project.
+ *
+ * Mirrors tailwind/index.css, minus two things that don't belong in a test run:
+ * the Google Fonts @import (no network) and `@source "../dist/**"` (nothing is
+ * built during tests). `@source` points at src instead, so the utilities the
+ * components actually use are generated.
+ *
+ * Real CSS is the point: focus traps and tabbable's visibility checks depend on
+ * `display: contents`, `absolute`, `hidden` etc. resolving for real.
+ */
+@import './tailwind/variables.css';
+@import './tailwind/theme.css';
+@source "./src/**/*.{vue,ts}";

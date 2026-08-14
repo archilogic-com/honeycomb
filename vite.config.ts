@@ -1,9 +1,13 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
+import { playwright } from '@vitest/browser-playwright'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import dts from 'vite-plugin-dts'
 import svgLoader from 'vite-svg-loader'
+
+const browserTestGlob = '**/__browser_tests__/**/*.browser.test.ts'
 
 export default defineConfig({
   resolve: {
@@ -35,9 +39,36 @@ export default defineConfig({
     }
   },
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['vitest.setup.ts']
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          globals: true,
+          environment: 'jsdom',
+          setupFiles: ['vitest.setup.ts'],
+          exclude: [...configDefaults.exclude, browserTestGlob]
+        }
+      },
+      {
+        // Real browsers, so none of the jsdom shims in vitest.setup.ts apply:
+        // IntersectionObserver, layout, focus and pointer semantics are the
+        // browser's own. This is what makes the WebKit run meaningful.
+        extends: true,
+        test: {
+          name: 'browser',
+          globals: true,
+          include: [browserTestGlob],
+          setupFiles: ['vitest.browser.setup.ts'],
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright(),
+            instances: [{ browser: 'chromium' }, { browser: 'webkit' }]
+          }
+        }
+      }
+    ]
   },
   plugins: [
     vue(),
