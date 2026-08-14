@@ -1,9 +1,12 @@
 name: 'Browser tests'
 
-# Non-gating on purpose: this is the first Safari/WebKit coverage the design
-# system has had (AL-7818), so it reports rather than blocks. The jsdom suite
-# stays the gate — it still runs in chromatic.yml and release.yml.
-on: push
+# Non-gating and main-only on purpose: this is the first Safari/WebKit coverage
+# the design system has had (AL-7818), so it reports rather than blocks. The
+# jsdom suite stays the gate — it still runs in chromatic.yml and release.yml.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   browser-tests:
