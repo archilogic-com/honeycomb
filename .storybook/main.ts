@@ -14,12 +14,7 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     config.plugins = (config.plugins ?? []).filter(
       plugin =>
-        !(
-          plugin &&
-          typeof plugin === 'object' &&
-          'name' in plugin &&
-          plugin.name === 'vite:dts'
-        )
+        !(plugin && typeof plugin === 'object' && 'name' in plugin && plugin.name === 'vite:dts')
     )
     config.plugins.push(tailwindcss())
     return config
