@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.4.0-test-new-icons.1](https://github.com/archilogic-com/honeycomb/compare/v3.3.0...v3.4.0-test-new-icons.1) (2026-08-24)
+
+
+### Features
+
+* **icons:** add facility icons for floor-plan labels (md) ([7368d9b](https://github.com/archilogic-com/honeycomb/commit/7368d9bc9678640618de23cff29de78f4e5262bc))
+
 # [3.3.0](https://github.com/archilogic-com/honeycomb/compare/v3.2.0...v3.3.0) (2026-08-04)
 
 
