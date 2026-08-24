@@ -10,7 +10,8 @@ const iconsMap: Record<IconSize, { [index: string]: object }> = {
   sm: {},
   md: {},
   lg: {},
-  other: {}
+  other: {},
+  fp: {}
 }
 for (const path in iconModules) {
   const [, size, name] = path.split('.')[1].split('/')
@@ -24,5 +25,6 @@ export const DEPRECATED_ICONS: { [key in IconSize]: string[] } = {
   other: [],
   sm: [],
   md: [],
-  lg: []
+  lg: [],
+  fp: []
 }

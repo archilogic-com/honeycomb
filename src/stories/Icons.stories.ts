@@ -4,14 +4,14 @@ import { AIcon } from '../components'
 import icons, { DEPRECATED_ICONS } from '../components/icons'
 import { toKebab } from '../components/icons/casing'
 
-type IconArgs = ComponentProps<typeof AIcon> & { size: 'sm' | 'md' | 'lg' | 'other' }
+type IconArgs = ComponentProps<typeof AIcon> & { size: 'sm' | 'md' | 'lg' | 'other' | 'fp' }
 
 const meta: Meta<IconArgs> = {
   title: 'Components/Icons',
   component: AIcon,
   argTypes: {
     size: {
-      options: ['sm', 'md', 'lg', 'other'],
+      options: ['sm', 'md', 'lg', 'other', 'fp'],
       control: 'radio'
     }
   }
@@ -48,6 +48,8 @@ export const Medium: Story = { name: 'medium', render, args: { size: 'md' } }
 export const Large: Story = { name: 'large', render, args: { size: 'lg' } }
 
 export const Other: Story = { name: 'other', render, args: { size: 'other' } }
+
+export const FloorPlan: Story = { name: 'floor plan', render, args: { size: 'fp' } }
 
 export const ChangeColor: Story = {
   name: 'change color',

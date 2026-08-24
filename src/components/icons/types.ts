@@ -115,24 +115,18 @@ export type MdIcon =
 export type LgIcon =
   | 'Area'
   | 'ArrowLeft'
-  | 'BreakRoom'
   | 'Burger'
-  | 'Coffee'
   | 'Distance'
-  | 'FireExtinguisher'
   | 'History'
   | 'Info'
   | 'Insert'
   | 'InsertAssets'
-  | 'Kitchen'
   | 'Layers'
   | 'More'
-  | 'MothersRoom'
   | 'Move'
   | 'Pencil'
   | 'PencilLocked'
   | 'Redo'
-  | 'Restroom'
   | 'Search'
   | 'Undo'
 
@@ -150,7 +144,30 @@ export type OtherIcon =
   | 'Padlock'
   | 'Warning'
 
-export type IconSize = 'sm' | 'md' | 'lg' | 'other'
+export type FpIcon =
+  | 'Ai'
+  | 'Air'
+  | 'Bin'
+  | 'Buildings'
+  | 'Camera'
+  | 'Card'
+  | 'Coffee'
+  | 'Cog'
+  | 'Couch'
+  | 'FireExtinguisher'
+  | 'Kitchen'
+  | 'Layers'
+  | 'MothersRoom'
+  | 'Orders'
+  | 'Organization'
+  | 'Padlock'
+  | 'Pencil'
+  | 'Restroom'
+  | 'Team'
+  | 'User'
+  | 'Warning'
+
+export type IconSize = 'sm' | 'md' | 'lg' | 'other' | 'fp'
 
 export type IconName<S extends IconSize> = S extends 'sm'
   ? SmIcon
@@ -160,9 +177,11 @@ export type IconName<S extends IconSize> = S extends 'sm'
       ? LgIcon
       : S extends 'other'
         ? OtherIcon
-        : never
+        : S extends 'fp'
+          ? FpIcon
+          : never
 
-export type AnyIcon = SmIcon | MdIcon | LgIcon | OtherIcon
+export type AnyIcon = SmIcon | MdIcon | LgIcon | OtherIcon | FpIcon
 export type AnyIconName = AnyIcon | Uncapitalize<AnyIcon>
 
 type KebabCase<S extends string> = S extends `${infer First}${infer Rest}`
@@ -175,5 +194,6 @@ export type SmIconId = `${KebabCase<SmIcon>}-sm`
 export type MdIconId = `${KebabCase<MdIcon>}-md`
 export type LgIconId = `${KebabCase<LgIcon>}-lg`
 export type OtherIconId = `${KebabCase<OtherIcon>}-other`
+export type FpIconId = `${KebabCase<FpIcon>}-fp`
 
-export type IconIdentifier = SmIconId | MdIconId | LgIconId | OtherIconId
+export type IconIdentifier = SmIconId | MdIconId | LgIconId | OtherIconId | FpIconId

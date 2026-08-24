@@ -71,6 +71,16 @@ The legacy `name` and `size` props have been **removed**. Use the type-safe `ico
 
 <Canvas of={IconsStories.Large} />
 
+## Icons fp (floor-plan labels, 20x20px)
+
+Pictograms for labeling spaces on floor plans (via label rules in consuming apps), not for regular UI chrome. Every fp icon is a 20x20 viewBox with its glyph normalized to 19px — near-zero padding, so all of them render at the same physical size on a plan.
+
+```html
+<a-icon icon="coffee-fp" />
+```
+
+<Canvas of={IconsStories.FloorPlan} />
+
 ## Icons other (various sizes)
 
 ```html
