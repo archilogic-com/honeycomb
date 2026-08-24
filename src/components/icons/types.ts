@@ -147,6 +147,7 @@ export type OtherIcon =
 export type FpIcon =
   | 'Ai'
   | 'Air'
+  | 'Asset'
   | 'Bin'
   | 'Buildings'
   | 'Camera'
@@ -154,7 +155,10 @@ export type FpIcon =
   | 'Coffee'
   | 'Cog'
   | 'Couch'
+  | 'Drop'
+  | 'Eye'
   | 'FireExtinguisher'
+  | 'Info'
   | 'Kitchen'
   | 'Layers'
   | 'MothersRoom'
@@ -162,10 +166,13 @@ export type FpIcon =
   | 'Organization'
   | 'Padlock'
   | 'Pencil'
+  | 'Proximity'
   | 'Restroom'
+  | 'Star'
   | 'Team'
   | 'User'
   | 'Warning'
+  | 'Wifi'
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'other' | 'fp'
 
