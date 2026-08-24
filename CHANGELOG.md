@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.6.0](https://github.com/archilogic-com/honeycomb/compare/v3.5.0...v3.6.0) (2026-08-24)
+
+
+### Features
+
+* **icons:** add eye, wifi, proximity, asset, info, drop and star to fp ([#355](https://github.com/archilogic-com/honeycomb/issues/355)) ([328096b](https://github.com/archilogic-com/honeycomb/commit/328096b23dc664bd3b27294e79d23763abacb4c2))
+
 # [3.5.0](https://github.com/archilogic-com/honeycomb/compare/v3.4.0...v3.5.0) (2026-08-24)
 
 
