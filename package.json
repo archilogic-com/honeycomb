@@ -1,6 +1,6 @@
 {
   "name": "@archilogic/honeycomb",
-  "version": "3.4.0-test-new-icons.2",
+  "version": "3.4.0",
   "publishConfig": {
     "access": "public"
   },
