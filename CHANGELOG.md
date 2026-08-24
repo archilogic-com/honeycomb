@@ -1,5 +1,17 @@
 # Changelog
 
+# [3.5.0-test-fp-icons.1](https://github.com/archilogic-com/honeycomb/compare/v3.4.0...v3.5.0-test-fp-icons.1) (2026-08-24)
+
+
+### Bug Fixes
+
+* **icons:** rename break-room icon to couch ([5f79998](https://github.com/archilogic-com/honeycomb/commit/5f799987c7c083042bd731ff27d279e3d6f3441e))
+
+
+### Features
+
+* **icons:** fp icon category for floor-plan labels (20x20, zero padding) ([e65d12a](https://github.com/archilogic-com/honeycomb/commit/e65d12a00e51bf2897ff9707dfbbe22454185e75))
+
 # [3.4.0](https://github.com/archilogic-com/honeycomb/compare/v3.3.0...v3.4.0) (2026-08-24)
 
 
