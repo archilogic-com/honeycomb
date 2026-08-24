@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.4.0-test-new-icons.2](https://github.com/archilogic-com/honeycomb/compare/v3.4.0-test-new-icons.1...v3.4.0-test-new-icons.2) (2026-08-24)
+
+
+### Features
+
+* **icons:** resize facility icons to lg (40x40) ([b93738c](https://github.com/archilogic-com/honeycomb/commit/b93738c4f30d4cf6afc11d646dd39a8b276928e2))
+
 # [3.4.0-test-new-icons.1](https://github.com/archilogic-com/honeycomb/compare/v3.3.0...v3.4.0-test-new-icons.1) (2026-08-24)
 
 
