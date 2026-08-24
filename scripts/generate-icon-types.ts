@@ -8,7 +8,7 @@ const ICONS_DIR = join(__dirname, '../src/components/icons')
 const OUTPUT_FILE = join(ICONS_DIR, 'types.ts')
 const INDIVIDUAL_FILE = join(ICONS_DIR, 'individual.ts')
 
-const sizes = ['sm', 'md', 'lg', 'other'] as const
+const sizes = ['sm', 'md', 'lg', 'other', 'fp'] as const
 
 function getIconNames(size: string): string[] {
   const dir = join(ICONS_DIR, size)
@@ -36,7 +36,9 @@ ${generateUnionType('LgIcon', iconsBySize.lg)}
 
 ${generateUnionType('OtherIcon', iconsBySize.other)}
 
-export type IconSize = 'sm' | 'md' | 'lg' | 'other'
+${generateUnionType('FpIcon', iconsBySize.fp)}
+
+export type IconSize = 'sm' | 'md' | 'lg' | 'other' | 'fp'
 
 export type IconName<S extends IconSize> = S extends 'sm'
   ? SmIcon
@@ -46,9 +48,11 @@ export type IconName<S extends IconSize> = S extends 'sm'
       ? LgIcon
       : S extends 'other'
         ? OtherIcon
-        : never
+        : S extends 'fp'
+          ? FpIcon
+          : never
 
-export type AnyIcon = SmIcon | MdIcon | LgIcon | OtherIcon
+export type AnyIcon = SmIcon | MdIcon | LgIcon | OtherIcon | FpIcon
 export type AnyIconName = AnyIcon | Uncapitalize<AnyIcon>
 
 type KebabCase<S extends string> = S extends \`\${infer First}\${infer Rest}\`
@@ -61,8 +65,9 @@ export type SmIconId = \`\${KebabCase<SmIcon>}-sm\`
 export type MdIconId = \`\${KebabCase<MdIcon>}-md\`
 export type LgIconId = \`\${KebabCase<LgIcon>}-lg\`
 export type OtherIconId = \`\${KebabCase<OtherIcon>}-other\`
+export type FpIconId = \`\${KebabCase<FpIcon>}-fp\`
 
-export type IconIdentifier = SmIconId | MdIconId | LgIconId | OtherIconId
+export type IconIdentifier = SmIconId | MdIconId | LgIconId | OtherIconId | FpIconId
 `
 
 writeFileSync(OUTPUT_FILE, output)
@@ -90,3 +95,4 @@ console.log(`  sm: ${iconsBySize.sm.length} icons`)
 console.log(`  md: ${iconsBySize.md.length} icons`)
 console.log(`  lg: ${iconsBySize.lg.length} icons`)
 console.log(`  other: ${iconsBySize.other.length} icons`)
+console.log(`  fp: ${iconsBySize.fp.length} icons`)

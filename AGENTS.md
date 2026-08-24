@@ -44,7 +44,7 @@ All components live flat in `src/components/` and are exported with an `A` prefi
 
 ### Icons
 
-SVG files in `src/components/icons/{sm,md,lg,other}/` are loaded eagerly via `import.meta.glob` (with `vite-svg-loader`, svgo disabled) into a size-keyed map consumed by `AIcon`. Folder = size: `sm/` 16x16, `md/` 32x32, `lg/` 40x40, `other/` everything else. When adding an icon: replace hardcoded colors with `currentColor`, then run `npm run generate:icon-types` to update the icon-name union types and the per-icon raw-SVG exports (`types.ts` and `individual.ts` are auto-generated — never edit them by hand). Deprecated icons are tracked in `DEPRECATED_ICONS` in `src/components/icons/index.ts`.
+SVG files in `src/components/icons/{sm,md,lg,other,fp}/` are loaded eagerly via `import.meta.glob` (with `vite-svg-loader`, svgo disabled) into a size-keyed map consumed by `AIcon`. Folder = size: `sm/` 16x16, `md/` 32x32, `lg/` 40x40, `other/` everything else; `fp/` holds floor-plan label pictograms rather than a UI size: 20x20 viewBox with the glyph normalized to 19px (near-zero padding), so a label's world-scale size maps 1:1 to the rendered glyph. When adding an icon: replace hardcoded colors with `currentColor`, then run `npm run generate:icon-types` to update the icon-name union types and the per-icon raw-SVG exports (`types.ts` and `individual.ts` are auto-generated — never edit them by hand). Deprecated icons are tracked in `DEPRECATED_ICONS` in `src/components/icons/index.ts`.
 
 ### Styling and theming
 

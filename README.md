@@ -76,7 +76,7 @@ Dependencies updates are [managed by dependabot](./.github/dependabot.yml). Depe
 1. right-click "Copy/Paste as" > "Copy as SVG" or use the "Export" section of the "Design" tab in the left sidebar panel.
 1. (optional) paste the SVG snippet in [SVG OMG](https://jakearchibald.github.io/svgomg/)
 1. (optional) copy the optimized SVG snippet
-1. create a new .svg file. The size of the icon determines its target folder: `sm/` 16x16, `md/` 32x32, `lg/` 40x40, `other/` everything else
+1. create a new .svg file. The size of the icon determines its target folder: `sm/` 16x16, `md/` 32x32, `lg/` 40x40, `fp/` floor-plan label pictograms (20x20, glyph normalized to 19px = near-zero padding), `other/` everything else
 1. replace (some) colors with `currentColor` so the color of the icon can be set via CSS
 
 ### IDE Recommended Plugins

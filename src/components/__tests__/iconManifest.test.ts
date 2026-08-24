@@ -3,7 +3,7 @@ import { join } from 'path'
 import { iconManifest, resolveIconSymbol, composeIconSymbol } from '../icons/manifest'
 
 const ICONS_DIR = join(__dirname, '../icons')
-const sizes = ['sm', 'md', 'lg', 'other'] as const
+const sizes = ['sm', 'md', 'lg', 'other', 'fp'] as const
 
 const svgFileCount = sizes
   .map(size => readdirSync(join(ICONS_DIR, size)).filter(f => f.endsWith('.svg')).length)
@@ -17,7 +17,7 @@ describe('iconManifest', () => {
 
   it('keys are kebab-case names with a size suffix', () => {
     for (const key of Object.keys(iconManifest)) {
-      expect(key).toMatch(/^[a-z0-9-]+-(sm|md|lg|other)$/)
+      expect(key).toMatch(/^[a-z0-9-]+-(sm|md|lg|other|fp)$/)
     }
   })
 

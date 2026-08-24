@@ -6,13 +6,15 @@ export type {
   MdIcon,
   LgIcon,
   OtherIcon,
+  FpIcon,
   AnyIcon,
   AnyIconName,
   IconIdentifier,
   SmIconId,
   MdIconId,
   LgIconId,
-  OtherIconId
+  OtherIconId,
+  FpIconId
 } from './icons/types'
 </script>
 

@@ -1,6 +1,14 @@
 import { type IconIdentifier, type IconSize } from './types'
 import { toKebab } from './casing'
-export type { IconIdentifier, IconSize, SmIconId, MdIconId, LgIconId, OtherIconId } from './types'
+export type {
+  IconIdentifier,
+  IconSize,
+  SmIconId,
+  MdIconId,
+  LgIconId,
+  OtherIconId,
+  FpIconId
+} from './types'
 
 const rawModules: Record<string, string> = import.meta.glob('./**/*.svg', {
   query: '?raw',
