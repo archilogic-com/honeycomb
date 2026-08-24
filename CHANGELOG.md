@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.5.0-test-fp-icons.2](https://github.com/archilogic-com/honeycomb/compare/v3.5.0-test-fp-icons.1...v3.5.0-test-fp-icons.2) (2026-08-24)
+
+
+### Features
+
+* **icons:** add eye, wifi, proximity, asset, info, drop and star to fp ([53be4a0](https://github.com/archilogic-com/honeycomb/commit/53be4a04124718efd18fdb95d673d6ce542a2440))
+
 # [3.5.0-test-fp-icons.1](https://github.com/archilogic-com/honeycomb/compare/v3.4.0...v3.5.0-test-fp-icons.1) (2026-08-24)
 
 
