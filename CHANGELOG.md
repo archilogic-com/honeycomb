@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.5.0](https://github.com/archilogic-com/honeycomb/compare/v3.4.0...v3.5.0) (2026-08-24)
+
+
+### Features
+
+* **icons:** fp icon category for floor-plan labels (20x20, zero padding) ([58dc7e4](https://github.com/archilogic-com/honeycomb/commit/58dc7e4124022b78e71374ad224afe647c8f3a81))
+
 # [3.5.0-test-fp-icons.1](https://github.com/archilogic-com/honeycomb/compare/v3.4.0...v3.5.0-test-fp-icons.1) (2026-08-24)
 
 
