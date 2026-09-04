@@ -1,0 +1,230 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+
+import * as SliderStories from './Slider.stories'
+
+<Meta of={SliderStories} />
+
+# Slider
+
+## Usage
+
+```html
+<a-slider v-model="yourValue" :min="0" :max="100" />
+```
+
+<ArgTypes of={SliderStories} />
+
+`ASlider` picks a value, or a range of values, by dragging a thumb along a track.
+It suits values where a rough setting is good enough and it helps to see where the value sits
+within its range, such as an opacity, a bearing or a size filter.
+When the exact number matters, use [`ANumberInput`](path=/docs/components-numberinput--docs)
+instead, or pair the two as described below.
+
+<Canvas of={SliderStories.Single} />
+
+## Single value or a range
+
+The shape of `v-model` decides how many thumbs the slider has.
+A number gives one thumb, a `[from, to]` tuple gives two.
+
+<Canvas of={SliderStories.Range} />
+
+Each thumb of a range is its own [`role="slider"`](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/),
+labelled `Minimum` and `Maximum` by default. Use `thumbLabels` to change these names.
+
+Clicking the track moves the thumb to that point on a single-thumb slider.
+On a range this is off by default, because a click cannot tell which of the two thumbs it was meant for.
+Set `allowTrackClick` to enable it anyway.
+
+## Pairing with a number input
+
+A slider cannot hit an exact value, and a range slider is easily mistaken for a single-value one.
+The `#input` slot solves both. It renders beside the track, vertically centered on it,
+and stays in sync with the thumbs.
+
+<Canvas of={SliderStories.WithNumberInput} />
+
+The slot provides everything the input needs:
+
+| Slot prop     | Type                      | Description                                                     |
+| ------------- | ------------------------- | --------------------------------------------------------------- |
+| `values`      | `(number \| undefined)[]` | the current value of each thumb                                 |
+| `min` / `max` | `number`                  | the bounds for typed input, which are the hard limits when set  |
+| `step`        | `number`                  | the `step` prop                                                 |
+| `disabled`    | `boolean`                 | the `disabled` prop                                             |
+| `setValue`    | `(index, value) => void`  | commits a value and emits both `update:modelValue` and `change` |
+
+`setValue` treats `NaN` like `undefined`. A cleared number input reports `NaN` through
+`valueAsNumber`, and clearing the field should clear the value.
+
+Give a range two inputs, one per thumb. With a single field, the range reads as a single value.
+
+<Canvas of={SliderStories.RangeWithInputs} />
+
+### Editable labels below the track
+
+`#input` renders one block beside the track. `#thumb-label` renders once per thumb instead,
+in a row below the track. An `ANumberInput` with `variant="subtle"` looks like a plain label
+until it is focused.
+
+<Canvas of={SliderStories.WithEditableLabels} />
+
+The slot receives the same `setValue` as `#input`, plus the `value` and `index` of its thumb:
+
+| Slot prop                           | Type                     | Description                                                |
+| ----------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| `value`                             | `number \| undefined`    | the value of this thumb                                    |
+| `index`                             | `number`                 | the position of this thumb                                 |
+| `min` / `max` / `step` / `disabled` |                          | as for `#input`                                            |
+| `setValue`                          | `(index, value) => void` | commits a value, resolving collisions with the other thumb |
+
+The labels stay at the ends of the track instead of following the thumbs.
+On a range, the lower value sits on the left and the upper value on the right,
+so each field stays where it can be clicked again.
+
+Aligning the label text with the ends of the track is up to the slot content, since only it
+knows its own padding. Every honeycomb text input insets its text by 9px (8px padding plus a
+1px border). Pull the first label left with `-ml-[9px]`, the last one right with `-mr-[9px]`,
+and right-align the text of the last input, as these stories do.
+
+<Canvas of={SliderStories.RangeWithEditableLabels} />
+
+Choose between the two slots based on the available space. `#input` keeps the number on the
+same line as the track, `#thumb-label` stacks it below and leaves the full width to the track.
+
+## Where the fill starts
+
+By default the fill grows from the start of the track. When the value represents an offset in
+either direction, set `origin="center"` to grow it from the middle instead.
+
+<Canvas of={SliderStories.CenterOrigin} />
+
+## Where the thumb travels
+
+The track spans the full width of the component, so it lines up with any labels above or below it.
+The center of the thumb travels between half a thumb in from either end, as in a native range input.
+At `min` and `max` the thumb sits flush with the end of the track instead of overhanging it,
+and a container with `overflow: hidden` does not clip it.
+The fill and the marks follow the same travel, so they always meet the thumb at its center,
+and the first and last half thumb of the track still count as `min` and `max` when clicked.
+
+## Marks
+
+`marks` places reference points along the track. A mark without a `label` falls back to
+`formatValue` for its text, and a mark without either renders as a tick only.
+
+<Canvas of={SliderStories.WithMarks} />
+
+## Open-ended ranges
+
+With `openEnded`, a thumb resting against its outer end means there is no limit on that side,
+and the slider emits `undefined` for it instead of a number. The lower thumb opens at `min`,
+every other thumb at `max`. This matches the shape of filter values, where `undefined` means
+"not filtered".
+
+<Canvas of={SliderStories.OpenEnded} />
+
+`formatValue` receives that `undefined`, so it can render it as `100+`, `Any` or similar.
+Without a `formatValue`, screen readers announce `No minimum` and `No maximum`.
+
+## Soft and hard limits
+
+`min` and `max` limit dragging. `hardMin` and `hardMax`, when set, limit typed input instead,
+so the `#input` slot can accept values beyond the track. A value beyond the track keeps its
+number, and the thumb parks at the end of the track.
+
+The same applies to bounds that change at runtime, for example a `max` derived from data that
+arrives after the value was set. The slider never clamps the model itself. The value keeps its
+number and the thumb parks at the end of the track until the value is changed.
+
+<Canvas of={SliderStories.SoftAndHardLimits} />
+
+## Tracks over data
+
+A slider that filters records by a numeric attribute needs a track that covers the values that
+actually occur. `sliderBoundsOver` turns a list of values into `min`, `max` and `step` in round
+numbers. By default it covers 98% of the values, so that a single outlier does not stretch the
+track until all other values sit in its first few pixels. Combine it with `openEnded`, and the
+few values beyond the track park at its end. They can still be typed into the `#input` slot and
+still take part in the filter.
+
+```ts
+import { sliderBoundsOver } from '@archilogic/honeycomb'
+
+const bounds = sliderBoundsOver(products.map(product => product.width))
+// { min: 0, max: 2.4, step: 0.05 }
+```
+
+<Canvas of={SliderStories.OverData} />
+
+## When thumbs meet
+
+`thumbCollision` decides what happens when one thumb is dragged into the other.
+`push` (the default) moves the other thumb along, `none` stops at it, and `swap` lets the thumbs
+pass each other.
+
+<Canvas of={SliderStories.ThumbCollision} />
+
+`minStepsBetweenThumbs` keeps a minimum gap between the thumbs with any of these settings.
+
+## Mixed values
+
+`'mixed'` marks an indeterminate state, for example when the control edits a multi-selection
+whose values differ. The thumb rests at the origin without an `aria-valuenow`, and the first
+interaction sets a real value.
+
+<Canvas of={SliderStories.Mixed} />
+
+## Reacting to changes
+
+`update:modelValue` is emitted continuously while dragging, so the result can update live.
+`change` is emitted once the interaction ends: on pointer release, on key release, or
+immediately when the `#input` slot commits a typed value.
+
+Use `change` for anything that should not run on every frame of a drag:
+
+```html
+<a-slider
+  :model-value="opacity"
+  :min="0"
+  :max="1"
+  :step="0.01"
+  @update:model-value="preview"
+  @change="save" />
+```
+
+## Disabled and invalid states
+
+To disable the slider, set the `disabled` prop. When the value is invalid, set the `invalid`
+prop to `true`. It is recommended to also display an error message.
+
+<Canvas of={SliderStories.Disabled} />
+<Canvas of={SliderStories.Invalid} />
+
+## Labelling the slider
+
+`ASlider` renders a `role="group"`, so `aria-labelledby` on it names the whole control.
+Inside [`AInputGroup`](path=/docs/components-inputgroup--docs) this is wired up for you:
+
+```html
+<a-input-group label="Opacity">
+  <template #input="{ labelledby }">
+    <a-slider v-model="opacity" :min="0" :max="1" :step="0.01" :aria-labelledby="labelledby" />
+  </template>
+</a-input-group>
+```
+
+When the slider is used on its own, pass an `aria-label` instead.
+
+## Keyboard
+
+| Key                                                   | Action                                   |
+| ----------------------------------------------------- | ---------------------------------------- |
+| <kbd>←</kbd> <kbd>↓</kbd> / <kbd>→</kbd> <kbd>↑</kbd> | move by `step`                           |
+| <kbd>Shift</kbd> + arrow                              | move by `bigStep` (ten steps by default) |
+| <kbd>Shift</kbd> + <kbd>Alt</kbd> + arrow             | move by `smallStep`, when set            |
+| <kbd>Page Up</kbd> / <kbd>Page Down</kbd>             | move by `bigStep`                        |
+| <kbd>Home</kbd> / <kbd>End</kbd>                      | jump to `min` / `max`                    |
+
+A modifier key only ever refines the grid. A big step still lands on a regular `step`, while a
+`smallStep` finer than `step` lets the value settle between two steps.

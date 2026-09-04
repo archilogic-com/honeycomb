@@ -26,9 +26,7 @@ export default defineComponent({
 <template>
   <button
     :class="
-      selected
-        ? 'border-b-2 border-primary text-primary body-md-600'
-        : 'text-stone body-md-500'
+      selected ? 'border-b-2 border-primary text-primary body-md-600' : 'text-stone body-md-500'
     "
     class="h-8 px-2 transition duration-300 ease-in-out hover:text-primary focus-visible:focus-outline">
     <!--

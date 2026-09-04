@@ -49,6 +49,7 @@ export { default as APopup } from './Popup.vue'
 export { default as APopupButton } from './PopupButton.vue'
 export { default as APanelCombobox } from './PanelCombobox.vue'
 export { default as APopupCombobox } from './PopupCombobox.vue'
+export { default as ASlider } from './Slider.vue'
 export { default as ASwitcher } from './Switcher.vue'
 export { default as ATooltip } from './Tooltip.vue'
 export {
@@ -79,3 +80,10 @@ export type { StatusVariant } from './Status.vue'
 export type { CounterVariant } from './Counter.vue'
 export type { AvatarSize } from './Avatar.vue'
 export type { Align, Direction } from './Popup.vue'
+export type {
+  SliderThumbValue,
+  SliderModelValue,
+  SliderOrigin,
+  SliderThumbCollision,
+  SliderMark
+} from './Slider.vue'
