@@ -1,5 +1,17 @@
 # Changelog
 
+# [3.7.0-test-slider.1](https://github.com/archilogic-com/honeycomb/compare/v3.6.0...v3.7.0-test-slider.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* **storybook:** render markdown tables in mdx docs pages ([29579f8](https://github.com/archilogic-com/honeycomb/commit/29579f85f7315233d4114e351ef454111967cf69))
+
+
+### Features
+
+* **slider:** add ASlider single and range slider, with sliderBoundsOver for data-driven tracks ([89a2368](https://github.com/archilogic-com/honeycomb/commit/89a23689000d4eefe4e0312389f3c24de005b46f))
+
 # [3.6.0](https://github.com/archilogic-com/honeycomb/compare/v3.5.0...v3.6.0) (2026-08-24)
 
 
